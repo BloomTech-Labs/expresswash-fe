@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Username from './Username.js'
+import Name from './Name.js'
+import Address from './Address.js'
 
 class UserSignup extends Component { 
     constructor(props) {
@@ -43,6 +45,7 @@ class UserSignup extends Component {
                 </button>
             )
         }
+        return null
     }
 
     get getNextStep() {
@@ -86,7 +89,7 @@ class UserSignup extends Component {
             <div>
                 <div>add user</div>
                 <div>
-                    {this.getP}
+                    {this.getPrevStep}
                     {this.getNextStep}
                 </div>
                 <Username 
@@ -94,6 +97,19 @@ class UserSignup extends Component {
                     handleChange= {this.handleChange}
                     username = {this.state.username}
                     password = {this.state.password}
+                />
+                <Name 
+                    currentStep={this.state.currentStep}
+                    handleChange={this.handleChange}
+                    firstName={this.state.firstName}
+                    lastName={this.state.LastName}
+                    email={this.state.email}
+                />
+                <Address 
+                    currentStep={this.state.currentStep}
+                    handleChange={this.handleChange}
+                    address={this.state.address}
+                    phoneNumber={this.state.phoneNumber}
                 />
             </div>
         )

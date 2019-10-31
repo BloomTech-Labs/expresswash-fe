@@ -7,6 +7,9 @@ export default function Username(props) {
     
     return (
         <div>
+            <div>
+                <p>registration information</p>
+            </div>
             <input
                 id='username'
                 name='username'
@@ -18,7 +21,7 @@ export default function Username(props) {
             <input
                 id='password'
                 name='password'
-                type='text'
+                type='password'
                 placeholder='Password'
                 value={props.password}
                 onChange={props.handleChange}
