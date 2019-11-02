@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import WasherSignUp from './components/WasherSignUp.js';
 
 function App() {
   return (
     <div className="App">
-      <h1>WoWo App</h1>
+      <WasherSignUp />
     </div>
   );
 }

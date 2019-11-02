@@ -1,15 +1,16 @@
 import React from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
-import './App.css';
+import { MDBProgress } from 'mdbreact';
+import '../App.css';
 
-function WasherSignUp() {
+export default function() {
   return (
     <MDBContainer>
       <MDBRow center>
         <MDBCol md="6">
           <div className="form-group">
             <p className="h5 text-center mb-4">Sign up</p>
-            <MDBInput name="fname" label="First Name" />
+            <MDBProgress className="my-2" material value={33} color="info" />            <MDBInput name="fname" label="First Name" />
             <MDBInput name="lname" label="Last Name" />
             <MDBInput name="name" label="Email" />
             <MDBInput name="name" label="Password" />
@@ -39,6 +40,4 @@ function WasherSignUp() {
       </MDBRow>
     </MDBContainer>
   );
-}
-
-export default WasherSignUp;
+};
