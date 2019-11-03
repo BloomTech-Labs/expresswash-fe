@@ -21,7 +21,7 @@ export default function Name(props) {
                 id='firstName'
                 name='firstName'
                 type='text'
-                placeHolder='First Name'
+                placeholder='First Name'
                 value={props.firstName}
                 onChange={props.handleChange}
             />
@@ -33,6 +33,7 @@ export default function Name(props) {
                 value = {props.lastName}
                 onChange={props.handleChange}
             />
+            <p>By clicking Register you agree to our<br /> <strong>Terms & Conditions</strong> </p>
         </div>
     )
 }
