@@ -13,7 +13,7 @@ export class WasherSignUpReview extends Component {
         <h1>Review</h1>
         <div className="text-center">
           <MDBBtn color="info" onClick={prevBtn}>Back</MDBBtn>
-          <MDBBtn color="primary" onClick={nextBtn}>Continue</MDBBtn>
+          <MDBBtn color="primary" onClick={nextBtn}>Register!</MDBBtn>
         </div>
       </span>
     );
