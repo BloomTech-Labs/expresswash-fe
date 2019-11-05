@@ -2,16 +2,20 @@ import React, { Component } from 'react';
 import Username from './Username.js'
 import Name from './Name.js'
 import Address from './Address.js'
-import ProgressBar from './ProgressBar.js'
+import ProgressBar from './progress-bar/ProgressBar.js'
 
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBIcon } from "mdbreact";
+import { MdChevronLeft } from 'react-icons/md'
+import 'mdbreact/dist/css/mdb.css'
+
+
 
 class UserSignup extends Component { 
     constructor(props) {
         super(props);
 
         this.state = {
-            percentage: 0,
+            percentage: 33.33,
             currentStep: 1,
             email: '',
             firstName: '',
@@ -31,7 +35,7 @@ class UserSignup extends Component {
         currentStep = currentStep >= 2 ? 3 : currentStep + 1;
         this.setState({ currentStep: currentStep })
 
-        if(this.state.percentage === 100)return
+        if(this.state.percentage === 99.99)return
         this.setState(prevState => ({ percentage: prevState.percentage + 33.33}))
     }
 
@@ -50,9 +54,7 @@ class UserSignup extends Component {
 
         if(currentStep !== 1) {
             return (
-                <MDBBtn type='button' onClick={this.prevStep}>
-                    prev
-                </MDBBtn>
+                <MdChevronLeft onClick={this.prevStep} />
             )
         }
         return null
@@ -63,21 +65,26 @@ class UserSignup extends Component {
 
         if(currentStep === 1) {
             return (
-                <MDBBtn type='button' onClick={this.nextStep}>
-                    next
-                </MDBBtn>
+                <div className='d-flex align-items-end flex-column p-3'>
+                    <MDBCol>
+                        <MDBBtn type='button' onClick={this.nextStep}>
+                            register
+                        </MDBBtn>
+                        <p class='text-center'>By tapping on register button you agree to our<br /> <strong>Terms & Conditions</strong> </p>
+                    </MDBCol>
+                </div>
             )
         } else if(currentStep === 2) {
             return (
-                <MDBBtn type='button' onClick={this.nextStep}>
-                    register
-                </MDBBtn>
+                <div className= 'd-flex justify-content-center'>
+                    <MDBBtn type='button' onClick={this.nextStep}>
+                        next
+                    </MDBBtn>
+                </div>
             )
         } else if(currentStep === 3) {
             return ( 
-                <MDBBtn type='button' onClick={this.nextStep}>
-                    Finish
-                </MDBBtn>
+                <div></div>
             )
         }
     }
@@ -107,11 +114,17 @@ class UserSignup extends Component {
 
     render() {
         return (
+            <div>
                 <MDBContainer>
-                    <p text-center mb-4 >Add User</p>
-                    <ProgressBar
-                        percentage={this.state.percentage}
-                    />
+                    <div className="d-flex justify-content-center">
+                        <p>Register</p>
+                    </div>
+
+                    <div className='d-flex justify-content-center'>
+                        <ProgressBar
+                            percentage={this.state.percentage}
+                        />
+                    </div>
                     <div>
                         {this.getPrevStep}  
                     </div>
@@ -136,6 +149,7 @@ class UserSignup extends Component {
                     />
                     {this.getNextStep}
                 </MDBContainer>
+                </div>
         )
     }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 
 export default function Name(props) {
     if(props.currentStep !== 2) {
@@ -9,31 +10,37 @@ export default function Name(props) {
             <div>
                 <p>Whats Your Name?</p>
             </div>
-            <input
-                id='email'
-                name='email'
-                type='text'
-                placeholder='Email'
-                value={props.email}
-                onChange={props.handleChange}
-            />
-            <input 
-                id='firstName'
-                name='firstName'
-                type='text'
-                placeholder='First Name'
-                value={props.firstName}
-                onChange={props.handleChange}
-            />
-            <input 
-                id='lastName'
-                name='lastName'
-                type='text'
-                placeholder='Last Name'
-                value = {props.lastName}
-                onChange={props.handleChange}
-            />
-            <p>By clicking Register you agree to our<br /> <strong>Terms & Conditions</strong> </p>
+            <div className= 'd-flex justify-content-center'>
+                <MDBCol center md='3'>
+                    <MDBInput
+                        id='email'
+                        name='email'
+                        type='text'
+                        label='Email'
+                        value={props.email}
+                        onChange={props.handleChange}
+                    />
+                    <MDBInput 
+                        id='firstName'
+                        name='firstName'
+                        type='text'
+                        label='First Name'
+                        value={props.firstName}
+                        onChange={props.handleChange}
+                    />
+                    <MDBInput 
+                        id='lastName'
+                        name='lastName'
+                        type='text'
+                        label='Last Name'
+                        value = {props.lastName}
+                        onChange={props.handleChange}
+                    />
+                </MDBCol>
+            </div>
+            <div className= 'd-flex justify-content-center'>
+                
+            </div>
         </div>
     )
 }

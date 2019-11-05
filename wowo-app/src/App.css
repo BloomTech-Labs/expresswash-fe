@@ -3,9 +3,9 @@
 }
 
 .progress-bar {
-  position: relative;
-  height: 20px;
-  width: 350px;
+  /* position: relative; */
+  height: 10px;
+  width: 98%;
   border-radius: 50px;
   border: 1px solid black
 }
