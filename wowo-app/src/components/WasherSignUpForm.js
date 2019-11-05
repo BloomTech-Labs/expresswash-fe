@@ -79,7 +79,7 @@ export class WasherSignUpForm extends Component {
                   nextStep={this.nextStep}
                   prevStep={this.prevStep}
                   handleChange={this.handleChange}
-                  values={this.values}
+                  values={values}
                 />
               }
               {step === 3 &&
@@ -87,7 +87,7 @@ export class WasherSignUpForm extends Component {
                   nextStep={this.nextStep}
                   prevStep={this.prevStep}
                   handleChange={this.handleChange}
-                  values={this.values}
+                  values={values}
                 />
               }
               {step === 4 &&

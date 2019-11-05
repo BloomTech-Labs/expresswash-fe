@@ -10,13 +10,32 @@ export class WasherSignUpPersonal extends Component {
       <span>
         <MDBInput
           name="firstName"
+          type="text"
           onChange={handleChange('firstName')}
           label="First Name"
-          defualtValue={values.firstName}
-           />
-        <MDBInput name="lastName" label="Last Name" />
-        <MDBInput name="email" label="Email" />
-        <MDBInput name="password" label="Password" />
+          value={values.firstName}
+        />
+        <MDBInput
+          name="lastName"
+          type="text"
+          onChange={handleChange('lastName')}
+          label="Last Name"
+          value={values.lastName}
+        />
+        <MDBInput
+          name="email"
+          type="email"
+          onChange={handleChange('email')}
+          label="Email"
+          value={values.email}
+        />
+        <MDBInput
+          name="password"
+          type="password"
+          onChange={handleChange('password')}
+          label="Password"
+          value={values.password}
+        />
         <div className="text-center">
           <MDBBtn color="primary" onClick={nextBtn}>Continue</MDBBtn>
         </div>
