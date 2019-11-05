@@ -4,14 +4,19 @@ import '../App.css';
 
 export class WasherSignUpPersonal extends Component {
   render() {
-    const { values } = this.props;
+    const { values, handleChange } = this.props;
     const nextBtn = () => this.props.nextStep();
     return (
       <span>
-        <MDBInput name="fname" label="First Name" />
-        <MDBInput name="lname" label="Last Name" />
-        <MDBInput name="name" label="Email" />
-        <MDBInput name="name" label="Password" />
+        <MDBInput
+          name="firstName"
+          onChange={handleChange('firstName')}
+          label="First Name"
+          defualtValue={values.firstName}
+           />
+        <MDBInput name="lastName" label="Last Name" />
+        <MDBInput name="email" label="Email" />
+        <MDBInput name="password" label="Password" />
         <div className="text-center">
           <MDBBtn color="primary" onClick={nextBtn}>Continue</MDBBtn>
         </div>

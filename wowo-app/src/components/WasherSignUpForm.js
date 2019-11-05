@@ -71,7 +71,7 @@ export class WasherSignUpForm extends Component {
                 <WasherSignUpPersonal
                   nextStep={this.nextStep}
                   handleChange={this.handleChange}
-                  values={this.values}
+                  values={values}
                 />
               }
               {step === 2 &&
