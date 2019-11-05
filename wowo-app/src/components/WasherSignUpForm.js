@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { MDBProgress } from 'mdbreact';
 import WasherSignUpPersonal from './WasherSignUpPersonal.js';
-// import WasherSignUpAddress from './WasherSignUpAddress.js';
+import WasherSignUpAddress from './WasherSignUpAddress.js';
 // import WasherSignUpReview from './WasherSignUpReview.js';
 import '../App.css';
 
 export class WasherSignUpForm extends Component {
   state = {
+    loadingBar: 33,
     step: 1,
     firstName: '',
     lastName: '',
@@ -15,11 +16,25 @@ export class WasherSignUpForm extends Component {
     password: ''
   }
 
+  // Set loading bar
+  setLoadingBar = step => {
+    if(step === 1) {
+      return 33;
+    }
+    if(step === 2) {
+      return 66;
+    }
+    if(step === 3) {
+      return 100;
+    }
+  }
+
   // Go to the next form step
   nextStep = () => {
     const { step } = this.state;
     this.setState({
-      step: step + 1
+      step: step + 1,
+      loadingBar: this.setLoadingBar(step + 1)
     });
   }
 
@@ -37,7 +52,7 @@ export class WasherSignUpForm extends Component {
   }
 
   render() {
-    const { step } = this.state;
+    const { step, loadingBar } = this.state;
     const { firstName, lastName, email, password } = this.state;
     const values = { firstName, lastName, email, password };
 
@@ -47,7 +62,7 @@ export class WasherSignUpForm extends Component {
           <MDBCol md="6">
             <div className="form-group">
               <p className="h5 text-center mb-4">Sign up</p>
-              <MDBProgress className="my-2" material value={33} color="info" />
+              <MDBProgress className="my-2" material value={loadingBar} color="info" />
               {step === 1 &&
                 <WasherSignUpPersonal
                   nextStep={this.nextStep}
@@ -56,7 +71,11 @@ export class WasherSignUpForm extends Component {
                 />
               }
               {step === 2 &&
-                  <h1>You're on step 2</h1>
+                <WasherSignUpAddress
+                  nextStep={this.nextStep}
+                  handleChange={this.handleChange}
+                  values={this.values}
+                />
               }
               {step === 3 &&
                   <h1>You're on step 3</h1>
