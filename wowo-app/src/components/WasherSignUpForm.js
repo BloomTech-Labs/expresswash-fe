@@ -3,12 +3,12 @@ import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { MDBProgress } from 'mdbreact';
 import WasherSignUpPersonal from './WasherSignUpPersonal.js';
 import WasherSignUpAddress from './WasherSignUpAddress.js';
-// import WasherSignUpReview from './WasherSignUpReview.js';
+import WasherSignUpReview from './WasherSignUpReview.js';
 import '../App.css';
 
 export class WasherSignUpForm extends Component {
   state = {
-    loadingBar: 33,
+    loadingBar: 25,
     step: 1,
     firstName: '',
     lastName: '',
@@ -19,12 +19,15 @@ export class WasherSignUpForm extends Component {
   // Set loading bar
   setLoadingBar = step => {
     if(step === 1) {
-      return 33;
+      return 25;
     }
     if(step === 2) {
-      return 66;
+      return 50;
     }
     if(step === 3) {
+      return 75;
+    }
+    if(step === 4) {
       return 100;
     }
   }
@@ -42,7 +45,8 @@ export class WasherSignUpForm extends Component {
   prevStep = () => {
     const { step } = this.state;
     this.setState({
-      step: step - 1
+      step: step - 1,
+      loadingBar: this.setLoadingBar(step - 1)
     });
   }
 
@@ -73,15 +77,21 @@ export class WasherSignUpForm extends Component {
               {step === 2 &&
                 <WasherSignUpAddress
                   nextStep={this.nextStep}
+                  prevStep={this.prevStep}
                   handleChange={this.handleChange}
                   values={this.values}
                 />
               }
               {step === 3 &&
-                  <h1>You're on step 3</h1>
+                <WasherSignUpReview
+                  nextStep={this.nextStep}
+                  prevStep={this.prevStep}
+                  handleChange={this.handleChange}
+                  values={this.values}
+                />
               }
               {step === 4 &&
-                  <h1>You're on step 4</h1>
+                  <h1>Form Submitted</h1>
               }
             </div>
           </MDBCol>
