@@ -4,26 +4,62 @@ import '../App.css';
 
 export class WasherSignUpAddress extends Component {
   render() {
-    const { values } = this.props;
+    const { values, handleChange } = this.props;
     const nextBtn = () => this.props.nextStep();
     const prevBtn = () => this.props.prevStep();
     return (
       <span>
-        <MDBInput name="name" label="Phone Number" />
-        <MDBInput name="name" label="Street Address" />
+        <MDBInput
+          name="phone"
+          type="tel"
+          onChange={handleChange('phone')}
+          label="Phone Number"
+          value={values.phone}
+        />
+        <MDBInput
+          name="street"
+          type="text"
+          onChange={handleChange('street')}
+          label="Street Address"
+          value={values.street}
+        />
         <MDBRow>
+        <MDBCol md="6">
+            <MDBInput
+              name="apt"
+              type="text"
+              onChange={handleChange('apt')}
+              label="Apt / Suite / Other"
+              value={values.apt}
+            />
+          </MDBCol>
           <MDBCol md="6">
-          <MDBInput name="name" label="Apt / Suite / Other" />
-        </MDBCol>
-        <MDBCol md="6">
-          <MDBInput name="name" label="Zip code" />
-        </MDBCol>
-        <MDBCol md="6">
-          <MDBInput name="name" label="City" />
-        </MDBCol>
-        <MDBCol md="6">
-          <MDBInput name="name" label="State" />
-        </MDBCol>
+            <MDBInput
+              name="city"
+              type="text"
+              onChange={handleChange('city')}
+              label="City"
+              value={values.city}
+            />
+          </MDBCol>
+          <MDBCol md="6">
+            <MDBInput
+              name="usState"
+              type="text"
+              onChange={handleChange('usState')}
+              label="State"
+              value={values.usState}
+            />
+          </MDBCol>
+          <MDBCol md="6">
+            <MDBInput
+              name="zipCode"
+              type="number"
+              onChange={handleChange('zipCode')}
+              label="Zip Code"
+              value={values.zipCode}
+            />
+          </MDBCol>
         </MDBRow>
         <div className="text-center">
           <MDBBtn color="info" onClick={prevBtn}>Back</MDBBtn>

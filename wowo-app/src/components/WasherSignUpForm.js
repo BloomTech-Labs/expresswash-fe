@@ -13,7 +13,13 @@ export class WasherSignUpForm extends Component {
     firstName: '',
     lastName: '',
     email: '',
-    password: ''
+    password: '',
+    phone: '',
+    street: '',
+    apt: '',
+    zipCode: '',
+    city: '',
+    usState: ''
   }
 
   // Set loading bar
@@ -57,8 +63,8 @@ export class WasherSignUpForm extends Component {
 
   render() {
     const { step, loadingBar } = this.state;
-    const { firstName, lastName, email, password } = this.state;
-    const values = { firstName, lastName, email, password };
+    const { firstName, lastName, email, password, phone, street, apt, zipCode, city, usState } = this.state;
+    const values = { firstName, lastName, email, password, phone, street, apt, zipCode, city, usState };
 
     return (
       <MDBContainer>
