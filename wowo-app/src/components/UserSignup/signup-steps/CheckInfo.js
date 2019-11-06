@@ -29,6 +29,9 @@ class CheckInfo extends Component {
           <MDBCol md="6">
             <MDBInput label="Last Name" value={lastName} />
           </MDBCol>
+          <MDBCol md="6">
+            <MDBInput label="Phone Number" value={phoneNumber} />
+          </MDBCol>
         </MDBRow>
         <MDBInput label="Email" value={email} />
         <MDBInput label="Street Address" value={sAddress} />
@@ -44,9 +47,6 @@ class CheckInfo extends Component {
           </MDBCol>
           <MDBCol md="6">
             <MDBInput label="state" value={state} />
-          </MDBCol>
-          <MDBCol md="6">
-            <MDBInput label="Phone Number" value={phoneNumber} />
           </MDBCol>
         </MDBRow>
         <div className="d-flex justify-content-center">

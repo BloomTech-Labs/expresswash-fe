@@ -4,8 +4,9 @@ import Name from "./signup-steps/Name.js";
 import Address from "./signup-steps/Address.js";
 import CheckInfo from "./signup-steps/CheckInfo.js";
 import ProgressBar from "./progress-bar/ProgressBar.js";
+import FillerPage from "./FillerPage.js";
 
-import { MDBContainer, MDBCol, MDBBtn, MDBCard } from "mdbreact";
+import { MDBContainer, MDBCol, MDBBtn, MDBCard, MDBRow } from "mdbreact";
 import { MdChevronLeft } from "react-icons/md";
 import "mdbreact/dist/css/mdb.css";
 
@@ -103,6 +104,20 @@ class UserSignup extends Component {
     }
   }
 
+  get registerText() {
+    let currentStep = this.state.currentStep;
+
+    if (currentStep === 1) {
+      return <p>Register</p>;
+    } else if (currentStep === 2) {
+      return <p>What's your name?</p>;
+    } else if (currentStep === 3) {
+      return <p>Finish your profile</p>;
+    } else {
+      return <p>Check your information</p>;
+    }
+  }
+
   handleChange = evt => {
     evt.preventDefault();
     this.setState({
@@ -150,64 +165,82 @@ class UserSignup extends Component {
   render() {
     return (
       <div class="card weather-card">
-        <MDBContainer>
-          <MDBCard
-            className="card-body"
-            style={{
-              width: "100%",
-              marginTop: "1rem",
-              marginBottom: "1rem"
-            }}
-          >
-            <div>{this.getPrevStep}</div>
+        <MDBContainer style={{ height: "100%" }}>
+          <MDBRow>
+            <MDBCol>
+              <MDBCard
+                className="card-body"
+                style={{
+                  width: "100%",
+                  marginTop: "1rem",
+                  marginBottom: "1rem"
+                }}
+              >
+                <div class="d-flex justify-content-center align-items-center h-100">
+                  <FillerPage />
+                </div>
+              </MDBCard>
+            </MDBCol>
+            <MDBCol>
+              <MDBCard
+                className="card-body"
+                style={{
+                  width: "100%",
+                  marginTop: "1rem",
+                  marginBottom: "1rem"
+                }}
+              >
+                <div>{this.getPrevStep}</div>
 
-            <div className="d-flex justify-content-center">
-              <p>Register</p>
-            </div>
+                <div className="d-flex justify-content-center">
+                  {this.registerText}
+                </div>
 
-            <div className="d-flex justify-content-center">
-              <ProgressBar percentage={this.state.percentage} />
-            </div>
-            <form onSubmit={this.handleSubmit}>
-              <Username
-                currentStep={this.state.currentStep}
-                handleChange={this.handleChange}
-                username={this.state.username}
-                password={this.state.password}
-              />
-              <Name
-                currentStep={this.state.currentStep}
-                handleChange={this.handleChange}
-                firstName={this.state.firstName}
-                lastName={this.state.lastName}
-                email={this.state.email}
-                phoneNumber={this.state.phoneNumber}
-              />
-              <Address
-                currentStep={this.state.currentStep}
-                handleChange={this.handleChange}
-                sAddress={this.state.sAddress}
-                zipcode={this.state.zipcode}
-                sAddress2={this.state.sAddress2}
-                city={this.state.city}
-                state={this.state.state}
-              />
-              <CheckInfo
-                currentStep={this.state.currentStep}
-                firstName={this.state.firstName}
-                lastName={this.state.lastName}
-                email={this.state.email}
-                username={this.state.username}
-                sAddress={this.state.sAddress}
-                phoneNumber={this.state.phoneNumber}
-                zipcode={this.state.zipcode}
-                sAddress2={this.state.sAddress2}
-                city={this.state.city}
-                state={this.state.state}
-              />
-              {this.getNextStep}
-            </form>
-          </MDBCard>
+                <div className="d-flex justify-content-center">
+                  <ProgressBar percentage={this.state.percentage} />
+                </div>
+                <form onSubmit={this.handleSubmit}>
+                  <Username
+                    currentStep={this.state.currentStep}
+                    handleChange={this.handleChange}
+                    username={this.state.username}
+                    password={this.state.password}
+                  />
+                  <Name
+                    currentStep={this.state.currentStep}
+                    handleChange={this.handleChange}
+                    firstName={this.state.firstName}
+                    lastName={this.state.lastName}
+                    email={this.state.email}
+                    phoneNumber={this.state.phoneNumber}
+                  />
+                  <Address
+                    currentStep={this.state.currentStep}
+                    handleChange={this.handleChange}
+                    sAddress={this.state.sAddress}
+                    zipcode={this.state.zipcode}
+                    sAddress2={this.state.sAddress2}
+                    city={this.state.city}
+                    state={this.state.state}
+                  />
+                  <CheckInfo
+                    currentStep={this.state.currentStep}
+                    firstName={this.state.firstName}
+                    lastName={this.state.lastName}
+                    email={this.state.email}
+                    username={this.state.username}
+                    sAddress={this.state.sAddress}
+                    phoneNumber={this.state.phoneNumber}
+                    zipcode={this.state.zipcode}
+                    sAddress2={this.state.sAddress2}
+                    city={this.state.city}
+                    state={this.state.state}
+                  />
+                  {this.getNextStep}
+                </form>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
         </MDBContainer>
       </div>
     );

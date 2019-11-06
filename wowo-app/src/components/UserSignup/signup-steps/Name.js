@@ -7,10 +7,6 @@ export default function Name(props) {
   }
   return (
     <div>
-      <div className="d-flex justify-content-center p-3">
-        <p>Whats Your Name?</p>
-      </div>
-
       <MDBRow>
         <MDBCol md="6">
           <MDBInput
