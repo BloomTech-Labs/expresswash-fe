@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "eslint": "^6.6.0",
     "mdbootstrap": "^4.8.11",
     "mdbreact": "^4.22.0",
     "react": "^16.11.0",

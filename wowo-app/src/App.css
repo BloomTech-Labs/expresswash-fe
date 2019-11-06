@@ -5,7 +5,7 @@
 .progress-bar {
   /* position: relative; */
   height: 10px;
-  width: 98%;
+  width: 100%;
   border-radius: 50px;
   border: 1px solid black
 }
