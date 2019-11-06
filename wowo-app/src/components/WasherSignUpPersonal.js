@@ -37,7 +37,7 @@ export class WasherSignUpPersonal extends Component {
           value={values.password}
         />
         <div className="text-center">
-          <MDBBtn color="primary" onClick={nextBtn}>Continue</MDBBtn>
+          <MDBBtn color="info" onClick={nextBtn}>Continue</MDBBtn>
         </div>
       </span>
     );

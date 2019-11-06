@@ -62,8 +62,8 @@ export class WasherSignUpAddress extends Component {
           </MDBCol>
         </MDBRow>
         <div className="text-center">
-          <MDBBtn color="info" onClick={prevBtn}>Back</MDBBtn>
-          <MDBBtn color="primary" onClick={nextBtn}>Continue</MDBBtn>
+          <MDBBtn color="primary" onClick={prevBtn}>Back</MDBBtn>
+          <MDBBtn color="info" onClick={nextBtn}>Continue</MDBBtn>
         </div>
       </span>
     );
