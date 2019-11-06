@@ -10,7 +10,11 @@ export class WasherSignUpReview extends Component {
 
     const displayField = field => {
       if(field) {
-        return field;
+        if(field === "password") {
+          return "(hidden)";
+        } else {
+          return field;
+        }
       } else {
         return <span className="text-danger">missing</span>;
       }
@@ -29,7 +33,7 @@ export class WasherSignUpReview extends Component {
               <td>Email:</td><td>{displayField(values.email)}</td>
             </tr>
             <tr>
-              <td>Password:</td><td>(hidden)</td>
+              <td>Password:</td><td>{displayField(values.password)}</td>
             </tr>
             <tr>
               <td>Phone Number:</td><td>{displayField(values.phone)}</td>

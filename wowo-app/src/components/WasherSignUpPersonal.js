@@ -5,40 +5,48 @@ import '../App.css';
 export class WasherSignUpPersonal extends Component {
   render() {
     const { values, handleChange } = this.props;
-    const nextBtn = () => this.props.nextStep();
+    const nextBtn = evt => {
+      evt.preventDefault();
+      this.props.nextStep()
+    };
+
     return (
       <span>
-        <MDBInput
-          name="firstName"
-          type="text"
-          onChange={handleChange('firstName')}
-          label="First Name"
-          value={values.firstName}
-        />
-        <MDBInput
-          name="lastName"
-          type="text"
-          onChange={handleChange('lastName')}
-          label="Last Name"
-          value={values.lastName}
-        />
-        <MDBInput
-          name="email"
-          type="email"
-          onChange={handleChange('email')}
-          label="Email"
-          value={values.email}
-        />
-        <MDBInput
-          name="password"
-          type="password"
-          onChange={handleChange('password')}
-          label="Password"
-          value={values.password}
-        />
-        <div className="text-center">
-          <MDBBtn color="info" onClick={nextBtn}>Continue</MDBBtn>
-        </div>
+        <form onSubmit={nextBtn}>
+          <MDBInput
+            name="firstName"
+            type="text"
+            onChange={handleChange('firstName')}
+            label="First Name"
+            value={values.firstName}
+            required
+          />
+          <MDBInput
+            name="lastName"
+            type="text"
+            onChange={handleChange('lastName')}
+            label="Last Name"
+            value={values.lastName}
+            required
+          />
+          <MDBInput
+            name="email"
+            type="email"
+            onChange={handleChange('email')}
+            label="Email"
+            value={values.email}
+            required
+          />
+          <MDBInput
+            name="password"
+            type="password"
+            onChange={handleChange('password')}
+            label="Password"
+            value={values.password}
+            required
+          />
+          <MDBBtn type="submit" color="info">Continue</MDBBtn>
+        </form>
       </span>
     );
   }

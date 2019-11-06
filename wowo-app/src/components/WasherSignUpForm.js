@@ -72,7 +72,7 @@ export class WasherSignUpForm extends Component {
           <MDBCol md="6">
             <MDBCard className="card-body" style={{ width: "100%", marginTop: "1rem" }}>
             <div className="form-group">
-              <MDBCardTitle>Sign up</MDBCardTitle>
+              <MDBCardTitle>Washer Sign up</MDBCardTitle>
               <MDBProgress className="my-2" material value={loadingBar} color="info" />
               {step === 1 &&
                 <WasherSignUpPersonal
@@ -98,7 +98,11 @@ export class WasherSignUpForm extends Component {
                 />
               }
               {step === 4 &&
-                  <h1>Form Submitted</h1>
+                <span>
+                  <h4>Thank you {values.firstName}!</h4>
+                  <h5>You are now on your way to making some extra cash with Wo-Wo!</h5>
+                  <p>Check your email for the activation letter!</p>
+                </span>
               }
             </div>
             </MDBCard>
