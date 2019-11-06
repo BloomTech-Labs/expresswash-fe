@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
-import { MDBProgress } from 'mdbreact';
+import { MDBBtn } from "mdbreact";
 import '../App.css';
 
 export class WasherSignUpReview extends Component {

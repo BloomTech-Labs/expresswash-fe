@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import { MDBCard, MDBCardTitle, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { MDBProgress } from 'mdbreact';
 import WasherSignUpPersonal from './WasherSignUpPersonal.js';
 import WasherSignUpAddress from './WasherSignUpAddress.js';
@@ -70,8 +70,9 @@ export class WasherSignUpForm extends Component {
       <MDBContainer>
         <MDBRow center>
           <MDBCol md="6">
+            <MDBCard className="card-body" style={{ width: "100%", marginTop: "1rem" }}>
             <div className="form-group">
-              <p className="h5 text-center mb-4">Sign up</p>
+              <MDBCardTitle>Sign up</MDBCardTitle>
               <MDBProgress className="my-2" material value={loadingBar} color="info" />
               {step === 1 &&
                 <WasherSignUpPersonal
@@ -100,6 +101,7 @@ export class WasherSignUpForm extends Component {
                   <h1>Form Submitted</h1>
               }
             </div>
+            </MDBCard>
           </MDBCol>
         </MDBRow>
       </MDBContainer>
