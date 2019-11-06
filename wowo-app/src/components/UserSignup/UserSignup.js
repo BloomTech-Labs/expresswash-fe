@@ -1,19 +1,11 @@
 import React, { Component } from "react";
-import Username from "./Username.js";
-import Name from "./Name.js";
-import Address from "./Address.js";
-import CheckInfo from "./CheckInfo.js";
+import Username from "./signup-steps/Username.js";
+import Name from "./signup-steps/Name.js";
+import Address from "./signup-steps/Address.js";
+import CheckInfo from "./signup-steps/CheckInfo.js";
 import ProgressBar from "./progress-bar/ProgressBar.js";
 
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBInput,
-  MDBBtn,
-  MDBIcon,
-  MDBCard
-} from "mdbreact";
+import { MDBContainer, MDBCol, MDBBtn, MDBCard } from "mdbreact";
 import { MdChevronLeft } from "react-icons/md";
 import "mdbreact/dist/css/mdb.css";
 
@@ -165,8 +157,6 @@ class UserSignup extends Component {
               width: "100%",
               marginTop: "1rem",
               marginBottom: "1rem"
-              //   marginLeft: "3rem",
-              //   marginRight: "3rem"
             }}
           >
             <div>{this.getPrevStep}</div>
@@ -178,7 +168,7 @@ class UserSignup extends Component {
             <div className="d-flex justify-content-center">
               <ProgressBar percentage={this.state.percentage} />
             </div>
-            <form>
+            <form onSubmit={this.handleSubmit}>
               <Username
                 currentStep={this.state.currentStep}
                 handleChange={this.handleChange}
@@ -189,14 +179,14 @@ class UserSignup extends Component {
                 currentStep={this.state.currentStep}
                 handleChange={this.handleChange}
                 firstName={this.state.firstName}
-                lastName={this.state.LastName}
+                lastName={this.state.lastName}
                 email={this.state.email}
+                phoneNumber={this.state.phoneNumber}
               />
               <Address
                 currentStep={this.state.currentStep}
                 handleChange={this.handleChange}
                 sAddress={this.state.sAddress}
-                phoneNumber={this.state.phoneNumber}
                 zipcode={this.state.zipcode}
                 sAddress2={this.state.sAddress2}
                 city={this.state.city}
@@ -205,7 +195,7 @@ class UserSignup extends Component {
               <CheckInfo
                 currentStep={this.state.currentStep}
                 firstName={this.state.firstName}
-                lastName={this.state.LastName}
+                lastName={this.state.lastName}
                 email={this.state.email}
                 username={this.state.username}
                 sAddress={this.state.sAddress}

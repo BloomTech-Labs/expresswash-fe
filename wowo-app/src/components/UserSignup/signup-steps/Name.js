@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
+import { MDBRow, MDBCol, MDBInput } from "mdbreact";
 
 export default function Name(props) {
   if (props.currentStep !== 2) {
@@ -10,17 +10,9 @@ export default function Name(props) {
       <div className="d-flex justify-content-center p-3">
         <p>Whats Your Name?</p>
       </div>
-      <div className="d-flex justify-content-center">
-        <MDBCol center>
-          <MDBInput
-            id="email"
-            name="email"
-            type="text"
-            label="Email"
-            value={props.email}
-            onChange={props.handleChange}
-            className="p-2"
-          />
+
+      <MDBRow>
+        <MDBCol md="6">
           <MDBInput
             id="firstName"
             name="firstName"
@@ -28,8 +20,9 @@ export default function Name(props) {
             label="First Name"
             value={props.firstName}
             onChange={props.handleChange}
-            className="p-2"
           />
+        </MDBCol>
+        <MDBCol md="6">
           <MDBInput
             id="lastName"
             name="lastName"
@@ -37,11 +30,31 @@ export default function Name(props) {
             label="Last Name"
             value={props.lastName}
             onChange={props.handleChange}
-            className="p-2"
           />
         </MDBCol>
+      </MDBRow>
+      <div>
+        <MDBRow>
+          <MDBCol md="6">
+            <MDBInput
+              id="phoneNumber"
+              name="phoneNumber"
+              type="number"
+              label="Phone Number"
+              value={props.phoneNumber}
+              onChange={props.handleChange}
+            />
+          </MDBCol>
+        </MDBRow>
       </div>
-      <div className="d-flex justify-content-center"></div>
+      <MDBInput
+        id="email"
+        name="email"
+        type="text"
+        label="Email"
+        value={props.email}
+        onChange={props.handleChange}
+      />
     </div>
   );
 }

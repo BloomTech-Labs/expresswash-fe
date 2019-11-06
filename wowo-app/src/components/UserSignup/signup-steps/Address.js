@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
+import { MDBRow, MDBCol, MDBInput } from "mdbreact";
 
 export default function Address(props) {
   if (props.currentStep !== 3) {
@@ -17,15 +17,6 @@ export default function Address(props) {
           onChange={props.handleChange}
           required
         />
-
-        <MDBInput
-          id="phoneNumber"
-          name="phoneNumber"
-          type="number"
-          label="Phone Number"
-          value={props.phoneNumber}
-          onChange={props.handleChange}
-        />
       </span>
       <MDBRow>
         <MDBCol md="6">
@@ -35,7 +26,7 @@ export default function Address(props) {
             type="text"
             value={props.sAddress2}
             onChange={props.handleChange}
-            label="APT / SUITE"
+            label="APT / SUITE / OTHER"
           />
         </MDBCol>
         <MDBCol md="6">
@@ -69,11 +60,6 @@ export default function Address(props) {
           />
         </MDBCol>
       </MDBRow>
-      {/* <div className="d-flex justify-content-center">
-        <MDBBtn type="button" color="primary" size="lg">
-          Fin!
-        </MDBBtn>
-      </div> */}
     </div>
   );
 }
