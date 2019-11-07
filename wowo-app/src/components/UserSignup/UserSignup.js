@@ -113,7 +113,7 @@ class UserSignup extends Component {
       return <p>What's your name?</p>;
     } else if (currentStep === 3) {
       return <p>Finish your profile</p>;
-    } else {
+    } else if (currentStep === 4) {
       return <p>Check your information</p>;
     }
   }
@@ -173,7 +173,8 @@ class UserSignup extends Component {
                 style={{
                   width: "100%",
                   marginTop: "1rem",
-                  marginBottom: "1rem"
+                  marginBottom: "1rem",
+                  height: "374px"
                 }}
               >
                 <div class="d-flex justify-content-center align-items-center h-100">

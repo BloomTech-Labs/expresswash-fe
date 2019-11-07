@@ -21,7 +21,7 @@ class CheckInfo extends Component {
     } = this.props;
     return (
       <div>
-        <MDBInput label="Username" value={username} require />
+        <MDBInput label="Username" value={username} />
         <MDBRow>
           <MDBCol md="6">
             <MDBInput label="First name" value={firstName} />
