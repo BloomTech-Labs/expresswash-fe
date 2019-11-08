@@ -1,12 +1,16 @@
 import React from 'react';
-import { MDBBtn } from "mdbreact";
+import { MDBBtn, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 
-export default function NavigationPage() {
+import './LandingPage.css';
+import logo from '../images/wowo-logo-full.JPG'
+
+export default function LandingPage() {
     return (
-        <div className="nav-container">
+        <MDBContainer className="nav-container">
             <section className="header-container">
                 <div className="nav-header">
                     <h1 className="nav-main-header">WoWo</h1>
+                    <image src='./'/>
                     <p className="nav-slogan">We're the new way to wash your car.</p>
                 </div>
                 <div className="header-buttons">
@@ -35,6 +39,6 @@ export default function NavigationPage() {
 
                 <MDBBtn className="washer-sign-up-btn" color="primary">Become a Washer</MDBBtn>
             </section>
-        </div>
+        </MDBContainer>
     )
 }
