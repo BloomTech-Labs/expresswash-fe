@@ -1,10 +1,11 @@
-import React from 'react';
-import Styled, {createGlobalStyle} from 'styled-components';
-import Login from './components/Login/Login.js';
-import LandingPage from './components/LandingPage/LandingPage.js';
-import './App.css';
 
-import UserSignup from './components/userSignup/UserSignup.js'
+import React from "react";
+import Styled, { createGlobalStyle } from "styled-components";
+import Login from "./components/login/Login.js";
+import LandingPage from "./components/LandingPage.js";
+import "./App.css";
+
+import UserSignup from "./components/UserSignup/UserSignup.js";
 
 
 function App() {
@@ -14,8 +15,6 @@ function App() {
       <LandingPage />
       <UserSignup />
     </div>
-
   );
 }
-
 export default App;

@@ -1,6 +1,6 @@
-import React from "./node_modules/react";
-import "./node_modules/react-phone-number-input/style.css";
-import { MDBRow, MDBCol, MDBInput } from "./node_modules/mdbreact";
+import React from "react";
+// import "react-phone-number-input/style.css";
+import { MDBRow, MDBCol, MDBInput } from "mdbreact";
 
 export default function Name(props) {
   if (props.currentStep !== 2) {
