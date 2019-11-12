@@ -1,7 +1,6 @@
 .App {
   text-align: center;
 }
-
 .progress-bar {
   /* position: relative; */
   height: 10px;
@@ -15,4 +14,3 @@
   height: 100%;
   border-radius: inherit;
   transition: width .2s ease-in
-}
