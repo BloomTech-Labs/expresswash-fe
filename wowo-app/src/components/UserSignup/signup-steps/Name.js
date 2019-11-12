@@ -1,4 +1,5 @@
 import React from "react";
+import "react-phone-number-input/style.css";
 import { MDBRow, MDBCol, MDBInput } from "mdbreact";
 
 export default function Name(props) {
@@ -35,7 +36,7 @@ export default function Name(props) {
             <MDBInput
               id="phoneNumber"
               name="phoneNumber"
-              type="number"
+              type="tel"
               label="Phone Number"
               value={props.phoneNumber}
               onChange={props.handleChange}

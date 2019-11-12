@@ -21,13 +21,15 @@ class CheckInfo extends Component {
     } = this.props;
     return (
       <div>
-        <MDBInput label="Username" value={username} />
         <MDBRow>
           <MDBCol md="6">
             <MDBInput label="First name" value={firstName} />
           </MDBCol>
           <MDBCol md="6">
             <MDBInput label="Last Name" value={lastName} />
+          </MDBCol>
+          <MDBCol md="6">
+            <MDBInput label="Username" value={username} />
           </MDBCol>
           <MDBCol md="6">
             <MDBInput label="Phone Number" value={phoneNumber} />
@@ -40,13 +42,13 @@ class CheckInfo extends Component {
             <MDBInput label="APT / SUITE / OTHER" value={sAddress2} />
           </MDBCol>
           <MDBCol md="6">
-            <MDBInput label="zipcode" value={zipcode} />
+            <MDBInput label="Zipcode" value={zipcode} />
           </MDBCol>
           <MDBCol md="6">
-            <MDBInput label="city" value={city} />
+            <MDBInput label="City" value={city} />
           </MDBCol>
           <MDBCol md="6">
-            <MDBInput label="state" value={state} />
+            <MDBInput label="State" value={state} />
           </MDBCol>
         </MDBRow>
         <div className="d-flex justify-content-center">

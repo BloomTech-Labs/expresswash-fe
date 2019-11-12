@@ -164,7 +164,7 @@ class UserSignup extends Component {
 
   render() {
     return (
-      <div class="card weather-card">
+      <div class="card weather-card" style={{ height: "100vh" }}>
         <MDBContainer style={{ height: "100%" }}>
           <MDBRow>
             <MDBCol>
@@ -178,7 +178,7 @@ class UserSignup extends Component {
                 }}
               >
                 <div class="d-flex justify-content-center align-items-center h-100">
-                  <FillerPage />
+                  <FillerPage currentStep={this.state.currentStep} />
                 </div>
               </MDBCard>
             </MDBCol>
