@@ -1,5 +1,5 @@
 import React from "react";
-import "react-phone-number-input/style.css";
+// import "react-phone-number-input/style.css";
 import { MDBRow, MDBCol, MDBInput } from "mdbreact";
 
 export default function Name(props) {
