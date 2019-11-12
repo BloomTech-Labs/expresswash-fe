@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Lambda-School-Labs/wowo-fe/issues"
   },
-  "homepage": "https://github.com/Lambda-School-Labs/wowo-fe#readme"
+  "homepage": "https://github.com/Lambda-School-Labs/wowo-fe#readme",
+  "dependencies": {
+    "mdbreact": "^4.22.0"
+  }
 }
