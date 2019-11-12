@@ -1,0 +1,55 @@
+.wowo-logo {
+    width: 400px;
+    padding: 40px 0 20px;
+}
+
+.header-buttons-container {
+    height: 160px;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-or {
+    margin: 0;
+    font-weight: bold;
+    color: #555;
+}
+
+.sign-up-btn, .login-btn {
+    width: 300px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.landing-information {
+     height: 800px;
+     padding: 20px 0 40px;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     align-items: center;
+}
+
+.landing-info-card {
+    width: 500px;
+}
+
+.landing-info-header {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #00a8c5;
+}
+
+.eco {
+    color: #8fbe00;
+}
+
+.landing-info-content {
+    margin: 0;
+    font-size: 16px;
+}
