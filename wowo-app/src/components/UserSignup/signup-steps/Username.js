@@ -1,5 +1,5 @@
-import React from "react";
-import { MDBInput } from "mdbreact";
+import React from "./node_modules/react";
+import { MDBInput } from "./node_modules/mdbreact";
 
 export default function Username(props) {
   if (props.currentStep !== 1) {

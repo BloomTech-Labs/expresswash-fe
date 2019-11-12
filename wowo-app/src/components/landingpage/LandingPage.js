@@ -1,5 +1,5 @@
-import React from 'react';
-import { MDBBtn, MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import React from './node_modules/react';
+import { MDBBtn, MDBContainer, MDBRow, MDBCol } from "./node_modules/mdbreact";
 
 import './LandingPage.css';
 import logo from '../../images/wowo-logo-full.jpg';

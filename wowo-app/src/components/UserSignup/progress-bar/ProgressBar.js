@@ -1,4 +1,4 @@
-import React from 'react'
+import React from './node_modules/react'
 import ProgressBarFiller from './ProgressBarFiller.js'
 
 const ProgressBar = (props) => {

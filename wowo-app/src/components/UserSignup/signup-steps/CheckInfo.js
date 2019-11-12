@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
+import React, { Component } from "./node_modules/react";
+import { MDBRow, MDBCol, MDBInput, MDBBtn } from "./node_modules/mdbreact";
 
 class CheckInfo extends Component {
   render() {

@@ -1,4 +1,4 @@
-import React from "react";
+import React from "./node_modules/react";
 import {
   MDBContainer,
   MDBCol,
@@ -6,8 +6,8 @@ import {
   MDBCard,
   MDBRow,
   MDBIcon
-} from "mdbreact";
-import { MdChevronLeft } from "react-icons/md";
+} from "./node_modules/mdbreact";
+import { MdChevronLeft } from "./node_modules/react-icons/md";
 
 export default function FillerPage() {
   return (

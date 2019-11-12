@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faFacebookF, faGoogle} from '@fortawesome/free-brands-svg-icons';
-import Styled from 'styled-components';
+import React, {Component} from './node_modules/react';
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from './node_modules/mdbreact';
+import { FontAwesomeIcon } from './node_modules/@fortawesome/react-fontawesome';
+import {faFacebookF, faGoogle} from './node_modules/@fortawesome/free-brands-svg-icons';
+import Styled from './node_modules/styled-components';
 import carImg from '../../images/undraw_city_driver_jh2h.svg';
 import LoginLogo from '../../images/wowo-logo-word-full.svg';
-import "@fortawesome/fontawesome-free/css/all.min.css";
-import 'bootstrap-css-only/css/bootstrap.min.css';
-import 'mdbreact/dist/css/mdb.css';
+// import "@fortawesome/fontawesome-free/css/all.min.css";
+// import 'bootstrap-css-only/css/bootstrap.min.css';
+// import 'mdbreact/dist/css/mdb.css';
 
 const LoginContainer = Styled.div`
     display: flex;
