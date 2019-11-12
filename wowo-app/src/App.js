@@ -7,11 +7,6 @@ import './App.css';
 import UserSignup from './components/UserSignup/UserSignup.js'
 
 
-function App() {
-  return (
-    <UserSignup />
-
-
 
 function App() {
   return (
