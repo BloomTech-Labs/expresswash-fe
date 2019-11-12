@@ -11,12 +11,12 @@ export class WasherSignUpAddress extends Component {
   }
 
   state = {
-    phone: '',
-    street: '',
-    apt: '',
-    zipCode: '',
-    city: '',
-    usState: ''
+    phone: this.props.phone,
+    street: this.props.street,
+    apt: this.props.apt,
+    zipCode: this.props.zipCode,
+    city: this.props.city,
+    usState: this.props.usState
   }
   
   componentDidMount() {
@@ -69,6 +69,15 @@ export class WasherSignUpAddress extends Component {
             className="input-field"
             ref="input"
             type="text"/>
+          {/* <div class="md-form">
+            <input id="autocomplete" data-test="input" name="searchAddress" type="text" class="form-control" />
+            <label for="searchAddress" class="" data-error="" data-success="" id="">Search an Address</label>
+          </div> */}
+          {/* <MDBInput
+            id="autocomplete"
+            name="searchAddress"
+            type="text"
+          /> */}
           <MDBInput
             name="street"
             type="text"
