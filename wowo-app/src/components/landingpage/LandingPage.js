@@ -2,7 +2,7 @@ import React from 'react';
 import { MDBBtn, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 
 import './LandingPage.css';
-import logo from '../images/wowo-logo-full.jpg';
+import logo from '../../images/wowo-logo-full.jpg';
 
 export default function LandingPage() {
     return (
@@ -11,7 +11,7 @@ export default function LandingPage() {
                 <MDBContainer className="landing-header">
                     <MDBRow className="mb-4">
                         <MDBCol>
-                            <img className="wowo-logo" src={logo} alt="logo-image"/>
+                            <img className="wowo-logo" src={logo} alt="logo"/>
                         </MDBCol>
                     </MDBRow>
                 </MDBContainer>
