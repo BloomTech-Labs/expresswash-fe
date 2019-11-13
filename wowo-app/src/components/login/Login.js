@@ -1,24 +1,33 @@
-import React, {Component} from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faFacebookF, faGoogle} from '@fortawesome/free-brands-svg-icons';
-import Styled from 'styled-components';
-import carImg from '../../images/undraw_city_driver_jh2h.svg';
-import LoginLogo from '../../images/wowo-logo-word-full.svg';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { loginUser } from "../../actions/actionTypes.js"
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
+
+import Styled from "styled-components";
+import carImg from "../../images/undraw_city_driver_jh2h.svg";
+import LoginLogo from "../../images/wowo-logo-word-full.svg";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import 'bootstrap-css-only/css/bootstrap.min.css';
-import 'mdbreact/dist/css/mdb.css';
+import "bootstrap-css-only/css/bootstrap.min.css";
+import "mdbreact/dist/css/mdb.css";
+
+
+
+
 
 const LoginContainer = Styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-`
+`;
 
 const ImgContainer = Styled.div`
     width: 100%;
-`
+`;
 
 const LeftContainer = Styled.div`
     display: flex;
@@ -30,7 +39,7 @@ const LeftContainer = Styled.div`
     @media (max-width: 768px) {
         display: none;
     }
-`
+`;
 
 const RightContainer = Styled.div`
     display: flex;
@@ -49,7 +58,7 @@ const RightContainer = Styled.div`
         background-color: transparent;
         border: none;
     }
-`
+`;
 
 const Form = Styled.form`
     display: flex;
@@ -59,11 +68,11 @@ const Form = Styled.form`
     text-align: center;
     padding: 15px;
     width: 350px;
-`
+`;
 
 const Img = Styled.img`
     margin: 25px 0 25px 0;
-`
+`;
 
 const ShowButton = Styled.div`
     position: absolute;
@@ -72,17 +81,17 @@ const ShowButton = Styled.div`
     cursor: pointer;
     color: #33B5E5;
     font-weight: 500;
-`
+`;
 
 const Forgot = Styled.a`
     cursor: pointer;
     color: #33B5E5;
     font-weight: 400;
     margin: 0 0 20px 0;
-`
+`;
 
 const SubmitContainer = Styled.div`
-`
+`;
 
 const SocialButton = Styled.a`
     display: flex;
@@ -100,59 +109,65 @@ const SocialButton = Styled.a`
     transition: 0.2s;
     text-align: center;
     color: #33B5E5;
-`
+`;
 
 const FirstTime = Styled.p`
     margin: 15px auto 0 auto;
     text-align: center;
-`
+`;
 
 const Signup = Styled.a`
     cursor: pointer;
     color: #33B5E5;
     font-weight: 500;
-`
+`;
 
 const SocialLogin = Styled.p`
     margin: 30px auto 0 auto;
     text-align: center;
-`
-
-
-
-
+`;
 
 class Login extends Component {
     constructor() {
         super();
         this.state = {
-            email: '',
-            password: '',
+            email: "",
+            password: "",
             show: false
-        }
+        };
     }
-
-
-
-
 
     inputHandler = event => {
         event.preventDefault();
 
-        this.setState({ 
-            ...this.state, 
-            [event.target.name]: event.target.value})
-    }
+        this.setState({
+            ...this.state,
+            [event.target.name]: event.target.value
+        });
+    };
 
     showHandler = event => {
         event.preventDefault();
         if (this.state.show === false) {
-            this.setState({show: true})
+            this.setState({ show: true });
         } else {
-            this.setState({show: false})
+            this.setState({ show: false });
         }
-    }
+    };
 
+    handleSubmit = event => {
+        event.preventDefault();
+
+        const {email, password} = this.state
+        this.props.loginUser(email, password)
+            .then(() => {
+                this.props.history.push('/main')
+            })
+            .catch(err => {
+                throw new Error(err)
+            })
+        
+    }
 
 
 
@@ -161,67 +176,90 @@ class Login extends Component {
             <LoginContainer>
                 <LeftContainer>
                     <ImgContainer>
-                        <img src={carImg} style={{width: 90 + "%"}} alt='login screen' />
+                        <img src={carImg} style={{ width: 90 + "%" }} alt="login screen" />
                     </ImgContainer>
                 </LeftContainer>
 
                 <RightContainer>
                     <Form onSubmit={this.handleSubmit}>
-                        <Img src={LoginLogo} style={{width: 40 + "%"}} alt='logo' />
+                        <Img src={LoginLogo} style={{ width: 40 + "%" }} alt="logo" />
 
-                        <MDBCol md='12'>
+                        <MDBCol md="12">
                             <MDBInput
-                                label='Email'
-                                aria-required='true'
-                                autoCapitalize='off'
-                                autoCorrect='off'
-                                maxLength='75'
-                                name='email'
-                                type='text'
+                                label="Email"
+                                aria-required="true"
+                                autoCapitalize="off"
+                                autoCorrect="off"
+                                maxLength="75"
+                                name="email"
+                                type="text"
                                 value={this.state.email}
                                 onChange={this.inputHandler}
                             />
                         </MDBCol>
 
-                        <MDBCol md='12'>
+                        <MDBCol md="12">
                             <MDBInput
-                                label='Password'
-                                aria-required='true'
-                                autoCapitalize='off'
-                                autoCorrect='off'
-                                name='password'
+                                label="Password"
+                                aria-required="true"
+                                autoCapitalize="off"
+                                autoCorrect="off"
+                                name="password"
                                 type={this.state.show === false ? "password" : "text"}
                                 value={this.state.password}
                                 onChange={this.inputHandler}
                             />
 
-                            <ShowButton
-                                onClick={this.showHandler}
-                            >
+                            <ShowButton onClick={this.showHandler}>
                                 {this.state.show === false ? "Show" : "Hide"}
                             </ShowButton>
                         </MDBCol>
 
-                        <Forgot href='#'>Forgot Password?</Forgot>
+                        <Forgot href="#">Forgot Password?</Forgot>
 
                         <SubmitContainer>
-                            <MDBBtn color='info' type='submit'>
+                            <MDBBtn color="info" type="submit">
                                 Login
                             </MDBBtn>
                         </SubmitContainer>
                     </Form>
+
                     <MDBContainer>
                         <SocialLogin>or login via:</SocialLogin>
+                        
                         <MDBRow center>
-                            <SocialButton href='#'><FontAwesomeIcon icon={faFacebookF} /></SocialButton>
-                            <SocialButton href='#'><FontAwesomeIcon icon={faGoogle} /></SocialButton>
+                            <SocialButton href="#">
+                                <FontAwesomeIcon icon={faFacebookF} />
+                            </SocialButton>
+
+                            <SocialButton href="#">
+                                <FontAwesomeIcon icon={faGoogle} />
+                            </SocialButton>
                         </MDBRow>
-                        <FirstTime>Here For the first time? <Signup href='#'>Sign Up</Signup></FirstTime>
+
+                        <FirstTime>
+                            Here For the first time? <Signup href="#">Sign Up</Signup>
+                        </FirstTime>
                     </MDBContainer>
                 </RightContainer>
             </LoginContainer>
-        )
+        );
     }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+  
+const mapDispatchToProps = {
+    loginUser
+}
+  
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(Login)
+)
