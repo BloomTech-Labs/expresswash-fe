@@ -4,7 +4,6 @@ import { MDBProgress } from 'mdbreact';
 import WasherSignUpPersonal from './WasherSignUpPersonal.js';
 import WasherSignUpAddress from './WasherSignUpAddress.js';
 import WasherSignUpReview from './WasherSignUpReview.js';
-import '../App.css';
 
 export class WasherSignUpForm extends Component {
   state = {

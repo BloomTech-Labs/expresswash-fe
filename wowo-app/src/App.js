@@ -6,6 +6,7 @@ import LandingPage from "./components/LandingPage.js";
 import "./App.css";
 
 import UserSignup from "./components/UserSignup/UserSignup.js";
+import WasherSignUpForm from "./components/WasherSignUp/WasherSignUpForm.js";
 
 
 
@@ -14,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <h1>WoWo App</h1>
-      {/* <LandingPage /> */}
+      <WasherSignUpForm />
     </div>
   );
 }
