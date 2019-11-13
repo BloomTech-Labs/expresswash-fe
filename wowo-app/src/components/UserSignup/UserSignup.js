@@ -100,7 +100,11 @@ class UserSignup extends Component {
         </div>
       );
     } else if (currentStep === 4) {
-      return;
+      return (
+        <MDBBtn type="submit" size="lg" color="primary">
+          Submit
+        </MDBBtn>
+      );
     }
   }
 
@@ -127,6 +131,8 @@ class UserSignup extends Component {
 
   handleSubmit = async evt => {
     evt.preventDefault();
+    console.log(this.state);
+    // console.log(newUserPackage);
     const {
       email,
       firstName,
@@ -134,7 +140,11 @@ class UserSignup extends Component {
       password,
       username,
       phoneNumber,
-      address
+      sAddress,
+      sAddress2,
+      city,
+      state,
+      zipcode
     } = this.state;
     const newUserPackage = {
       email,
@@ -143,7 +153,11 @@ class UserSignup extends Component {
       password,
       username,
       phoneNumber,
-      address
+      sAddress,
+      sAddress2,
+      city,
+      state,
+      zipcode
     };
 
     this.setState({
@@ -238,6 +252,7 @@ class UserSignup extends Component {
                     state={this.state.state}
                   />
                   {this.getNextStep}
+                  {/* <MDBBtn type="submit">Submit</MDBBtn> */}
                 </form>
               </MDBCard>
             </MDBCol>

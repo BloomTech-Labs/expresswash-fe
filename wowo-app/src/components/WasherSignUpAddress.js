@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
-import '../App.css';
+import "../App.css";
 /* global google */
 
 export class WasherSignUpAddress extends Component {
   constructor(props) {
     super(props);
-    this.handlePlaceSelect = this.handlePlaceSelect.bind(this)
-    this.autocomplete = null
+    this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
+    this.autocomplete = null;
   }
 
   state = {
@@ -17,10 +17,13 @@ export class WasherSignUpAddress extends Component {
     zipCode: this.props.zipCode,
     city: this.props.city,
     usState: this.props.usState
-  }
-  
+  };
+
   componentDidMount() {
-    this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {})
+    this.autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById("autocomplete"),
+      {}
+    );
 
     this.autocomplete.addListener("place_changed", this.handlePlaceSelect);
   }
@@ -42,7 +45,7 @@ export class WasherSignUpAddress extends Component {
       city: address[3].long_name,
       usState: address[5].short_name,
       zipCode: address[7].short_name
-    })
+    });
   }
 
   render() {
@@ -51,7 +54,7 @@ export class WasherSignUpAddress extends Component {
     const { handleChange } = this.props;
     const nextBtn = evt => {
       evt.preventDefault();
-      this.props.nextStep()
+      this.props.nextStep();
     };
     const prevBtn = () => this.props.prevStep();
     return (
@@ -60,15 +63,17 @@ export class WasherSignUpAddress extends Component {
           <MDBInput
             name="phone"
             type="tel"
-            onChange={handleChange('phone')}
+            onChange={handleChange("phone")}
             label="Phone Number"
             value={values.phone}
             required
           />
-          <input id="autocomplete"
+          <input
+            id="autocomplete"
             className="input-field"
             ref="input"
-            type="text"/>
+            type="text"
+          />
           {/* <div class="md-form">
             <input id="autocomplete" data-test="input" name="searchAddress" type="text" class="form-control" />
             <label for="searchAddress" class="" data-error="" data-success="" id="">Search an Address</label>
@@ -81,17 +86,17 @@ export class WasherSignUpAddress extends Component {
           <MDBInput
             name="street"
             type="text"
-            onChange={handleChange('street')}
+            onChange={handleChange("street")}
             label="Street Address"
             value={values.street}
             required
           />
           <MDBRow>
-          <MDBCol md="6">
+            <MDBCol md="6">
               <MDBInput
                 name="apt"
                 type="text"
-                onChange={handleChange('apt')}
+                onChange={handleChange("apt")}
                 label="Apt / Suite / Other"
                 value={values.apt}
               />
@@ -100,39 +105,43 @@ export class WasherSignUpAddress extends Component {
               <MDBInput
                 name="city"
                 type="text"
-                onChange={handleChange('city')}
+                onChange={handleChange("city")}
                 label="City"
                 value={values.city}
                 required
-                />
+              />
             </MDBCol>
             <MDBCol md="6">
               <MDBInput
                 name="usState"
                 type="text"
-                onChange={handleChange('usState')}
+                onChange={handleChange("usState")}
                 label="State"
                 value={values.usState}
                 required
-                />
+              />
             </MDBCol>
             <MDBCol md="6">
               <MDBInput
                 name="zipCode"
                 type="number"
-                onChange={handleChange('zipCode')}
+                onChange={handleChange("zipCode")}
                 label="Zip Code"
                 value={values.zipCode}
                 required
-                />
+              />
             </MDBCol>
           </MDBRow>
-          <MDBBtn color="primary" onClick={prevBtn}>Back</MDBBtn>
-          <MDBBtn type="submit" color="info">Continue</MDBBtn>
+          <MDBBtn color="primary" onClick={prevBtn}>
+            Back
+          </MDBBtn>
+          <MDBBtn type="submit" color="info">
+            Continue
+          </MDBBtn>
         </form>
       </span>
     );
   }
-};
+}
 
 export default WasherSignUpAddress;

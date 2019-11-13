@@ -51,9 +51,9 @@ class CheckInfo extends Component {
             <MDBInput label="State" value={state} />
           </MDBCol>
         </MDBRow>
-        <div className="d-flex justify-content-center">
+        {/* <div className="d-flex justify-content-center">
           <MDBBtn type="submit">submit</MDBBtn>
-        </div>
+        </div> */}
       </div>
     );
   }

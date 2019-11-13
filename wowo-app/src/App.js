@@ -10,6 +10,7 @@ function App() {
   return (
     <div className="App">
       <h1>WoWo App</h1>
+      <UserSignup />
       {/* <LandingPage /> */}
     </div>
   );

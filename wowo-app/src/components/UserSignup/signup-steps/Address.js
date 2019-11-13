@@ -5,39 +5,57 @@ import { MDBRow, MDBCol, MDBInput } from "mdbreact";
 class Address extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // name: "",
-      // sAddress: ""
-    };
-    // this.autocomplete = null;
-    // this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
+
+    // this.state = {
+    //   // name: "",
+    //   // sAddress: ""
+    // };
+    this.autocomplete = null;
+    this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
     // this.handleChangeAddress = this.handleChangeAddress.bind(this);
     // this.handleSubmitAddress = this.handleSubmitAddress.bind(this);
   }
+  state = {
+    sAddress: this.props.sAddress,
+    sAddress2: this.props.sAddress2,
+    zipcode: this.props.zipcode,
+    city: this.props.city,
+    state: this.props.state
+  };
 
-  // componentDidMount() {
-  //   this.autocomplete = new google.maps.places.Autocomplete(
-  //     document.getElementById("autocomplete"),
-  //     {}
-  //   );
+  componentDidMount() {
+    this.autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById("autocomplete"),
+      {}
+    );
 
-  //   this.autocomplete.addListener("place_changed", this.handlePlaceSelect);
-  // }
+    this.autocomplete.addListener("place_changed", this.handlePlaceSelect);
+  }
 
-  // handlePlaceSelect() {
-  //   let addressObject = this.autocomplete.getPlace();
-  //   let address = addressObject.address_components;
-  //   this.setState({
-  //     name: addressObject.name,
-  //     sAddress: `${address[0].long_name} ${address[1].long_name}`,
-  //     city: address[4].long_name,
-  //     state: address[6].short_name,
-  //     zipcode: address[8].short_name,
-  //     googleMapLink: addressObject.url
-  //   });
-  // }
+  handlePlaceSelect() {
+    let addressObject = this.autocomplete.getPlace();
+    let address = addressObject.address_components;
+    //   this.setState({
+    //     name: addressObject.name,
+    //     sAddress: `${address[0].long_name} ${address[1].long_name}`,
+    //     city: address[4].long_name,
+    //     state: address[6].short_name,
+    //     zipcode: address[8].short_name,
+    //     googleMapLink: addressObject.url
+    //   });
+    this.setState({
+      sAddress: `${address[0].long_name} ${address[1].long_name}`,
+      sAddress2: address[2].long_name,
+      city: address[3].long_name,
+      state: address[5].short_name,
+      zipcode: address[7].short_name
+    });
+  }
 
   render() {
+    const { sAddress, sAddress2, zipcode, city, state } = this.state;
+    const values = { sAddress, sAddress2, zipcode, city, state };
+
     if (this.props.currentStep !== 3) {
       return null;
     }
