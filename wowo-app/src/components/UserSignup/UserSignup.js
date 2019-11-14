@@ -1,4 +1,4 @@
-import React, { Component } from "./node_modules/react";
+import React, { Component } from "react";
 import Username from "./signup-steps/Username.js";
 import Name from "./signup-steps/Name.js";
 import Address from "./signup-steps/Address.js";
@@ -6,9 +6,9 @@ import CheckInfo from "./signup-steps/CheckInfo.js";
 import ProgressBar from "./progress-bar/ProgressBar.js";
 import FillerPage from "./FillerPage.js";
 
-import { MDBContainer, MDBCol, MDBBtn, MDBCard, MDBRow } from "./node_modules/mdbreact";
-import { MdChevronLeft } from "./node_modules/react-icons/md";
-import "./node_modules/mdbreact/dist/css/mdb.css";
+import { MDBContainer, MDBCol, MDBBtn, MDBCard, MDBRow } from "mdbreact";
+import { MdChevronLeft } from "react-icons/md";
+import "mdbreact/dist/css/mdb.css";
 
 class UserSignup extends Component {
   constructor(props) {

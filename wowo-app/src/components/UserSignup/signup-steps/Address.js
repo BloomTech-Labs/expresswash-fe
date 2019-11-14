@@ -1,6 +1,6 @@
 /*global google*/
-import React, { Component } from "./node_modules/react";
-import { MDBRow, MDBCol, MDBInput } from "./node_modules/mdbreact";
+import React, { Component } from "react";
+import { MDBRow, MDBCol, MDBInput } from "mdbreact";
 
 class Address extends Component {
   constructor(props) {
