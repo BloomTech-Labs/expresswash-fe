@@ -12,9 +12,9 @@ export class WasherSignUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      signupLoading: false,
-      signupError: null,
-      signupData: [],
+      washerSignupLoading: false,
+      washerSignupError: null,
+      washerSignupData: [],
       loadingBar: 25,
       step: 1,
       firstName: '',
@@ -70,16 +70,16 @@ export class WasherSignUpForm extends Component {
   }
 
   handleSubmit = () => {
-    const { firstName, lastName, email, password, phone, street, apt, zipCode, city, usState } = this.state;
+    const { firstName, lastName, email, password, phone, street, zipCode, city, usState } = this.state;
     const payload = { email, firstName, lastName, password, phoneNumber: phone, streetAddress: street, city, state: usState, zip: zipCode };
     console.log("here is the object sending up", payload);
 
     this.props.register(payload)
       .then(() => {
         console.log('sent!');
-        console.log('data', this.props.signupData);
-        console.log('error', this.props.signupError);
-        console.log('loading', this.props.signupLoading);
+        console.log('data', this.props.washerSignupData);
+        console.log('error', this.props.washerSignupError);
+        console.log('loading', this.props.washerSignupLoading);
       })
       .catch((err) => {
         console.error(err);
@@ -139,9 +139,9 @@ export class WasherSignUpForm extends Component {
 };
 
 const mapStateToProps = (state) => ({
-  signupLoading: state.signupLoading,
-  signupError: state.signupError,
-  signupData: state.signupData,
+  washerSignupLoading: state.washerSignupLoading,
+  washerSignupError: state.washerSignupError,
+  washerSignupData: state.washerSignupData,
 })
 
 const mapDispatchToProps = {
