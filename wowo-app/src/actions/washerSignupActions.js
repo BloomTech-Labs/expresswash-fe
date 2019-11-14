@@ -1,7 +1,7 @@
 // import axios
 import axios from 'axios';
 
-// define action types
+// import action types
 import {
   CREATE_WASHER_START,
   CREATE_WASHER_SUCCESS,
@@ -15,6 +15,7 @@ export function register(payload) {
 
     return axios.post('https://pt6-wowo.herokuapp.com/auth/registerWasher', payload)
       .then((res) => {
+        console.log(res);
         dispatch({ type: CREATE_WASHER_SUCCESS, payload: res.data })
       })
       .catch((err) => {

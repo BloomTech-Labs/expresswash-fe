@@ -4,7 +4,7 @@ import { MDBTable, MDBTableBody, MDBBtn } from "mdbreact";
 export class WasherSignUpReview extends Component {
   render() {
     const { values } = this.props;
-    const nextBtn = () => this.props.nextStep();
+    const handleSubmit = () => this.props.handleSubmit();
     const prevBtn = () => this.props.prevStep();
 
     const displayField = field => {
@@ -56,7 +56,7 @@ export class WasherSignUpReview extends Component {
         </MDBTable>
         <div className="text-center">
           <MDBBtn color="primary" onClick={prevBtn}>Back to edit</MDBBtn>
-          <MDBBtn color="info" onClick={nextBtn}>Register!</MDBBtn>
+          <MDBBtn color="info" onClick={handleSubmit}>Register!</MDBBtn>
         </div>
       </span>
     );

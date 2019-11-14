@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { register } from '../../actions/washerSignupActions.js';
 import { MDBCard, MDBCardTitle, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { MDBProgress } from 'mdbreact';
 import WasherSignUpPersonal from './WasherSignUpPersonal.js';
@@ -8,19 +9,25 @@ import WasherSignUpAddress from './WasherSignUpAddress.js';
 import WasherSignUpReview from './WasherSignUpReview.js';
 
 export class WasherSignUpForm extends Component {
-  state = {
-    loadingBar: 25,
-    step: 1,
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    phone: '',
-    street: '',
-    apt: '',
-    zipCode: '',
-    city: '',
-    usState: ''
+  constructor(props) {
+    super(props);
+    this.state = {
+      signupLoading: false,
+      signupError: null,
+      signupData: [],
+      loadingBar: 25,
+      step: 1,
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      phone: '',
+      street: '',
+      apt: '',
+      zipCode: '',
+      city: '',
+      usState: ''
+    }
   }
 
   // Set loading bar
@@ -60,7 +67,23 @@ export class WasherSignUpForm extends Component {
   // Handle fields change
   handleChange = input => e => {
     this.setState({[input]: e.target.value});
-    console.log(this.state);
+  }
+
+  handleSubmit = () => {
+    const { firstName, lastName, email, password, phone, street, apt, zipCode, city, usState } = this.state;
+    const payload = { email, firstName, lastName, password, phoneNumber: phone, streetAddress: street, city, state: usState, zip: zipCode };
+    console.log("here is the object sending up", payload);
+
+    this.props.register(payload)
+      .then(() => {
+        console.log('sent!');
+        console.log('data', this.props.signupData);
+        console.log('error', this.props.signupError);
+        console.log('loading', this.props.signupLoading);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
   }
 
   render() {
@@ -93,7 +116,7 @@ export class WasherSignUpForm extends Component {
               }
               {step === 3 &&
                 <WasherSignUpReview
-                  nextStep={this.nextStep}
+                  handleSubmit={this.handleSubmit}
                   prevStep={this.prevStep}
                   handleChange={this.handleChange}
                   values={values}
@@ -121,8 +144,13 @@ const mapStateToProps = (state) => ({
   signupData: state.signupData,
 })
 
+const mapDispatchToProps = {
+  register,
+}
+
 export default withRouter(
   connect(
     mapStateToProps,
+    mapDispatchToProps,
   )(WasherSignUpForm)
 );

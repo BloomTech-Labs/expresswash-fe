@@ -11,16 +11,24 @@ import initialState from './initialState.js';
 export default function washerSignupReducer(state = initialState, action) {
   switch(action.type) {
     case CREATE_WASHER_START: {
-      // some action here
-      console.log('we hit the washer start');
+      return {
+        // some action here
+        state
+      }
     }
     case CREATE_WASHER_SUCCESS: {
-      // some action here
-      console.log('we hit the washer success');
+      return {
+        // some action here
+        state
+      }
     }
     case CREATE_WASHER_FAILED: {
-      // some action here
-      console.log('we hit the washer failed');
+      return {
+        state
+        // some action here
+      }
     }
+    default: 
+      return state;
   }
 }
