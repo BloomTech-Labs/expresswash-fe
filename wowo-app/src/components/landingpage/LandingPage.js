@@ -1,54 +1,35 @@
-<<<<<<< HEAD:wowo-app/src/components/landingpage/LandingPage.js
-import React from './node_modules/react';
-import { MDBBtn, MDBContainer, MDBRow, MDBCol } from "./node_modules/mdbreact";
-
-import './LandingPage.css';
-import logo from '../../images/wowo-logo-full.jpg';
-
-export default function LandingPage() {
-    return (
-        <MDBContainer className="landing-container">
-            <section className="header-container">
-                <MDBContainer className="landing-header">
-                    <MDBRow className="mb-4">
-                        <MDBCol>
-                            <img className="wowo-logo" src={logo} alt="logo"/>
-                        </MDBCol>
-                    </MDBRow>
-                </MDBContainer>
-                <MDBContainer className="header-buttons-container">
-                    <MDBBtn className="sign-up-btn" color="primary">Sign Up</MDBBtn>
-                    <p className="btn-or">or</p>
-                    <MDBBtn className="login-btn">Log In</MDBBtn>
-                </MDBContainer>
-            </section>
-=======
 import React from "react";
+import { Link } from "react-router-dom";
 import { MDBBtn, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 
 import "./LandingPage.css";
-import logo from "../images/wowo-logo-full.JPG";
+import logo from "../../images/wowo-logo-full.jpg";
+
 
 export default function LandingPage() {
   return (
     <MDBContainer className="landing-container">
       <section className="header-container">
+
         <MDBContainer className="landing-header">
           <MDBRow className="mb-4">
             <MDBCol>
-              <img className="wowo-logo" src={logo} alt="logo-image" />
+              <img className="wowo-logo" src={logo} alt="logo" />
             </MDBCol>
           </MDBRow>
         </MDBContainer>
+        
         <MDBContainer className="header-buttons-container">
-          <MDBBtn className="sign-up-btn" color="primary">
-            Sign Up
-          </MDBBtn>
+          <Link to="user-register">
+            <MDBBtn className="sign-up-btn" color="primary"> Sign Up </MDBBtn>
+          </Link>
           <p className="btn-or">or</p>
-          <MDBBtn className="login-btn">Log In</MDBBtn>
+          <Link to="login">
+            <MDBBtn className="login-btn"> Log In </MDBBtn>
+          </Link>
         </MDBContainer>
+        
       </section>
->>>>>>> 4c8379444f5f9dcca131794077acf7a90574c3f2:wowo-app/src/components/LandingPage.js
 
       <section className="landing-information">
         <MDBContainer className="landing-info-card about">
@@ -86,10 +67,12 @@ export default function LandingPage() {
           </p>
         </MDBContainer>
 
-        <MDBBtn className="washer-sign-up-btn" color="primary">
-          Become a Washer
-        </MDBBtn>
+        <Link to="washer-register">
+          <MDBBtn className="washer-sign-up-btn" color="primary"> Become a Washer </MDBBtn>
+        </Link>
+
       </section>
+
     </MDBContainer>
   );
 }
