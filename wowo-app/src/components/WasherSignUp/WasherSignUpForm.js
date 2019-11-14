@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { MDBCard, MDBCardTitle, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { MDBProgress } from 'mdbreact';
 import WasherSignUpPersonal from './WasherSignUpPersonal.js';
@@ -113,4 +115,14 @@ export class WasherSignUpForm extends Component {
   }
 };
 
-export default WasherSignUpForm;
+const mapStateToProps = (state) => ({
+  signupLoading: state.signupLoading,
+  signupError: state.signupError,
+  signupData: state.signupData,
+})
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+  )(WasherSignUpForm)
+);

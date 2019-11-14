@@ -1,3 +1,8 @@
 export default {
-    users: []
+    users: [],
+    washerSignup: {
+      signupLoading: false,
+      signupError: null,
+      signupData: []
+    }
 };
