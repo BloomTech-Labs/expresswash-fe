@@ -61,7 +61,12 @@ class UserSignup extends Component {
     let currentStep = this.state.currentStep;
 
     if (currentStep !== 1) {
-      return <MdChevronLeft onClick={this.prevStep} />;
+      return (
+        <MdChevronLeft
+          className="d-flex justify-content-start"
+          onClick={this.prevStep}
+        />
+      );
     }
     return null;
   }
@@ -164,7 +169,7 @@ class UserSignup extends Component {
     this.props
       .createClient(payload)
       .then(() => {
-        this.props.history.push("/");
+        this.props.history.push("/landingpage");
       })
       .catch(err => {
         console.log(err);
