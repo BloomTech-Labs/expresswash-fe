@@ -1,3 +1,5 @@
 export default {
-    users: []
+  users: [],
+  loading: true,
+  error: false
 };

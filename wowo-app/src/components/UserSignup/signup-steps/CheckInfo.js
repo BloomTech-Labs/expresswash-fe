@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
+import { MDBRow, MDBCol, MDBInput } from "mdbreact";
 
 class CheckInfo extends Component {
   render() {
@@ -12,12 +12,12 @@ class CheckInfo extends Component {
       lastName,
       email,
       username,
-      sAddress,
+      streetAddress,
       phoneNumber,
-      zipcode,
+      zip,
       sAddress2,
       city,
-      state
+      State
     } = this.props;
     return (
       <div>
@@ -36,24 +36,21 @@ class CheckInfo extends Component {
           </MDBCol>
         </MDBRow>
         <MDBInput label="Email" value={email} />
-        <MDBInput label="Street Address" value={sAddress} />
+        <MDBInput label="Street Address" value={streetAddress} />
         <MDBRow>
           <MDBCol md="6">
             <MDBInput label="APT / SUITE / OTHER" value={sAddress2} />
           </MDBCol>
           <MDBCol md="6">
-            <MDBInput label="Zipcode" value={zipcode} />
+            <MDBInput label="Zipcode" value={zip} />
           </MDBCol>
           <MDBCol md="6">
             <MDBInput label="City" value={city} />
           </MDBCol>
           <MDBCol md="6">
-            <MDBInput label="State" value={state} />
+            <MDBInput label="State" value={State} />
           </MDBCol>
         </MDBRow>
-        {/* <div className="d-flex justify-content-center">
-          <MDBBtn type="submit">submit</MDBBtn>
-        </div> */}
       </div>
     );
   }

@@ -1,19 +1,15 @@
 import React from "react";
-import {
-  MDBContainer,
-  MDBCol,
-  MDBBtn,
-  MDBCard,
-  MDBRow,
-  MDBIcon
-} from "mdbreact";
-import { MdChevronLeft } from "react-icons/md";
+import { MDBBtn } from "mdbreact";
 
 export default function FillerPage() {
   return (
     <div>
       <div className="d-flex justify-content-center">
-        <img src="https://picsum.photos/200/300" style={{ height: "100px" }} />
+        <img
+          src="https://picsum.photos/200/300"
+          alt="random wheel"
+          style={{ height: "100px" }}
+        />
       </div>
 
       <p style={{ paddingTop: "25px" }}>Welcome to our registration page!</p>

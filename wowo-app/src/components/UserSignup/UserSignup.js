@@ -1,10 +1,14 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import Username from "./signup-steps/Username.js";
 import Name from "./signup-steps/Name.js";
 import Address from "./signup-steps/Address.js";
 import CheckInfo from "./signup-steps/CheckInfo.js";
 import ProgressBar from "./progress-bar/ProgressBar.js";
 import FillerPage from "./FillerPage.js";
+
+import { createClient } from "../../actions/actionTypes.js";
 
 import { MDBContainer, MDBCol, MDBBtn, MDBCard, MDBRow } from "mdbreact";
 import { MdChevronLeft } from "react-icons/md";
@@ -23,11 +27,11 @@ class UserSignup extends Component {
       password: "",
       username: "",
       phoneNumber: "",
-      sAddress: "",
+      streetAddress: "",
       sAddress2: "",
-      zipcode: "",
+      zip: "",
       city: "",
-      state: ""
+      State: ""
     };
     this.nextStep = this.nextStep.bind(this);
     this.prevStep = this.prevStep.bind(this);
@@ -131,8 +135,7 @@ class UserSignup extends Component {
 
   handleSubmit = async evt => {
     evt.preventDefault();
-    console.log(this.state);
-    // console.log(newUserPackage);
+
     const {
       email,
       firstName,
@@ -140,40 +143,32 @@ class UserSignup extends Component {
       password,
       username,
       phoneNumber,
-      sAddress,
+      streetAddress,
       sAddress2,
       city,
-      state,
-      zipcode
+      State,
+      zip
     } = this.state;
-    const newUserPackage = {
+
+    const payload = {
       email,
       firstName,
       lastName,
       password,
-      username,
       phoneNumber,
-      sAddress,
-      sAddress2,
+      streetAddress,
       city,
-      state,
-      zipcode
+      State,
+      zip
     };
-
-    this.setState({
-      email: "",
-      firstName: "",
-      lastName: "",
-      password: "",
-      username: "",
-      phoneNumber: "",
-      sAddress: "",
-      sAddress2: "",
-      city: "",
-      state: "",
-      zipcode: "",
-      currentStep: 1
-    });
+    this.props
+      .createClient(payload)
+      .then(() => {
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   render() {
@@ -232,11 +227,11 @@ class UserSignup extends Component {
                   <Address
                     currentStep={this.state.currentStep}
                     handleChange={this.handleChange}
-                    sAddress={this.state.sAddress}
-                    zipcode={this.state.zipcode}
+                    streetAddress={this.state.streetAddress}
+                    zip={this.state.zip}
                     sAddress2={this.state.sAddress2}
                     city={this.state.city}
-                    state={this.state.state}
+                    State={this.state.State}
                   />
                   <CheckInfo
                     currentStep={this.state.currentStep}
@@ -244,12 +239,12 @@ class UserSignup extends Component {
                     lastName={this.state.lastName}
                     email={this.state.email}
                     username={this.state.username}
-                    sAddress={this.state.sAddress}
+                    streetAddress={this.state.streetAddress}
                     phoneNumber={this.state.phoneNumber}
-                    zipcode={this.state.zipcode}
+                    zip={this.state.zip}
                     sAddress2={this.state.sAddress2}
                     city={this.state.city}
-                    state={this.state.state}
+                    State={this.state.State}
                   />
                   {this.getNextStep}
                   {/* <MDBBtn type="submit">Submit</MDBBtn> */}
@@ -263,4 +258,18 @@ class UserSignup extends Component {
   }
 }
 
-export default UserSignup;
+const mapStateToProps = state => ({
+  loading: state.loading,
+  error: state.error
+});
+
+const mapDispatchToProps = {
+  createClient
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(UserSignup)
+);
