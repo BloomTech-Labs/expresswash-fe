@@ -20,14 +20,14 @@ export default function washerSignupReducer(state = initialState, action) {
     case CREATE_WASHER_SUCCESS: {
       return {
         ...state,
-        washerSignupLoading: true,
+        washerSignupLoading: false,
         washerSignupData: action,
       }
     }
     case CREATE_WASHER_FAILED: {
       return {
         ...state,
-        washerSignupLoading: true,
+        washerSignupLoading: false,
         washerSignupError: action,
       }
     }
