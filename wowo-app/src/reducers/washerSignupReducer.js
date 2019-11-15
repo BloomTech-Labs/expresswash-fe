@@ -5,13 +5,16 @@ import {
   CREATE_WASHER_FAILED
 } from '../actions/actionTypes.js';
 
-// import initial State
-import initialState from './initialState.js';
+// initial State values
+const initialState = {
+  washerSignupLoading: false,
+  washerSignupError: null,
+  washerSignupData: []
+}
 
-export default function washerSignupReducer(state = initialState, action) {
+export default function(state = initialState, action) {
   switch(action.type) {
     case CREATE_WASHER_START: {
-      const { washerSignupLoading, washerSignupError, washerSignupData } = state;
       return {
         ...state,
         washerSignupLoading: true,

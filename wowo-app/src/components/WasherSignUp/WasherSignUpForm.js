@@ -12,9 +12,7 @@ export class WasherSignUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      washerSignupLoading: false,
-      washerSignupError: null,
-      washerSignupData: [],
+      washerSignupReducer: {},
       loadingBar: 25,
       step: 1,
       firstName: '',
@@ -77,9 +75,9 @@ export class WasherSignUpForm extends Component {
     this.props.register(payload)
       .then(() => {
         console.log('sent!');
-        console.log('data', this.props.washerSignupData);
-        console.log('error', this.props.washerSignupError);
-        console.log('loading', this.props.washerSignupLoading);
+        console.log('data', this.props.washerSignupReducer.washerSignupData);
+        console.log('error', this.props.washerSignupReducer.washerSignupError);
+        console.log('loading', this.props.washerSignupReducer.washerSignupLoading);
       })
       .catch((err) => {
         console.error(err);
@@ -139,9 +137,7 @@ export class WasherSignUpForm extends Component {
 };
 
 const mapStateToProps = (state) => ({
-  washerSignupLoading: state.washerSignupLoading,
-  washerSignupError: state.washerSignupError,
-  washerSignupData: state.washerSignupData,
+  washerSignupReducer: state.washerSignupReducer,
 })
 
 const mapDispatchToProps = {

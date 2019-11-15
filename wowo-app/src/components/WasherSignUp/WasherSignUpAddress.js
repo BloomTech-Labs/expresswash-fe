@@ -29,7 +29,6 @@ export class WasherSignUpAddress extends Component {
     let addressObject = this.autocomplete.getPlace();
     let address = addressObject.address_components;
     console.log(address);
-    const { street, apt, city, usState, zipCode } = values;
     values = {
       ...values,
       street: `${address[0].long_name} ${address[1].long_name}`,
