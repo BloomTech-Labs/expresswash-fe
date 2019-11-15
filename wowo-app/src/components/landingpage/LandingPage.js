@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MDBBtn, MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBIcon } from "mdbreact";
 
 import "./LandingPage.css";
 import logo from "../../images/wowo-logo-full.jpg";
@@ -33,7 +33,7 @@ export default function LandingPage() {
 
       <section className="landing-information">
         <MDBContainer className="landing-info-card about">
-          <h3 className="landing-info-header">We Bring The Wash To You</h3>
+          <h3 className="landing-info-header"><MDBIcon icon="car" /> We Bring The Wash To You</h3>
           <p className="landing-info-content">
             WoWo is an all new approach to car washing. Instead of driving to
             the carwash and waiting in long lines, we bring the car wash to you.
@@ -45,8 +45,10 @@ export default function LandingPage() {
           {/* <MDBBtn className="quote-btn" color="primary">Instant Quote</MDBBtn> */}
         </MDBContainer>
 
+        <MDBIcon className="info-dot" icon="circle" />
+
         <MDBContainer className="landing-info-card">
-          <h3 className="landing-info-header eco">Eco-Friendly</h3>
+          <h3 className="landing-info-header eco"><MDBIcon icon="leaf" /> Eco-Friendly</h3>
           <p className="landing-info-content">
             WoWo is dedicated to delivering an eco-friendly carwash. All of our
             washers are trained to used eco-friendly cleaners and practices.
@@ -55,8 +57,10 @@ export default function LandingPage() {
           </p>
         </MDBContainer>
 
+        <MDBIcon className="info-dot" icon="circle" />
+
         <MDBContainer className="landing-info-card washers">
-          <h3 className="landing-info-header">Earn Extra Income</h3>
+          <h3 className="landing-info-header"><MDBIcon icon="hand-holding-usd" /> Earn Extra Income</h3>
           <p className="landing-info-content">
             WoWo welcomes anyone whoe enjoys washing, detailing, or even just
             looking to make some extra income. All prospective washers must go

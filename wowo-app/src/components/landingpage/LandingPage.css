@@ -26,7 +26,7 @@
 }
 
 .landing-information {
-     height: 800px;
+     height: 840px;
      padding: 20px 0 40px;
      display: flex;
      flex-direction: column;
@@ -39,7 +39,7 @@
 }
 
 .landing-info-header {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 24px;
     font-weight: bold;
     color: #00a8c5;
@@ -52,4 +52,8 @@
 .landing-info-content {
     margin: 0;
     font-size: 16px;
+}
+
+.info-dot {
+    color: #666;
 }
