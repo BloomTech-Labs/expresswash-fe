@@ -11,6 +11,7 @@ import WasherSignUpReview from './WasherSignUpReview.js';
 export class WasherSignUpForm extends Component {
   constructor(props) {
     super(props);
+    // create all the state needed for the form and loading components
     this.state = {
       washerSignupReducer: {},
       loadingBar: 25,
@@ -69,15 +70,26 @@ export class WasherSignUpForm extends Component {
 
   handleSubmit = () => {
     const { firstName, lastName, email, password, phone, street, zipCode, city, usState } = this.state;
+    // set up the payload to sent to back-end
     const payload = { email, firstName, lastName, password, phoneNumber: phone, streetAddress: street, city, state: usState, zip: zipCode };
     console.log("here is the object sending up", payload);
 
+    // invoke the action function for registration
     this.props.register(payload)
       .then(() => {
+        // deconstruct the redux state variables
+        const { washerSignupData, washerSignupError, washerSignupLoading } = this.props.washerSignupReducer;
         console.log('sent!');
-        console.log('data', this.props.washerSignupReducer.washerSignupData);
-        console.log('error', this.props.washerSignupReducer.washerSignupError);
-        console.log('loading', this.props.washerSignupReducer.washerSignupLoading);
+        console.log('data', washerSignupData);
+        console.log('error', washerSignupError);
+        console.log('loading', washerSignupLoading);
+        // check if the user was created to show confirmation
+        if(washerSignupData.payload.user.length) {
+          console.log('user was created');
+          this.nextStep();
+        } else {
+          console.log('user was NOT created');
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -88,6 +100,8 @@ export class WasherSignUpForm extends Component {
     const { step, loadingBar } = this.state;
     const { firstName, lastName, email, password, phone, street, apt, zipCode, city, usState } = this.state;
     const values = { firstName, lastName, email, password, phone, street, apt, zipCode, city, usState };
+    // deconstruct the redux state variables
+    const { washerSignupData, washerSignupError, washerSignupLoading } = this.props.washerSignupReducer;
 
     return (
       <MDBContainer>
@@ -113,12 +127,14 @@ export class WasherSignUpForm extends Component {
                 />
               }
               {step === 3 &&
-                <WasherSignUpReview
+                ( washerSignupLoading
+                ? <p>Loading..</p>
+                : <WasherSignUpReview
                   handleSubmit={this.handleSubmit}
                   prevStep={this.prevStep}
                   handleChange={this.handleChange}
                   values={values}
-                />
+                /> )
               }
               {step === 4 &&
                 <span>
