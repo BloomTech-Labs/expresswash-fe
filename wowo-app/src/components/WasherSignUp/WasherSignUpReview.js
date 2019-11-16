@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { MDBTable, MDBTableBody, MDBBtn } from "mdbreact";
+import { MDBAlert, MDBTable, MDBTableBody, MDBBtn } from "mdbreact";
 
 export class WasherSignUpReview extends Component {
   render() {
-    const { values } = this.props;
+    const { values, submitError } = this.props;
     const handleSubmit = () => this.props.handleSubmit();
     const prevBtn = () => this.props.prevStep();
-
+    
     const displayField = field => {
       if(field) {
         if(field === "password") {
@@ -20,6 +20,11 @@ export class WasherSignUpReview extends Component {
     }
     return (
       <span>
+        {(submitError && (submitError.errno = "19")) &&
+          <MDBAlert color="danger">
+            The email address {values.email} is already in use. Please try another email or login.
+          </MDBAlert>
+        }
         <MDBTable style={{ width: "85%", margin: "0 auto", textAlign: "left" }}>
           <MDBTableBody>
             <tr>

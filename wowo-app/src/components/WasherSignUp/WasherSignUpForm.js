@@ -79,7 +79,8 @@ export class WasherSignUpForm extends Component {
         // deconstruct the redux state variables
         const { washerSignupData } = this.props.washerSignupReducer;
         // check if the user was created to show confirmation
-        if(washerSignupData.payload.user.length) {
+        
+        if(washerSignupData.payload && washerSignupData.payload.user.length) {
           console.log('user was created');
           this.nextStep();
         } else {
@@ -130,6 +131,7 @@ export class WasherSignUpForm extends Component {
                   prevStep={this.prevStep}
                   handleChange={this.handleChange}
                   values={values}
+                  submitError={washerSignupError}
                   /> 
                 )
               }
