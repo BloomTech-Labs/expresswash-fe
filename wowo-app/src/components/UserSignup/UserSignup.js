@@ -146,7 +146,6 @@ class UserSignup extends Component {
       firstName,
       lastName,
       password,
-      username,
       phoneNumber,
       streetAddress,
       sAddress2,
@@ -218,15 +217,14 @@ class UserSignup extends Component {
                   <Username
                     currentStep={this.state.currentStep}
                     handleChange={this.handleChange}
-                    username={this.state.username}
                     password={this.state.password}
+                    email={this.state.email}
                   />
                   <Name
                     currentStep={this.state.currentStep}
                     handleChange={this.handleChange}
                     firstName={this.state.firstName}
                     lastName={this.state.lastName}
-                    email={this.state.email}
                     phoneNumber={this.state.phoneNumber}
                   />
                   <Address

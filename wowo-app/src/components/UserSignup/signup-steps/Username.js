@@ -9,11 +9,11 @@ export default function Username(props) {
   return (
     <div>
       <MDBInput
-        id="username"
-        name="username"
+        id="email"
+        name="email"
         type="text"
-        label="Username"
-        value={props.username}
+        label="Email"
+        value={props.email}
         onChange={props.handleChange}
       />
       <MDBInput

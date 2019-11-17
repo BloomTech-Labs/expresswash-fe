@@ -11,7 +11,6 @@ class CheckInfo extends Component {
       firstName,
       lastName,
       email,
-      username,
       streetAddress,
       phoneNumber,
       zip,
@@ -27,9 +26,6 @@ class CheckInfo extends Component {
           </MDBCol>
           <MDBCol md="6">
             <MDBInput label="Last Name" value={lastName} />
-          </MDBCol>
-          <MDBCol md="6">
-            <MDBInput label="Username" value={username} />
           </MDBCol>
           <MDBCol md="6">
             <MDBInput label="Phone Number" value={phoneNumber} />
