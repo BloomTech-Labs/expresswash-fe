@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { MDBTable, MDBTableBody, MDBBtn } from "mdbreact";
-import '../../App.css';
+import { MDBAlert, MDBTable, MDBTableBody, MDBBtn } from "mdbreact";
 
 export class WasherSignUpReview extends Component {
   render() {
-    const { values } = this.props;
-    const nextBtn = () => this.props.nextStep();
+    const { values, submitError } = this.props;
+    const handleSubmit = () => this.props.handleSubmit();
     const prevBtn = () => this.props.prevStep();
-
+    
     const displayField = field => {
       if(field) {
         if(field === "password") {
@@ -21,6 +20,11 @@ export class WasherSignUpReview extends Component {
     }
     return (
       <span>
+        {(submitError && (submitError.errno = "19")) &&
+          <MDBAlert color="danger">
+            The email address {values.email} is already in use. Please try another email or login.
+          </MDBAlert>
+        }
         <MDBTable style={{ width: "85%", margin: "0 auto", textAlign: "left" }}>
           <MDBTableBody>
             <tr>
@@ -57,7 +61,7 @@ export class WasherSignUpReview extends Component {
         </MDBTable>
         <div className="text-center">
           <MDBBtn color="primary" onClick={prevBtn}>Back to edit</MDBBtn>
-          <MDBBtn color="info" onClick={nextBtn}>Register!</MDBBtn>
+          <MDBBtn color="info" onClick={handleSubmit}>Register!</MDBBtn>
         </div>
       </span>
     );
