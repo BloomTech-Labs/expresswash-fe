@@ -5,53 +5,40 @@ import { MDBRow, MDBCol, MDBInput } from "mdbreact";
 class Address extends Component {
   constructor(props) {
     super(props);
+    this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
+    this.autocomplete = null;
   }
 
-  //   // this.state = {
-  //   //   // name: "",
-  //   //   // sAddress: ""
-  //   // };
-  //   this.autocomplete = null;
-  //   this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
-  //   // this.handleChangeAddress = this.handleChangeAddress.bind(this);
-  //   // this.handleSubmitAddress = this.handleSubmitAddress.bind(this);
-  // }
-  // state = {
-  //   streetAddress: this.props.streetAddress,
-  //   sAddress2: this.props.sAddress2,
-  //   zip: this.props.zip,
-  //   city: this.props.city,
-  //   State: this.props.State
-  // };
+  state = {
+    phoneNumber: this.props.phoneNumber,
+    streetAddress: this.props.streetAddress,
+    apt: this.props.streetAddress2,
+    zipcode: this.props.zipcode,
+    State: this.props.State,
+    city: this.props.city
+  };
 
-  // componentDidMount() {
-  //   this.autocomplete = new google.maps.places.Autocomplete(
-  //     document.getElementById("autocomplete"),
-  //     {}
-  //   );
+  componentDidMount() {
+    this.autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById("autocomplete"),
+      {}
+    );
+    this.autocomplete.addListener("place_changed", this.handlePlaceSelect);
+  }
 
-  //   this.autocomplete.addListener("place_changed", this.handlePlaceSelect);
-  // }
+  handlePlaceSelect() {
+    let addressObject = this.autocomplete.getPlace();
+    let address = addressObject.address_components;
+    console.log(address);
 
-  // handlePlaceSelect() {
-  //   let addressObject = this.autocomplete.getPlace();
-  //   let address = addressObject.address_components;
-  //   //   this.setState({
-  //   //     name: addressObject.name,
-  //   //     sAddress: `${address[0].long_name} ${address[1].long_name}`,
-  //   //     city: address[4].long_name,
-  //   //     state: address[6].short_name,
-  //   //     zipcode: address[8].short_name,
-  //   //     googleMapLink: addressObject.url
-  //   //   });
-  //   this.setState({
-  //     sAddress: `${address[0].long_name} ${address[1].long_name}`,
-  //     sAddress2: address[2].long_name,
-  //     city: address[3].long_name,
-  //     state: address[5].short_name,
-  //     zipcode: address[7].short_name
-  //   });
-  // }
+    this.setState({
+      streetAddress: `${address[0].long_name} ${address[1].long_name}`,
+      apt: address[2].long_name,
+      city: address[3].long_name,
+      State: address[5].short_name,
+      zipcode: address[7].short_name
+    });
+  }
 
   render() {
     // const { sAddress, sAddress2, zipcode, city, state } = this.state;
