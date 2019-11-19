@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
-import '../App.css';
+import '../../App.css';
 /* global google */
 
 export class WasherSignUpAddress extends Component {

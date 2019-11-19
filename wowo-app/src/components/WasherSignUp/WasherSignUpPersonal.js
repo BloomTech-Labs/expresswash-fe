@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MDBInput, MDBBtn } from "mdbreact";
-import '../App.css';
+import '../../App.css';
 
 export class WasherSignUpPersonal extends Component {
   render() {

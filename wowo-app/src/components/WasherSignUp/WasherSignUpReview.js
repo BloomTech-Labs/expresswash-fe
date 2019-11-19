@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MDBTable, MDBTableBody, MDBBtn } from "mdbreact";
-import '../App.css';
+import '../../App.css';
 
 export class WasherSignUpReview extends Component {
   render() {
