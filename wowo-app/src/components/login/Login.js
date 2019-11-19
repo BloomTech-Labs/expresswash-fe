@@ -1,4 +1,6 @@
+
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
@@ -157,7 +159,9 @@ class Login extends Component {
 
         <RightContainer>
           <Form onSubmit={this.handleSubmit}>
-            <Img src={LoginLogo} style={{ width: 40 + "%" }} alt="logo" />
+            <Link to="/">
+              <Img src={LoginLogo} style={{ width: 40 + "%" }} alt="logo" />
+            </Link>
 
             <MDBCol md="12">
               <MDBInput
@@ -209,7 +213,7 @@ class Login extends Component {
               </SocialButton>
             </MDBRow>
             <FirstTime>
-              Here For the first time? <Signup href="#">Sign Up</Signup>
+              Here For the first time? <Link to="/user-register"> <Signup href="#">Sign Up</Signup> </Link>
             </FirstTime>
           </MDBContainer>
         </RightContainer>

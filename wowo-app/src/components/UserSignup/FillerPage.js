@@ -1,6 +1,7 @@
 import React from "react";
 import { MDBBtn } from "mdbreact";
 import logo from "../../images/wowo-logo-full.JPG";
+import { Link } from "react-router-dom";
 
 export default function FillerPage() {
   return (
@@ -12,9 +13,11 @@ export default function FillerPage() {
       <p style={{ paddingTop: "25px" }}>Welcome to our registration page!</p>
       <p class="text-center">Already have an account?</p>
       <div className="d-flex justify-content-center">
-        <MDBBtn size="lg" color="primary">
-          Click Here
-        </MDBBtn>
+        <Link to="/login">
+          <MDBBtn size="lg" color="primary">
+            Click Here
+          </MDBBtn>
+        </Link>
       </div>
     </div>
   );

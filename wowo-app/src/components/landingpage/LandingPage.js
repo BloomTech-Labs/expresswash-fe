@@ -1,8 +1,9 @@
 import React from "react";
-import { MDBBtn, MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import { Link } from "react-router-dom";
+import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBIcon } from "mdbreact";
 
 import "./LandingPage.css";
-import logo from "../images/wowo-logo-full.JPG";
+import logo from "../../images/wowo-logo-full.JPG";
 
 export default function LandingPage() {
   return (
@@ -11,22 +12,30 @@ export default function LandingPage() {
         <MDBContainer className="landing-header">
           <MDBRow className="mb-4">
             <MDBCol>
-              <img className="wowo-logo" src={logo} alt="logo-image" />
+              <img className="wowo-logo" src={logo} alt="logo" />
             </MDBCol>
           </MDBRow>
         </MDBContainer>
+
         <MDBContainer className="header-buttons-container">
-          <MDBBtn className="sign-up-btn" color="primary">
-            Sign Up
-          </MDBBtn>
+          <Link to="user-register">
+            <MDBBtn className="sign-up-btn" color="primary">
+              {" "}
+              Sign Up{" "}
+            </MDBBtn>
+          </Link>
           <p className="btn-or">or</p>
-          <MDBBtn className="login-btn">Log In</MDBBtn>
+          <Link to="login">
+            <MDBBtn className="login-btn"> Log In </MDBBtn>
+          </Link>
         </MDBContainer>
       </section>
 
       <section className="landing-information">
         <MDBContainer className="landing-info-card about">
-          <h3 className="landing-info-header">We Bring The Wash To You</h3>
+          <h3 className="landing-info-header">
+            <MDBIcon icon="car" /> We Bring The Wash To You
+          </h3>
           <p className="landing-info-content">
             WoWo is an all new approach to car washing. Instead of driving to
             the carwash and waiting in long lines, we bring the car wash to you.
@@ -38,8 +47,12 @@ export default function LandingPage() {
           {/* <MDBBtn className="quote-btn" color="primary">Instant Quote</MDBBtn> */}
         </MDBContainer>
 
+        <MDBIcon className="info-dot" icon="circle" />
+
         <MDBContainer className="landing-info-card">
-          <h3 className="landing-info-header eco">Eco-Friendly</h3>
+          <h3 className="landing-info-header eco">
+            <MDBIcon icon="leaf" /> Eco-Friendly
+          </h3>
           <p className="landing-info-content">
             WoWo is dedicated to delivering an eco-friendly carwash. All of our
             washers are trained to used eco-friendly cleaners and practices.
@@ -48,8 +61,12 @@ export default function LandingPage() {
           </p>
         </MDBContainer>
 
+        <MDBIcon className="info-dot" icon="circle" />
+
         <MDBContainer className="landing-info-card washers">
-          <h3 className="landing-info-header">Earn Extra Income</h3>
+          <h3 className="landing-info-header">
+            <MDBIcon icon="hand-holding-usd" /> Earn Extra Income
+          </h3>
           <p className="landing-info-content">
             WoWo welcomes anyone whoe enjoys washing, detailing, or even just
             looking to make some extra income. All prospective washers must go
@@ -60,9 +77,12 @@ export default function LandingPage() {
           </p>
         </MDBContainer>
 
-        <MDBBtn className="washer-sign-up-btn" color="primary">
-          Become a Washer
-        </MDBBtn>
+        <Link to="washer-register">
+          <MDBBtn className="washer-sign-up-btn" color="primary">
+            {" "}
+            Become a Washer{" "}
+          </MDBBtn>
+        </Link>
       </section>
     </MDBContainer>
   );

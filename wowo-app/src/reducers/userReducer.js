@@ -9,16 +9,6 @@ import {
 
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_USER:
-    // Get user action
-    case GET_USERS:
-    //Get users action
-    case LOADING: {
-      return {
-        ...state,
-        loading: true
-      };
-    }
     case NEW_CLIENT_SUCCESS: {
       return {
         ...state,
