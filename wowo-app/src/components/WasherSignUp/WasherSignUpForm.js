@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
-import { MDBCard, MDBCardTitle, MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { register } from '../../actions/washerSignupActions.js';
+import { MDBBtn, MDBCard, MDBCardTitle, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { MDBProgress } from 'mdbreact';
 import WasherSignUpPersonal from './WasherSignUpPersonal.js';
 import WasherSignUpAddress from './WasherSignUpAddress.js';
 import WasherSignUpReview from './WasherSignUpReview.js';
-import '../../App.css';
 
 export class WasherSignUpForm extends Component {
-  state = {
-    loadingBar: 25,
-    step: 1,
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    phone: '',
-    street: '',
-    apt: '',
-    zipCode: '',
-    city: '',
-    usState: ''
+  constructor(props) {
+    super(props);
+    // create all the state needed for the form and loading components
+    this.state = {
+      washerSignupReducer: {},
+      loadingBar: 25,
+      step: 1,
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      phone: '',
+      street: '',
+      apt: '',
+      zipCode: '',
+      city: '',
+      usState: ''
+    }
   }
 
   // Set loading bar
@@ -59,13 +66,38 @@ export class WasherSignUpForm extends Component {
   // Handle fields change
   handleChange = input => e => {
     this.setState({[input]: e.target.value});
-    console.log(this.state);
+  }
+
+  handleSubmit = () => {
+    const { firstName, lastName, email, password, phone, street, zipCode, city, usState } = this.state;
+    // set up the payload to sent to back-end
+    const payload = { email, firstName, lastName, password, phoneNumber: phone, streetAddress: street, city, state: usState, zip: zipCode };
+
+    // invoke the action function for registration
+    this.props.register(payload)
+      .then(() => {
+        // deconstruct the redux state variables
+        const { washerSignupData } = this.props.washerSignupReducer;
+        // check if the user was created to show confirmation
+        
+        if(washerSignupData.payload && washerSignupData.payload.user.length) {
+          console.log('user was created');
+          this.nextStep();
+        } else {
+          console.log('user was NOT created');
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      })
   }
 
   render() {
     const { step, loadingBar } = this.state;
     const { firstName, lastName, email, password, phone, street, apt, zipCode, city, usState } = this.state;
     const values = { firstName, lastName, email, password, phone, street, apt, zipCode, city, usState };
+    // deconstruct the redux state variables
+    const { washerSignupError, washerSignupLoading } = this.props.washerSignupReducer;
 
     return (
       <MDBContainer>
@@ -91,18 +123,24 @@ export class WasherSignUpForm extends Component {
                 />
               }
               {step === 3 &&
-                <WasherSignUpReview
-                  nextStep={this.nextStep}
+                ( washerSignupLoading
+                ? <span><p>Loading..</p><i class="fas fa-spinner fa-pulse fa-5x"></i></span>
+                : 
+                  <WasherSignUpReview
+                  handleSubmit={this.handleSubmit}
                   prevStep={this.prevStep}
                   handleChange={this.handleChange}
                   values={values}
-                />
+                  submitError={washerSignupError}
+                  /> 
+                )
               }
               {step === 4 &&
                 <span>
                   <h4>Thank you {values.firstName}!</h4>
                   <h5>You are now on your way to making some extra cash with Wo-Wo!</h5>
                   <p>Check your email for the activation letter!</p>
+                  <MDBBtn color="primary">Home Page</MDBBtn>
                 </span>
               }
             </div>
@@ -114,4 +152,17 @@ export class WasherSignUpForm extends Component {
   }
 };
 
-export default WasherSignUpForm;
+const mapStateToProps = (state) => ({
+  washerSignupReducer: state.washerSignupReducer,
+})
+
+const mapDispatchToProps = {
+  register,
+}
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(WasherSignUpForm)
+);
