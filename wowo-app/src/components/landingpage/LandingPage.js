@@ -59,8 +59,8 @@ export default function LandingPage() {
 
         <MDBIcon className="info-dot" icon="circle" />
 
-        <MDBContainer className="landing-info-card washers">
-          <h3 className="landing-info-header"><MDBIcon icon="hand-holding-usd" /> Earn Extra Income</h3>
+        <MDBContainer className="landing-info-card">
+          <h3 className="landing-info-header washer"><MDBIcon icon="hand-holding-usd" /> Earn Extra Income</h3>
           <p className="landing-info-content">
             WoWo welcomes anyone whoe enjoys washing, detailing, or even just
             looking to make some extra income. All prospective washers must go
