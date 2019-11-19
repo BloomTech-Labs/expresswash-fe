@@ -13,5 +13,6 @@
   background: #1da598;
   height: 100%;
   border-radius: inherit;
-  transition: width 0.2s ease-in;
+  transition: width .2s ease-in;
 }
+
