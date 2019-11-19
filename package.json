@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Lambda-School-Labs/wowo-fe#readme",
   "dependencies": {
-    "mdbreact": "^4.22.0"
+    "mdbreact": "^4.22.0",
+    "react-redux": "^7.1.3"
   }
 }

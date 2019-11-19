@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { loginUser } from "../../actions/actionTypes.js"
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 
@@ -83,7 +83,7 @@ const ShowButton = Styled.div`
     font-weight: 500;
 `;
 
-const Forgot = Styled.a`
+const Forgot = Styled.div`
     cursor: pointer;
     color: #33B5E5;
     font-weight: 400;
@@ -93,7 +93,7 @@ const Forgot = Styled.a`
 const SubmitContainer = Styled.div`
 `;
 
-const SocialButton = Styled.a`
+const SocialButton = Styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -109,6 +109,7 @@ const SocialButton = Styled.a`
     transition: 0.2s;
     text-align: center;
     color: #33B5E5;
+    cursor: pointer;
 `;
 
 const FirstTime = Styled.p`
@@ -116,10 +117,11 @@ const FirstTime = Styled.p`
     text-align: center;
 `;
 
-const Signup = Styled.a`
+const Signup = Styled.div`
     cursor: pointer;
     color: #33B5E5;
     font-weight: 500;
+    display: inline;
 `;
 
 const SocialLogin = Styled.p`
@@ -215,7 +217,9 @@ class Login extends Component {
                             </ShowButton>
                         </MDBCol>
 
-                        <Forgot href="#">Forgot Password?</Forgot>
+                        <Link to="/forgotPassword">
+                            <Forgot>Forgot Password?</Forgot>
+                        </Link>
 
                         <SubmitContainer>
                             <MDBBtn color="info" type="submit">
@@ -228,17 +232,21 @@ class Login extends Component {
                         <SocialLogin>or login via:</SocialLogin>
                         
                         <MDBRow center>
-                            <SocialButton href="#">
-                                <FontAwesomeIcon icon={faFacebookF} />
-                            </SocialButton>
+                            <Link to="/facebookAuth">
+                                <SocialButton>
+                                    <FontAwesomeIcon icon={faFacebookF} />
+                                </SocialButton>
+                            </Link>
 
-                            <SocialButton href="#">
-                                <FontAwesomeIcon icon={faGoogle} />
-                            </SocialButton>
+                            <Link to="/googleAuth">
+                                <SocialButton>
+                                    <FontAwesomeIcon icon={faGoogle} />
+                                </SocialButton>
+                            </Link>
                         </MDBRow>
 
                         <FirstTime>
-                            Here For the first time? <Signup href="#">Sign Up</Signup>
+                            Here For the first time? <Link to="/signup"><Signup>Sign Up</Signup></Link>
                         </FirstTime>
                     </MDBContainer>
                 </RightContainer>

@@ -2,7 +2,7 @@ import React from 'react';
 import { MDBBtn, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 
 import './LandingPage.css';
-import logo from '../images/wowo-logo-full.jpg';
+import logo from '../images/wowo-logo-full.JPG';
 
 export default function LandingPage() {
     return (
