@@ -44,14 +44,14 @@ export default function Name(props) {
           </MDBCol>
         </MDBRow>
       </div>
-      <MDBInput
+      {/* <MDBInput
         id="email"
         name="email"
         type="text"
         label="Email"
         value={props.email}
         onChange={props.handleChange}
-      />
+      /> */}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-import { loginUser } from "../../actions/actionTypes.js"
+import { loginUser } from "../../actions/actionTypes.js";
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 
 import Styled from "styled-components";
@@ -13,10 +13,6 @@ import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
-
-
-
-
 
 const LoginContainer = Styled.div`
     display: flex;
@@ -130,129 +126,45 @@ const SocialLogin = Styled.p`
 `;
 
 class Login extends Component {
-    constructor() {
-        super();
-        this.state = {
-            email: "",
-            password: "",
-            show: false
-        };
-    }
-
-    inputHandler = event => {
-        event.preventDefault();
-
-        this.setState({
-            ...this.state,
-            [event.target.name]: event.target.value
-        });
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      show: false
     };
+  }
 
-    showHandler = event => {
-        event.preventDefault();
-        if (this.state.show === false) {
-            this.setState({ show: true });
-        } else {
-            this.setState({ show: false });
-        }
-    };
+  inputHandler = event => {
+    event.preventDefault();
 
-    handleSubmit = event => {
-        event.preventDefault();
+    this.setState({
+      ...this.state,
+      [event.target.name]: event.target.value
+    });
+  };
 
-        const {email, password} = this.state
-        this.props.loginUser(email, password)
-            .then(() => {
-                this.props.history.push('/main')
-            })
-            .catch(err => {
-                throw new Error(err)
-            })
-        
+  showHandler = event => {
+    event.preventDefault();
+    if (this.state.show === false) {
+      this.setState({ show: true });
+    } else {
+      this.setState({ show: false });
     }
+  };
 
+  handleSubmit = event => {
+    event.preventDefault();
 
-
-    render() {
-        return (
-            <LoginContainer>
-                <LeftContainer>
-                    <ImgContainer>
-                        <img src={carImg} style={{ width: 90 + "%" }} alt="login screen" />
-                    </ImgContainer>
-                </LeftContainer>
-
-                <RightContainer>
-                    <Form onSubmit={this.handleSubmit}>
-                        <Img src={LoginLogo} style={{ width: 40 + "%" }} alt="logo" />
-
-                        <MDBCol md="12">
-                            <MDBInput
-                                label="Email"
-                                aria-required="true"
-                                autoCapitalize="off"
-                                autoCorrect="off"
-                                maxLength="75"
-                                name="email"
-                                type="text"
-                                value={this.state.email}
-                                onChange={this.inputHandler}
-                            />
-                        </MDBCol>
-
-                        <MDBCol md="12">
-                            <MDBInput
-                                label="Password"
-                                aria-required="true"
-                                autoCapitalize="off"
-                                autoCorrect="off"
-                                name="password"
-                                type={this.state.show === false ? "password" : "text"}
-                                value={this.state.password}
-                                onChange={this.inputHandler}
-                            />
-
-                            <ShowButton onClick={this.showHandler}>
-                                {this.state.show === false ? "Show" : "Hide"}
-                            </ShowButton>
-                        </MDBCol>
-
-                        <Link to="/forgotPassword">
-                            <Forgot>Forgot Password?</Forgot>
-                        </Link>
-
-                        <SubmitContainer>
-                            <MDBBtn color="info" type="submit">
-                                Login
-                            </MDBBtn>
-                        </SubmitContainer>
-                    </Form>
-
-                    <MDBContainer>
-                        <SocialLogin>or login via:</SocialLogin>
-                        
-                        <MDBRow center>
-                            <Link to="/facebookAuth">
-                                <SocialButton>
-                                    <FontAwesomeIcon icon={faFacebookF} />
-                                </SocialButton>
-                            </Link>
-
-                            <Link to="/googleAuth">
-                                <SocialButton>
-                                    <FontAwesomeIcon icon={faGoogle} />
-                                </SocialButton>
-                            </Link>
-                        </MDBRow>
-
-                        <FirstTime>
-                            Here For the first time? <Link to="/signup"><Signup>Sign Up</Signup></Link>
-                        </FirstTime>
-                    </MDBContainer>
-                </RightContainer>
-            </LoginContainer>
-        );
-    }
+    const { email, password } = this.state;
+    this.props
+      .loginUser(email, password)
+      .then(() => {
+        this.props.history.push("/main");
+      })
+      .catch(err => {
+        throw new Error(err);
+      });
   };
 
   render() {
@@ -266,9 +178,7 @@ class Login extends Component {
 
         <RightContainer>
           <Form onSubmit={this.handleSubmit}>
-            <Link to="/">
-              <Img src={LoginLogo} style={{ width: 40 + "%" }} alt="logo" />
-            </Link>
+            <Img src={LoginLogo} style={{ width: 40 + "%" }} alt="logo" />
 
             <MDBCol md="12">
               <MDBInput
@@ -301,7 +211,9 @@ class Login extends Component {
               </ShowButton>
             </MDBCol>
 
-            <Forgot href="#">Forgot Password?</Forgot>
+            <Link to="/forgotPassword">
+              <Forgot>Forgot Password?</Forgot>
+            </Link>
 
             <SubmitContainer>
               <MDBBtn color="info" type="submit">
@@ -309,18 +221,29 @@ class Login extends Component {
               </MDBBtn>
             </SubmitContainer>
           </Form>
+
           <MDBContainer>
             <SocialLogin>or login via:</SocialLogin>
+
             <MDBRow center>
-              <SocialButton href="#">
-                <FontAwesomeIcon icon={faFacebookF} />
-              </SocialButton>
-              <SocialButton href="#">
-                <FontAwesomeIcon icon={faGoogle} />
-              </SocialButton>
+              <Link to="/facebookAuth">
+                <SocialButton>
+                  <FontAwesomeIcon icon={faFacebookF} />
+                </SocialButton>
+              </Link>
+
+              <Link to="/googleAuth">
+                <SocialButton>
+                  <FontAwesomeIcon icon={faGoogle} />
+                </SocialButton>
+              </Link>
             </MDBRow>
+
             <FirstTime>
-              Here For the first time? <Link to="/user-register"> <Signup href="#">Sign Up</Signup> </Link>
+              Here For the first time?{" "}
+              <Link to="/signup">
+                <Signup>Sign Up</Signup>
+              </Link>
             </FirstTime>
           </MDBContainer>
         </RightContainer>
@@ -329,19 +252,19 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.user
-    }
-}
-  
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
 const mapDispatchToProps = {
-    loginUser
-}
-  
+  loginUser
+};
+
 export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(Login)
-)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Login)
+);
