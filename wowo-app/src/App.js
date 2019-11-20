@@ -3,10 +3,11 @@ import styled, {createGlobalStyle} from 'styled-components';
 import {Route, Switch} from 'react-router-dom';
 
 
-import Login from './components/login/Login.js';
-import LandingPage from './components/LandingPage.js';
-import PrivateRoute from './components/PrivateRoute.js';
-import './App.css';
+import LandingPage from "./components/LandingPage/LandingPage";
+import Login from "./components/Login/Login";
+import UserSignUp from "./components/UserSignup/UserSignup";
+import WasherSignUp from "./components/WasherSignUp/WasherSignUpForm";
+import "./App.css";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -37,10 +38,11 @@ function App() {
         <Container>
           <GlobalStyle />
           <Switch>
-              <Route exact path="/" component={Login} />
-              {/* <PrivateRoute exact path="/main" component={} /> */}
+            <Route exact path="/" component={LandingPage} />
+            <Route path="/user-register" component={UserSignUp} />
+            <Route path="/login" render={() => <Login />} />
+            <Route path="/washer-register" component={WasherSignUp} />
           </Switch>
-          
         </Container>
     );
 }
