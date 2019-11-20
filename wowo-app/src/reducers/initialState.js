@@ -1,6 +1,5 @@
 export default {
-  state: {
-    loading: true,
-    error: false
-  }
+  users: [],
+  user: [],
+  loggingIn: false
 };
