@@ -61,6 +61,7 @@ export class WasherSignUpForm extends Component {
       step: step - 1,
       loadingBar: this.setLoadingBar(step - 1)
     });
+    this.props.washerSignupReducer.washerSignupError = null;
   }
 
   // Handle fields change
@@ -71,7 +72,6 @@ export class WasherSignUpForm extends Component {
   setAutoAddress = address => {
     this.setState({
       street: `${address[0].long_name} ${address[1].long_name}`,
-      apt: address[2].long_name,
       city: address[3].long_name,
       usState: address[5].short_name,
       zipCode: address[7].short_name

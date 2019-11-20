@@ -41,19 +41,13 @@ export class WasherSignUpAddress extends Component {
             value={values.phone}
             required
           />
-          <input id="autocomplete"
+          {/* <input id="autocomplete"
             className="input-field"
             ref="input"
-            type="text"/>
-          {/* <div class="md-form">
-            <input id="autocomplete" data-test="input" name="searchAddress" type="text" class="form-control" />
-            <label for="searchAddress" class="" data-error="" data-success="" id="">Search an Address</label>
-          </div> */}
-          {/* <MDBInput
-            id="autocomplete"
-            name="searchAddress"
-            type="text"
-          /> */}
+            type="text"/> */}
+          <div className="md-form">
+            <input id="autocomplete" data-test="input" name="searchAddress" type="text" class="form-control" placeholder="Address Search.."/>
+          </div>
           <MDBInput
             name="street"
             type="text"
@@ -104,7 +98,6 @@ export class WasherSignUpAddress extends Component {
             </MDBCol>
           </MDBRow>
           <MDBBtn color="primary" onClick={prevBtn}>Back</MDBBtn>
-          <MDBBtn color="primary" onClick={this.checkState}>Check State</MDBBtn>
           <MDBBtn type="submit" color="info">Continue</MDBBtn>
         </form>
       </span>
