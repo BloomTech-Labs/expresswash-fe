@@ -64,8 +64,18 @@ export class WasherSignUpForm extends Component {
   }
 
   // Handle fields change
-  handleChange = input => e => {
-    this.setState({[input]: e.target.value});
+  handleChange = event => {
+    this.setState({[event.target.name]: event.target.value});
+  }
+
+  setAutoAddress = address => {
+    this.setState({
+      street: `${address[0].long_name} ${address[1].long_name}`,
+      apt: address[2].long_name,
+      city: address[3].long_name,
+      usState: address[5].short_name,
+      zipCode: address[7].short_name
+    })
   }
 
   handleSubmit = () => {
@@ -120,6 +130,7 @@ export class WasherSignUpForm extends Component {
                   prevStep={this.prevStep}
                   handleChange={this.handleChange}
                   values={values}
+                  setAutoAddress={this.setAutoAddress}
                 />
               }
               {step === 3 &&
