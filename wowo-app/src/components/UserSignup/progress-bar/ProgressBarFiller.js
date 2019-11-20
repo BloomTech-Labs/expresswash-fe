@@ -1,9 +1,7 @@
-import React from 'react';
+import React from "react";
 
-const ProgressBarFiller = (props) => {
-    return (
-        <div className='filler' style={{ width: `${props.percentage}%` }}/>
-    )
-}
+const ProgressBarFiller = props => {
+  return <div className="filler" style={{ width: `${props.percentage}%` }} />;
+};
 
-export default ProgressBarFiller
+export default ProgressBarFiller;

@@ -1,16 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 /* global google */
 
 export class WasherSignUpAddress extends Component {
   constructor(props) {
     super(props);
-    this.handlePlaceSelect = this.handlePlaceSelect.bind(this)
-    this.autocomplete = null
+    this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
+    this.autocomplete = null;
   }
 
   componentDidMount() {
-    this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {})
+    this.autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById("autocomplete"),
+      {}
+    );
 
     this.autocomplete.addListener("place_changed", this.handlePlaceSelect);
   }
@@ -27,7 +30,7 @@ export class WasherSignUpAddress extends Component {
     const { handleChange } = this.props;
     const nextBtn = evt => {
       evt.preventDefault();
-      this.props.nextStep()
+      this.props.nextStep();
     };
     const prevBtn = () => this.props.prevStep();
     return (
@@ -57,7 +60,7 @@ export class WasherSignUpAddress extends Component {
             required
           />
           <MDBRow>
-          <MDBCol md="6">
+            <MDBCol md="6">
               <MDBInput
                 name="apt"
                 type="text"
@@ -74,7 +77,7 @@ export class WasherSignUpAddress extends Component {
                 label="City"
                 value={values.city}
                 required
-                />
+              />
             </MDBCol>
             <MDBCol md="6">
               <MDBInput
@@ -84,7 +87,7 @@ export class WasherSignUpAddress extends Component {
                 label="State"
                 value={values.usState}
                 required
-                />
+              />
             </MDBCol>
             <MDBCol md="6">
               <MDBInput
@@ -94,15 +97,19 @@ export class WasherSignUpAddress extends Component {
                 label="Zip Code"
                 value={values.zipCode}
                 required
-                />
+              />
             </MDBCol>
           </MDBRow>
-          <MDBBtn color="primary" onClick={prevBtn}>Back</MDBBtn>
-          <MDBBtn type="submit" color="info">Continue</MDBBtn>
+          <MDBBtn color="primary" onClick={prevBtn}>
+            Back
+          </MDBBtn>
+          <MDBBtn type="submit" color="info">
+            Continue
+          </MDBBtn>
         </form>
       </span>
     );
   }
-};
+}
 
 export default WasherSignUpAddress;
