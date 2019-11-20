@@ -3,9 +3,9 @@ import styled, {createGlobalStyle} from 'styled-components';
 import {Route, Switch} from 'react-router-dom';
 
 
-import LandingPage from "./components/LandingPage/LandingPage";
-import Login from "./components/Login/Login";
-import UserSignUp from "./components/UserSignup/UserSignup";
+import LandingPage from "./components/landingpage/LandingPage.js";
+import Login from "./components/login/Login.js";
+import UserSignUp from "./components/UserSignup/signup-steps/Name.js";
 import WasherSignUp from "./components/WasherSignUp/WasherSignUpForm";
 import "./App.css";
 
@@ -35,7 +35,7 @@ const Container = styled.div`
 
 function App() {
     return (
-        <Container>
+        <Container className="App">
           <GlobalStyle />
           <Switch>
             <Route exact path="/" component={LandingPage} />
