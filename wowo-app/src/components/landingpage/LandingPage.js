@@ -3,14 +3,12 @@ import { Link } from "react-router-dom";
 import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBIcon } from "mdbreact";
 
 import "./LandingPage.css";
-import logo from "../../images/wowo-logo-full.jpg";
-
+import logo from "../../images/wowo-logo-full.JPG";
 
 export default function LandingPage() {
   return (
     <MDBContainer className="landing-container">
       <section className="header-container">
-
         <MDBContainer className="landing-header">
           <MDBRow className="mb-4">
             <MDBCol>
@@ -18,22 +16,26 @@ export default function LandingPage() {
             </MDBCol>
           </MDBRow>
         </MDBContainer>
-        
+
         <MDBContainer className="header-buttons-container">
           <Link to="user-register">
-            <MDBBtn className="sign-up-btn" color="primary"> Sign Up </MDBBtn>
+            <MDBBtn className="sign-up-btn" color="primary">
+              {" "}
+              Sign Up{" "}
+            </MDBBtn>
           </Link>
           <p className="btn-or">or</p>
           <Link to="login">
             <MDBBtn className="login-btn"> Log In </MDBBtn>
           </Link>
         </MDBContainer>
-        
       </section>
 
       <section className="landing-information">
         <MDBContainer className="landing-info-card about">
-          <h3 className="landing-info-header"><MDBIcon icon="car" /> We Bring The Wash To You</h3>
+          <h3 className="landing-info-header">
+            <MDBIcon icon="car" /> We Bring The Wash To You
+          </h3>
           <p className="landing-info-content">
             WoWo is an all new approach to car washing. Instead of driving to
             the carwash and waiting in long lines, we bring the car wash to you.
@@ -48,7 +50,9 @@ export default function LandingPage() {
         <MDBIcon className="info-dot" icon="circle" />
 
         <MDBContainer className="landing-info-card">
-          <h3 className="landing-info-header eco"><MDBIcon icon="leaf" /> Eco-Friendly</h3>
+          <h3 className="landing-info-header eco">
+            <MDBIcon icon="leaf" /> Eco-Friendly
+          </h3>
           <p className="landing-info-content">
             WoWo is dedicated to delivering an eco-friendly carwash. All of our
             washers are trained to used eco-friendly cleaners and practices.
@@ -59,8 +63,12 @@ export default function LandingPage() {
 
         <MDBIcon className="info-dot" icon="circle" />
 
-        <MDBContainer className="landing-info-card">
-          <h3 className="landing-info-header washer"><MDBIcon icon="hand-holding-usd" /> Earn Extra Income</h3>
+
+        <MDBContainer className="landing-info-card washers">
+          <h3 className="landing-info-header">
+            <MDBIcon icon="hand-holding-usd" /> Earn Extra Income
+          </h3>
+
           <p className="landing-info-content">
             WoWo welcomes anyone whoe enjoys washing, detailing, or even just
             looking to make some extra income. All prospective washers must go
@@ -72,11 +80,12 @@ export default function LandingPage() {
         </MDBContainer>
 
         <Link to="washer-register">
-          <MDBBtn className="washer-sign-up-btn" color="primary"> Become a Washer </MDBBtn>
+          <MDBBtn className="washer-sign-up-btn" color="primary">
+            {" "}
+            Become a Washer{" "}
+          </MDBBtn>
         </Link>
-
       </section>
-
     </MDBContainer>
   );
 }

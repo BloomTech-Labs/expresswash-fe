@@ -7,15 +7,13 @@ export class WasherSignUpReview extends Component {
     const handleSubmit = () => this.props.handleSubmit();
     const prevBtn = () => this.props.prevStep();
     
-    const displayField = field => {
+    const displayField = (name, field) => {
       if(field) {
-        if(field === "password") {
-          return "(hidden)";
-        } else {
-          return field;
-        }
-      } else {
-        return <span className="text-danger">missing</span>;
+        return (
+          <tr>
+            <td>{name}:</td><td>{field}</td>
+          </tr>
+        )
       }
     }
     return (
@@ -27,36 +25,15 @@ export class WasherSignUpReview extends Component {
         }
         <MDBTable style={{ width: "85%", margin: "0 auto", textAlign: "left" }}>
           <MDBTableBody>
-            <tr>
-              <td>First Name:</td><td>{displayField(values.firstName)}</td>
-            </tr>
-            <tr>
-              <td>Last Name:</td><td>{displayField(values.lastName)}</td>
-            </tr>
-            <tr>
-              <td>Email:</td><td>{displayField(values.email)}</td>
-            </tr>
-            <tr>
-              <td>Password:</td><td>{displayField(values.password)}</td>
-            </tr>
-            <tr>
-              <td>Phone Number:</td><td>{displayField(values.phone)}</td>
-            </tr>
-            <tr>
-              <td>Street Address:</td><td>{displayField(values.street)}</td>
-            </tr>
-            <tr>
-              <td>Apt / Suite / Other:</td><td>{displayField(values.apt)}</td>
-            </tr>
-            <tr>
-              <td>City:</td><td>{displayField(values.city)}</td>
-            </tr>
-            <tr>
-              <td>State:</td><td>{displayField(values.usState)}</td>
-            </tr>
-            <tr>
-              <td>Zip Code:</td><td>{displayField(values.zipCode)}</td>
-            </tr>
+            {displayField("First Name", values.firstName)}
+            {displayField("Last Name", values.lastName)}
+            {displayField("Email", values.email)}
+            {displayField("Phone", values.phone)}
+            {displayField("Street Address", values.street)}
+            {displayField("Apt / Suite / Other", values.apt)}
+            {displayField("City", values.city)}
+            {displayField("State", values.usState)}
+            {displayField("Zip Code", values.zipCode)}
           </MDBTableBody>
         </MDBTable>
         <div className="text-center">

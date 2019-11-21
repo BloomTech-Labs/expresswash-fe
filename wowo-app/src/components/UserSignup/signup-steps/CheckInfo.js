@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
+import { MDBRow, MDBCol, MDBInput } from "mdbreact";
 
 class CheckInfo extends Component {
   render() {
@@ -11,49 +11,42 @@ class CheckInfo extends Component {
       firstName,
       lastName,
       email,
-      username,
-      sAddress,
+      streetAddress,
       phoneNumber,
-      zipcode,
+      zip,
       sAddress2,
       city,
-      state
+      State
     } = this.props;
     return (
       <div>
         <MDBRow>
           <MDBCol md="6">
-            <MDBInput label="First name" value={firstName} />
+            <MDBInput label="First name" value={firstName} required />
           </MDBCol>
           <MDBCol md="6">
-            <MDBInput label="Last Name" value={lastName} />
+            <MDBInput label="Last Name" value={lastName} required />
           </MDBCol>
           <MDBCol md="6">
-            <MDBInput label="Username" value={username} />
-          </MDBCol>
-          <MDBCol md="6">
-            <MDBInput label="Phone Number" value={phoneNumber} />
+            <MDBInput label="Phone Number" value={phoneNumber} required />
           </MDBCol>
         </MDBRow>
         <MDBInput label="Email" value={email} />
-        <MDBInput label="Street Address" value={sAddress} />
+        <MDBInput label="Street Address" value={streetAddress} required />
         <MDBRow>
           <MDBCol md="6">
             <MDBInput label="APT / SUITE / OTHER" value={sAddress2} />
           </MDBCol>
           <MDBCol md="6">
-            <MDBInput label="Zipcode" value={zipcode} />
+            <MDBInput label="Zipcode" value={zip} required />
           </MDBCol>
           <MDBCol md="6">
-            <MDBInput label="City" value={city} />
+            <MDBInput label="City" value={city} required />
           </MDBCol>
           <MDBCol md="6">
-            <MDBInput label="State" value={state} />
+            <MDBInput label="State" value={State} required />
           </MDBCol>
         </MDBRow>
-        <div className="d-flex justify-content-center">
-          <MDBBtn type="submit">submit</MDBBtn>
-        </div>
       </div>
     );
   }

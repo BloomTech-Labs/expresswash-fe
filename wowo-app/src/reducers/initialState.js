@@ -1,3 +1,5 @@
 export default {
-    state: {}
+  users: [],
+  user: [],
+  loggingIn: false
 };
