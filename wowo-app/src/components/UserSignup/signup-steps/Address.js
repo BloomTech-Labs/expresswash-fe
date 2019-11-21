@@ -50,7 +50,7 @@ class Address extends Component {
     return (
       <div>
         <span>
-          <input id="autocomplete" ref="input" type="text" />
+          {/* <input id="autocomplete" ref="input" type="text" /> */}
           <MDBInput
             id="streetAddress"
             name="streetAddress"

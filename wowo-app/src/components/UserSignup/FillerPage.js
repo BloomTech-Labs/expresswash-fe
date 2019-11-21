@@ -7,7 +7,9 @@ export default function FillerPage() {
   return (
     <div>
       <div className="d-flex justify-content-center">
-        <img src={logo} alt="website logo" style={{ height: "100px" }} />
+        <Link to="/">
+          <img src={logo} alt="website logo" style={{ height: "100px" }} />
+        </Link>
       </div>
 
       <p style={{ paddingTop: "25px" }}>Welcome to our registration page!</p>
