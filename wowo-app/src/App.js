@@ -5,8 +5,6 @@ import Login from "./components/Login/Login";
 import UserSignUp from "./components/UserSignup/UserSignup";
 import WasherSignUp from "./components/WasherSignUp/WasherSignUpForm";
 import "./App.css";
-import UserSignup from "./components/UserSignup/UserSignup.js";
-import WasherSignUpForm from "./components/WasherSignUp/WasherSignUpForm.js";
 
 function App() {
   return (
