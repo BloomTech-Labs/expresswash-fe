@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBIcon } from "mdbreact";
 
 import "./LandingPage.css";
-import logo from "../../images/wowo-logo-full.JPG";
+import logo from "../../images/wowo-logo-full.jpg";
 
 export default function LandingPage() {
   return (
@@ -63,10 +63,12 @@ export default function LandingPage() {
 
         <MDBIcon className="info-dot" icon="circle" />
 
+
         <MDBContainer className="landing-info-card washers">
           <h3 className="landing-info-header">
             <MDBIcon icon="hand-holding-usd" /> Earn Extra Income
           </h3>
+
           <p className="landing-info-content">
             WoWo welcomes anyone whoe enjoys washing, detailing, or even just
             looking to make some extra income. All prospective washers must go

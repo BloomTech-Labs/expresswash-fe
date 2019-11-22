@@ -178,7 +178,9 @@ class Login extends Component {
 
         <RightContainer>
           <Form onSubmit={this.handleSubmit}>
-            <Img src={LoginLogo} style={{ width: 40 + "%" }} alt="logo" />
+            <Link to="/">
+              <Img src={LoginLogo} style={{ width: 40 + "%" }} alt="logo" />
+            </Link> 
 
             <MDBCol md="12">
               <MDBInput
@@ -241,7 +243,7 @@ class Login extends Component {
 
             <FirstTime>
               Here For the first time?{" "}
-              <Link to="/signup">
+              <Link to="/user-register">
                 <Signup>Sign Up</Signup>
               </Link>
             </FirstTime>
