@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBIcon } from "mdbreact";
 
 import "./LandingPage.css";
-import logo from "../../images/wowo-logo-full.jpg";
+import logo from "../../images/wowo-logo-full.JPG";
 
 export default function LandingPage() {
   return (
