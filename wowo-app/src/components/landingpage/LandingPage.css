@@ -26,16 +26,18 @@
 }
 
 .landing-information {
-     height: 840px;
-     padding: 20px 0 40px;
-     display: flex;
-     flex-direction: column;
-     justify-content: space-between;
-     align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+    height: 840px;
+    padding: 20px 0 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .landing-info-card {
-    width: 500px;
+    width: 100%;
 }
 
 .landing-info-header {
@@ -47,6 +49,10 @@
 
 .eco {
     color: #8fbe00;
+}
+
+.washer {
+    color: #40c0cb;
 }
 
 .landing-info-content {
