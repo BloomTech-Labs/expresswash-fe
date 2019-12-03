@@ -171,7 +171,7 @@ class UserSignup extends Component {
     this.props
       .createClient(payload)
       .then(() => {
-        this.props.history.push("/landingpage");
+        this.props.history.push("/");
       })
       .catch(err => {
         console.log(err);
