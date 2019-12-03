@@ -71,10 +71,10 @@ export class WasherSignUpForm extends Component {
 
   setAutoAddress = address => {
     this.setState({
-      street: `${address[0].long_name} ${address[1].long_name}`,
-      city: address[3].long_name,
-      usState: address[5].short_name,
-      zipCode: address[7].short_name
+      street: address.street,
+      city: address.city,
+      usState: address.usState,
+      zipCode: address.zipCode
     })
   }
 
