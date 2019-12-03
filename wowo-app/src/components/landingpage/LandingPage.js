@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBIcon } from "mdbreact";
+import React from "./node_modules/react";
+import { Link } from "./node_modules/react-router-dom";
+import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBIcon } from "./node_modules/mdbreact";
 
 import "./LandingPage.css";
-import logo from "../../images/wowo-logo-full.jpg";
+import logo from "../../images/wowo-logo-full.JPG";
 
 export default function LandingPage() {
   return (

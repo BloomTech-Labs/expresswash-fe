@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { Route, Switch } from "react-router-dom";
-import LandingPage from "./components/LandingPage/LandingPage";
+import LandingPage from "./components/LandingPage/LandingPage.js";
 import Login from "./components/Login/Login.js";
 import UserSignUp from "./components/UserSignup/UserSignup";
 import WasherSignUp from "./components/WasherSignUp/WasherSignUpForm";

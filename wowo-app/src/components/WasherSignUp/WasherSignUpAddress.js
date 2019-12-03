@@ -22,7 +22,12 @@ export class WasherSignUpAddress extends Component {
     let { setAutoAddress } = this.props;
     let addressObject = this.autocomplete.getPlace();
     let address = addressObject.address_components;
-    setAutoAddress(address);
+    const newAddress = {}
+    newAddress.street = ((address[0].long_name !== undefined) ? `${address[0].long_name} ${address[1].long_name}` : "");
+    newAddress.city = ((address[3].long_name !== undefined) ? address[3].long_name : "");
+    newAddress.usState = ((address[5].short_name !== undefined) ? address[5].short_name : "");
+    newAddress.zipCode = ((address[7].short_name !== undefined) ? address[7].short_name : "");
+    setAutoAddress(newAddress);
   }
 
   render() {
