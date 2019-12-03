@@ -1,8 +1,8 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { Route, Switch } from "react-router-dom";
-import LandingPage from "./components/landingpage/LandingPage.js";
-import Login from "./components/login/Login.js";
+import LandingPage from "./components/LandingPage/LandingPage";
+import Login from "./components/Login/Login.js";
 import UserSignUp from "./components/UserSignup/UserSignup";
 import WasherSignUp from "./components/WasherSignUp/WasherSignUpForm";
 import "./App.css";
@@ -20,16 +20,16 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Container = styled.div`
-  height: 100vh;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #efefef;
+  background: white;
 `;
 
 function App() {
   return (
-    <Container>
+    <Container className="App">
       <GlobalStyle />
       <Switch>
         <Route exact path="/" component={LandingPage} />
