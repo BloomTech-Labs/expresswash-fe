@@ -5,6 +5,7 @@ import LandingPage from "./components/LandingPage/LandingPage.js";
 import Login from "./components/Login/Login.js";
 import UserSignUp from "./components/UserSignup/UserSignup";
 import WasherSignUp from "./components/WasherSignUp/WasherSignUpForm";
+import Navigation from './components/WasherDashboard/Navigation.js';
 import "./App.css";
 
 const GlobalStyle = createGlobalStyle`
@@ -36,6 +37,7 @@ function App() {
         <Route path="/user-register" component={UserSignUp} />
         <Route path="/login" render={() => <Login />} />
         <Route path="/washer-register" component={WasherSignUp} />
+        <Route path="/washer-navigation" component={Navigation} />
       </Switch>
     </Container>
   );
