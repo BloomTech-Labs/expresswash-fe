@@ -23,9 +23,9 @@ export default function Navigation() {
         <MDBRow>
           <MDBCol md="12">
             <MDBCard className="card-body" style={{ width: "100%", marginTop: "1rem" }}>
-              <MDBRow>
+              <MDBRow className="align-items-center">
                 <MDBCol className="text-left">
-                  <MDBRow>
+                  <MDBRow className="align-items-center">
                     <MDBCol md="3">
                       <Img src="http://pronksiapartments.ee/wp-content/uploads/2015/10/placeholder-face-big.png" style={{ width: 100 + "px" }} alt="logo" />
                     </MDBCol>
