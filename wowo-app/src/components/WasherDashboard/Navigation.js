@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 // import { Link } from "react-router-dom";
-import { MDBCard, MDBContainer, MDBRow, MDBCol, MDBTypography } from "mdbreact";
+import { MDBCard, MDBContainer, MDBRow, MDBCol, MDBTypography, MDBRating } from "mdbreact";
 import {Line, Doughnut, HorizontalBar} from 'react-chartjs-2';
 
 import Styled from "styled-components";
 import Logo from "../../images/wowo-logo-word-full.svg";
 
+
+// image class
 const Img = Styled.img`
     // margin: 25px 0 25px 0;
 `;
 
+// data for the line graph
 const lineData = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
@@ -37,6 +40,7 @@ const lineData = {
   ]
 };
 
+// data for the donut graph
 const donutData = {
 	labels: [
 		'Trucks',
@@ -58,6 +62,7 @@ const donutData = {
 	}]
 };
 
+// data for the horizontal bar graph
 const horizontalBarData = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
@@ -74,14 +79,33 @@ const horizontalBarData = {
 };
 
 export default function Navigation() {
-  return (
+// labels for the rating stars
+const [basic] = useState([
+  {
+    tooltip: 'Very Bad'
+  },
+  {
+    tooltip: 'Poor'
+  },
+  {
+    tooltip: 'Ok'
+  },
+  {
+    tooltip: 'Good',
+    choosed: true
+  },
+  {
+    tooltip: 'Excellent'
+  }
+]);
+
+return (
     <MDBContainer className="mb-5">
         <MDBRow className="mt-4 mb-4 align-items-end">
           <MDBCol className="text-left">
             <Img src={Logo} style={{ width: 180 + "px" }} alt="logo" />
           </MDBCol>
           <MDBCol className="text-right">
-            
           <MDBTypography tag='h5'>
             <small><strong>Friday, 9:24PM</strong><br />
             <span className="text-muted">December 7th, 2019</span></small>
@@ -143,6 +167,13 @@ export default function Navigation() {
             </MDBCard>
           </MDBCol>
           <MDBCol md="4">
+            <MDBCard className="mb-4 pt-2 pb-2 align-items-center">
+              <MDBTypography tag='h3'>
+                <strong>4.7</strong><br />
+                <small className="text-muted">Ratings</small>
+              </MDBTypography>
+              <MDBRating data={basic} />
+            </MDBCard>
             <MDBCard className="mb-4">
               <Line data={lineData} />
             </MDBCard>
