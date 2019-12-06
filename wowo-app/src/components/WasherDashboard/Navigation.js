@@ -11,13 +11,17 @@ const Img = Styled.img`
 
 export default function Navigation() {
   return (
-    <MDBContainer>
+    <MDBContainer className="mb-5">
         <MDBRow className="mt-4 mb-4 align-items-end">
           <MDBCol className="text-left">
             <Img src={Logo} style={{ width: 180 + "px" }} alt="logo" />
           </MDBCol>
           <MDBCol className="text-right">
-            Friday, 9:24PM<br />December 7th, 2019
+            
+          <MDBTypography tag='h5'>
+            <small><strong>Friday, 9:24PM</strong><br />
+            <span className="text-muted">December 7th, 2019</span></small>
+          </MDBTypography>
           </MDBCol>
         </MDBRow>
         <MDBRow>
@@ -34,6 +38,17 @@ export default function Navigation() {
                           <small className="text-muted">Welcome back,</small><br />
                           <strong>James!</strong>
                       </MDBTypography>
+                      <div className='custom-control custom-switch'>
+                        <input
+                          type='checkbox'
+                          className='custom-control-input'
+                          id='customSwitches'
+                          readOnly
+                        />
+                        <label className='custom-control-label' htmlFor='customSwitches'>
+                          Active Washer
+                        </label>
+                      </div>
                     </MDBCol>
                   </MDBRow>
                 </MDBCol>
@@ -58,8 +73,15 @@ export default function Navigation() {
           </MDBCol>
         </MDBRow>
         <MDBRow className="mt-4">
-          <MDBCol>
-            <Img src="https://www.dsdinc.com/wp-content/uploads/2017/08/map-placeholder.jpg" style={{ height: 300 + "px" }} alt="logo" />
+          <MDBCol md="8">
+            <MDBCard>
+              <Img src="https://www.dsdinc.com/wp-content/uploads/2017/08/map-placeholder.jpg" style={{ height: 500 + "px" }} alt="logo" />
+            </MDBCard>
+          </MDBCol>
+          <MDBCol md="4">
+            <MDBCard>
+              Somethin'
+            </MDBCard>
           </MDBCol>
         </MDBRow>
       </MDBContainer>
