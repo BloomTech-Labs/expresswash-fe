@@ -15,7 +15,7 @@ export class WasherSignUpPersonal extends Component {
           <MDBInput
             name="firstName"
             type="text"
-            onChange={handleChange('firstName')}
+            onChange={handleChange}
             label="First Name"
             value={values.firstName}
             required
@@ -23,7 +23,7 @@ export class WasherSignUpPersonal extends Component {
           <MDBInput
             name="lastName"
             type="text"
-            onChange={handleChange('lastName')}
+            onChange={handleChange}
             label="Last Name"
             value={values.lastName}
             required
@@ -31,7 +31,7 @@ export class WasherSignUpPersonal extends Component {
           <MDBInput
             name="email"
             type="email"
-            onChange={handleChange('email')}
+            onChange={handleChange}
             label="Email"
             value={values.email}
             required
@@ -39,7 +39,7 @@ export class WasherSignUpPersonal extends Component {
           <MDBInput
             name="password"
             type="password"
-            onChange={handleChange('password')}
+            onChange={handleChange}
             label="Password"
             value={values.password}
             required

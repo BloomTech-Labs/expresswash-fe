@@ -114,6 +114,8 @@ class UserSignup extends Component {
           Submit
         </MDBBtn>
       );
+    } else {
+      return null;
     }
   }
 
@@ -128,6 +130,8 @@ class UserSignup extends Component {
       return <p>Finish your profile</p>;
     } else if (currentStep === 4) {
       return <p>Check your information</p>;
+    } else {
+      return null;
     }
   }
 
@@ -148,7 +152,6 @@ class UserSignup extends Component {
       password,
       phoneNumber,
       streetAddress,
-      sAddress2,
       city,
       State,
       zip
@@ -168,7 +171,7 @@ class UserSignup extends Component {
     this.props
       .createClient(payload)
       .then(() => {
-        this.props.history.push("/landingpage");
+        this.props.history.push("/");
       })
       .catch(err => {
         console.log(err);
@@ -271,8 +274,5 @@ const mapDispatchToProps = {
 };
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(UserSignup)
+  connect(mapStateToProps, mapDispatchToProps)(UserSignup)
 );
