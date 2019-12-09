@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import {
   MDBContainer,
@@ -16,19 +17,37 @@ import logo from "../../images/wowo-logo-full.JPG";
 
 class Navigation extends Component {
   state = {
-    modal: false
+    modal: false,
+    date: "",
+    time: new Date().toLocaleString()
   };
   toggle = () => {
     this.setState({
       modal: !this.state.modal
     });
   };
+
+  componentDidMount() {
+    this.getDate();
+  }
+
+  getDate = () => {
+    let date = new Date().toLocaleDateString();
+    this.setState({ date });
+  };
   render() {
+    const { date } = this.state;
     return (
       // <div class="border border-primary w-100" style={{ height: "100vh" }}>
       <MDBContainer>
-        <div class="border border-primary w-100" style={{ height: "100vh" }}>
-          <div class="border border-danger">
+        <div class="w-100" style={{ height: "100vh", paddingTop: "15px" }}>
+          <div
+            class="d-flex justify-content-end"
+            style={{ paddingBottom: "7%" }}
+          >
+            <strong>{date}</strong>
+          </div>
+          <div>
             <MDBCol class="d-flex align-items-start">
               <h3 class="h3-responsive">
                 <strong>Matt Thomas</strong>
@@ -39,30 +58,53 @@ class Navigation extends Component {
                 style={{ height: "100px" }}
                 class="border border-dark rounded-circle"
               />
-              <p>the stars</p>
+              <p style={{ paddingTop: "7.5%" }}>the stars</p>
             </MDBCol>
           </div>
 
-          <div className="d-flex align-items-end border border-success">
-            <MDBCol>
-              <h5 class="text-muted">
-                <strong>Your Washes</strong>
-              </h5>
-              <h5 class="text-muted">
-                <strong>Payment</strong>
-              </h5>
-              <h5 class="text-muted">
-                <strong>Manage Vehicles</strong>
-              </h5>
-              <h5 class="text-muted" onClick={this.toggle}>
+          <div>
+            <MDBCol
+              class="d-flex align-content-center"
+              style={{ height: "100", paddingTop: "20%" }}
+            >
+              <Link to="/Washes">
+                <h5
+                  class="text-muted"
+                  style={{ paddingTop: "25px", paddingBottom: "15%" }}
+                >
+                  <strong>Your Washes</strong>
+                </h5>
+              </Link>
+              <Link to="/Payment">
+                <h5 class="text-muted" style={{ paddingBottom: "15%" }}>
+                  <strong>Payment</strong>
+                </h5>
+              </Link>
+              <Link to="/Vehicles">
+                <h5 class="text-muted" style={{ paddingBottom: "15%" }}>
+                  <strong>Manage Vehicles</strong>
+                </h5>
+              </Link>
+              <h5
+                class="text-muted"
+                onClick={this.toggle}
+                style={{ paddingBottom: "15%" }}
+              >
                 <strong>Edit Account</strong>
               </h5>
+              <Link to="/washer-register">
+                <h5 class="text-muted">
+                  <strong>Earn Money Washing</strong>
+                </h5>
+              </Link>
             </MDBCol>
           </div>
           <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
             <MDBModalHeader toggle={this.toggle}>Edit Account</MDBModalHeader>
             <MDBModalBody>
-              <p>Personal Information</p>
+              <p class="d-flex justify-content-start">
+                <strong>Personal Information</strong>
+              </p>
               <div>
                 <MDBInput id="name" name="name" type="text" label="Name" />
                 <MDBInput id="email" name="email" type="text" label="Email" />
@@ -77,11 +119,17 @@ class Navigation extends Component {
                   name="password"
                   type="password"
                   label="Password"
+                  value="this is a fake password"
                 />
               </div>
+              <p class="d-flex justify-content-start">
+                <strong>Favorites</strong>
+              </p>
             </MDBModalBody>
             <MDBModalFooter>
-              <MDBBtn>Save Changes</MDBBtn>
+              <div className="d-flex justify-content-center">
+                <MDBBtn>Save Changes</MDBBtn>
+              </div>
               {/* <MDBBtn onClick={this.toggle}>Close</MDBBtn> */}
             </MDBModalFooter>
           </MDBModal>
