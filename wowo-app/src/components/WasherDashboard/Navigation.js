@@ -2,6 +2,7 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import { MDBCard, MDBContainer, MDBRow, MDBCol, MDBTypography, MDBRating } from "mdbreact";
 import {Line, Doughnut, HorizontalBar} from 'react-chartjs-2';
+import Moment from 'react-moment';
 
 import WashMap from "./WashMap.js";
 import Styled from "styled-components";
@@ -117,8 +118,12 @@ class Navigation extends React.Component {
             </MDBCol>
             <MDBCol className="text-right">
             <MDBTypography tag='h5'>
-              <small><strong>Friday, 9:24PM</strong><br />
-              <span className="text-muted">December 7th, 2019</span></small>
+              <small><strong>
+              <Moment format="dddd, LT" />
+              </strong><br />
+              <span className="text-muted">
+                <Moment format="MMMM Do, YYYY" />
+              </span></small>
             </MDBTypography>
             </MDBCol>
           </MDBRow>
