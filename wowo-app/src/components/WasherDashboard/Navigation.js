@@ -149,7 +149,7 @@ return (
                       </MDBTypography>
                     </MDBCol>
                     <MDBCol>
-                      <MDBTypography tag='h3'>
+                      <MDBTypography tag='h3'>word
                         <strong>47</strong><br />
                         <small className="text-muted">Washes</small>
                       </MDBTypography>

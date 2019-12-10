@@ -19,6 +19,7 @@ const LoginContainer = Styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 5%;
 `;
 
 const ImgContainer = Styled.div`
@@ -160,7 +161,7 @@ class Login extends Component {
     this.props
       .loginUser(email, password)
       .then(() => {
-        this.props.history.push("/main");
+        this.props.history.push("/userDash");
       })
       .catch(err => {
         throw new Error(err);

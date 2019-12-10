@@ -1,12 +1,13 @@
-import React from "react";
-import styled, { createGlobalStyle } from "styled-components";
-import { Route, Switch } from "react-router-dom";
-import LandingPage from "./components/LandingPage/LandingPage.js";
-import Login from "./components/Login/Login.js";
-import UserSignUp from "./components/UserSignup/UserSignup";
-import WasherSignUp from "./components/WasherSignUp/WasherSignUpForm";
-import Navigation from './components/WasherDashboard/Navigation.js';
-import "./App.css";
+import React from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
+import { Route, Switch } from 'react-router-dom';
+import LandingPage from './components/LandingPage/LandingPage.js';
+import FindWash from './components/ClientDashboard/FindWash/FindWash.js';
+import Login from './components/Login/Login.js';
+import UserSignUp from './components/UserSignup/UserSignup';
+import WasherSignUp from './components/WasherSignUp/WasherSignUpForm';
+import WasherNavigation from './components/WasherDashboard/Navigation.js';
+import './App.css';
 
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap')
@@ -21,26 +22,27 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Container = styled.div`
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: white;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    background: white;
 `;
 
 function App() {
-  return (
-    <Container className="App">
-      <GlobalStyle />
-      <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/user-register" component={UserSignUp} />
-        <Route path="/login" render={() => <Login />} />
-        <Route path="/washer-register" component={WasherSignUp} />
-        <Route path="/washer-navigation" component={Navigation} />
-      </Switch>
-    </Container>
-  );
+	return (
+		<Container className="App">
+			<GlobalStyle />
+			<Switch>
+				<Route exact path="/" component={LandingPage} />
+				<Route path="/user-register" component={UserSignUp} />
+				<Route path="/login" render={() => <Login />} />
+				<Route path="/userDash" component={FindWash} />
+				<Route path="/washer-register" component={WasherSignUp} />
+				<Route path="/washer-navigation" component={WasherNavigation} />
+			</Switch>
+		</Container>
+	);
 }
 
 export default App;
