@@ -3,7 +3,7 @@ import React from "react";
 import { MDBCard, MDBContainer, MDBRow, MDBCol, MDBTypography, MDBRating } from "mdbreact";
 import {Line, Doughnut, HorizontalBar} from 'react-chartjs-2';
 
-import WashMap from "../ClientDashboard/FindWash/WashMap.js";
+import WashMap from "./WashMap.js";
 import Styled from "styled-components";
 import Logo from "../../images/wowo-logo-word-full.svg";
 
@@ -11,6 +11,13 @@ import Logo from "../../images/wowo-logo-word-full.svg";
 // image class
 const Img = Styled.img`
     // margin: 25px 0 25px 0;
+`;
+
+// map class
+const MapContainer = Styled.div`
+    height: 500px;
+    width: 100%;
+    position: relative;
 `;
 
 // data for the line graph
@@ -166,7 +173,9 @@ class Navigation extends React.Component {
           <MDBRow className="mt-4">
             <MDBCol md="8">
               <MDBCard>
-                <WashMap />
+                <MapContainer>
+                  <WashMap />
+                </MapContainer>
                 {/* <Img src="https://www.dsdinc.com/wp-content/uploads/2017/08/map-placeholder.jpg" style={{ height: 500 + "px" }} alt="logo" /> */}
               </MDBCard>
             </MDBCol>
