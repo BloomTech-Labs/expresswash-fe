@@ -38,6 +38,9 @@ class Navigation extends Component {
   };
 
   render() {
+    console.log("this is local storage", localStorage);
+    console.log("this is token", localStorage.token);
+    console.log("this is firstname on localstorage", localStorage.firstName);
     const { date, rating } = this.state;
     return (
       // <div class="border border-primary w-100" style={{ height: "100vh" }}>
@@ -52,7 +55,7 @@ class Navigation extends Component {
           <div>
             <MDBCol class="d-flex align-items-start">
               <h3 class="h3-responsive">
-                <strong>Matt Thomas</strong>
+                <strong>{localStorage.firstName}</strong>
               </h3>
               <img
                 src={logo}
@@ -120,7 +123,18 @@ class Navigation extends Component {
                 <strong>Personal Information</strong>
               </p>
               <div>
-                <MDBInput id="name" name="name" type="text" label="Name" />
+                <MDBInput
+                  id="name"
+                  name="firstName"
+                  type="text"
+                  label="First Name"
+                />
+                <MDBInput
+                  id="lastName"
+                  name="lastName"
+                  type="text"
+                  label="Last Name"
+                />
                 <MDBInput id="email" name="email" type="text" label="Email" />
                 <MDBInput
                   id="phoneNumber"
