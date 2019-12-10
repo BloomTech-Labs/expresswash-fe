@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import StarRatings from "react-star-ratings";
+
 import {
   MDBContainer,
   MDBCol,
   MDBBtn,
-  MDBCard,
-  MDBRow,
   MDBModal,
   MDBModalHeader,
   MDBModalBody,
@@ -19,7 +19,8 @@ class Navigation extends Component {
   state = {
     modal: false,
     date: "",
-    time: new Date().toLocaleString()
+    time: new Date().toLocaleString(),
+    rating: 4.2
   };
   toggle = () => {
     this.setState({
@@ -35,8 +36,9 @@ class Navigation extends Component {
     let date = new Date().toLocaleDateString();
     this.setState({ date });
   };
+
   render() {
-    const { date } = this.state;
+    const { date, rating } = this.state;
     return (
       // <div class="border border-primary w-100" style={{ height: "100vh" }}>
       <MDBContainer>
@@ -58,7 +60,19 @@ class Navigation extends Component {
                 style={{ height: "100px" }}
                 class="border border-dark rounded-circle"
               />
-              <p style={{ paddingTop: "7.5%" }}>the stars</p>
+              <div>
+                <p style={{ paddingTop: "7.5%" }}>
+                  <strong>My Rating:</strong>
+                </p>
+                <StarRatings
+                  rating={rating}
+                  numberOfStars={5}
+                  name={"userRating"}
+                  starDimension={"25px"}
+                  starSpacing={"5px"}
+                  starRatedColor={"rgb(0,0,0)"}
+                />
+              </div>
             </MDBCol>
           </div>
 
