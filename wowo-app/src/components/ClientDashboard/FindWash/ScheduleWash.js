@@ -17,6 +17,9 @@ class DayPicker extends Component {
         return ( 
             <div className='daypicker'>
                 <SingleDatePicker
+                showDefaultInputIcon
+                showClearDate
+                reopenPickerOnClearDate
                 orientation="vertical"
                 date={this.state.date} // momentPropTypes.momentObj or null
                 onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
