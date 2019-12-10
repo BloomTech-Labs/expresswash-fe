@@ -39,7 +39,7 @@ function App() {
 				<Route path="/login" render={() => <Login />} />
 				<Route path="/userDash" component={FindWash} />
 				<Route path="/washer-register" component={WasherSignUp} />
-				<Route path="/washer-navigation" component={WasherNavigation} />
+				<Route path="/washerDash" component={WasherNavigation} />
 			</Switch>
 		</Container>
 	);
