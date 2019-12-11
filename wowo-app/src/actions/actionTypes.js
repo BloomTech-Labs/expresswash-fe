@@ -17,6 +17,11 @@ export const LOADING = "LOADING";
 export const NEW_CLIENT_SUCCESS = "NEW_CLIENT_SUCCESS";
 export const NEW_CLIENT_ERROR = "NEW_CLIENT_ERROR";
 
+// Add a Car to User signup actions
+export const ADD_CAR_START = 'ADD_CAR_START';
+export const ADD_CAR_SUCCESS = 'ADD_CAR_SUCCESS';
+export const ADD_CAR_FAILED = 'ADD_CAR_FAILED';
+
 export function loginUser(email, password) {
   return dispatch => {
     dispatch({ type: LOGGING_IN });
@@ -57,4 +62,21 @@ export function createClient(payload) {
         dispatch({ type: NEW_CLIENT_ERROR, payload: err.response.data });
       });
   };
+}
+
+export function addACar (id, make, model) {
+  return (dispatch) => {
+    dispatch({type: ADD_CAR_START})
+    return axios.post('https://pt6-wowo.herokuapp.com/cars/addACar', {id, make, model})
+    .then((res) => {
+      const payload = res.data
+      console.log(res.data, 'addACar successful res.data')
+      dispatch({type: ADD_CAR_SUCCESS, PAYLOAD})
+    })
+    .catch((err) => {
+      const payload = err.response ? err.response.data : err
+      dispatch({type: ADD_CAR_FAILED, payload})
+      console.log(err,'addACar failed data')
+    })
+  }
 }
