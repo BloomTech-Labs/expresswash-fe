@@ -160,7 +160,8 @@ class Login extends Component {
     const { email, password } = this.state;
     this.props
       .loginUser(email, password)
-      .then(() => {
+      .then((res) => {
+        console.log("washer", this.state);
         this.props.history.push("/userDash");
       })
       .catch(err => {
