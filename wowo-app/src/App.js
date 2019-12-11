@@ -1,12 +1,13 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
-import LandingPage from './components/LandingPage/LandingPage.js';
+import LandingPage from './components/landingpage/LandingPage.js';
 import FindWash from './components/ClientDashboard/FindWash/FindWash.js';
-import Login from './components/Login/Login.js';
+import Login from './components/login/Login.js';
 import UserSignUp from './components/UserSignup/UserSignup';
 import WasherSignUp from './components/WasherSignUp/WasherSignUpForm';
 import WasherNavigation from './components/WasherDashboard/Navigation.js';
+import ScheduleWash from './components/ClientDashboard/FindWash/ScheduleWash'
 import './App.css';
 
 const GlobalStyle = createGlobalStyle`
@@ -26,7 +27,7 @@ const Container = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-    background: white;
+	background: white;
 `;
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
 				<Route path="/userDash" component={FindWash} />
 				<Route path="/washer-register" component={WasherSignUp} />
 				<Route path="/washerDash" component={WasherNavigation} />
+				<Route path="/schedule" component={ScheduleWash} />
 			</Switch>
 		</Container>
 	);
