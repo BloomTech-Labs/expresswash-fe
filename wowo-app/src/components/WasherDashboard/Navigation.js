@@ -1,6 +1,6 @@
 import React from "react";
 // import { Link } from "react-router-dom";
-import { MDBCard, MDBContainer, MDBRow, MDBCol, MDBTypography, MDBRating } from "mdbreact";
+import { MDBCard, MDBContainer, MDBRow, MDBCol, MDBTypography, MDBRating, MDBIcon } from "mdbreact";
 import {Line, Doughnut, HorizontalBar} from 'react-chartjs-2';
 import Moment from 'react-moment';
 
@@ -126,14 +126,21 @@ class Navigation extends React.Component {
               <Img src={Logo} style={{ width: 180 + "px" }} alt="logo" />
             </MDBCol>
             <MDBCol className="text-right">
-            <MDBTypography tag='h5'>
-              <small><strong>
-              <Moment format="dddd, LT" />
-              </strong><br />
-              <span className="text-muted">
-                <Moment format="MMMM Do, YYYY" />
-              </span></small>
-            </MDBTypography>
+              <MDBRow end>
+                <MDBCol>
+                  <MDBTypography tag='h5'>
+                    <small><strong>
+                    <Moment format="dddd, LT" />
+                    </strong><br />
+                    <span className="text-muted">
+                      <Moment format="MMMM Do, YYYY" />
+                    </span></small>
+                  </MDBTypography>
+                </MDBCol>
+                <MDBCol md="1">
+                  <MDBIcon icon="sign-out-alt" />
+                </MDBCol>
+              </MDBRow>
             </MDBCol>
           </MDBRow>
           <MDBRow>
@@ -148,7 +155,7 @@ class Navigation extends React.Component {
                       <MDBCol>
                         <MDBTypography tag='h3'>
                             <small className="text-muted">Welcome back,</small><br />
-                            <strong>{user.firstName}!</strong>
+                            <strong>{user.firstName || "firstName"}!</strong>
                         </MDBTypography>
                         <div className='custom-control custom-switch'>
                           <input
