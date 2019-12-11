@@ -132,7 +132,8 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      show: false
+      show: false,
+      user: null,
     };
   }
 
@@ -256,11 +257,9 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  };
-};
+const mapStateToProps = state => ({
+  user: state.user
+});
 
 const mapDispatchToProps = {
   loginUser

@@ -87,25 +87,34 @@ const horizontalBarData = {
   ]
 };
 
-    // labels for the rating stars
-    const basic = [
-      {
-        tooltip: 'Very Bad'
-      },
-      {
-        tooltip: 'Poor'
-      },
-      {
-        tooltip: 'Ok'
-      },
-      {
-        tooltip: 'Good',
-        choosed: true
-      },
-      {
-        tooltip: 'Excellent'
-      }
-    ];
+  // labels for the rating stars
+  const basic = [
+    {
+      tooltip: 'Very Bad'
+    },
+    {
+      tooltip: 'Poor'
+    },
+    {
+      tooltip: 'Ok'
+    },
+    {
+      tooltip: 'Good',
+      choosed: true
+    },
+    {
+      tooltip: 'Excellent'
+    }
+  ];
+
+  // temporary get the user data from local storage instead of redux state
+  const user = {
+    firstName: localStorage.getItem('firstName'),
+    lastName: localStorage.getItem('lastName'),
+    userType: localStorage.getItem('userType'),
+    id: localStorage.getItem('id'),
+    token: localStorage.getItem('token')
+  }
   
   
 class Navigation extends React.Component {
@@ -139,7 +148,7 @@ class Navigation extends React.Component {
                       <MDBCol>
                         <MDBTypography tag='h3'>
                             <small className="text-muted">Welcome back,</small><br />
-                            <strong>James!</strong>
+                            <strong>{user.firstName}!</strong>
                         </MDBTypography>
                         <div className='custom-control custom-switch'>
                           <input
