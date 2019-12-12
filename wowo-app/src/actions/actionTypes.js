@@ -29,7 +29,7 @@ export function loginUser(email, password) {
         localStorage.setItem("userType", res.data.userType);
         localStorage.setItem("firstName", res.data.firstName);
         localStorage.setItem("lastName", res.data.lastName);
-        localStorage.setItem("id", res.data.user.id);
+        localStorage.setItem("id", res.data.id);
         dispatch({
           type: LOGIN_SUCCESS,
           payload: res.data
