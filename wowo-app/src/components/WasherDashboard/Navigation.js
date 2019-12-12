@@ -118,6 +118,18 @@ const horizontalBarData = {
   
   
 class Navigation extends React.Component {
+  // logout function removes user data from localStorage and redirects to login
+  logout = (evt) => {
+    evt.preventDefault()
+  
+    localStorage.removeItem('token');
+    localStorage.removeItem('userType');
+    localStorage.removeItem('firstName');
+    localStorage.removeItem('lastName');
+    localStorage.removeItem('id');
+    this.props.history.push('/login');
+  }
+
   render() {
     return (
       <MDBContainer className="mb-5">
@@ -138,7 +150,7 @@ class Navigation extends React.Component {
                   </MDBTypography>
                 </MDBCol>
                 <MDBCol md="1">
-                  <MDBIcon icon="sign-out-alt" />
+                  <span onClick={this.logout}><MDBIcon icon="sign-out-alt" /></span>
                 </MDBCol>
               </MDBRow>
             </MDBCol>

@@ -5,8 +5,8 @@ import LandingPage from './components/LandingPage/LandingPage.js';
 import FindWash from './components/ClientDashboard/FindWash/FindWash.js';
 import Login from './components/Login/Login.js';
 import UserSignUp from './components/UserSignup/UserSignup';
-import WasherSignUp from './components/WasherSignUp/WasherSignUpForm';
 import WasherNavigation from './components/WasherDashboard/Navigation.js';
+import ClientDashboard from './components/ClientDashboard/FindWash/FindWash.js'
 import './App.css';
 
 const GlobalStyle = createGlobalStyle`
@@ -38,7 +38,7 @@ function App() {
 				<Route path="/user-register" component={UserSignUp} />
 				<Route path="/login" render={() => <Login />} />
 				<Route path="/userDash" component={FindWash} />
-				<Route path="/washer-register" component={WasherSignUp} />
+				<Route path="/clientDash" component={ClientDashboard} />
 				<Route path="/washerDash" component={WasherNavigation} />
 			</Switch>
 		</Container>
