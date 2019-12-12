@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 import { register } from '../../actions/washerSignupActions.js';
+import { loginUser } from '../../actions/actionTypes.js';
 import { MDBBtn, MDBCard, MDBCardTitle, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { MDBProgress } from 'mdbreact';
 import WasherSignUpPersonal from './WasherSignUpPersonal.js';
@@ -93,6 +95,7 @@ export class WasherSignUpForm extends Component {
         if(washerSignupData.payload && washerSignupData.payload.user.length) {
           console.log('user was created');
           this.nextStep();
+          this.loginUser(email, password)
         } else {
           console.log('user was NOT created');
         }
@@ -101,6 +104,18 @@ export class WasherSignUpForm extends Component {
         console.error(err);
       })
   }
+
+  loginUser = (email, password) => {
+    this.props
+      .loginUser(email, password)
+      .then((res) => {
+        console.log("logged in success");
+      })
+      .catch(err => {
+        throw new Error(err);
+      });
+  };
+
 
   render() {
     const { step, loadingBar } = this.state;
@@ -151,7 +166,7 @@ export class WasherSignUpForm extends Component {
                   <h4>Thank you {values.firstName}!</h4>
                   <h5>You are now on your way to making some extra cash with Wo-Wo!</h5>
                   <p>Check your email for the activation letter!</p>
-                  <MDBBtn color="primary">Home Page</MDBBtn>
+                  <Link to='/washerDash'><MDBBtn color="primary">Enter my Dashboard!</MDBBtn></Link>
                 </span>
               }
             </div>
@@ -169,6 +184,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   register,
+  loginUser
 }
 
 export default withRouter(

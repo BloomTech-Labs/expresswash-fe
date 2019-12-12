@@ -132,7 +132,8 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      show: false
+      show: false,
+      user: null,
     };
   }
 
@@ -160,7 +161,8 @@ class Login extends Component {
     const { email, password } = this.state;
     this.props
       .loginUser(email, password)
-      .then(() => {
+      .then((res) => {
+        console.log("washer", this.state);
         this.props.history.push("/userDash");
       })
       .catch(err => {
@@ -255,11 +257,9 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  };
-};
+const mapStateToProps = state => ({
+  user: state.user
+});
 
 const mapDispatchToProps = {
   loginUser

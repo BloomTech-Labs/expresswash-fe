@@ -6,6 +6,8 @@ import LandingPage from './components/landingpage/LandingPage.js';
 import FindWash from './components/ClientDashboard/FindWash/FindWash.js';
 import Login from './components/login/Login.js';
 import UserSignUp from './components/UserSignup/UserSignup';
+import WasherNavigation from './components/WasherDashboard/Navigation.js';
+import ClientDashboard from './components/ClientDashboard/FindWash/FindWash.js'
 import WasherSignUp from './components/WasherSignUp/WasherSignUpForm';
 import ScheduleWash from './components/ClientDashboard/FindWash/ScheduleWash'
 import './App.css';
@@ -43,7 +45,9 @@ function App() {
 				<Route path="/user-register" component={UserSignUp} />
 				<Route path="/login" render={() => <Login />} />
 				<Route path="/userDash" component={FindWash} />
+				<Route path="/clientDash" component={ClientDashboard} />
 				<Route path="/washer-register" component={WasherSignUp} />
+				<Route path="/washerDash" component={WasherNavigation} />
 				<Route path="/schedule" component={ScheduleWash} />
 			</Switch>
 		</Container>
