@@ -1,3 +1,4 @@
+
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
@@ -8,6 +9,9 @@ import UserSignUp from './components/UserSignup/UserSignup';
 import WasherSignUp from './components/WasherSignUp/WasherSignUpForm';
 import ScheduleWash from './components/ClientDashboard/FindWash/ScheduleWash'
 import './App.css';
+
+import Navigation from "./components/ClientDashboard/Navigation";
+
 
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap')
@@ -22,14 +26,15 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Container = styled.div`
-	height: auto;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: white;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
 `;
 
 function App() {
+
 	return (
 		<Container className="App">
 			<GlobalStyle />
