@@ -28,6 +28,7 @@ export function loginUser(email, password) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("userType", res.data.userType);
         localStorage.setItem("firstName", res.data.firstName);
+        localStorage.setItem("lastName", res.data.lastName);
         localStorage.setItem("id", res.data.user.id);
         dispatch({
           type: LOGIN_SUCCESS,

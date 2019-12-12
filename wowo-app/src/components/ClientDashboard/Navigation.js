@@ -55,7 +55,9 @@ class Navigation extends Component {
           <div>
             <MDBCol class="d-flex align-items-start">
               <h3 class="h3-responsive">
-                <strong>{localStorage.firstName}</strong>
+                <strong>
+                  {localStorage.firstName} {localStorage.lastName}
+                </strong>
               </h3>
               <img
                 src={logo}
@@ -128,6 +130,7 @@ class Navigation extends Component {
                   name="firstName"
                   type="text"
                   label="First Name"
+                  value={localStorage.firstName}
                 />
                 <MDBInput
                   id="lastName"
