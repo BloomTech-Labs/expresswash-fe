@@ -1,18 +1,17 @@
 
-import React from 'react';
+import React, { Component } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import LandingPage from './components/LandingPage/LandingPage.js';
 import FindWash from './components/ClientDashboard/FindWash/FindWash.js';
 import Login from './components/Login/Login.js';
 import UserSignUp from './components/UserSignup/UserSignup';
-import WasherNavigation from './components/WasherDashboard/Navigation.js';
-import ClientDashboard from './components/ClientDashboard/FindWash/FindWash.js'
+import WasherNav from './components/WasherDashboard/Navigation.js';
+import ClientNav from "./components/ClientDashboard/Navigation";
 import WasherSignUp from './components/WasherSignUp/WasherSignUpForm';
 import ScheduleWash from './components/ClientDashboard/FindWash/ScheduleWash'
 import './App.css';
 
-import Navigation from "./components/ClientDashboard/Navigation";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -35,23 +34,50 @@ const Container = styled.div`
   background: white;
 `;
 
-function App() {
+class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			loggedIn: localStorage.token ? true : false,
+		}
+		// this.loginCheck = this.loginCheck.bind(this);
+	}
 
-	return (
-		<Container className="App">
-			<GlobalStyle />
-			<Switch>
-				<Route exact path="/" component={LandingPage} />
-				<Route path="/user-register" component={UserSignUp} />
-				<Route path="/login" render={() => <Login />} />
-				<Route path="/userDash" component={FindWash} />
-				<Route path="/clientDash" component={ClientDashboard} />
-				<Route path="/washer-register" component={WasherSignUp} />
-				<Route path="/washerDash" component={WasherNavigation} />
-				<Route path="/schedule" component={ScheduleWash} />
-			</Switch>
-		</Container>
-	);
+	handleLogin = () => {
+		this.setState({ loggedIn: true })
+		console.log(this.state.loggedIn)
+	}
+
+	handleLogout = () => {
+		localStorage.removeItem('token');
+		localStorage.removeItem('userType');
+		this.setState({
+		  loggedIn: false
+		})
+	}  
+
+	render() {
+		const {loggedIn} = this.state;
+		return (
+			<Container className="App">
+				<GlobalStyle />
+				<Switch>
+					<Route exact path="/" component={LandingPage} />
+					<Route path="/user-register" component={UserSignUp} />
+					<Route path="/login" render={(props) => <Login {...props} handleLogin={this.handleLogin} loginCheck={this.loginCheck} /> }/>
+					<Route path="/find-wash" component={FindWash} />
+					<Route path="/washer-register" component={WasherSignUp} />
+					<Route path="/clientNav" render={() => (
+						loggedIn ? ( <ClientNav /> ) : (<Redirect to="/" />)
+					)}/>
+					<Route path="/washerNav" render={() => (
+						loggedIn ? ( <WasherNav /> ) : (<Redirect to="/" />)
+					)}/>
+					<Route path="/schedule" component={ScheduleWash} />
+				</Switch>
+			</Container>
+		);
+	}
 }
 
 export default App;

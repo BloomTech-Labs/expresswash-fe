@@ -162,8 +162,8 @@ class Login extends Component {
     this.props
       .loginUser(email, password)
       .then((res) => {
-        console.log("washer", this.state);
-        this.props.history.push("/userDash");
+        this.props.handleLogin();
+        this.props.history.push(`/${localStorage.getItem('userType')}Nav`);
       })
       .catch(err => {
         throw new Error(err);
