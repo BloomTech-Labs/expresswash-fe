@@ -7,6 +7,7 @@ import Login from "./components/login/Login.js";
 import UserSignUp from "./components/UserSignup/UserSignup";
 import WasherSignUp from "./components/WasherSignUp/WasherSignUpForm";
 import ScheduleWash from "./components/ClientDashboard/FindWash/ScheduleWash";
+import Vehicles from "./components/ClientDashboard/Vehicles";
 import "./App.css";
 
 import Navigation from "./components/ClientDashboard/Navigation";
@@ -43,6 +44,7 @@ function App() {
         <Route path="/washer-register" component={WasherSignUp} />
         <Route path="/schedule" component={ScheduleWash} />
         <Route path="/user-navigation" component={Navigation} />
+        <Route path="/vehicles" component={Vehicles} />
       </Switch>
     </Container>
   );

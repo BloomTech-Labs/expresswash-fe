@@ -1,7 +1,14 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+
+import {
+  getClientInformation,
+  updateClientInformation
+} from "../../actions/actionTypes.js";
 
 import StarRatings from "react-star-ratings";
+import "./ClientNav.css";
 
 import {
   MDBContainer,
@@ -11,7 +18,8 @@ import {
   MDBModalHeader,
   MDBModalBody,
   MDBModalFooter,
-  MDBInput
+  MDBInput,
+  MDBCard
 } from "mdbreact";
 import logo from "../../images/wowo-logo-full.JPG";
 
@@ -20,9 +28,22 @@ class Navigation extends Component {
     modal: false,
     date: "",
     time: new Date().toLocaleString(),
-    rating: 4.2
+    rating: 4.2,
+    email: localStorage.email,
+    firstName: localStorage.firstName,
+    lastName: localStorage.lastName,
+    phone: localStorage.phoneNumber
   };
   toggle = () => {
+    const { id } = localStorage;
+    this.props
+      .getClientInformation(id)
+      .then(res => {
+        console.log("just show me something already", localStorage);
+      })
+      .catch(err => {
+        console.log(err);
+      });
     this.setState({
       modal: !this.state.modal
     });
@@ -37,11 +58,37 @@ class Navigation extends Component {
     this.setState({ date });
   };
 
+  changeHandler = evt => {
+    evt.preventDefault();
+    this.setState({
+      [evt.target.name]: evt.target.value
+    });
+  };
+  submitHandler = async evt => {
+    const { id } = this.localStorage;
+    evt.preventDefault();
+
+    this.props
+      .updateClientInformation(id)
+      .then(() => {
+        this.props.history.push("/user-navigation");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   render() {
     console.log("this is local storage", localStorage);
-    console.log("this is token", localStorage.token);
+    console.log("this is token", localStorage.id);
     console.log("this is firstname on localstorage", localStorage.firstName);
-    const { date, rating } = this.state;
+    const {
+      date,
+      rating,
+      firstName,
+      lastName,
+      email,
+      phoneNumber
+    } = this.state;
     return (
       // <div class="border border-primary w-100" style={{ height: "100vh" }}>
       <MDBContainer>
@@ -119,50 +166,64 @@ class Navigation extends Component {
             </MDBCol>
           </div>
           <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
-            <MDBModalHeader toggle={this.toggle}>Edit Account</MDBModalHeader>
-            <MDBModalBody>
-              <p class="d-flex justify-content-start">
-                <strong>Personal Information</strong>
-              </p>
-              <div>
-                <MDBInput
-                  id="name"
-                  name="firstName"
-                  type="text"
-                  label="First Name"
-                  value={localStorage.firstName}
-                />
-                <MDBInput
-                  id="lastName"
-                  name="lastName"
-                  type="text"
-                  label="Last Name"
-                />
-                <MDBInput id="email" name="email" type="text" label="Email" />
-                <MDBInput
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  type="tel"
-                  label="Phone Number"
-                />
-                <MDBInput
-                  id="password"
-                  name="password"
-                  type="password"
-                  label="Password"
-                  value="this is a fake password"
-                />
-              </div>
-              <p class="d-flex justify-content-start">
-                <strong>Favorites</strong>
-              </p>
-            </MDBModalBody>
-            <MDBModalFooter>
-              <div className="d-flex justify-content-center">
-                <MDBBtn>Save Changes</MDBBtn>
-              </div>
-              {/* <MDBBtn onClick={this.toggle}>Close</MDBBtn> */}
-            </MDBModalFooter>
+            <form onSubmit={this.submitHandler}>
+              <MDBModalHeader toggle={this.toggle}>Edit Account</MDBModalHeader>
+              <MDBModalBody>
+                <p class="d-flex justify-content-start">
+                  <strong>Personal Information</strong>
+                </p>
+                <div>
+                  <MDBInput
+                    id="name"
+                    name="firstName"
+                    type="text"
+                    label="First Name"
+                    value={firstName}
+                    onChange={this.changeHandler}
+                  />
+                  <MDBInput
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    label="Last Name"
+                    value={lastName}
+                    onChange={this.changeHandler}
+                  />
+                  <MDBInput
+                    id="email"
+                    name="email"
+                    type="text"
+                    label="Email"
+                    value={email}
+                    onChange={this.changeHandler}
+                  />
+                  <MDBInput
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    type="tel"
+                    label="Phone Number"
+                    value={phoneNumber}
+                    onChange={this.changeHandler}
+                  />
+                  <MDBInput
+                    id="password"
+                    name="password"
+                    type="password"
+                    label="Password"
+                    value="thisisafakepass"
+                  />
+                </div>
+                <p class="d-flex justify-content-start">
+                  <strong>Favorites</strong>
+                </p>
+              </MDBModalBody>
+              <MDBModalFooter>
+                <div className="d-flex justify-content-center">
+                  <MDBBtn type="submit">Save Changes</MDBBtn>
+                </div>
+                {/* <MDBBtn onClick={this.toggle}>Close</MDBBtn> */}
+              </MDBModalFooter>
+            </form>
           </MDBModal>
         </div>
       </MDBContainer>
@@ -171,4 +232,12 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation;
+const mapStateToProps = state => ({});
+const mapDispatchToProps = {
+  getClientInformation,
+  updateClientInformation
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Navigation)
+);

@@ -3,6 +3,10 @@ import axios from "axios";
 // User Actions
 export const GET_USER = "GET_USER";
 export const GET_USERS = "GET_USERS";
+export const GET_CLIENT_INFO_SUCCESS = "GET_CLIENT_INFO_SUCCESS";
+export const GET_CLIENT_INFO_ERROR = "GET_CLIENT_INFO_ERROR";
+export const UPDATE_CLIENT_INFO_SUCCESS = "UPDATE_CLIENT_INFO_SUCCESS";
+export const UPDATE_CLIENT_INFO_ERROR = "UPDATE_CLIENT_INFO_ERROR";
 
 // Washer Signup action types
 export const CREATE_WASHER_START = "CREATE_WASHER_START";
@@ -48,15 +52,48 @@ export function createClient(payload) {
   return dispatch => {
     dispatch({ type: LOADING });
 
+    return (
+      axios
+        // .post("https://pt6-wowo.herokuapp.com/auth/registerClient", payload)
+        .post("http://localhost:3300/auth/registerClient", payload)
+        .then(res => {
+          console.log(res);
+          dispatch({ type: NEW_CLIENT_SUCCESS, payload: res.data });
+        })
+        .catch(err => {
+          console.log(err.response.data);
+          dispatch({ type: NEW_CLIENT_ERROR, payload: err.response.data });
+        })
+    );
+  };
+}
+
+export const getClientInformation = id => async dispatch => {
+  // const id = localStorage.id;
+  console.log("this is id before the function runs", id);
+  // dispatch({ type: LOADING });
+
+  axios
+    .get(`http://localhost:3300/users/${id}`)
+    .then(res => {
+      console.log("this is response from the call", res);
+      dispatch({ type: GET_CLIENT_INFO_SUCCESS, payload: res.data });
+      localStorage.setItem("email", res.data.email);
+    })
+    .catch(err => {
+      dispatch({ type: GET_CLIENT_INFO_ERROR });
+    });
+};
+
+export function updateClientInformation(id) {
+  return dispatch => {
     return axios
-      .post("https://pt6-wowo.herokuapp.com/auth/registerClient", payload)
+      .put(`http://localhost:3300/users/${id}`, id)
       .then(res => {
-        console.log(res);
-        dispatch({ type: NEW_CLIENT_SUCCESS, payload: res.data });
+        dispatch({ type: UPDATE_CLIENT_INFO_SUCCESS, payload: res.data });
       })
       .catch(err => {
-        console.log(err.response.data);
-        dispatch({ type: NEW_CLIENT_ERROR, payload: err.response.data });
+        dispatch({ type: UPDATE_CLIENT_INFO_ERROR });
       });
   };
 }
