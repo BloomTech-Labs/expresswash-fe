@@ -162,8 +162,16 @@ class Login extends Component {
     this.props
       .loginUser(email, password)
       .then((res) => {
-        console.log("washer", this.state);
-        this.props.history.push("/userDash");
+        // console.log("washer", this.state);
+        const userType = localStorage.getItem('userType');
+        // console.log("userType", userType);
+        if(userType === 'washer') {
+          this.props.history.push("/washerDash");
+        } else if (userType === 'client') {
+          this.props.history.push("/userDash");
+        } else {
+          return null;
+        }
       })
       .catch(err => {
         throw new Error(err);
