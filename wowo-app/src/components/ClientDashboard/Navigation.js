@@ -44,9 +44,7 @@ class Navigation extends Component {
     const { id } = localStorage;
     this.props
       .getClientInformation(id)
-      .then(res => {
-        console.log("just show me something already");
-      })
+      .then(res => {})
       .catch(err => {
         console.log(err);
       });
@@ -90,9 +88,6 @@ class Navigation extends Component {
       });
   };
   render() {
-    console.log("this is local storage", localStorage);
-    console.log("this is token", localStorage.id);
-    console.log("this is firstname on localstorage", localStorage.firstName);
     const {
       date,
       rating,
