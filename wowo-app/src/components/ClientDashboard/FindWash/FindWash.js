@@ -30,57 +30,16 @@ const MenuContainer = Styled.div`
     background: #00A8C5;
 `;
 
-const MenuInner = Styled.div`
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 100%;
-`
-
-const LogoContainer = Styled.div`
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    left: 10%;
-
-    @media (min-width: 1800px) { // ##Device = Desktops ##Screen = 1800px to higher resolution desktops //
-        height: 100%;
-        width: 115px;
-        left: 15%;
-    }
-`
-
-const MenuButtonContainer = Styled.div`
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    right: 10%;
-    cursor: pointer;
-
-    @media (min-width: 1800px) { // ##Device = Desktops ##Screen = 1800px to higher resolution desktops //
-        height: 100%;
-        width: 40px;
-        right: 15%;
-    }
-`
-
 const MapContainer = Styled.div`
     height: 92%;
     width: 100%;
     position: relative;
-`
+`;
 
 const FormContainer = Styled.div`
     position: absolute;
-    height: 500px;
-    width: 350px;
+    height: 400px;
+    width: 300px;
     background: #ffffff;
     border: 1px solid grey;
     bottom: 10%;
@@ -195,16 +154,6 @@ class FindWash extends Component {
         return (
             <MainContainer>
                 <MenuContainer>
-                    <MenuInner>
-                        <LogoContainer>
-                            <WowoWordLogo
-                                width="100%"
-                            />
-                        </LogoContainer>
-                        <MenuButtonContainer>
-                            <MenuIcon />
-                        </MenuButtonContainer>
-                    </MenuInner>
                 </MenuContainer>
         
                 <MapContainer>
