@@ -154,6 +154,16 @@ class FindWash extends Component {
         return (
             <MainContainer>
                 <MenuContainer>
+                    <MenuInner>
+                        <LogoContainer>
+                            <WowoWordLogo
+                                width="100%"
+                            />
+                        </LogoContainer>
+                        <MenuButtonContainer>
+                            <MenuIcon />
+                        </MenuButtonContainer>
+                    </MenuInner>
                 </MenuContainer>
         
                 <MapContainer>
