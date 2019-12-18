@@ -78,7 +78,6 @@ export const getClientInformation = id => async dispatch => {
     .then(res => {
       console.log("this is response from the call", res);
       dispatch({ type: GET_CLIENT_INFO_SUCCESS, payload: res.data });
-      localStorage.setItem("email", res.data.email);
     })
     .catch(err => {
       dispatch({ type: GET_CLIENT_INFO_ERROR });

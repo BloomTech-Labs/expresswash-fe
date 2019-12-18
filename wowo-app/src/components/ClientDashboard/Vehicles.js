@@ -3,17 +3,9 @@ import { Link } from "react-router-dom";
 
 import {
   MDBContainer,
-  MDBCol,
-  MDBBtn,
-  MDBModal,
   MDBModalHeader,
-  MDBModalBody,
   MDBModalFooter,
-  MDBInput,
   MDBCard,
-  MDBFooter,
-  MDBEdgeHeader,
-  MDBCardTitle,
   MDBIcon
 } from "mdbreact";
 

@@ -18,8 +18,7 @@ import {
   MDBModalHeader,
   MDBModalBody,
   MDBModalFooter,
-  MDBInput,
-  MDBCard
+  MDBInput
 } from "mdbreact";
 import logo from "../../images/wowo-logo-full.JPG";
 
@@ -29,17 +28,24 @@ class Navigation extends Component {
     date: "",
     time: new Date().toLocaleString(),
     rating: 4.2,
-    email: localStorage.email,
-    firstName: localStorage.firstName,
-    lastName: localStorage.lastName,
-    phone: localStorage.phoneNumber
+    email: "",
+    firstName: "",
+    lastName: "",
+    phone: ""
   };
+
+  // componentDidMount() {
+  //   const { id } = localStorage;
+  //   this.props.getClientInformation(id).then(() => {
+  //     this.state.email = email;
+  //   });
+  // }
   toggle = () => {
     const { id } = localStorage;
     this.props
       .getClientInformation(id)
       .then(res => {
-        console.log("just show me something already", localStorage);
+        console.log("just show me something already");
       })
       .catch(err => {
         console.log(err);
@@ -50,6 +56,12 @@ class Navigation extends Component {
   };
 
   componentDidMount() {
+    // const { id } = localStorage;
+    // this.props.getClientInformation(id).then(() => {
+    //   this.setState({
+    //     email: res.data.email
+    //   });
+    // });
     this.getDate();
   }
 
@@ -89,6 +101,7 @@ class Navigation extends Component {
       email,
       phoneNumber
     } = this.state;
+
     return (
       // <div class="border border-primary w-100" style={{ height: "100vh" }}>
       <MDBContainer>
