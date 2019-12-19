@@ -13,6 +13,7 @@ import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
+import auth from "../auth";
 
 const LoginContainer = Styled.div`
     display: flex;
@@ -162,8 +163,18 @@ class Login extends Component {
     this.props
       .loginUser(email, password)
       .then((res) => {
-        this.props.handleLogin();
-        this.props.history.push(`/${localStorage.getItem('userType')}Nav`);
+        const type = localStorage.getItem("userType");
+
+        auth.login(() => {
+          if( type === "client" )
+           {
+            this.props.history.push("/clientNav")
+          } 
+          else if ( type === "washer" ) 
+          {
+            this.props.history.push("/washerNav")
+          }
+        })
       })
       .catch(err => {
         throw new Error(err);

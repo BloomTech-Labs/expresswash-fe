@@ -22,7 +22,7 @@ export function loginUser(email, password) {
     dispatch({ type: LOGGING_IN });
 
     return axios
-      .post("https://pt6-wowo.herokuapp.com/auth/login", { email, password })
+      .post("https://pt6-wowo.herokuapp.com/authPG/login", { email, password })
       .then(res => {
         console.log(res.data, "res.data");
         localStorage.setItem("token", res.data.token);

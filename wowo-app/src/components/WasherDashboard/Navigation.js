@@ -7,6 +7,7 @@ import Moment from 'react-moment';
 import WashMap from "./WashMap.js";
 import Styled from "styled-components";
 import Logo from "../../images/wowo-logo-word-full.svg";
+import auth from "../auth";
 
 
 // image class
@@ -121,13 +122,15 @@ class Navigation extends React.Component {
   // logout function removes user data from localStorage and redirects to login
   logout = (evt) => {
     evt.preventDefault()
-  
+
     localStorage.removeItem('token');
     localStorage.removeItem('userType');
     localStorage.removeItem('firstName');
     localStorage.removeItem('lastName');
     localStorage.removeItem('id');
-    this.props.history.push('/login');
+    auth.logout(() => {
+      this.props.history.push('/login');
+    })
   }
 
   render() {
