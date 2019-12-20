@@ -1,15 +1,17 @@
-
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
-import LandingPage from './components/LandingPage/LandingPage.js';
+import LandingPage from './components/landingpage/LandingPage.js';
 import FindWash from './components/ClientDashboard/FindWash/FindWash.js';
-import Login from './components/Login/Login.js';
+import Login from './components/login/Login.js';
 import UserSignUp from './components/UserSignup/UserSignup';
-import WasherNav from './components/WasherDashboard/Navigation.js';
-import ClientNav from "./components/ClientDashboard/Navigation";
+import WasherNavigation from './components/WasherDashboard/Navigation.js';
+import ClientDashboard from './components/ClientDashboard/FindWash/FindWash.js';
 import WasherSignUp from './components/WasherSignUp/WasherSignUpForm';
-import ScheduleWash from './components/ClientDashboard/FindWash/ScheduleWash'
+import ScheduleWash from './components/ClientDashboard/FindWash/ScheduleWash';
+// import ScheduleWash2 from './components/ClientDashboard/FindWash/ScheduleWash2';
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 import './App.css';
 import { PrivateRoute } from './components/PrivateRoute.js';
 
@@ -27,16 +29,17 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Container = styled.div`
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: white;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: white;
 `;
 
 function App() {
 	return (
-		<Container className="App">
+		<MuiPickersUtilsProvider utils={DateFnsUtils}>
+		<Container className='App'>
 			<GlobalStyle />
 			<Switch>
 				<Route exact path="/" component={LandingPage} />
@@ -44,11 +47,16 @@ function App() {
 				<Route path="/login" component={Login} />
 				<Route path="/find-wash" component={FindWash} />
 				<Route path="/washer-register" component={WasherSignUp} />
-				<PrivateRoute exact path="/clientNav" component={ClientNav} />
-				<PrivateRoute exact path="/washerNav" component={WasherNav} />
+				<PrivateRoute exact path="/client-dashboard" component={ClientDashboard} />
+				<PrivateRoute exact path="/washer-dashboard" component={WasherNavigation} />
 				<Route path="/schedule" component={ScheduleWash} />
 			</Switch>
+			{/* <Route
+  					path='/schedule-wash'
+  					render={(props) => <ScheduleWash2 {...props} isAuthed={true} />}
+/> */}
 		</Container>
+		</MuiPickersUtilsProvider>
 	);
 }
 
