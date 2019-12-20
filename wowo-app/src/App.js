@@ -1,9 +1,9 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
-import LandingPage from './components/landingpage/LandingPage.js';
+import LandingPage from './components/LandingPage/LandingPage.js';
 import FindWash from './components/ClientDashboard/FindWash/FindWash.js';
-import Login from './components/login/Login.js';
+import Login from './components/Login/Login.js';
 import UserSignUp from './components/UserSignup/UserSignup';
 import WasherNavigation from './components/WasherDashboard/Navigation.js';
 import ClientDashboard from './components/ClientDashboard/FindWash/FindWash.js';
@@ -47,9 +47,10 @@ function App() {
 				<Route path="/login" component={Login} />
 				<Route path="/find-wash" component={FindWash} />
 				<Route path="/washer-register" component={WasherSignUp} />
-				<PrivateRoute exact path="/client-dashboard" component={ClientDashboard} />
-				<PrivateRoute exact path="/washer-dashboard" component={WasherNavigation} />
+				<PrivateRoute exact path="/clientDash" component={ClientDashboard} />
+				<PrivateRoute exact path="/washerDash" component={WasherNavigation} />
 				<Route path="/schedule" component={ScheduleWash} />
+				<Route path="*" component={() => "404 Page Not Found."} />
 			</Switch>
 			{/* <Route
   					path='/schedule-wash'

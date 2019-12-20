@@ -167,15 +167,19 @@ class Login extends Component {
 
         auth.login(() => {
           if( type === "client" )
-           {
+          {
             this.props.history.push("/client-dashboard")
           } 
           else if ( type === "washer" ) 
           {
             this.props.history.push("/washer-dashboard")
           }
-        }
-      }
+          else 
+          {
+            return null
+          }
+        })
+      })
       .catch(err => {
         throw new Error(err);
       });
