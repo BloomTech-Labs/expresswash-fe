@@ -68,21 +68,6 @@ export function createClient(payload) {
   };
 }
 
-// export const getClientInformation = id => async dispatch => {
-//   // const id = localStorage.id;
-//   console.log("this is id before the function runs", id);
-//   // dispatch({ type: LOADING });
-
-//   axios
-//     .get(`http://localhost:3300/users/${id}`)
-//     .then(res => {
-//       dispatch({ type: GET_CLIENT_INFO_SUCCESS, payload: res.data });
-//     })
-//     .catch(err => {
-//       dispatch({ type: GET_CLIENT_INFO_ERROR });
-//     });
-// };
-
 export function getClientInformation(id) {
   return dispatch => {
     return axios
@@ -98,16 +83,8 @@ export function getClientInformation(id) {
 }
 export function updateClientInformation(id, changes) {
   return dispatch => {
-    // const { firstName, lastName, email, phoneNumber } = editUser;
     return axios
-      .put(
-        `http://localhost:3300/users/${id}`,
-        changes
-        // firstName,
-        // lastName,
-        // email,
-        // phoneNumber
-      )
+      .put(`http://localhost:3300/users/${id}`, changes)
       .then(res => {
         dispatch({ type: UPDATE_CLIENT_INFO_SUCCESS, payload: res.data });
       })
@@ -117,28 +94,3 @@ export function updateClientInformation(id, changes) {
       });
   };
 }
-
-// export const updateClientInformation = editUserPacket => async dispatch => {
-//   dispatch({ type: LOADING });
-//   const { id } = localStorage;
-//   const { firstName, lastName, email, phoneNumber } = editUserPacket;
-
-//   axios
-//     .put(
-//       `http://localhost:3300/users/${id}`,
-//       firstName,
-//       lastName,
-//       phoneNumber,
-//       email
-//     )
-//     .then(res => {
-//       dispatch({ type: UPDATE_CLIENT_INFO_SUCCESS, payload: res.data });
-//     })
-//     .catch(err => {
-//       console.log("this is error on update", err);
-//       dispatch({
-//         type: UPDATE_CLIENT_INFO_ERROR,
-//         payload: err.response.message
-//       });
-//     });
-// };

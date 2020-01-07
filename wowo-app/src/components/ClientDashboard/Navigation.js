@@ -40,7 +40,6 @@ class Navigation extends Component {
 
   componentDidMount() {
     const { id } = localStorage;
-    // console.log("this is id", id);
 
     Axios.get(`http://localhost:3300/users/${id}`)
       .then(res => {
@@ -55,14 +54,6 @@ class Navigation extends Component {
       .catch(err => {
         console.log("this is err on component did mount", err);
       });
-    // this.props
-    //   .getClientInformation(id)
-    //   .then(res => {
-    //     console.log("the call to the server is running", res);
-    //   })
-    //   .catch(err => {
-    //     console.log("this is running if there is an error", err);
-    //   });
 
     this.getDate();
   }
@@ -277,24 +268,6 @@ const mapDispatchToProps = {
   getClientInformation,
   updateClientInformation
 };
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     getClientInformation,
-//     updateClientInformation
-//   };
-// };
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     getClientInformation: id => {
-//       dispatch(getClientInformation(id));
-//     }
-//   };
-// };
-
-// const mapDispatchToProps = dispatch => {
-//   dispatch({ getClientInformation, updateClientInformation });
-// };
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(Navigation)
