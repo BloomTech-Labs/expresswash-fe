@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import Axios from "axios";
 
 import {
   getClientInformation,
@@ -30,7 +31,7 @@ class Navigation extends Component {
       date: "",
       time: new Date().toLocaleString(),
       rating: 4.2,
-      // email: "",
+      email: "",
       firstName: "",
       lastName: "",
       phone: ""
@@ -39,36 +40,51 @@ class Navigation extends Component {
 
   componentDidMount() {
     const { id } = localStorage;
-    this.props.getClientInformation(id).then(res => {
-      console.log("1111111111111111111", res);
-    });
+    // console.log("this is id", id);
+
+    Axios.get(`http://localhost:3300/users/${id}`)
+      .then(res => {
+        this.setState({
+          email: res.data.email,
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          phoneNumber: res.data.phoneNumber
+        });
+        console.log("this is res on component did mount", res);
+      })
+      .catch(err => {
+        console.log("this is err on component did mount", err);
+      });
+    // this.props
+    //   .getClientInformation(id)
+    //   .then(res => {
+    //     console.log("the call to the server is running", res);
+    //   })
+    //   .catch(err => {
+    //     console.log("this is running if there is an error", err);
+    //   });
 
     this.getDate();
   }
   toggle = () => {
-    console.log("this is client information", this.props.clientInformation);
-    // console.log(this.state);
-    // const { id } = localStorage;
-    // this.props
-    //   .getClientInformation(id)
-    //   .then(res => {})
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+    const { id } = localStorage;
+    Axios.get(`http://localhost:3300/users/${id}`)
+      .then(res => {
+        this.setState({
+          email: res.data.email,
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          phoneNumber: res.data.phoneNumber
+        });
+        console.log("this is res on component did mount", res);
+      })
+      .catch(err => {
+        console.log("this is err on component did mount", err);
+      });
     this.setState({
       modal: !this.state.modal
     });
   };
-
-  // componentDidMount() {
-  //   // const { id } = localStorage;
-  //   // this.props.getClientInformation(id).then(() => {
-  //   //   this.setState({
-  //   //     email: res.data.email
-  //   //   });
-  //   // });
-  //   this.getDate();
-  // }
 
   getDate = () => {
     let date = new Date().toLocaleDateString();
@@ -81,12 +97,14 @@ class Navigation extends Component {
       [evt.target.name]: evt.target.value
     });
   };
-  submitHandler = async evt => {
-    const { id } = this.localStorage;
+  submitHandler = evt => {
     evt.preventDefault();
+    const { id } = localStorage;
+    const { firstName, lastName, phoneNumber, email } = this.state;
+    console.log("this is firstname on submit", firstName);
 
     this.props
-      .updateClientInformation(id)
+      .updateClientInformation(id, { firstName, lastName, email, phoneNumber })
       .then(() => {
         this.props.history.push("/user-navigation");
       })
@@ -100,10 +118,10 @@ class Navigation extends Component {
       rating,
       firstName,
       lastName,
-      // email,
+      email,
       phoneNumber
     } = this.state;
-    const email = this.props.clientInformation;
+    // const email = this.props.clientInformation;
 
     return (
       // <div class="border border-primary w-100" style={{ height: "100vh" }}>
@@ -119,7 +137,8 @@ class Navigation extends Component {
             <MDBCol class="d-flex align-items-start">
               <h3 class="h3-responsive">
                 <strong>
-                  {localStorage.firstName} {localStorage.lastName}
+                  <p>Welcome back,</p>
+                  {this.state.firstName} {this.state.lastName}!
                 </strong>
               </h3>
               <img
@@ -248,18 +267,34 @@ class Navigation extends Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   clientInformation: state.info
-// });
 const mapStateToProps = state => {
   return {
     clientInformation: state.info
   };
 };
+
 const mapDispatchToProps = {
   getClientInformation,
   updateClientInformation
 };
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     getClientInformation,
+//     updateClientInformation
+//   };
+// };
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     getClientInformation: id => {
+//       dispatch(getClientInformation(id));
+//     }
+//   };
+// };
+
+// const mapDispatchToProps = dispatch => {
+//   dispatch({ getClientInformation, updateClientInformation });
+// };
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(Navigation)

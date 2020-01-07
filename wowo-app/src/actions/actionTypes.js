@@ -88,6 +88,7 @@ export function getClientInformation(id) {
     return axios
       .get(`http://localhost:3300/users/${id}`)
       .then(res => {
+        console.log("this is response on getclient information", res);
         dispatch({ type: GET_CLIENT_INFO_SUCCESS, payload: res.data });
       })
       .catch(err => {
@@ -95,15 +96,49 @@ export function getClientInformation(id) {
       });
   };
 }
-export function updateClientInformation(id) {
+export function updateClientInformation(id, changes) {
   return dispatch => {
+    // const { firstName, lastName, email, phoneNumber } = editUser;
     return axios
-      .put(`http://localhost:3300/users/${id}`, id)
+      .put(
+        `http://localhost:3300/users/${id}`,
+        changes
+        // firstName,
+        // lastName,
+        // email,
+        // phoneNumber
+      )
       .then(res => {
         dispatch({ type: UPDATE_CLIENT_INFO_SUCCESS, payload: res.data });
       })
       .catch(err => {
+        console.log("this is error on update", err);
         dispatch({ type: UPDATE_CLIENT_INFO_ERROR });
       });
   };
 }
+
+// export const updateClientInformation = editUserPacket => async dispatch => {
+//   dispatch({ type: LOADING });
+//   const { id } = localStorage;
+//   const { firstName, lastName, email, phoneNumber } = editUserPacket;
+
+//   axios
+//     .put(
+//       `http://localhost:3300/users/${id}`,
+//       firstName,
+//       lastName,
+//       phoneNumber,
+//       email
+//     )
+//     .then(res => {
+//       dispatch({ type: UPDATE_CLIENT_INFO_SUCCESS, payload: res.data });
+//     })
+//     .catch(err => {
+//       console.log("this is error on update", err);
+//       dispatch({
+//         type: UPDATE_CLIENT_INFO_ERROR,
+//         payload: err.response.message
+//       });
+//     });
+// };
