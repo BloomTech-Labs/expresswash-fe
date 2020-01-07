@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 
 import {
   MDBContainer,
+  MDBCardTitle,
   MDBModalHeader,
   MDBModalFooter,
   MDBCard,
-  MDBIcon
+  MDBIcon,
+  MDBBtn
 } from "mdbreact";
 
 class Vehicles extends Component {
@@ -15,22 +17,24 @@ class Vehicles extends Component {
       <MDBContainer style={{ border: "red" }}>
         <MDBCard>
           <MDBModalHeader>
-            <div class="d-flex justify-content-between">
+            <div class="justify-content-center">
               <div>
                 <p>Manage Vehicles</p>
               </div>
-              <div>
-                <Link to="/user-navigation">
-                  <MDBIcon icon="times"></MDBIcon>
-                </Link>
-              </div>
             </div>
           </MDBModalHeader>
-          <div>Vehicles:</div>
+          <div class="d-flex justify-content-start">
+            <strong>Vehicles:</strong>
+          </div>
 
           <MDBModalFooter color="black-text">
             <MDBContainer>
-              <p>Add a vehicle</p>
+              <MDBBtn>Add a vehicle</MDBBtn>
+              <Link to="/user-navigation">
+                <MDBBtn>Back</MDBBtn>
+                {/* <MDBIcon icon="times"></MDBIcon> */}
+              </Link>
+              {/* <p>Add a vehicle</p> */}
             </MDBContainer>
           </MDBModalFooter>
         </MDBCard>

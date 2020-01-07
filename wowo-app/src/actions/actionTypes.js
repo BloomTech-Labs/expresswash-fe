@@ -68,22 +68,33 @@ export function createClient(payload) {
   };
 }
 
-export const getClientInformation = id => async dispatch => {
-  // const id = localStorage.id;
-  console.log("this is id before the function runs", id);
-  // dispatch({ type: LOADING });
+// export const getClientInformation = id => async dispatch => {
+//   // const id = localStorage.id;
+//   console.log("this is id before the function runs", id);
+//   // dispatch({ type: LOADING });
 
-  axios
-    .get(`http://localhost:3300/users/${id}`)
-    .then(res => {
-      console.log("this is response from the call", res);
-      dispatch({ type: GET_CLIENT_INFO_SUCCESS, payload: res.data });
-    })
-    .catch(err => {
-      dispatch({ type: GET_CLIENT_INFO_ERROR });
-    });
-};
+//   axios
+//     .get(`http://localhost:3300/users/${id}`)
+//     .then(res => {
+//       dispatch({ type: GET_CLIENT_INFO_SUCCESS, payload: res.data });
+//     })
+//     .catch(err => {
+//       dispatch({ type: GET_CLIENT_INFO_ERROR });
+//     });
+// };
 
+export function getClientInformation(id) {
+  return dispatch => {
+    return axios
+      .get(`http://localhost:3300/users/${id}`)
+      .then(res => {
+        dispatch({ type: GET_CLIENT_INFO_SUCCESS, payload: res.data });
+      })
+      .catch(err => {
+        dispatch({ type: GET_CLIENT_INFO_ERROR });
+      });
+  };
+}
 export function updateClientInformation(id) {
   return dispatch => {
     return axios

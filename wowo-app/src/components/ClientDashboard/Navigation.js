@@ -23,45 +23,52 @@ import {
 import logo from "../../images/wowo-logo-full.JPG";
 
 class Navigation extends Component {
-  state = {
-    modal: false,
-    date: "",
-    time: new Date().toLocaleString(),
-    rating: 4.2,
-    email: "",
-    firstName: "",
-    lastName: "",
-    phone: ""
-  };
+  constructor() {
+    super();
+    this.state = {
+      modal: false,
+      date: "",
+      time: new Date().toLocaleString(),
+      rating: 4.2,
+      // email: "",
+      firstName: "",
+      lastName: "",
+      phone: ""
+    };
+  }
 
-  // componentDidMount() {
-  //   const { id } = localStorage;
-  //   this.props.getClientInformation(id).then(() => {
-  //     this.state.email = email;
-  //   });
-  // }
-  toggle = () => {
+  componentDidMount() {
     const { id } = localStorage;
-    this.props
-      .getClientInformation(id)
-      .then(res => {})
-      .catch(err => {
-        console.log(err);
-      });
+    this.props.getClientInformation(id).then(res => {
+      console.log("1111111111111111111", res);
+    });
+
+    this.getDate();
+  }
+  toggle = () => {
+    console.log("this is client information", this.props.clientInformation);
+    // console.log(this.state);
+    // const { id } = localStorage;
+    // this.props
+    //   .getClientInformation(id)
+    //   .then(res => {})
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
     this.setState({
       modal: !this.state.modal
     });
   };
 
-  componentDidMount() {
-    // const { id } = localStorage;
-    // this.props.getClientInformation(id).then(() => {
-    //   this.setState({
-    //     email: res.data.email
-    //   });
-    // });
-    this.getDate();
-  }
+  // componentDidMount() {
+  //   // const { id } = localStorage;
+  //   // this.props.getClientInformation(id).then(() => {
+  //   //   this.setState({
+  //   //     email: res.data.email
+  //   //   });
+  //   // });
+  //   this.getDate();
+  // }
 
   getDate = () => {
     let date = new Date().toLocaleDateString();
@@ -93,9 +100,10 @@ class Navigation extends Component {
       rating,
       firstName,
       lastName,
-      email,
+      // email,
       phoneNumber
     } = this.state;
+    const email = this.props.clientInformation;
 
     return (
       // <div class="border border-primary w-100" style={{ height: "100vh" }}>
@@ -240,7 +248,14 @@ class Navigation extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+// const mapStateToProps = state => ({
+//   clientInformation: state.info
+// });
+const mapStateToProps = state => {
+  return {
+    clientInformation: state.info
+  };
+};
 const mapDispatchToProps = {
   getClientInformation,
   updateClientInformation
