@@ -110,7 +110,7 @@ const SocialButton = Styled.div`
     cursor: pointer;
 `;
 
-const FirstTime = Styled.p`
+const FirstTime = Styled.div`
     margin: 15px auto 0 auto;
     text-align: center;
 `;
@@ -168,11 +168,11 @@ class Login extends Component {
         auth.login(() => {
           if( type === "client" )
           {
-            this.props.history.push("/client-dashboard")
+            this.props.history.push("/clientDash")
           } 
           else if ( type === "washer" ) 
           {
-            this.props.history.push("/washer-dashboard")
+            this.props.history.push("/washerDash")
           }
           else 
           {

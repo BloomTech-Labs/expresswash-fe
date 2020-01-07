@@ -17,11 +17,11 @@ export default class LandingPage extends React.Component {
 			auth.login(() => {
 			  if( type === "client" )
 			  {
-				this.props.history.push("/client-dashboard")
+				this.props.history.push("/clientDash")
 			  } 
 			  else if ( type === "washer" ) 
 			  {
-				this.props.history.push("/washer-dashboard")
+				this.props.history.push("/washerDash")
 			  }
 			  else 
 			  {

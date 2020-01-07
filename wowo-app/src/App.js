@@ -43,14 +43,14 @@ function App() {
 			<GlobalStyle />
 			<Switch>
 				<Route exact path="/" component={LandingPage} />
-				<Route path="/user-register" component={UserSignUp} />
-				<Route path="/login" component={Login} />
-				<Route path="/find-wash" component={FindWash} />
-				<Route path="/washer-register" component={WasherSignUp} />
+				<Route exact path="/user-register" component={UserSignUp} />
+				<Route exact path="/login" component={Login} />
+				<Route exact path="/find-wash" component={FindWash} />
+				<Route exact path="/washer-register" component={WasherSignUp} />
 				<PrivateRoute exact path="/clientDash" component={ClientDashboard} />
 				<PrivateRoute exact path="/washerDash" component={WasherNavigation} />
-				<Route path="/schedule" component={ScheduleWash} />
-				<Route path="*" component={() => "404 Page Not Found."} />
+				<Route exact path="/schedule" component={ScheduleWash} />
+				<Route exact path="*" component={() => "404 Page Not Found."} />
 			</Switch>
 			{/* <Route
   					path='/schedule-wash'
