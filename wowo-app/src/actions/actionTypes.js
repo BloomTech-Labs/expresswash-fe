@@ -49,7 +49,7 @@ export function createClient(payload) {
     dispatch({ type: LOADING });
 
     return axios
-      .post("https://pt6-wowo.herokuapp.com/auth/registerClient", payload)
+      .post("https://pt6-wowo.herokuapp.com/authPG/registerClient", payload)
       .then(res => {
         console.log(res);
         dispatch({ type: NEW_CLIENT_SUCCESS, payload: res.data });
