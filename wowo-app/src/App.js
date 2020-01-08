@@ -1,3 +1,4 @@
+
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
@@ -15,6 +16,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import './App.css';
 
 import Navigation from './components/ClientDashboard/Navigation';
+
 
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap')
@@ -37,6 +39,7 @@ const Container = styled.div`
 `;
 
 function App() {
+
 	return (
 		<MuiPickersUtilsProvider utils={DateFnsUtils}>
 		<Container className='App'>
@@ -61,6 +64,7 @@ function App() {
 		</Container>
 		</MuiPickersUtilsProvider>
 	);
+
 }
 
 export default App;
