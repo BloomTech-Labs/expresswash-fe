@@ -28,7 +28,7 @@ export function loginUser(email, password) {
     return axios
       .post("https://pt6-wowo.herokuapp.com/auth/login", { email, password })
       .then(res => {
-        console.log(res.data);
+        console.log(res.data, "res.data");
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("userType", res.data.userType);
         localStorage.setItem("firstName", res.data.firstName);

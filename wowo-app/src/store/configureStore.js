@@ -8,5 +8,6 @@ export default function configureStore() {
     rootReducer,
     applyMiddleware(thunk, logger),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+
   );
 }

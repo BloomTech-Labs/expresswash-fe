@@ -132,7 +132,8 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      show: false
+      show: false,
+      user: null,
     };
   }
 
@@ -160,8 +161,17 @@ class Login extends Component {
     const { email, password } = this.state;
     this.props
       .loginUser(email, password)
-      .then(() => {
-        this.props.history.push("/userDash");
+      .then((res) => {
+        // console.log("washer", this.state);
+        const userType = localStorage.getItem('userType');
+        // console.log("userType", userType);
+        if(userType === 'washer') {
+          this.props.history.push("/washerDash");
+        } else if (userType === 'client') {
+          this.props.history.push("/userDash");
+        } else {
+          return null;
+        }
       })
       .catch(err => {
         throw new Error(err);
@@ -255,11 +265,9 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  };
-};
+const mapStateToProps = state => ({
+  user: state.user
+});
 
 const mapDispatchToProps = {
   loginUser
