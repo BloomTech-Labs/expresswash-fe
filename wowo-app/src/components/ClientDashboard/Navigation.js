@@ -30,7 +30,7 @@ class Navigation extends Component {
       modal: false,
       date: "",
       time: new Date().toLocaleString(),
-      rating: 4.2,
+      rating: 3.65,
       email: "",
       firstName: "",
       lastName: "",
@@ -49,7 +49,6 @@ class Navigation extends Component {
           lastName: res.data.lastName,
           phoneNumber: res.data.phoneNumber
         });
-        console.log("this is res on component did mount", res);
       })
       .catch(err => {
         console.log("this is err on component did mount", err);
@@ -67,10 +66,9 @@ class Navigation extends Component {
           lastName: res.data.lastName,
           phoneNumber: res.data.phoneNumber
         });
-        console.log("this is res on component did mount", res);
       })
       .catch(err => {
-        console.log("this is err on component did mount", err);
+        console.log("this is err on the toggle", err);
       });
     this.setState({
       modal: !this.state.modal
@@ -92,7 +90,6 @@ class Navigation extends Component {
     evt.preventDefault();
     const { id } = localStorage;
     const { firstName, lastName, phoneNumber, email } = this.state;
-    console.log("this is firstname on submit", firstName);
 
     this.props
       .updateClientInformation(id, { firstName, lastName, email, phoneNumber })
@@ -148,7 +145,7 @@ class Navigation extends Component {
                   name={"userRating"}
                   starDimension={"25px"}
                   starSpacing={"5px"}
-                  starRatedColor={"rgb(0,0,0)"}
+                  starRatedColor={"rgb(0,128,255)"}
                 />
               </div>
             </MDBCol>
