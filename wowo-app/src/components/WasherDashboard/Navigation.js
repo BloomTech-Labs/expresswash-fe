@@ -1,5 +1,6 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { MDBCard, MDBContainer, MDBRow, MDBCol, MDBTypography, MDBRating, MDBIcon } from "mdbreact";
 import {Line, Doughnut, HorizontalBar} from 'react-chartjs-2';
 import Moment from 'react-moment';
@@ -118,6 +119,13 @@ const horizontalBarData = {
   
   
 class Navigation extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {},
+    }
+  }
+
   // logout function removes user data from localStorage and redirects to login
   logout = (evt) => {
     evt.preventDefault()
@@ -131,6 +139,8 @@ class Navigation extends React.Component {
   }
 
   render() {
+    const { user } = this.state;
+    console.log("state is", this.props);
     return (
       <MDBContainer className="mb-5">
           <MDBRow className="mt-4 mb-4 align-items-end">
@@ -236,4 +246,13 @@ class Navigation extends React.Component {
   }
 }
 
-export default Navigation;
+const mapStateToProps = (state) => ({
+  user: state.user,
+})
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    null
+  )(Navigation)
+);
