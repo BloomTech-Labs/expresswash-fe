@@ -1,9 +1,9 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { Route, Switch } from "react-router-dom";
-import LandingPage from "./components/landingpage/LandingPage.js";
+import LandingPage from "./components/LandingPage/LandingPage.js";
 import FindWash from "./components/ClientDashboard/FindWash/FindWash.js";
-import Login from "./components/login/Login.js";
+import Login from "./components/Login/Login.js";
 import UserSignUp from "./components/UserSignup/UserSignup";
 import WasherNavigation from "./components/WasherDashboard/Navigation.js";
 import ClientDashboard from "./components/ClientDashboard/FindWash/FindWash.js";
@@ -13,6 +13,7 @@ import ScheduleWash2 from "./components/ClientDashboard/FindWash/ScheduleWash2";
 import ClientNavigation from "./components/ClientDashboard/Navigation.js";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import { PrivateRoute } from "./components/PrivateRoute.js"
 import "./App.css";
 
 const GlobalStyle = createGlobalStyle`
