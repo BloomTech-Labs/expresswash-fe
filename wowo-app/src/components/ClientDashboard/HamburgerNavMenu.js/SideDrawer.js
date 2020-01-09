@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const SideDrawerNav = Styled.nav`
     height: 92%;
     background: #ccc;
-    box-shadow: -2px 0px 10px black;
+    box-shadow: -1px 0px 20px black;
     position: fixed;
     top: 8%;
     right: 0;
