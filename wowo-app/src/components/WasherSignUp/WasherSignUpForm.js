@@ -93,7 +93,7 @@ export class WasherSignUpForm extends Component {
         // check if the user was created to show confirmation
         
         console.log("here is what Cale's giving you to work with", washerSignupData);
-        if(washerSignupData.payload.message == "user saved successfully") {
+        if(washerSignupData.payload.message === "user saved successfully") {
           console.log('user was created');
           this.nextStep();
           this.loginUser(email, password)
