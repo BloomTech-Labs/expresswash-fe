@@ -214,7 +214,7 @@ class FindWash extends Component {
                             {/* <img src={this.props.profilePic} style={{width: 60 + "%"}} alt="Profile Img" /> */}
                             <svg width="100" height="100">
                                 <circle cx="50" cy="50" r="30" fill="#00A8C5" />
-                                <text x="50%" y="50%" alignment-baseline="central" text-anchor="middle" font-family="sans-serif" font-size="40" fill="#fff">T</text>
+                                <text x="50%" y="50%" alignmentBaseline="central" textAnchor="middle" fontFamily="sans-serif" fontSize="40" fill="#fff">T</text>
                             </svg>
                         <P>
                             {step === 1 ? `Welcome, Tony` : (step === 2 ? `Choose your vehicle` : (step === 3 ? `Select a Date & Time` : (step === 4 ? `Which service would you like` : `Confirm your wash`)))}

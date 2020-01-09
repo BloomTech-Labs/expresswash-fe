@@ -1,9 +1,9 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
-import LandingPage from './components/landingpage/LandingPage.js';
-import FindWash from './components/ClientDashboard/FindWash/FindWash.js';
-import Login from './components/login/Login.js';
+import PrivateRoute from './components/PrivateRoute.js';
+import LandingPage from './components/LandingPage/LandingPage.js';
+import Login from './components/Login/Login.js';
 import UserSignUp from './components/UserSignup/UserSignup';
 import WasherNavigation from './components/WasherDashboard/Navigation.js';
 import ClientDashboard from './components/ClientDashboard/FindWash/FindWash.js';
@@ -45,10 +45,9 @@ function App() {
 				<Route exact path='/' component={LandingPage} />
 				<Route path='/user-register' component={UserSignUp} />
 				<Route path='/login' render={() => <Login />} />
-				<Route path='/userDash' component={FindWash} />
-				<Route path='/clientDash' component={ClientDashboard} />
+				<Route exact path='/clientDash' component={ClientDashboard} />
 				<Route path='/washer-register' component={WasherSignUp} />
-				<Route path='/washerDash' component={WasherNavigation} />
+				<Route exact path='/washerDash' component={WasherNavigation} />
 				<Route path='/schedule' component={ScheduleWash} />
 				<Route path='/schedule-wash' component={ScheduleWash2}/>
 				

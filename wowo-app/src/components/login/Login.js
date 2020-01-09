@@ -109,9 +109,13 @@ const SocialButton = Styled.div`
     cursor: pointer;
 `;
 
-const FirstTime = Styled.p`
+const FirstTime = Styled.div`
     margin: 15px auto 0 auto;
     text-align: center;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
 `;
 
 const Signup = Styled.div`
@@ -168,7 +172,7 @@ class Login extends Component {
         if(userType === 'washer') {
           this.props.history.push("/washerDash");
         } else if (userType === 'client') {
-          this.props.history.push("/userDash");
+          this.props.history.push("/clientDash");
         } else {
           return null;
         }
@@ -253,7 +257,7 @@ class Login extends Component {
             </MDBRow>
 
             <FirstTime>
-              Here For the first time?{" "}
+              Here For the first time?
               <Link to="/user-register">
                 <Signup>Sign Up</Signup>
               </Link>
