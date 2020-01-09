@@ -3,6 +3,10 @@ import axios from "axios";
 // User Actions
 export const GET_USER = "GET_USER";
 export const GET_USERS = "GET_USERS";
+export const GET_CLIENT_INFO_SUCCESS = "GET_CLIENT_INFO_SUCCESS";
+export const GET_CLIENT_INFO_ERROR = "GET_CLIENT_INFO_ERROR";
+export const UPDATE_CLIENT_INFO_SUCCESS = "UPDATE_CLIENT_INFO_SUCCESS";
+export const UPDATE_CLIENT_INFO_ERROR = "UPDATE_CLIENT_INFO_ERROR";
 
 // Washer Signup action types
 export const CREATE_WASHER_START = "CREATE_WASHER_START";
@@ -58,5 +62,38 @@ export function createClient(payload) {
         console.log(err.response.data);
         dispatch({ type: NEW_CLIENT_ERROR, payload: err.response.data });
       });
+  };
+}
+
+export function getClientInformation(id) {
+  return dispatch => {
+    return (
+      axios
+        .get(`https://pt6-wowo.herokuapp.com/users/${id}`)
+        // .get(`http://localhost:3300/users/${id}`)
+        .then(res => {
+          console.log("this is response on getclient information", res);
+          dispatch({ type: GET_CLIENT_INFO_SUCCESS, payload: res.data });
+        })
+        .catch(err => {
+          dispatch({ type: GET_CLIENT_INFO_ERROR });
+        })
+    );
+  };
+}
+export function updateClientInformation(id, changes) {
+  return dispatch => {
+    return (
+      axios
+        .put(`https://pt6-wowo.herokuapp.com/users/${id}`)
+        // .put(`http://localhost:3300/users/${id}`, changes)
+        .then(res => {
+          dispatch({ type: UPDATE_CLIENT_INFO_SUCCESS, payload: res.data });
+        })
+        .catch(err => {
+          console.log("this is error on update", err);
+          dispatch({ type: UPDATE_CLIENT_INFO_ERROR });
+        })
+    );
   };
 }
