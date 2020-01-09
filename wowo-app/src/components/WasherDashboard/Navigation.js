@@ -122,7 +122,7 @@ class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {},
+      user: this.props.user,
     }
   }
 
@@ -139,8 +139,8 @@ class Navigation extends React.Component {
   }
 
   render() {
-    const { user } = this.state;
-    console.log("state is", this.props);
+    const { user } = this.state.user;
+    console.log("state is", this.state);
     return (
       <MDBContainer className="mb-5">
           <MDBRow className="mt-4 mb-4 align-items-end">
@@ -246,9 +246,9 @@ class Navigation extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  user: state.user,
-})
+const mapStateToProps = state => ({
+  user: state.userReducer,
+});
 
 export default withRouter(
   connect(
