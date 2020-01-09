@@ -41,7 +41,7 @@ class Navigation extends Component {
   componentDidMount() {
     const { id } = localStorage;
 
-    Axios.get(`http://localhost:3300/users/${id}`)
+    Axios.get(`https://pt6-wowo.herokuapp.com/users/${id}`)
       .then(res => {
         this.setState({
           email: res.data.email,
@@ -58,7 +58,7 @@ class Navigation extends Component {
   }
   toggle = () => {
     const { id } = localStorage;
-    Axios.get(`http://localhost:3300/users/${id}`)
+    Axios.get(`https://pt6-wowo.herokuapp.com/users/${id}`)
       .then(res => {
         this.setState({
           email: res.data.email,
