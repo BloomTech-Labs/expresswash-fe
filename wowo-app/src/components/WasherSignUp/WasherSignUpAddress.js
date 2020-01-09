@@ -50,7 +50,7 @@ export class WasherSignUpAddress extends Component {
             required
           />
           <div className="md-form">
-            <input id="autocomplete" data-test="input" name="searchAddress" type="text" class="form-control" placeholder="Address Search.." autocomplete="off" />
+            <input id="autocomplete" data-test="input" name="searchAddress" type="text" className="form-control" placeholder="Address Search.." autoComplete="off" />
           </div>
           <MDBInput
             name="street"

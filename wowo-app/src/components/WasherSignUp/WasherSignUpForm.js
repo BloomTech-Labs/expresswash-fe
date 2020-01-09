@@ -92,7 +92,8 @@ export class WasherSignUpForm extends Component {
         const { washerSignupData } = this.props.washerSignupReducer;
         // check if the user was created to show confirmation
         
-        if(washerSignupData.payload && washerSignupData.payload.user.length) {
+        console.log("here is what Cale's giving you to work with", washerSignupData);
+        if(washerSignupData.payload.message == "user saved successfully") {
           console.log('user was created');
           this.nextStep();
           this.loginUser(email, password)
@@ -150,7 +151,7 @@ export class WasherSignUpForm extends Component {
               }
               {step === 3 &&
                 ( washerSignupLoading
-                ? <span><p>Loading..</p><i class="fas fa-spinner fa-pulse fa-5x"></i></span>
+                ? <span><p>Loading..</p><i className="fas fa-spinner fa-pulse fa-5x"></i></span>
                 : 
                   <WasherSignUpReview
                   handleSubmit={this.handleSubmit}
