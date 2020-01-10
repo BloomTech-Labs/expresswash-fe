@@ -138,8 +138,27 @@ class Navigation extends React.Component {
     this.props.history.push('/login');
   }
 
+  accountAge = creationDate => {
+    var moment = require('moment');
+    moment().format();
+
+    const date = moment(creationDate).fromNow(true);
+    const splitValues = date.split(" ");
+    let value = 0;
+    if(splitValues[0] == "a") {
+      value = 1;
+    } else {
+      value = splitValues[0];
+    }
+    const pronoun = splitValues[1].charAt(0).toUpperCase() + splitValues[1].slice(1);
+    const myObject = { value, pronoun };
+    return myObject;
+  }
+
   render() {
     const { user } = this.state.user;
+    const accountDate = this.accountAge(user.creationDate);
+    // const accountDate = null;
     console.log("state is", this.state);
     return (
       <MDBContainer className="mb-5">
@@ -197,8 +216,8 @@ class Navigation extends React.Component {
                     <MDBRow>
                       <MDBCol>
                         <MDBTypography tag='h3'>
-                          <strong>6</strong><br />
-                          <small className="text-muted">Months</small>
+                          <strong>{accountDate.value || "#"}</strong><br />
+                          <small className="text-muted">{accountDate.pronoun || "time"}</small>
                         </MDBTypography>
                       </MDBCol>
                       <MDBCol>
