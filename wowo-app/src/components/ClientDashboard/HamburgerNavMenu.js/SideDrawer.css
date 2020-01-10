@@ -1,0 +1,8 @@
+.side-drawer {
+    transform: translateX(200%);
+    transition: transform 0.3s ease-out;
+}
+
+.side-drawer.open {
+    transform: translateX(0);
+}
