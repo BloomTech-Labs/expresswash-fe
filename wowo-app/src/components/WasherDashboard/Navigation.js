@@ -123,7 +123,16 @@ class Navigation extends React.Component {
     super(props);
     this.state = {
       user: this.props.user,
+      switch1: true,
     }
+  }
+
+  // toggle switch handler without API endpoint connection yet
+  handleSwitchChange = nr => () => {
+    let switchNumber = `switch${nr}`;
+    this.setState({
+      [switchNumber]: !this.state[switchNumber]
+    });
   }
 
   // logout function removes user data from localStorage and redirects to login
@@ -203,6 +212,8 @@ class Navigation extends React.Component {
                             type='checkbox'
                             className='custom-control-input'
                             id='customSwitches'
+                            checked={this.state.switch1}
+                            onChange={this.handleSwitchChange(1)}
                             readOnly
                           />
                           <label className='custom-control-label' htmlFor='customSwitches'>
