@@ -7,6 +7,7 @@ import WashMap from "./WashMap";
 import WowoWordLogo from "../../../images/WowoWordLogo.js";
 import NavButton from "../HamburgerNavMenu.js/NavButton.js";
 import SideDrawer from "../HamburgerNavMenu.js/SideDrawer.js";
+import Backdrop from "../HamburgerNavMenu.js/Backdrop.js";
 
 import SelectAddress from "./WashSteps/SelectAddress.js";
 import ChooseVehicle from "./WashSteps/ChooseVehicle.js";
@@ -30,7 +31,7 @@ const NavContainer = Styled.div`
     justify-content: space-between;
     height: 8%;
     width: 100%;
-    padding-left: 2.5%;
+    padding: 0 2.5%;
     background: #00A8C5;
     z-index: 300;
 `;
@@ -185,11 +186,15 @@ class FindWash extends Component {
             return{sideDrawerOpen: !prevState.sideDrawerOpen};
         });
     };
+
+    backdropClickHandler = () => {
+        this.setState({sideDrawerOpen: false})
+    }
   
     render() {
-        let sideDrawer;
+        let backDrop;
         if(this.state.sideDrawerOpen) {
-            sideDrawer = <SideDrawer logout={this.logout}/>;
+            backDrop = <Backdrop clickHandler={this.backdropClickHandler}/>;
         }
 
         const { step } = this.state;
@@ -208,7 +213,8 @@ class FindWash extends Component {
                         <NavButton clickHandler={this.NavToggleClickHandler}/>
                 </NavContainer>
                 <MapContainer>
-                    {sideDrawer}
+                    <SideDrawer logout={this.logout} show={this.state.sideDrawerOpen}/>
+                    {backDrop}
                     <WashMap />
                     <FormContainer>
                         <UserInfoContainer>

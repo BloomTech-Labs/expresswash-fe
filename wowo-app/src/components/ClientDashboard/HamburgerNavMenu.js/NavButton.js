@@ -11,7 +11,7 @@ const NavToggleButton = Styled.button`
     background: transparent;
     border: none;
     cursor: pointer;
-    padding: 5px;
+    padding: 5px 0;
     box-sizing: border-box;
     :focus {
        outline:none; 
@@ -19,9 +19,10 @@ const NavToggleButton = Styled.button`
 `;
 
 const ToggleButtonLine = Styled.div`
-    width: 35px;
-    height: 2px;
+    width: 40px;
+    height: 3px;
     background: white;
+    border-radius: 2px
 `;
 
 const navButton = props => (

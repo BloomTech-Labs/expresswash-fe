@@ -1,7 +1,8 @@
 import React from 'react';
 import Styled from "styled-components";
-
 import { Link } from 'react-router-dom';
+
+import './SideDrawer.css';
 
 
 const SideDrawerNav = Styled.nav`
@@ -28,7 +29,8 @@ const NavList = Styled.ul`
 const ListItem = Styled.li`
     padding: 10px 0;
     font-size:20px;
-    color: black
+    color: black;
+    cursor: pointer;
     :hover{
         text-decoration: underline
     }
@@ -38,16 +40,20 @@ const ListItem = Styled.li`
 `;
 
 const sideDrawer = props => {
+    let drawerClasses = 'side-drawer';
+    if(props.show) {
+        drawerClasses = 'side-drawer open'
+    }
     return(
-        <SideDrawerNav>
+        <SideDrawerNav className={drawerClasses}>
             <NavList>
-                <Link to="">
+                <Link to="/clientDash/navigation">
                     <ListItem>Account Details</ListItem>
                 </Link>
-                <Link to="">
+                <Link to="/clientDash/payments">
                     <ListItem>Payment Options</ListItem>
                 </Link>
-                <Link to="">
+                <Link to="/clientDash/washes">
                     <ListItem>Your Washes</ListItem>
                 </Link>
                 <ListItem onClick={props.logout}>Sign Out</ListItem>

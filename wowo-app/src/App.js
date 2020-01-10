@@ -11,6 +11,8 @@ import WasherSignUp from "./components/WasherSignUp/WasherSignUpForm";
 import ScheduleWash from "./components/ClientDashboard/FindWash/ScheduleWash";
 import ScheduleWash2 from "./components/ClientDashboard/FindWash/ScheduleWash2";
 import ClientNavigation from "./components/ClientDashboard/Navigation.js";
+import ClientPayment from "./components/ClientDashboard/Payment.js";
+import ClientWashes from "./components/ClientDashboard/Washes.js";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { PrivateRoute } from "./components/PrivateRoute.js"
@@ -48,10 +50,13 @@ function App() {
 				<Route exact path="/find-wash" component={FindWash} />
 				<Route exact path="/washer-register" component={WasherSignUp} />
 				<PrivateRoute exact path="/clientDash" component={ClientDashboard} />
+				<PrivateRoute exact path="/clientDash/navigation" component={ClientNavigation} />
+				<PrivateRoute exact path="/clientDash/payments" component={ClientPayment} />
+				<PrivateRoute exact path="/clientDash/washes" component={ClientWashes} />
+				<PrivateRoute exact path="/washerDash" component={WasherNavigation} />
 				<PrivateRoute exact path="/washerDash" component={WasherNavigation} />
 				<Route exact path="/schedule" component={ScheduleWash} />
 				<Route path="/schedule-wash" component={ScheduleWash2} />
-				<Route path="/client-navigation" component={ClientNavigation} />
 				<Route exact path="*" component={() => "404 Page Not Found."} />
 			</Switch>
 			{/* <Route
