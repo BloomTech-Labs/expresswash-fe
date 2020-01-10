@@ -11,6 +11,7 @@ import WasherSignUp from "./components/WasherSignUp/WasherSignUpForm";
 import ScheduleWash from "./components/ClientDashboard/FindWash/ScheduleWash";
 import ScheduleWash2 from "./components/ClientDashboard/FindWash/ScheduleWash2";
 import ClientNavigation from "./components/ClientDashboard/Navigation.js";
+import ClientVehicles from "./components/ClientDashboard/Vehicles";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import "./App.css";
@@ -51,6 +52,7 @@ function App() {
           <Route path="/schedule" component={ScheduleWash} />
           <Route path="/schedule-wash" component={ScheduleWash2} />
           <Route path="/client-navigation" component={ClientNavigation} />
+          <Route path="/client-vehicles" component={ClientVehicles} />
         </Switch>
         {/* <Route
   					path='/schedule-wash'

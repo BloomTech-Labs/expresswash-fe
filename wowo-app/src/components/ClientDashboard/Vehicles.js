@@ -28,7 +28,7 @@ class Vehicles extends Component {
           <MDBModalFooter color="black-text">
             <MDBContainer>
               <MDBBtn>Add a vehicle</MDBBtn>
-              <Link to="/user-navigation">
+              <Link to="/client-navigation">
                 <MDBBtn>Back</MDBBtn>
                 {/* <MDBIcon icon="times"></MDBIcon> */}
               </Link>
