@@ -11,8 +11,12 @@ import WasherSignUp from "./components/WasherSignUp/WasherSignUpForm";
 import ScheduleWash from "./components/ClientDashboard/FindWash/ScheduleWash";
 import ScheduleWash2 from "./components/ClientDashboard/FindWash/ScheduleWash2";
 import ClientNavigation from "./components/ClientDashboard/Navigation.js";
+
+import ClientVehicles from "./components/ClientDashboard/Vehicles";
+
 import ClientPayment from "./components/ClientDashboard/Payment.js";
 import ClientWashes from "./components/ClientDashboard/Washes.js";
+
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { PrivateRoute } from "./components/PrivateRoute.js"
@@ -39,6 +43,7 @@ const Container = styled.div`
 `;
 
 function App() {
+
 	return (
 		<MuiPickersUtilsProvider utils={DateFnsUtils}>
 		<Container className='App'>
@@ -60,6 +65,7 @@ function App() {
 				<Route exact path="*" component={() => "404 Page Not Found."} />
 			</Switch>
 			{/* <Route
+
   					path='/schedule-wash'
   					render={(props) => <ScheduleWash2 {...props} isAuthed={true} />}
 /> */}

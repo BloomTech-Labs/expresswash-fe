@@ -34,6 +34,7 @@ export function loginUser(email, password) {
         localStorage.setItem("firstName", res.data.firstName);
         localStorage.setItem("lastName", res.data.lastName);
         localStorage.setItem("id", res.data.id);
+        console.log(localStorage);
         dispatch({
           type: LOGIN_SUCCESS,
           payload: res.data
@@ -85,7 +86,7 @@ export function updateClientInformation(id, changes) {
   return dispatch => {
     return (
       axios
-        .put(`https://pt6-wowo.herokuapp.com/users/${id}`)
+        .put(`https://pt6-wowo.herokuapp.com/users/${id}`, changes)
         // .put(`http://localhost:3300/users/${id}`, changes)
         .then(res => {
           dispatch({ type: UPDATE_CLIENT_INFO_SUCCESS, payload: res.data });
