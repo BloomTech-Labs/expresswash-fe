@@ -88,7 +88,7 @@ class UserSignup extends Component {
                 register
               </MDBBtn>
             </div>
-            <p class="text-center">
+            <p className="text-center">
               By tapping on register button you agree to our
               <br /> <strong>Terms & Conditions</strong>{" "}
             </p>
@@ -180,7 +180,7 @@ class UserSignup extends Component {
 
   render() {
     return (
-      <div class="card weather-card" style={{ height: "100vh" }}>
+      <div className="card weather-card" style={{ height: "100vh" }}>
         <MDBContainer style={{ height: "100%" }}>
           <MDBRow>
             <MDBCol>
@@ -193,7 +193,7 @@ class UserSignup extends Component {
                   height: "374px"
                 }}
               >
-                <div class="d-flex justify-content-center align-items-center h-100">
+                <div className="d-flex justify-content-center align-items-center h-100">
                   <FillerPage currentStep={this.state.currentStep} />
                 </div>
               </MDBCard>

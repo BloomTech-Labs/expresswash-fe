@@ -13,6 +13,7 @@ import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
+import auth from "../auth";
 
 const LoginContainer = Styled.div`
     display: flex;
@@ -109,7 +110,7 @@ const SocialButton = Styled.div`
     cursor: pointer;
 `;
 
-const FirstTime = Styled.p`
+const FirstTime = Styled.div`
     margin: 15px auto 0 auto;
     text-align: center;
 `;
@@ -162,16 +163,22 @@ class Login extends Component {
     this.props
       .loginUser(email, password)
       .then((res) => {
-        // console.log("washer", this.state);
-        const userType = localStorage.getItem('userType');
-        // console.log("userType", userType);
-        if(userType === 'washer') {
-          this.props.history.push("/washerDash");
-        } else if (userType === 'client') {
-          this.props.history.push("/userDash");
-        } else {
-          return null;
-        }
+        const type = localStorage.getItem("userType");
+
+        auth.login(() => {
+          if( type === "client" )
+          {
+            this.props.history.push("/clientDash")
+          } 
+          else if ( type === "washer" ) 
+          {
+            this.props.history.push("/washerDash")
+          }
+          else 
+          {
+            return null
+          }
+        })
       })
       .catch(err => {
         throw new Error(err);

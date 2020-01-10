@@ -5,15 +5,16 @@ import Styled from "styled-components";
 
 import WashMap from "./WashMap";
 import WowoWordLogo from "../../../images/WowoWordLogo.js";
-import MenuIcon from "../../../images/MenuIcon.js";
+import NavButton from "../HamburgerNavMenu.js/NavButton.js";
+import SideDrawer from "../HamburgerNavMenu.js/SideDrawer.js";
+import Backdrop from "../HamburgerNavMenu.js/Backdrop.js";
 
 import SelectAddress from "./WashSteps/SelectAddress.js";
 import ChooseVehicle from "./WashSteps/ChooseVehicle.js";
 import ScheduleWash from "./WashSteps/ScheduleWash.js";
 import SelectService from "./WashSteps/SelectService.js";
 import ConfirmWash from "./WashSteps/ConfirmWash.js";
-
-
+import auth from "../../auth.js";
 
 const MainContainer = Styled.div`
     display: flex;
@@ -24,50 +25,28 @@ const MainContainer = Styled.div`
     align-items: center;
 `;
 
-const MenuContainer = Styled.div`
+const NavContainer = Styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     height: 8%;
     width: 100%;
+    padding: 0 2.5%;
     background: #00A8C5;
+    z-index: 300;
 `;
 
-const MenuInner = Styled.div`
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 100%;
-`
-
 const LogoContainer = Styled.div`
-    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100px;
-    left: 10%;
 
     @media (min-width: 1800px) { // ##Device = Desktops ##Screen = 1800px to higher resolution desktops //
         height: 100%;
         width: 115px;
         left: 15%;
-    }
-`
-
-const MenuButtonContainer = Styled.div`
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    right: 10%;
-    cursor: pointer;
-
-    @media (min-width: 1800px) { // ##Device = Desktops ##Screen = 1800px to higher resolution desktops //
-        height: 100%;
-        width: 40px;
-        right: 15%;
     }
 `
 
@@ -126,9 +105,9 @@ class FindWash extends Component {
             time: "",
             service: "",
             step: 1,
+            sideDrawerOpen: false,
         };
     }
-
 
     //Go to the Next step
     nextStep = () => {
@@ -186,35 +165,63 @@ class FindWash extends Component {
           throw new Error(err);
         });
     };
+
+    //Logout
+    logout = (evt) => {
+        evt.preventDefault()
+
+        localStorage.removeItem('token');
+        localStorage.removeItem('userType');
+        localStorage.removeItem('firstName');
+        localStorage.removeItem('lastName');
+        localStorage.removeItem('id');
+        auth.logout(() => {
+            this.props.history.push('/login');
+        })
+    }
+
+    //Nav Toggle
+    NavToggleClickHandler = () => {
+        this.setState((prevState) => {
+            return{sideDrawerOpen: !prevState.sideDrawerOpen};
+        });
+    };
+
+    backdropClickHandler = () => {
+        this.setState({sideDrawerOpen: false})
+    }
   
     render() {
+        let backDrop;
+        if(this.state.sideDrawerOpen) {
+            backDrop = <Backdrop clickHandler={this.backdropClickHandler}/>;
+        }
+
         const { step } = this.state;
         const { address, selectedAddress, vehicle, date, time, service } = this.state;
         const  values = { address, selectedAddress, vehicle, date, time, service }
 
         return (
             <MainContainer>
-                <MenuContainer>
-                    <MenuInner>
-                        <LogoContainer>
+                <NavContainer className="nav-container">
+                        <LogoContainer className="logo-container">
                             <WowoWordLogo
+                                className="wowo-logo"
                                 width="100%"
                             />
                         </LogoContainer>
-                        <MenuButtonContainer>
-                            <MenuIcon />
-                        </MenuButtonContainer>
-                    </MenuInner>
-                </MenuContainer>
-        
+                        <NavButton clickHandler={this.NavToggleClickHandler}/>
+                </NavContainer>
                 <MapContainer>
+                    <SideDrawer logout={this.logout} show={this.state.sideDrawerOpen}/>
+                    {backDrop}
                     <WashMap />
                     <FormContainer>
                         <UserInfoContainer>
                             {/* <img src={this.props.profilePic} style={{width: 60 + "%"}} alt="Profile Img" /> */}
                             <svg width="100" height="100">
                                 <circle cx="50" cy="50" r="30" fill="#00A8C5" />
-                                <text x="50%" y="50%" alignment-baseline="central" text-anchor="middle" font-family="sans-serif" font-size="40" fill="#fff">T</text>
+                                <text x="50%" y="50%" alignmentBaseline="central" textAnchor="middle" fontFamily="sans-serif" fontSize="40" fill="#fff">T</text>
                             </svg>
                         <P>
                             {step === 1 ? `Welcome, Tony` : (step === 2 ? `Choose your vehicle` : (step === 3 ? `Select a Date & Time` : (step === 4 ? `Which service would you like` : `Confirm your wash`)))}
