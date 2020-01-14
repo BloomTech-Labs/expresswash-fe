@@ -254,11 +254,12 @@ class Navigation extends React.Component {
             </MDBCol>
             <MDBCol md="4">
               <MDBCard className="mb-4 pt-2 pb-2 align-items-center">
-                <MDBTypography tag='h3'>
+                <span><p>Loading..</p><i className="fas fa-spinner fa-pulse fa-3x"></i></span>
+                {/* <MDBTypography tag='h3'>
                   <strong>4.7</strong><br />
                   <small className="text-muted">Ratings</small>
                 </MDBTypography>
-                <MDBRating data={basic} />
+                <MDBRating data={basic} /> */}
               </MDBCard>
               <MDBCard className="mb-4">
                 <Line data={lineData} />
