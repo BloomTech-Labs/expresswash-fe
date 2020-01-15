@@ -1,14 +1,14 @@
 // import action types
 import {
     WASHER_SET_WORK_STATUS_START,
-    WASHER_SET_WORK_STATUS__SUCCESS,
-    WASHER_SET_WORK_STATUS__FAILED,
+    WASHER_SET_WORK_STATUS_SUCCESS,
+    WASHER_SET_WORK_STATUS_FAILED,
     WASHER_GET_WASH_COUNT_START,
-    WASHER_GET_WASH_COUNT__SUCCESS,
-    WASHER_GET_WASH_COUNT__FAILED,
+    WASHER_GET_WASH_COUNT_SUCCESS,
+    WASHER_GET_WASH_COUNT_FAILED,
     WASHER_GET_RATING_START,
-    WASHER_GET_RATING__SUCCESS,
-    WASHER_GET_RATING__FAILED
+    WASHER_GET_RATING_SUCCESS,
+    WASHER_GET_RATING_FAILED
   } from '../actions/actionTypes.js';
   
   // initial State values
@@ -33,14 +33,14 @@ const initialState = {
           washerDashWorkStatusLoading: true,
         }
       }
-      case WASHER_SET_WORK_STATUS__SUCCESS: {
+      case WASHER_SET_WORK_STATUS_SUCCESS: {
         return {
           ...state,
           washerDashWorkStatusLoading: false,
-          washerDashWorkStatusData: action,
+          washerDashWorkStatusData: action.payload,
         }
       }
-      case WASHER_SET_WORK_STATUS__FAILED: {
+      case WASHER_SET_WORK_STATUS_FAILED: {
         return {
           ...state,
           washerDashWorkStatusLoading: false,
@@ -54,14 +54,14 @@ const initialState = {
           washerDashWashCountLoading: true,
         }
       }
-      case WASHER_GET_WASH_COUNT__SUCCESS: {
+      case WASHER_GET_WASH_COUNT_SUCCESS: {
         return {
           ...state,
           washerDashWashCountLoading: false,
           washerDashWashCountData: action,
         }
       }
-      case WASHER_GET_WASH_COUNT__FAILED: {
+      case WASHER_GET_WASH_COUNT_FAILED: {
         return {
           ...state,
           washerDashWashCountLoading: false,
@@ -75,14 +75,14 @@ const initialState = {
           washerDashRatingLoading: true,
         }
       }
-      case WASHER_GET_RATING__SUCCESS: {
+      case WASHER_GET_RATING_SUCCESS: {
         return {
           ...state,
           washerDashRatingLoading: false,
           washerDashRatingData: action,
         }
       }
-      case WASHER_GET_RATING__FAILED: {
+      case WASHER_GET_RATING_FAILED: {
         return {
           ...state,
           washerDashRatingLoading: false,

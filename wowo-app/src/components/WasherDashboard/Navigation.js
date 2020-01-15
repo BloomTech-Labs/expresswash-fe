@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { MDBCard, MDBContainer, MDBRow, MDBCol, MDBTypography, MDBRating, MDBIcon } from "mdbreact";
 import {Line, Doughnut, HorizontalBar} from 'react-chartjs-2';
 import Moment from 'react-moment';
+import { setWorkStatus } from '../../actions/washerDashboardActions.js';
 
 import WashMap from "./WashMap.js";
 import Styled from "styled-components";
@@ -103,6 +104,7 @@ class Navigation extends React.Component {
     super(props);
     this.state = {
       user: this.props.user.user,
+      washerWorkStatus: {},
       washerRating: null,
       // labels for the rating stars
       ratingStars: [
@@ -133,6 +135,18 @@ class Navigation extends React.Component {
       user.workStatus = !prevState.user.workStatus;
       return { user };
     })
+    const payload = {
+      "id": this.state.user.id,
+      "workStatus": !this.state.user.workStatus
+    }
+    // console.log("payload is", payload);
+    this.props.setWorkStatus(payload)
+      .then((res) => {
+        console.log("updated workStatus");
+      })
+      .catch(err => {
+        throw new Error(err);
+      })
   }
 
   // logout function removes user data from localStorage and redirects to login
@@ -280,11 +294,16 @@ class Navigation extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.userReducer,
+  washerWorkStatus: state.washerDashboardReducer,
 });
+
+const mapDispatchToProps = {
+  setWorkStatus
+}
 
 export default withRouter(
   connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
   )(Navigation)
 );
