@@ -88,26 +88,6 @@ const horizontalBarData = {
   ]
 };
 
-  // labels for the rating stars
-  const basic = [
-    {
-      tooltip: 'Very Bad'
-    },
-    {
-      tooltip: 'Poor'
-    },
-    {
-      tooltip: 'Ok'
-    },
-    {
-      tooltip: 'Good',
-      choosed: true
-    },
-    {
-      tooltip: 'Excellent'
-    }
-  ];
-
   // temporary get the user data from local storage instead of redux state
   const user = {
     firstName: localStorage.getItem('firstName'),
@@ -123,6 +103,26 @@ class Navigation extends React.Component {
     super(props);
     this.state = {
       user: this.props.user.user,
+      washerRating: null,
+      // labels for the rating stars
+      ratingStars: [
+        {
+          tooltip: 'Very Bad'
+        },
+        {
+          tooltip: 'Poor'
+        },
+        {
+          tooltip: 'Ok'
+        },
+        {
+          tooltip: 'Good',
+          choosed: true
+        },
+        {
+          tooltip: 'Excellent'
+        }
+      ]
     }
   }
 
@@ -165,7 +165,7 @@ class Navigation extends React.Component {
   }
 
   render() {
-    const { user } = this.state;
+    const { user, washerRating, ratingStars } = this.state;
     const accountDate = this.accountAge(user.creationDate);
     // const accountDate = null;
     console.log("state is", this.state);
@@ -224,7 +224,7 @@ class Navigation extends React.Component {
                     </MDBRow>
                   </MDBCol>
                   <MDBCol>
-                    <MDBRow>
+                    <MDBRow className="align-items-center">
                       <MDBCol>
                         <MDBTypography tag='h3'>
                           <strong>{accountDate.value || "#"}</strong><br />
@@ -232,10 +232,11 @@ class Navigation extends React.Component {
                         </MDBTypography>
                       </MDBCol>
                       <MDBCol>
-                        <MDBTypography tag='h3'>
+                        <span><i className="fas fa-spinner fa-pulse fa-3x"></i></span>
+                        {/* <MDBTypography tag='h3'>
                           <strong>47</strong><br />
                           <small className="text-muted">Washes</small>
-                        </MDBTypography>
+                        </MDBTypography> */}
                       </MDBCol>
                     </MDBRow>
                   </MDBCol>
@@ -256,10 +257,10 @@ class Navigation extends React.Component {
               <MDBCard className="mb-4 pt-2 pb-2 align-items-center">
                 <span><p>Loading..</p><i className="fas fa-spinner fa-pulse fa-3x"></i></span>
                 {/* <MDBTypography tag='h3'>
-                  <strong>4.7</strong><br />
+                  <strong>{washerRating}</strong><br />
                   <small className="text-muted">Ratings</small>
                 </MDBTypography>
-                <MDBRating data={basic} /> */}
+                <MDBRating data={ratingStars} /> */}
               </MDBCard>
               <MDBCard className="mb-4">
                 <Line data={lineData} />
