@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { MDBCard, MDBContainer, MDBRow, MDBCol, MDBTypography, MDBRating, MDBIcon } from "mdbreact";
 import {Line, Doughnut, HorizontalBar} from 'react-chartjs-2';
 import Moment from 'react-moment';
-import { setWorkStatus } from '../../actions/washerDashboardActions.js';
+import { setWorkStatus, getWashCount, getWashRating } from '../../actions/washerDashboardActions.js';
 
 import WashMap from "./WashMap.js";
 import Styled from "styled-components";
@@ -104,8 +104,6 @@ class Navigation extends React.Component {
     super(props);
     this.state = {
       user: this.props.user.user,
-      washerWorkStatus: {},
-      washerRating: null,
       // labels for the rating stars
       ratingStars: [
         {
@@ -127,6 +125,20 @@ class Navigation extends React.Component {
       ]
     }
   }
+
+  componentDidMount(){
+    // console.log("this.state.user.id is", this.state.user.id);
+    const countWash = this.props.getWashCount(this.state.user.id);
+    const washerRating = this.props.getWashRating(this.state.user.id);
+
+    Promise.all([countWash, washerRating])
+      .then(res => {
+        console.log("wash count done:", res);
+      })
+      .catch(err => {
+        throw new Error(err);
+      });
+  };
 
   // toggle switch handler without API endpoint connection yet
   handleSwitchChange = () => {
@@ -179,10 +191,24 @@ class Navigation extends React.Component {
   }
 
   render() {
+    const {
+            washerDashWorkStatusLoading,
+            washerDashWorkStatusError,
+            washerDashWorkStatusData,
+            washerDashWashCountLoading,
+            washerDashWashCountError,
+            washerDashWashCountData,
+            washerDashRatingLoading,
+            washerDashRatingError,
+            washerDashRatingData
+          } = this.props.washerDashboardReducer;
+    const washCount = washerDashWashCountData;
+    console.log("something washCount", washCount);
     const { user, washerRating, ratingStars } = this.state;
     const accountDate = this.accountAge(user.creationDate);
     // const accountDate = null;
     console.log("state is", this.state);
+    console.log("props is", this.props);
     return (
       <MDBContainer className="mb-5">
           <MDBRow className="mt-4 mb-4 align-items-end">
@@ -246,11 +272,14 @@ class Navigation extends React.Component {
                         </MDBTypography>
                       </MDBCol>
                       <MDBCol>
-                        <span><i className="fas fa-spinner fa-pulse fa-3x"></i></span>
-                        {/* <MDBTypography tag='h3'>
+                        { washerDashWashCountLoading
+                        ? <span><i className="fas fa-spinner fa-pulse fa-3x"></i></span>
+                        :
+                        <MDBTypography tag='h3'>
                           <strong>47</strong><br />
                           <small className="text-muted">Washes</small>
-                        </MDBTypography> */}
+                        </MDBTypography>
+                        }
                       </MDBCol>
                     </MDBRow>
                   </MDBCol>
@@ -269,12 +298,18 @@ class Navigation extends React.Component {
             </MDBCol>
             <MDBCol md="4">
               <MDBCard className="mb-4 pt-2 pb-2 align-items-center">
-                <span><p>Loading..</p><i className="fas fa-spinner fa-pulse fa-3x"></i></span>
-                {/* <MDBTypography tag='h3'>
-                  <strong>{washerRating}</strong><br />
-                  <small className="text-muted">Ratings</small>
-                </MDBTypography>
-                <MDBRating data={ratingStars} /> */}
+                { washerDashRatingLoading
+                  ? <span><p>Loading..</p><i className="fas fa-spinner fa-pulse fa-3x"></i></span>
+                  : (
+                    <React.Fragment>
+                      <MDBTypography tag='h3'>
+                        <strong>4.2</strong><br />
+                        <small className="text-muted">Ratings</small>
+                      </MDBTypography>
+                      <MDBRating data={ratingStars} />
+                    </React.Fragment>
+                  )
+                }
               </MDBCard>
               <MDBCard className="mb-4">
                 <Line data={lineData} />
@@ -294,11 +329,13 @@ class Navigation extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.userReducer,
-  washerWorkStatus: state.washerDashboardReducer,
+  washerDashboardReducer: state.washerDashboardReducer
 });
 
 const mapDispatchToProps = {
-  setWorkStatus
+  setWorkStatus,
+  getWashCount,
+  getWashRating
 }
 
 export default withRouter(

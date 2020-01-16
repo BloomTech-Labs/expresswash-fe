@@ -58,7 +58,7 @@ const initialState = {
         return {
           ...state,
           washerDashWashCountLoading: false,
-          washerDashWashCountData: action,
+          washerDashWashCountData: action.payload.data,
         }
       }
       case WASHER_GET_WASH_COUNT_FAILED: {
@@ -79,7 +79,7 @@ const initialState = {
         return {
           ...state,
           washerDashRatingLoading: false,
-          washerDashRatingData: action,
+          washerDashRatingData: action.payload,
         }
       }
       case WASHER_GET_RATING_FAILED: {
