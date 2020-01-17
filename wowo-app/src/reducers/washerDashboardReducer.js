@@ -79,7 +79,7 @@ const initialState = {
         return {
           ...state,
           washerDashRatingLoading: false,
-          washerDashRatingData: action.payload,
+          washerDashRatingData: action.payload.data,
         }
       }
       case WASHER_GET_RATING_FAILED: {

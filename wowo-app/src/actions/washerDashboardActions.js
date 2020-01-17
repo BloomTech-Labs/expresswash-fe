@@ -47,7 +47,7 @@ export function getWashRating(payload) {
     return dispatch => {
         dispatch({type: WASHER_GET_RATING_START})
 
-        return axios.post('https://pt6-wowo.herokuapp.com/jobs/washerAverage', { "id": payload })
+        return axios.post('https://pt6-wowo.herokuapp.com/ratings/washerAverage', { "id": payload })
           .then(res => {
               dispatch({ type: WASHER_GET_RATING_SUCCESS, payload: res })
           })

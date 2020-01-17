@@ -90,50 +90,31 @@ const horizontalBarData = {
 };
 
   // temporary get the user data from local storage instead of redux state
-  const user = {
-    firstName: localStorage.getItem('firstName'),
-    lastName: localStorage.getItem('lastName'),
-    userType: localStorage.getItem('userType'),
-    id: localStorage.getItem('id'),
-    token: localStorage.getItem('token')
-  }
+  // const user = {
+  //   firstName: localStorage.getItem('firstName'),
+  //   lastName: localStorage.getItem('lastName'),
+  //   userType: localStorage.getItem('userType'),
+  //   id: localStorage.getItem('id'),
+  //   token: localStorage.getItem('token')
+  // }
   
   
 class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: this.props.user.user,
-      // labels for the rating stars
-      ratingStars: [
-        {
-          tooltip: 'Very Bad'
-        },
-        {
-          tooltip: 'Poor'
-        },
-        {
-          tooltip: 'Ok'
-        },
-        {
-          tooltip: 'Good',
-          choosed: true
-        },
-        {
-          tooltip: 'Excellent'
-        }
-      ]
+      user: this.props.user.user
     }
   }
 
   componentDidMount(){
-    // console.log("this.state.user.id is", this.state.user.id);
-    const countWash = this.props.getWashCount(this.state.user.id);
-    const washerRating = this.props.getWashRating(this.state.user.id);
+    const { id } = this.state.user;
+    const countWash = this.props.getWashCount(id);
+    const washerRating = this.props.getWashRating(id);
 
     Promise.all([countWash, washerRating])
       .then(res => {
-        console.log("wash count done:", res);
+        // console.log("resolved both the washer rating and wash count");
       })
       .catch(err => {
         throw new Error(err);
@@ -180,7 +161,7 @@ class Navigation extends React.Component {
     const date = moment(creationDate).fromNow(true);
     const splitValues = date.split(" ");
     let value = 0;
-    if(splitValues[0] == "a") {
+    if(splitValues[0] === "a") {
       value = 1;
     } else {
       value = splitValues[0];
@@ -192,22 +173,38 @@ class Navigation extends React.Component {
 
   render() {
     const {
-            washerDashWorkStatusLoading,
-            washerDashWorkStatusError,
-            washerDashWorkStatusData,
             washerDashWashCountLoading,
-            washerDashWashCountError,
             washerDashWashCountData,
             washerDashRatingLoading,
-            washerDashRatingError,
             washerDashRatingData
           } = this.props.washerDashboardReducer;
-    const washCount = washerDashWashCountData;
-    console.log("something washCount", washCount);
-    const { user, washerRating, ratingStars } = this.state;
+    const { user } = this.state;
+    // labels for the rating stars
+    let washRating = washerDashRatingData || 5;
+    let ratingStars = [
+      {
+        tooltip: 'Very Bad'
+      },
+      {
+        tooltip: 'Poor'
+      },
+      {
+        tooltip: 'Ok'
+      },
+      {
+        tooltip: 'Good',
+      },
+      {
+        tooltip: 'Excellent'
+      }
+    ]
+    // select star to display from rating
+    const washRatingRound = Math.round(washRating);
+    ratingStars[washRatingRound-1] = {
+      ...ratingStars[washRatingRound-1],
+      choosed: true
+    }
     const accountDate = this.accountAge(user.creationDate);
-    // const accountDate = null;
-    console.log("state is", this.state);
     console.log("props is", this.props);
     return (
       <MDBContainer className="mb-5">
@@ -293,7 +290,6 @@ class Navigation extends React.Component {
                 <MapContainer>
                   <WashMap />
                 </MapContainer>
-                {/* <Img src="https://www.dsdinc.com/wp-content/uploads/2017/08/map-placeholder.jpg" style={{ height: 500 + "px" }} alt="logo" /> */}
               </MDBCard>
             </MDBCol>
             <MDBCol md="4">
@@ -303,7 +299,7 @@ class Navigation extends React.Component {
                   : (
                     <React.Fragment>
                       <MDBTypography tag='h3'>
-                        <strong>4.2</strong><br />
+                        <strong>{washRating}</strong><br />
                         <small className="text-muted">Ratings</small>
                       </MDBTypography>
                       <MDBRating data={ratingStars} />
