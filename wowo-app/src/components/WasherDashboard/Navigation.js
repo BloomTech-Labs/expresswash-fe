@@ -179,6 +179,8 @@ class Navigation extends React.Component {
             washerDashRatingData
           } = this.props.washerDashboardReducer;
     const { user } = this.state;
+    console.log("props is", this.props);
+    console.log("washerDashWash Count Data", washerDashWashCountData.count);
     // labels for the rating stars
     let washRating = washerDashRatingData || 5;
     let ratingStars = [
@@ -205,7 +207,6 @@ class Navigation extends React.Component {
       choosed: true
     }
     const accountDate = this.accountAge(user.creationDate);
-    console.log("props is", this.props);
     return (
       <MDBContainer className="mb-5">
           <MDBRow className="mt-4 mb-4 align-items-end">
@@ -273,7 +274,7 @@ class Navigation extends React.Component {
                         ? <span><i className="fas fa-spinner fa-pulse fa-3x"></i></span>
                         :
                         <MDBTypography tag='h3'>
-                          <strong>47</strong><br />
+                          <strong>{washerDashWashCountData.count}</strong><br />
                           <small className="text-muted">Washes</small>
                         </MDBTypography>
                         }
