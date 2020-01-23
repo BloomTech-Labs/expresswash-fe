@@ -69,6 +69,11 @@ function App() {
             path="/clientDash/washes"
             component={ClientWashes}
           />
+          <PrivateRoute
+            exact
+            path="/clientDash/vehicles"
+            component={ClientVehicles}
+          />
           <PrivateRoute exact path="/washerDash" component={WasherNavigation} />
           <PrivateRoute exact path="/washerDash" component={WasherNavigation} />
           <Route exact path="/schedule" component={ScheduleWash} />

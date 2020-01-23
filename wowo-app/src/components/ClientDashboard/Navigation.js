@@ -170,7 +170,7 @@ class Navigation extends Component {
                   <strong>Payment</strong>
                 </h5>
               </Link>
-              <Link to="/client-vehicles">
+              <Link to="/clientDash/vehicles">
                 <h5 class="text-muted" style={{ paddingBottom: "15%" }}>
                   <strong>Manage Vehicles</strong>
                 </h5>
