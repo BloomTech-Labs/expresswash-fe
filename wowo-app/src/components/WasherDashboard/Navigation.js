@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import { MDBCard, MDBContainer, MDBRow, MDBCol, MDBTypography, MDBRating, MDBIcon } from "mdbreact";
 import {Line, Doughnut, HorizontalBar} from 'react-chartjs-2';
 import Moment from 'react-moment';
-import { setWorkStatus, getWashCount, getWashRating } from '../../actions/washerDashboardActions.js';
 
+import { setWorkStatus, getWashCount, getWashRating } from '../../actions/washerDashboardActions.js';
 import WashMap from "./WashMap.js";
 import Styled from "styled-components";
 import Logo from "../../images/wowo-logo-word-full.svg";
 
+const jwt = require('jsonwebtoken');
 
 // image class
 const Img = Styled.img`
@@ -89,16 +90,11 @@ const horizontalBarData = {
   ]
 };
 
-  // temporary get the user data from local storage instead of redux state
-  // const user = {
-  //   firstName: localStorage.getItem('firstName'),
-  //   lastName: localStorage.getItem('lastName'),
-  //   userType: localStorage.getItem('userType'),
-  //   id: localStorage.getItem('id'),
-  //   token: localStorage.getItem('token')
-  // }
-  
-  
+// decode the user token information
+const token = localStorage.getItem('token');
+var decoded = jwt.decode(token);
+decoded = jwt.decode(token, {complete: true});
+
 class Navigation extends React.Component {
   constructor(props) {
     super(props);
@@ -106,8 +102,10 @@ class Navigation extends React.Component {
       user: this.props.user.user
     }
   }
-
+  
   componentDidMount(){
+    // this.tokenData(decoded);
+    // console.log("state payload", this.state.user);
     const { id } = this.state.user;
     const countWash = this.props.getWashCount(id);
     const washerRating = this.props.getWashRating(id);
@@ -142,6 +140,19 @@ class Navigation extends React.Component {
       })
   }
 
+  // tokenData = (decoded) => {
+  //   // set state from token information
+  //   console.log("hitting the tokenData");
+  //   console.log("decoded.payload", decoded.payload);
+  //   const { sub, workStatus, creationDate, firstName } = decoded.payload;
+  //   this.setState((prevState) => {
+  //     // let user = { ...prevState.user };
+  //     let user = { ...prevState.user, id: sub, workStatus, creationDate, firstName };
+  //     console.log("user from tokenData", user);
+  //     return { user };
+  //   });
+  // }
+
   // logout function removes user data from localStorage and redirects to login
   logout = (evt) => {
     evt.preventDefault()
@@ -161,12 +172,15 @@ class Navigation extends React.Component {
     const date = moment(creationDate).fromNow(true);
     const splitValues = date.split(" ");
     let value = 0;
+    let pronoun = splitValues[1].charAt(0).toUpperCase() + splitValues[1].slice(1);
     if(splitValues[0] === "a") {
       value = 1;
     } else {
       value = splitValues[0];
     }
-    const pronoun = splitValues[1].charAt(0).toUpperCase() + splitValues[1].slice(1);
+    if(pronoun === "Few") {
+      pronoun = "Minute";
+    }
     const myObject = { value, pronoun };
     return myObject;
   }
