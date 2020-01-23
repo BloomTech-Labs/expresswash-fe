@@ -157,7 +157,7 @@ class Navigation extends Component {
               class="d-flex align-content-center"
               style={{ height: "100", paddingTop: "20%" }}
             >
-              <Link to="/Washes">
+              <Link to="/clientDash/Washes">
                 <h5
                   class="text-muted"
                   style={{ paddingTop: "25px", paddingBottom: "15%" }}
