@@ -22,7 +22,7 @@ import {
   MDBModalFooter,
   MDBInput
 } from "mdbreact";
-import logo from "../../images/wowo-logo-full.jpg";
+import logo from "../../images/wowo-logo-full.JPG";
 
 class Navigation extends Component {
   constructor() {
@@ -95,7 +95,7 @@ class Navigation extends Component {
     this.props
       .updateClientInformation(id, { firstName, lastName, email, phoneNumber })
       .then(() => {
-        this.props.history.push("/client-navigation");
+        this.props.history.push("/clientDash/navigation");
       })
       .catch(err => {
         console.log(err);
@@ -165,7 +165,7 @@ class Navigation extends Component {
                   <strong>Your Washes</strong>
                 </h5>
               </Link>
-              <Link to="/Payment">
+              <Link to="/clientDash/payments">
                 <h5 class="text-muted" style={{ paddingBottom: "15%" }}>
                   <strong>Payment</strong>
                 </h5>
