@@ -1,6 +1,6 @@
 import React from "react";
 import { MDBBtn } from "mdbreact";
-import logo from "../../images/wowo-logo-full.JPG";
+import logo from "../../images/wowo-logo-full.jpg";
 import { Link } from "react-router-dom";
 
 export default function FillerPage() {

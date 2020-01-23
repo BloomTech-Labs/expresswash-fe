@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import Axios from "axios";
+import ClientVehicles from "./Vehicles.js";
 
 import {
   getClientInformation,
@@ -21,7 +22,7 @@ import {
   MDBModalFooter,
   MDBInput
 } from "mdbreact";
-import logo from "../../images/wowo-logo-full.JPG";
+import logo from "../../images/wowo-logo-full.jpg";
 
 class Navigation extends Component {
   constructor() {
@@ -41,7 +42,7 @@ class Navigation extends Component {
   componentDidMount() {
     const { id } = localStorage;
 
-    Axios.get(`http://localhost:3300/users/${id}`)
+    Axios.get(`https://pt6-wowo.herokuapp.com/users/${id}`)
       .then(res => {
         this.setState({
           email: res.data.email,
@@ -58,7 +59,7 @@ class Navigation extends Component {
   }
   toggle = () => {
     const { id } = localStorage;
-    Axios.get(`http://localhost:3300/users/${id}`)
+    Axios.get(`https://pt6-wowo.herokuapp.com/users/${id}`)
       .then(res => {
         this.setState({
           email: res.data.email,
@@ -94,7 +95,7 @@ class Navigation extends Component {
     this.props
       .updateClientInformation(id, { firstName, lastName, email, phoneNumber })
       .then(() => {
-        this.props.history.push("/user-navigation");
+        this.props.history.push("/client-navigation");
       })
       .catch(err => {
         console.log(err);
@@ -169,7 +170,7 @@ class Navigation extends Component {
                   <strong>Payment</strong>
                 </h5>
               </Link>
-              <Link to="/Vehicles">
+              <Link to="/client-vehicles">
                 <h5 class="text-muted" style={{ paddingBottom: "15%" }}>
                   <strong>Manage Vehicles</strong>
                 </h5>
