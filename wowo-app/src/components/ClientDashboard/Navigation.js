@@ -1,7 +1,16 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import Axios from "axios";
+import ClientVehicles from "./Vehicles.js";
+
+import {
+  getClientInformation,
+  updateClientInformation
+} from "../../actions/actionTypes.js";
 
 import StarRatings from "react-star-ratings";
+import "./ClientNav.css";
 
 import {
   MDBContainer,
@@ -13,35 +22,96 @@ import {
   MDBModalFooter,
   MDBInput
 } from "mdbreact";
-import logo from "../../images/wowo-logo-full.JPG";
+import logo from "../../images/wowo-logo-full.jpg";
 
 class Navigation extends Component {
-  state = {
-    modal: false,
-    date: "",
-    time: new Date().toLocaleString(),
-    rating: 4.2
-  };
+  constructor() {
+    super();
+    this.state = {
+      modal: false,
+      date: "",
+      time: new Date().toLocaleString(),
+      rating: 3.65,
+      email: "",
+      firstName: "",
+      lastName: "",
+      phone: ""
+    };
+  }
+
+  componentDidMount() {
+    const { id } = localStorage;
+
+    Axios.get(`https://pt6-wowo.herokuapp.com/users/${id}`)
+      .then(res => {
+        this.setState({
+          email: res.data.email,
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          phoneNumber: res.data.phoneNumber
+        });
+      })
+      .catch(err => {
+        console.log("this is err on component did mount", err);
+      });
+
+    this.getDate();
+  }
   toggle = () => {
+    const { id } = localStorage;
+    Axios.get(`https://pt6-wowo.herokuapp.com/users/${id}`)
+      .then(res => {
+        this.setState({
+          email: res.data.email,
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          phoneNumber: res.data.phoneNumber
+        });
+      })
+      .catch(err => {
+        console.log("this is err on the toggle", err);
+      });
     this.setState({
       modal: !this.state.modal
     });
   };
-
-  componentDidMount() {
-    this.getDate();
-  }
 
   getDate = () => {
     let date = new Date().toLocaleDateString();
     this.setState({ date });
   };
 
+  changeHandler = evt => {
+    evt.preventDefault();
+    this.setState({
+      [evt.target.name]: evt.target.value
+    });
+  };
+  submitHandler = evt => {
+    evt.preventDefault();
+    const { id } = localStorage;
+    const { firstName, lastName, phoneNumber, email } = this.state;
+
+    this.props
+      .updateClientInformation(id, { firstName, lastName, email, phoneNumber })
+      .then(() => {
+        this.props.history.push("/client-navigation");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   render() {
-    console.log("this is local storage", localStorage);
-    console.log("this is token", localStorage.token);
-    console.log("this is firstname on localstorage", localStorage.firstName);
-    const { date, rating } = this.state;
+    const {
+      date,
+      rating,
+      firstName,
+      lastName,
+      email,
+      phoneNumber
+    } = this.state;
+    // const email = this.props.clientInformation;
+
     return (
       // <div class="border border-primary w-100" style={{ height: "100vh" }}>
       <MDBContainer>
@@ -56,7 +126,8 @@ class Navigation extends Component {
             <MDBCol class="d-flex align-items-start">
               <h3 class="h3-responsive">
                 <strong>
-                  {localStorage.firstName} {localStorage.lastName}
+                  <p>Welcome back,</p>
+                  {this.state.firstName} {this.state.lastName}!
                 </strong>
               </h3>
               <img
@@ -75,7 +146,7 @@ class Navigation extends Component {
                   name={"userRating"}
                   starDimension={"25px"}
                   starSpacing={"5px"}
-                  starRatedColor={"rgb(0,0,0)"}
+                  starRatedColor={"rgb(0,128,255)"}
                 />
               </div>
             </MDBCol>
@@ -99,7 +170,7 @@ class Navigation extends Component {
                   <strong>Payment</strong>
                 </h5>
               </Link>
-              <Link to="/Vehicles">
+              <Link to="/client-vehicles">
                 <h5 class="text-muted" style={{ paddingBottom: "15%" }}>
                   <strong>Manage Vehicles</strong>
                 </h5>
@@ -119,50 +190,64 @@ class Navigation extends Component {
             </MDBCol>
           </div>
           <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
-            <MDBModalHeader toggle={this.toggle}>Edit Account</MDBModalHeader>
-            <MDBModalBody>
-              <p class="d-flex justify-content-start">
-                <strong>Personal Information</strong>
-              </p>
-              <div>
-                <MDBInput
-                  id="name"
-                  name="firstName"
-                  type="text"
-                  label="First Name"
-                  value={localStorage.firstName}
-                />
-                <MDBInput
-                  id="lastName"
-                  name="lastName"
-                  type="text"
-                  label="Last Name"
-                />
-                <MDBInput id="email" name="email" type="text" label="Email" />
-                <MDBInput
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  type="tel"
-                  label="Phone Number"
-                />
-                <MDBInput
-                  id="password"
-                  name="password"
-                  type="password"
-                  label="Password"
-                  value="this is a fake password"
-                />
-              </div>
-              <p class="d-flex justify-content-start">
-                <strong>Favorites</strong>
-              </p>
-            </MDBModalBody>
-            <MDBModalFooter>
-              <div className="d-flex justify-content-center">
-                <MDBBtn>Save Changes</MDBBtn>
-              </div>
-              {/* <MDBBtn onClick={this.toggle}>Close</MDBBtn> */}
-            </MDBModalFooter>
+            <form onSubmit={this.submitHandler}>
+              <MDBModalHeader toggle={this.toggle}>Edit Account</MDBModalHeader>
+              <MDBModalBody>
+                <p class="d-flex justify-content-start">
+                  <strong>Personal Information</strong>
+                </p>
+                <div>
+                  <MDBInput
+                    id="name"
+                    name="firstName"
+                    type="text"
+                    label="First Name"
+                    value={firstName}
+                    onChange={this.changeHandler}
+                  />
+                  <MDBInput
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    label="Last Name"
+                    value={lastName}
+                    onChange={this.changeHandler}
+                  />
+                  <MDBInput
+                    id="email"
+                    name="email"
+                    type="text"
+                    label="Email"
+                    value={email}
+                    onChange={this.changeHandler}
+                  />
+                  <MDBInput
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    type="tel"
+                    label="Phone Number"
+                    value={phoneNumber}
+                    onChange={this.changeHandler}
+                  />
+                  <MDBInput
+                    id="password"
+                    name="password"
+                    type="password"
+                    label="Password"
+                    value="thisisafakepass"
+                  />
+                </div>
+                <p class="d-flex justify-content-start">
+                  <strong>Favorites</strong>
+                </p>
+              </MDBModalBody>
+              <MDBModalFooter>
+                <div className="d-flex justify-content-center">
+                  <MDBBtn type="submit">Save Changes</MDBBtn>
+                </div>
+                {/* <MDBBtn onClick={this.toggle}>Close</MDBBtn> */}
+              </MDBModalFooter>
+            </form>
           </MDBModal>
         </div>
       </MDBContainer>
@@ -171,4 +256,17 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation;
+const mapStateToProps = state => {
+  return {
+    clientInformation: state.info
+  };
+};
+
+const mapDispatchToProps = {
+  getClientInformation,
+  updateClientInformation
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Navigation)
+);

@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 
-import DateFnsUtils from '@date-io/date-fns'
-import {DateTimePicker,MuiPickersUtilsProvider} from '@material-ui/pickers' 
+import DateFnsUtils from '@date-io/date-fns';
+import { DatePicker, TimePicker, DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
-import Styled from "styled-components";
+import Styled from 'styled-components';
 import WashMap2 from './WashMap2';
-
 
 const MenuContainer = Styled.div`
     height: 8%;
@@ -27,36 +26,27 @@ const FooterContainer = Styled.div`
     background: #000000;
 `;
 
+function ScheduleWash2() {
+	const [ selectedDate, handleDateChange ] = useState(new Date());
+	const [ viewport ] = useState();
 
-
-function ScheduleWash2(){
-    const [selectedDate,handleDateChange] = useState(new Date());
-    const [viewport] = useState();
-
-
-    return(
-    <>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        {/* <MainContainer> */}
-            {/* <MenuContainer/> */}
-            
-        
-            
-
-        
-        <DateTimePicker value={selectedDate} onChange={handleDateChange}
-        />
-        
-        
-        <WashMap2/>
-        
-        {/* <FooterContainer> */}
-                {/* </FooterContainer> */}
-        {/* </MainContainer> */}
-        </MuiPickersUtilsProvider>
-    </>
-        
-    )
+	return (
+		<div>
+			<MuiPickersUtilsProvider utils={DateFnsUtils}>
+				{/* <MainContainer> */}
+				{/* <MenuContainer/> */}
+				{/* <DatePicker value={selectedDate} onChange={handleDateChange} /> */}
+				<h1>Chose a Time</h1>
+				{/* <TimePicker value={selectedDate} onChange={handleDateChange} /> */}
+				⏱{''}
+				<DateTimePicker value={selectedDate} onChange={handleDateChange} />
+				<WashMap2 />
+				{/* <FooterContainer> */}
+				{/* </FooterContainer> */}
+				{/* </MainContainer> */}
+			</MuiPickersUtilsProvider>
+		</div>
+	);
 }
 
 export default ScheduleWash2;

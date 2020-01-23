@@ -13,6 +13,7 @@ import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
+import auth from "../auth";
 
 const LoginContainer = Styled.div`
     display: flex;
@@ -166,6 +167,7 @@ class Login extends Component {
     this.props
       .loginUser(email, password)
       .then((res) => {
+<<<<<<< HEAD
         // console.log("washer", this.state);
         const userType = localStorage.getItem('userType');
         // console.log("userType", userType);
@@ -176,6 +178,24 @@ class Login extends Component {
         } else {
           return null;
         }
+=======
+        const type = localStorage.getItem("userType");
+
+        auth.login(() => {
+          if( type === "client" )
+          {
+            this.props.history.push("/clientDash")
+          } 
+          else if ( type === "washer" ) 
+          {
+            this.props.history.push("/washerDash")
+          }
+          else 
+          {
+            return null
+          }
+        })
+>>>>>>> 0239df8f858199cce2c2992b751855118e477cff
       })
       .catch(err => {
         throw new Error(err);

@@ -6,7 +6,9 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILED,
   NEW_CLIENT_ERROR,
-  NEW_CLIENT_SUCCESS
+  NEW_CLIENT_SUCCESS,
+  GET_CLIENT_INFO_SUCCESS,
+  GET_CLIENT_INFO_ERROR
 } from "../actions/actionTypes";
 
 export default function userReducer(state = initialState, action) {
@@ -53,6 +55,21 @@ export default function userReducer(state = initialState, action) {
         ...state,
         loading: false,
         error: action.payload
+      };
+    }
+    case GET_CLIENT_INFO_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        info: action.payload
+        // error: action.payload
+      };
+    }
+    case GET_CLIENT_INFO_ERROR: {
+      return {
+        ...state
+        // loading: false
+        // error: action.payload
       };
     }
 
