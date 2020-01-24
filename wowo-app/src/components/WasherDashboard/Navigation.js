@@ -9,6 +9,7 @@ import { setWorkStatus, getWashCount, getWashRating } from '../../actions/washer
 import WashMap from "./WashMap.js";
 import Styled from "styled-components";
 import Logo from "../../images/wowo-logo-word-full.svg";
+import auth from "../auth.js";
 
 const jwt = require('jsonwebtoken');
 

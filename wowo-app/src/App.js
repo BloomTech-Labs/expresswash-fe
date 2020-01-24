@@ -1,9 +1,9 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { Route, Switch } from "react-router-dom";
-import LandingPage from "./components/LandingPage/LandingPage.js";
+import LandingPage from "./components/landingpage/LandingPage.js";
 import FindWash from "./components/ClientDashboard/FindWash/FindWash.js";
-import Login from "./components/Login/Login.js";
+import Login from "./components/login/Login.js";
 import UserSignUp from "./components/UserSignup/UserSignup";
 import WasherNavigation from "./components/WasherDashboard/Navigation.js";
 import ClientDashboard from "./components/ClientDashboard/FindWash/FindWash.js";
