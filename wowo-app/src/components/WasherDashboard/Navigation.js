@@ -94,10 +94,15 @@ class Navigation extends React.Component {
     }
   }
   
-  componentDidMount(){
-    // this.tokenData(decoded);
+  async componentDidMount(){
+    const stateFromToken = await this.tokenData(decoded);
     // console.log("state payload", this.state.user);
     const { id } = this.state.user;
+    if(this.state.user.id !== undefined) {
+      console.log("the number is defined and it is", this.state.user.id);
+    } else {
+      console.log(`the number is`, this.state.user.id);
+    }
     const countWash = this.props.getWashCount(id);
     const washerRating = this.props.getWashRating(id);
 
@@ -131,18 +136,17 @@ class Navigation extends React.Component {
       })
   }
 
-  // tokenData = (decoded) => {
-  //   // set state from token information
-  //   console.log("hitting the tokenData");
-  //   console.log("decoded.payload", decoded.payload);
-  //   const { sub, workStatus, creationDate, firstName } = decoded.payload;
-  //   this.setState((prevState) => {
-  //     // let user = { ...prevState.user };
-  //     let user = { ...prevState.user, id: sub, workStatus, creationDate, firstName };
-  //     console.log("user from tokenData", user);
-  //     return { user };
-  //   });
-  // }
+  tokenData = (decoded) => {
+    // set state from token information
+    console.log("decoded.payload before adding to state", decoded.payload);
+    const { sub, workStatus, creationDate, firstName } = decoded.payload;
+    this.setState(prevState => {
+      // let user = { ...prevState.user };
+      let user = { ...prevState.user, id: sub, workStatus, creationDate, firstName };
+      return {user};
+    });
+    // console.log("user from tokenData", user);
+  }
 
   // logout function removes user data from localStorage and redirects to login
   logout = (evt) => {
@@ -179,6 +183,7 @@ class Navigation extends React.Component {
   }
 
   render() {
+    console.log("user from state", this.state.user);
     const {
             washerDashWashCountLoading,
             washerDashWashCountData,
