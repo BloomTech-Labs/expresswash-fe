@@ -6,7 +6,7 @@ import {Line, Doughnut, HorizontalBar} from 'react-chartjs-2';
 import Moment from 'react-moment';
 
 import { setWorkStatus, getWashCount, getWashRating } from '../../actions/washerDashboardActions.js';
-import WashMap from "./WashMap.js";
+import WashMap from "../ClientDashboard/FindWash/WashMap.js";
 import Styled from "styled-components";
 import Logo from "../../images/wowo-logo-word-full.svg";
 import auth from "../auth.js";
