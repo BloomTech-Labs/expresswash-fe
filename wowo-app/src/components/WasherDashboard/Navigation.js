@@ -6,7 +6,7 @@ import {Line, Doughnut, HorizontalBar} from 'react-chartjs-2';
 import Moment from 'react-moment';
 
 import { setWorkStatus, getWorkStatus, getWashCount, getWashRating } from '../../actions/washerDashboardActions.js';
-import WashMap from "../ClientDashboard/FindWash/WashMap.js";
+import WashMap from "./WashMap.js";
 import Styled from "styled-components";
 import Logo from "../../images/wowo-logo-word-full.svg";
 import auth from "../auth.js";
@@ -98,11 +98,6 @@ class Navigation extends React.Component {
     const stateFromToken = await this.tokenData(decoded);
     // console.log("state payload", this.state.user);
     const { id } = this.state.user;
-    if(this.state.user.id !== undefined) {
-      console.log("the number is defined and it is", this.state.user.id);
-    } else {
-      console.log(`the number is`, this.state.user.id);
-    }
     const getWorkStatus = this.props.getWorkStatus(id);
     const countWash = this.props.getWashCount(id);
     const washerRating = this.props.getWashRating(id);
@@ -144,7 +139,7 @@ class Navigation extends React.Component {
 
   tokenData = (decoded) => {
     // set state from token information
-    console.log("decoded.payload before adding to state", decoded.payload);
+    // console.log("decoded.payload before adding to state", decoded.payload);
     const { sub, workStatus, creationDate, firstName } = decoded.payload;
     this.setState(prevState => {
       // let user = { ...prevState.user };
@@ -189,7 +184,7 @@ class Navigation extends React.Component {
   }
 
   render() {
-    console.log("user from state", this.state.user);
+    // console.log("user from state", this.state.user);
     const {
             washerDashWashCountLoading,
             washerDashWashCountData,
@@ -197,8 +192,8 @@ class Navigation extends React.Component {
             washerDashRatingData
           } = this.props.washerDashboardReducer;
     const { user } = this.state;
-    console.log("props is", this.props);
-    console.log("washerDashWash Count Data", washerDashWashCountData.count);
+    // console.log("props is", this.props);
+    // console.log("washerDashWash Count Data", washerDashWashCountData.count);
     // labels for the rating stars
     let washRating = washerDashRatingData || 5;
     let ratingStars = [
