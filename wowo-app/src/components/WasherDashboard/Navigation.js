@@ -5,10 +5,11 @@ import { MDBCard, MDBContainer, MDBRow, MDBCol, MDBTypography, MDBRating, MDBIco
 import {Line, Doughnut, HorizontalBar} from 'react-chartjs-2';
 import Moment from 'react-moment';
 
-import { setWorkStatus, getWashCount, getWashRating } from '../../actions/washerDashboardActions.js';
+import { setWorkStatus, getWorkStatus, getWashCount, getWashRating } from '../../actions/washerDashboardActions.js';
 import WashMap from "./WashMap.js";
 import Styled from "styled-components";
 import Logo from "../../images/wowo-logo-word-full.svg";
+import auth from "../auth.js";
 
 const jwt = require('jsonwebtoken');
 
@@ -93,16 +94,22 @@ class Navigation extends React.Component {
     }
   }
   
-  componentDidMount(){
-    // this.tokenData(decoded);
+  async componentDidMount(){
+    const stateFromToken = await this.tokenData(decoded);
     // console.log("state payload", this.state.user);
     const { id } = this.state.user;
+    const getWorkStatus = this.props.getWorkStatus(id);
     const countWash = this.props.getWashCount(id);
     const washerRating = this.props.getWashRating(id);
 
-    Promise.all([countWash, washerRating])
+    Promise.all([getWorkStatus, countWash, washerRating])
       .then(res => {
         // console.log("resolved both the washer rating and wash count");
+        this.setState(prevState => {
+          let user = { ...prevState.user };
+          user.workStatus = this.props.washerDashboardReducer.washerDashWorkStatusData.workStatus;
+          return { user };
+        })
       })
       .catch(err => {
         throw new Error(err);
@@ -130,18 +137,17 @@ class Navigation extends React.Component {
       })
   }
 
-  // tokenData = (decoded) => {
-  //   // set state from token information
-  //   console.log("hitting the tokenData");
-  //   console.log("decoded.payload", decoded.payload);
-  //   const { sub, workStatus, creationDate, firstName } = decoded.payload;
-  //   this.setState((prevState) => {
-  //     // let user = { ...prevState.user };
-  //     let user = { ...prevState.user, id: sub, workStatus, creationDate, firstName };
-  //     console.log("user from tokenData", user);
-  //     return { user };
-  //   });
-  // }
+  tokenData = (decoded) => {
+    // set state from token information
+    // console.log("decoded.payload before adding to state", decoded.payload);
+    const { sub, workStatus, creationDate, firstName } = decoded.payload;
+    this.setState(prevState => {
+      // let user = { ...prevState.user };
+      let user = { ...prevState.user, id: sub, workStatus, creationDate, firstName };
+      return {user};
+    });
+    // console.log("user from tokenData", user);
+  }
 
   // logout function removes user data from localStorage and redirects to login
   logout = (evt) => {
@@ -178,6 +184,7 @@ class Navigation extends React.Component {
   }
 
   render() {
+    // console.log("user from state", this.state.user);
     const {
             washerDashWashCountLoading,
             washerDashWashCountData,
@@ -185,8 +192,8 @@ class Navigation extends React.Component {
             washerDashRatingData
           } = this.props.washerDashboardReducer;
     const { user } = this.state;
-    console.log("props is", this.props);
-    console.log("washerDashWash Count Data", washerDashWashCountData.count);
+    // console.log("props is", this.props);
+    // console.log("washerDashWash Count Data", washerDashWashCountData.count);
     // labels for the rating stars
     let washRating = washerDashRatingData || 5;
     let ratingStars = [
@@ -337,6 +344,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   setWorkStatus,
+  getWorkStatus,
   getWashCount,
   getWashRating
 }
