@@ -152,15 +152,15 @@ class Navigation extends React.Component {
   // logout function removes user data from localStorage and redirects to login
   logout = (evt) => {
     evt.preventDefault()
-
+    
     localStorage.removeItem('token');
     localStorage.removeItem('userType');
     localStorage.removeItem('firstName');
     localStorage.removeItem('lastName');
     localStorage.removeItem('id');
-    auth.logout(() => {
-      this.props.history.push('/login');
-    })
+    // auth.logout(() => {
+    //   this.props.history.push('/login');
+    // })
   }
 
   accountAge = creationDate => {
