@@ -13,7 +13,11 @@ class Payment extends Component {
       cvc: ""
     };
   }
-  render() {}
+  render(){
+    return(
+      <h1>Pay</h1>
+    )
+  }
 }
 
 export default Payment;
