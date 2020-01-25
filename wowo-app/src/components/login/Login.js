@@ -167,18 +167,6 @@ class Login extends Component {
     this.props
       .loginUser(email, password)
       .then((res) => {
-<<<<<<< HEAD
-        // console.log("washer", this.state);
-        const userType = localStorage.getItem('userType');
-        // console.log("userType", userType);
-        if(userType === 'washer') {
-          this.props.history.push("/washerDash");
-        } else if (userType === 'client') {
-          this.props.history.push("/clientDash");
-        } else {
-          return null;
-        }
-=======
         const type = localStorage.getItem("userType");
 
         auth.login(() => {
@@ -195,7 +183,6 @@ class Login extends Component {
             return null
           }
         })
->>>>>>> 0239df8f858199cce2c2992b751855118e477cff
       })
       .catch(err => {
         throw new Error(err);

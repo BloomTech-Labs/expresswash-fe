@@ -1,11 +1,51 @@
 import React, {Component} from 'react';
-import {render} from 'react-dom';
-import MapGL, {Marker, Source, Layer, NavigationControl} from 'react-map-gl';
+import Styled from "styled-components";
+import MapGL, {Marker, FlyToInterpolator, Source, Layer, NavigationControl} from 'react-map-gl';
 
 import Pin from './Pin.js';
 import UserCircle from './UserCircle.js';
+import WashForm from './WashSteps/WashForm.js';
 
 const TOKEN = 'pk.eyJ1IjoicXVhbjAwNSIsImEiOiJjazN0a2N3a2YwM3ViM2twdzhkbGphMTZzIn0.OepqB_mymhr1YLSYwNmRSg'; // Set your mapbox token here
+
+
+
+
+const FormContainer = Styled.div`
+    position: absolute;
+    height: 540px;
+    width: 350px;
+    background: #ffffff;
+    border: 1px solid grey;
+    bottom: 5%;
+    left 10%;
+    
+    @media (min-width: 1800px) { // ##Device = Desktops ##Screen = 1800px to higher resolution desktops //
+        height: 600px;
+        bottom: 12%;
+        left: 15%;
+    }
+
+    @media (max-width: 768px) {
+        width: 100%
+        bottom: 0%;
+        left 0%;
+    }
+`
+
+const UserInfoContainer = Styled.div`
+    margin-bottom: 10px;
+`
+
+const P = Styled.p`
+    font-size: 1.3rem;
+    font-weight: 500;
+`
+
+const FormInputContainer = Styled.div`
+`
+
+
 
 
 
@@ -30,7 +70,24 @@ class WashMap extends Component {
     }
 
     _updateViewport = viewport => {
-        this.setState({viewport});
+        this.setState({
+            viewport: {...this.state.viewport, ...viewport}
+        }, console.log(viewport));
+
+        if(this.props.lat !== this.state.viewport.latitude) {
+            this.setState({
+                viewport: {
+                    ...this.state.viewport,
+                    longitude: this.props.long,
+                    latitude: this.props.lat,
+                    zoom: 16.5,
+                    transitionInterpolator: new FlyToInterpolator({speed: 35, curve: 1}),
+                    transitionDuration: 'auto'
+                }
+            }, () => {
+                console.log(this.state.viewport)
+            })
+        }
     };
 
     _logDragEvent(name, event) {
@@ -48,6 +105,23 @@ class WashMap extends Component {
             longitude: event.lngLat[0],
             latitude: event.lngLat[1]
         }
+        });
+    };
+
+    _goToViewport = ( latitude, longitude) => {
+        this.setState({
+            viewport: {
+                ... this.state.viewport,
+                longitude: longitude,
+                latitude: latitude,
+                zoom: 10,
+                transitionInterpolator: new FlyToInterpolator({speed: 3}),
+                transitionDuration: 'auto'
+            },
+            marker: {
+                longitude: longitude,
+                latitude: latitude
+            }
         });
     };
 
@@ -82,57 +156,134 @@ class WashMap extends Component {
        });
     }
 
+    componentWillMount() {
+        this.setState({
+            viewport: {
+                ...this.state.viewport,
+                latitude: this.props.lat,
+                longitude: this.props.long
+            },
+            marker: {
+                latitude: this.props.lat,
+                longitude: this.props.long
+            }
+        });
+        this.props.getCurrentAddress(this.props.lat, this.props.long, TOKEN);
+    }
 
-
-    componentDidMount() {
-        if(navigator.geolocation){
-            navigator.geolocation.getCurrentPosition(position => {
-                this.setState({
-                    viewport: {
-                        ...this.state.viewport,
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
-                    },
-                    marker: {
-                        longitude: position.coords.longitude,
-                        latitude: position.coords.latitude
-                    },
-                });
-            })
-        } else {
-            alert('Please refresh and enable your location to start your wash');
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps.lat !== this.props.lat) {
+            this._goToViewport(this.props.lat, this.props.long);
+            console.log("prevProps",prevProps.lat);
+            console.log("new lat", this.props.lat);
+            console.log("new long", this.props.long);
         }
     }
 
-    
-
     render() {
         const {viewport, marker} = this.state;
+        const {step, values, searchResults, geoCoding, getUserLocation, addressOnClick, vehicleOnClick} = this.props;
 
         return (
-            <MapGL
-                {...viewport}
-                ref={'map'}
-                width="100%"
-                height="100%"
-                mapStyle="mapbox://styles/mapbox/dark-v9"
-                onViewportChange={this._updateViewport}
-                // onLoad={this.addLines}
-                mapboxApiAccessToken={TOKEN}
-            >
-                <Marker
-                    longitude={marker.longitude}
-                    latitude={marker.latitude}
-                    offsetTop={-20}
-                    offsetLeft={-10}
-                    draggable={this.state.draggable}
-                    onDragStart={this._onMarkerDragStart}
-                    onDrag={this._onMarkerDrag}
-                    onDragEnd={this._onMarkerDragEnd}
+            <>
+                <MapGL
+                    {...viewport}
+                    ref={'map'}
+                    width="100%"
+                    height="100%"
+                    mapStyle="mapbox://styles/mapbox/dark-v9"
+                    onViewportChange={this._updateViewport}
+                    // onLoad={this.addLines}
+                    mapboxApiAccessToken={TOKEN}
                 >
-                    {(this.state.draggable ? <Pin size={30} /> : <UserCircle />)}
-                </Marker>
-            </MapGL>
+                    <Marker
+                        longitude={marker.longitude}
+                        latitude={marker.latitude}
+                        offsetTop={-20}
+                        offsetLeft={-10}
+                        draggable={this.state.draggable}
+                        onDragStart={this._onMarkerDragStart}
+                        onDrag={this._onMarkerDrag}
+                        onDragEnd={this._onMarkerDragEnd}
+                    >
+                        {(this.state.draggable ? <Pin size={30} /> : <UserCircle />)}
+                    </Marker>
+                </MapGL>
+
+                <FormContainer>
+                    <UserInfoContainer>
+                            {this.props.user.profilePicture === ""
+                                ?  
+                                    <svg width="100" height="100">
+                                        <circle cx="50" cy="50" r="30" fill="#00A8C5" />
+                                        <text x="50%" y="50%" alignmentBaseline="central" textAnchor="middle" fontFamily="sans-serif" fontSize="40" fill="#fff">{this.props.user.firstName.charAt(0).toUpperCase()}</text>
+                                    </svg>
+                                :
+                                    <img src={this.props.user.profilePicture} style={{width: 60 + "%"}} alt="Profile Img" />
+                            }
+                        <P>
+                            {step === 1 ? `Welcome, ${this.props.user.firstName}` : (step === 2 ? `Choose your vehicle` : (step === 3 ? `Select a Date & Time` : (step === 4 ? `Which service would you like` : `Confirm your wash`)))}
+                        </P>
+                    </UserInfoContainer>
+                    <FormInputContainer>
+                        {/* {step === 1 ?
+                            <SelectAddress
+                                next={this.nextStep}
+                                prev={this.prevStep}
+                                onClick={this.addressOnClick}
+                                inputHandler={this.inputHandler}
+                                values={values}
+                            />
+                        :
+                            (step === 2 ?
+                                <ChooseVehicle
+                                    next={this.nextStep}
+                                    prev={this.prevStep}
+                                    onClick={this.vehicleOnClick}
+                                    inputHandler={this.inputHandler}
+                                    values={values} 
+                                />
+                            :
+                                (step === 3 ?
+                                    <ScheduleWash 
+                                        next={this.nextStep}
+                                        prev={this.prevStep}
+                                        inputHandler={this.inputHandler}
+                                        values={values}
+                                    />
+                                :
+                                    (step === 4 ?
+                                        <SelectService
+                                            next={this.nextStep}
+                                            prev={this.prevStep}
+                                            onClick={this.serviceOnClick}
+                                            inputHandler={this.inputHandler}
+                                            values={values}
+                                        />
+                                    :
+                                        <ConfirmWash />
+                                    )
+                                )
+                            )
+                        } */}
+                        <WashForm 
+                            next={this.props.next}
+                            prev={this.props.prev}
+                            step={step}
+                            onClick={this.props.addressOnClick}
+                            inputHandler={this.props.inputHandler}
+                            values={values}
+                            viewport={viewport}
+                            mapBoxApiToken={TOKEN}
+                            searchResults={searchResults}
+                            geoCoding={geoCoding}
+                            getUserLocation={getUserLocation}
+                            addressOnClick={addressOnClick}
+                            vehicleOnClick={vehicleOnClick}
+                        />
+                    </FormInputContainer>
+                </FormContainer>
+            </>
         );
     }
 }
