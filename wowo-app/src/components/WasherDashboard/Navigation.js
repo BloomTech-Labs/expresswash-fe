@@ -5,7 +5,7 @@ import { MDBCard, MDBContainer, MDBRow, MDBCol, MDBTypography, MDBRating, MDBIco
 import {Line, Doughnut, HorizontalBar} from 'react-chartjs-2';
 import Moment from 'react-moment';
 
-import { setWorkStatus, getWashCount, getWashRating } from '../../actions/washerDashboardActions.js';
+import { setWorkStatus, getWorkStatus, getWashCount, getWashRating } from '../../actions/washerDashboardActions.js';
 import WashMap from "../ClientDashboard/FindWash/WashMap.js";
 import Styled from "styled-components";
 import Logo from "../../images/wowo-logo-word-full.svg";
@@ -103,12 +103,18 @@ class Navigation extends React.Component {
     } else {
       console.log(`the number is`, this.state.user.id);
     }
+    const getWorkStatus = this.props.getWorkStatus(id);
     const countWash = this.props.getWashCount(id);
     const washerRating = this.props.getWashRating(id);
 
-    Promise.all([countWash, washerRating])
+    Promise.all([getWorkStatus, countWash, washerRating])
       .then(res => {
         // console.log("resolved both the washer rating and wash count");
+        this.setState(prevState => {
+          let user = { ...prevState.user };
+          user.workStatus = this.props.washerDashboardReducer.washerDashWorkStatusData.workStatus;
+          return { user };
+        })
       })
       .catch(err => {
         throw new Error(err);
@@ -343,6 +349,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   setWorkStatus,
+  getWorkStatus,
   getWashCount,
   getWashRating
 }

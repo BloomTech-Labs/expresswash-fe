@@ -3,6 +3,9 @@ import {
     WASHER_SET_WORK_STATUS_START,
     WASHER_SET_WORK_STATUS_SUCCESS,
     WASHER_SET_WORK_STATUS_FAILED,
+    WASHER_GET_WORK_STATUS_START,
+    WASHER_GET_WORK_STATUS_SUCCESS,
+    WASHER_GET_WORK_STATUS_FAILED,
     WASHER_GET_WASH_COUNT_START,
     WASHER_GET_WASH_COUNT_SUCCESS,
     WASHER_GET_WASH_COUNT_FAILED,
@@ -26,7 +29,7 @@ const initialState = {
   
   export default function(state = initialState, action) {
     switch(action.type) {
-    // Work Status
+    // Set Work Status
       case WASHER_SET_WORK_STATUS_START: {
         return {
           ...state,
@@ -41,6 +44,27 @@ const initialState = {
         }
       }
       case WASHER_SET_WORK_STATUS_FAILED: {
+        return {
+          ...state,
+          washerDashWorkStatusLoading: false,
+          washerDashWorkStatusError: action,
+        }
+      }
+      // Set Work Status
+      case WASHER_GET_WORK_STATUS_START: {
+        return {
+          ...state,
+          washerDashWorkStatusLoading: true,
+        }
+      }
+      case WASHER_GET_WORK_STATUS_SUCCESS: {
+        return {
+          ...state,
+          washerDashWorkStatusLoading: false,
+          washerDashWorkStatusData: action.payload.data[0],
+        }
+      }
+      case WASHER_GET_WORK_STATUS_FAILED: {
         return {
           ...state,
           washerDashWorkStatusLoading: false,
