@@ -164,6 +164,7 @@ export const signOut = () => {
 		dispatch({
 			type: AUTH_SIGN_OUT,
 			payload: ''
-		});
+        });
+        
 	};
 };

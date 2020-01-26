@@ -1,22 +1,37 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-import { loginUser } from "../../actions/actionTypes.js";
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 
+// redux
+import { loginUser } from "../../actions/actionTypes.js";
+
+
+import { oauthFacebook, oauthGithub } from '../../actions/index';
+
+import { compose } from 'redux';
+import * as actions from '../../actions/index';
+
+
+// styling-related - imgs - design
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 import Styled from "styled-components";
 import carImg from "../../images/undraw_city_driver_jh2h.svg";
 import LoginLogo from "../../images/wowo-logo-word-full.svg";
-
-import FacebookLogin from 'react-facebook-login';
-import GitHubLogin from 'react-github-login';
-
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
+
+// 
+import FacebookLogin from 'react-facebook-login';
+import GitHubLogin from 'react-github-login';
+
+
+
+
+
+
 import auth from "../auth";
 
 const LoginContainer = Styled.div`
@@ -136,8 +151,12 @@ const SocialLogin = Styled.p`
 `;
 
 class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.onSubmit = this.onSubmit.bind(this);
+		// this.responseGoogle = this.responseGoogle.bind(this);
+		this.responseFacebook = this.responseFacebook.bind(this);
+		this.responseGithub = this.responseGithub.bind(this);
     this.state = {
       email: "",
       password: "",
@@ -192,6 +211,19 @@ class Login extends Component {
         throw new Error(err);
       });
   };
+
+
+  async onSubmit(formData) {
+		console.log('onSubmit got called');
+		console.log('formData', formData);
+		// we need to call action creator
+		await this.props.signUp(formData);
+
+		if (!this.props.errorMessage) {
+			this.props.history.push('/dashboard');
+		}
+	}
+
   async responseFacebook(res) {
 		console.log('responseFacebook=>', res);
 		await this.props.oauthFacebook(res.accessToken);
@@ -211,7 +243,7 @@ class Login extends Component {
 
 
   render() {
-    console.log('*le Propsss*=>',this.props)
+    console.log('*Login.js this.props=>',this.props)
 
     const { handleSubmit } = this.props;
 
@@ -319,11 +351,14 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  errorMessage: state.auth.errorMessage
 });
 
 const mapDispatchToProps = {
-  loginUser
+  loginUser,
+  oauthFacebook,
+  oauthGithub
 };
 
 export default withRouter(
