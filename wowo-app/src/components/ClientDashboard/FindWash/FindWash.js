@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Styled from "styled-components";
+import moment from 'moment';
 
 import WashMap from "./WashMap";
 import WowoWordLogo from "../../../images/WowoWordLogo.js";
@@ -57,18 +58,19 @@ class FindWash extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentAddress: "",
+            currentAddress: null,
+            currentWeek: null,
             selectedAddress: [],
             searchResults: [],
             lat: null,
             long: null,
             vehicle: {
-                make: "",
-                model: "",
+                make: null,
+                model: null,
             },
-            date:"",
-            time: "",
-            service: "",
+            date:null,
+            time: null,
+            service: null,
             step: 1,
             sideDrawerOpen: false,
             coords: false,
@@ -89,6 +91,42 @@ class FindWash extends Component {
         this.setState({
             step: step - 1
         });
+    }
+
+    // Get the week
+    getCurrentWeek = () => {
+        let week = []
+        let today = moment().format('YYYY-MM-DD')
+        let time = moment().format('H');
+        console.log(today)
+        console.log(time)
+
+        if(time > 1 && time < 18){
+            console.log('today');
+            for (let i = 0; i <= 6; i++) {
+                let first = moment(today).add(i, 'd').format('YYYY-MM-DD')
+                week.push(first);
+            }
+
+            console.log(week)
+
+            this.setState({
+                currentWeek: week
+            })
+
+        } else {
+            console.log('next day');
+            for (let i = 1; i <= 7; i++) {
+                let first = moment(today).add(i, 'd').format('YYYY-MM-DD')
+                week.push(first);
+            }
+
+            console.log(week)
+
+            this.setState({
+                currentWeek: week
+            })
+        }
     }
 
     // original user location
@@ -175,6 +213,22 @@ class FindWash extends Component {
       })
     };
 
+    // Sets the clients wash date
+    washDateOnClick = date => {
+        this.setState({
+            ...this.state,
+            date: date
+        })
+    }
+
+    // Sets the clients Wash time
+    washTimeOnClick = time => {
+        this.setState({
+            ...this.state,
+            time: time
+        })
+    };
+
     serviceOnClick = event => {
         event.preventDefault();
     }
@@ -206,6 +260,7 @@ class FindWash extends Component {
     }
 
     componentWillMount() {
+        this.getCurrentWeek();
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition(position => {
                 this.setState({
@@ -230,7 +285,23 @@ class FindWash extends Component {
             return null;
         } else {
             const { step } = this.state;
-            const { currentAddress, address, selectedAddress, lat, long, searchResults, vehicle, date, time, service } = this.state;
+
+            const { 
+                currentWeek, 
+                currentAddress, 
+                address, 
+                selectedAddress, 
+                lat, 
+                long, 
+                searchResults, 
+                vehicle, 
+                date, 
+                time, 
+                service, 
+                washDateOnClick,
+                washTimeOnClick,
+            } = this.state;
+
             const  values = { currentAddress, address, selectedAddress, lat, long, vehicle, date, time, service }
 
             return(
@@ -263,6 +334,9 @@ class FindWash extends Component {
                             geoCoding={this.geoCoding}
                             addressOnClick={this.addressOnClick}
                             vehicleOnClick={this.vehicleOnClick}
+                            currentWeek={currentWeek}
+                            washDateOnClick={this.washDateOnClick}
+                            washTimeOnClick={this.washTimeOnClick}
                         />
                     </MapContainer>
                 </MainContainer>

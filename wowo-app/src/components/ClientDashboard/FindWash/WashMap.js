@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import Styled from "styled-components";
 import MapGL, {Marker, FlyToInterpolator, Source, Layer, NavigationControl} from 'react-map-gl';
+import SimpleBar from "simplebar-react";
 
 import Pin from './Pin.js';
 import UserCircle from './UserCircle.js';
 import WashForm from './WashSteps/WashForm.js';
+import "simplebar/dist/simplebar.min.css";
 
 const TOKEN = 'pk.eyJ1IjoicXVhbjAwNSIsImEiOiJjazN0a2N3a2YwM3ViM2twdzhkbGphMTZzIn0.OepqB_mymhr1YLSYwNmRSg'; // Set your mapbox token here
 
@@ -12,25 +14,7 @@ const TOKEN = 'pk.eyJ1IjoicXVhbjAwNSIsImEiOiJjazN0a2N3a2YwM3ViM2twdzhkbGphMTZzIn
 
 
 const FormContainer = Styled.div`
-    position: absolute;
-    height: 540px;
-    width: 350px;
-    background: #ffffff;
-    border: 1px solid grey;
-    bottom: 5%;
-    left 10%;
     
-    @media (min-width: 1800px) { // ##Device = Desktops ##Screen = 1800px to higher resolution desktops //
-        height: 600px;
-        bottom: 12%;
-        left: 15%;
-    }
-
-    @media (max-width: 768px) {
-        width: 100%
-        bottom: 0%;
-        left 0%;
-    }
 `
 
 const UserInfoContainer = Styled.div`
@@ -182,7 +166,18 @@ class WashMap extends Component {
 
     render() {
         const {viewport, marker} = this.state;
-        const {step, values, searchResults, geoCoding, getUserLocation, addressOnClick, vehicleOnClick} = this.props;
+        const {
+            currentWeek, 
+            step, 
+            values, 
+            searchResults, 
+            geoCoding, 
+            getUserLocation, 
+            addressOnClick, 
+            vehicleOnClick,
+            washDateOnClick,
+            washTimeOnClick,
+        } = this.props;
 
         return (
             <>
@@ -210,7 +205,7 @@ class WashMap extends Component {
                     </Marker>
                 </MapGL>
 
-                <FormContainer>
+                <SimpleBar className={step === 3 || (step === 4) ? "form-container" : "form-container overflow-hidden"} scrollableNodeProps={{ ref: this.scrollableNodeRef }}>
                     <UserInfoContainer>
                             {this.props.user.profilePicture === ""
                                 ?  
@@ -222,7 +217,7 @@ class WashMap extends Component {
                                     <img src={this.props.user.profilePicture} style={{width: 60 + "%"}} alt="Profile Img" />
                             }
                         <P>
-                            {step === 1 ? `Welcome, ${this.props.user.firstName}` : (step === 2 ? `Choose your vehicle` : (step === 3 ? `Select a Date & Time` : (step === 4 ? `Which service would you like` : `Confirm your wash`)))}
+                            {step === 1 ? `Welcome, ${this.props.user.firstName}` : (step === 2 ? `Choose your vehicle` : (step === 3 ? `Select a Date` : (step === 4 ? ` Select a Time`: (step === 5 ? `Which service would you like?` : `Confirm your wash`))))}
                         </P>
                     </UserInfoContainer>
                     <FormInputContainer>
@@ -280,9 +275,12 @@ class WashMap extends Component {
                             getUserLocation={getUserLocation}
                             addressOnClick={addressOnClick}
                             vehicleOnClick={vehicleOnClick}
+                            currentWeek={currentWeek}
+                            washDateOnClick={washDateOnClick}
+                            washTimeOnClick={washTimeOnClick}
                         />
                     </FormInputContainer>
-                </FormContainer>
+                </SimpleBar>
             </>
         );
     }

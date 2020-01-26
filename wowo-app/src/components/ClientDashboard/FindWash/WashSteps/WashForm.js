@@ -6,7 +6,8 @@ import {withRouter} from "react-router-dom";
 
 import SelectAddress from "./SelectAddress.js";
 import ChooseVehicle from "./ChooseVehicle.js";
-import ScheduleWash from "./ScheduleWash.js";
+import SelectDate from "./SelectDate.js";
+import SelectTime from "./SelectTime.js";
 // import SelectService from "./WashSteps/SelectService.js";
 // import ConfirmWash from "./WashSteps/ConfirmWash.js";
 
@@ -54,9 +55,10 @@ class WashForm extends React.Component {
 
     render() {
         const {
+            currentWeek,
             step, 
             next, 
-            prev, 
+            prev,
             inputHandler, 
             values,
             mapBoxApiToken, 
@@ -65,7 +67,9 @@ class WashForm extends React.Component {
             geoCoding, 
             getUserLocation, 
             addressOnClick,
-            vehicleOnClick
+            vehicleOnClick,
+            washDateOnClick,
+            washTimeOnClick,
         } = this.props;
 
         switch(step) {
@@ -94,23 +98,20 @@ class WashForm extends React.Component {
                 )
             case 3:
                 return(
-                    <ScheduleWash 
-                        // next={nextStep}
-                        // prev={prevStep}
-                        inputHandler={this.inputHandler}
-                        values={values}
+                    <SelectDate 
+                        next={next}
+                        prev={prev}
+                        currentWeek={currentWeek}
+                        washDateOnClick={washDateOnClick}
                     />
                 )
             case 4:
                 return(
-                    // <SelectService
-                    //     next={nextStep}
-                    //     prev={prevStep}
-                    //     onClick={this.serviceOnClick}
-                    //     inputHandler={this.inputHandler}
-                    //     values={values}
-                    // />
-                    <h1>step 4</h1>
+                    <SelectTime
+                        next={next}
+                        prev={prev}
+                        washTimeOnClick={washTimeOnClick}
+                    />
                 )
             case 5:
                 return(

@@ -68,7 +68,7 @@ const VehicleModel = Styled.p`
 
 const ButtonContainer = Styled.div`
     position: absolute;
-    bottom: 3%;
+    bottom: 0%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
