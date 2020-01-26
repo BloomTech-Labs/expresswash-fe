@@ -13,7 +13,6 @@ export default class LandingPage extends React.Component {
 		const token = localStorage.getItem("token");
 		if(token) {
 			const type = localStorage.getItem("userType");
-
 			auth.login(() => {
 			  if( type === "client" )
 			  {
