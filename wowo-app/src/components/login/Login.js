@@ -8,6 +8,10 @@ import Styled from "styled-components";
 import carImg from "../../images/undraw_city_driver_jh2h.svg";
 import LoginLogo from "../../images/wowo-logo-word-full.svg";
 
+import FacebookLogin from 'react-facebook-login';
+import GitHubLogin from 'react-github-login';
+
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -188,8 +192,29 @@ class Login extends Component {
         throw new Error(err);
       });
   };
+  async responseFacebook(res) {
+		console.log('responseFacebook=>', res);
+		await this.props.oauthFacebook(res.accessToken);
+		if (!this.props.errorMessage) {
+			this.props.history.push('/dashboard');
+		}
+  }
+  
+  async responseGithub(res) {
+    console.log('responseGITHUB=>', res);
+    await this.props.oauthGithub(res.accessToken);
+    if(!this.props.errorMessage){
+      this.props.history.push('/testdashboard')
+    }
+  }
+
+
 
   render() {
+    console.log('*le Propsss*=>',this.props)
+
+    const { handleSubmit } = this.props;
+
     return (
       <LoginContainer>
         <LeftContainer>
@@ -251,15 +276,32 @@ class Login extends Component {
 
             <MDBRow center>
               <Link to="/facebookAuth">
-                <SocialButton>
+                <FacebookLogin
+                    appId="457734818239475"
+                    autoLoad={false}
+                    textButton="Facebook "
+                    fields="name,email,picture"
+                    callback={this.responseFacebook}
+                    cssClass="btn btn-outline-primary"
+                  />
+                {/* <SocialButton>
                   <FontAwesomeIcon icon={faFacebookF} />
-                </SocialButton>
+                  
+                </SocialButton> */}
               </Link>
 
-              <Link to="/googleAuth">
-                <SocialButton>
+              <Link to="/githubAuth">
+                <GitHubLogin
+                  clientId="5ca20a803c37ee00c735"
+                  buttonText="Github"
+                  redirectUri="http://localhost:2626/users/oauth/github"
+                  onSuccess={this.responseGithub}
+                  onFailure={this.responseGithub}
+                  className="btn btn-outline-danger"
+                />
+                {/* <SocialButton>
                   <FontAwesomeIcon icon={faGoogle} />
-                </SocialButton>
+                </SocialButton> */}
               </Link>
             </MDBRow>
 

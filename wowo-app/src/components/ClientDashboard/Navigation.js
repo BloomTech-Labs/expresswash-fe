@@ -22,7 +22,7 @@ import {
   MDBModalFooter,
   MDBInput
 } from "mdbreact";
-import logo from '../../images/wowo-logo-full.JPG';
+import logo from '../../images/wowo-logo-full.jpg';
 
 class Navigation extends Component {
   constructor() {

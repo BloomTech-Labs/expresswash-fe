@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import Styled from "styled-components";
 import MapGL, {Marker, FlyToInterpolator, Source, Layer, NavigationControl} from 'react-map-gl';
-import SimpleBar from "simplebar-react";
+import SimpleBarReact from "simplebar-react";
+// import 'simplebar/dist/simplebar.min.css';
 
 import Pin from './Pin.js';
 import UserCircle from './UserCircle.js';
 import WashForm from './WashSteps/WashForm.js';
-import "simplebar/dist/simplebar.min.css";
+// import "simplebar/dist/simplebar.min.css";
 
 const TOKEN = 'pk.eyJ1IjoicXVhbjAwNSIsImEiOiJjazN0a2N3a2YwM3ViM2twdzhkbGphMTZzIn0.OepqB_mymhr1YLSYwNmRSg'; // Set your mapbox token here
 
@@ -205,7 +206,7 @@ class WashMap extends Component {
                     </Marker>
                 </MapGL>
 
-                <SimpleBar className={step === 3 || (step === 4) ? "form-container" : "form-container overflow-hidden"} scrollableNodeProps={{ ref: this.scrollableNodeRef }}>
+                <SimpleBarReact className={step === 3 || (step === 4) ? "form-container" : "form-container overflow-hidden"} scrollableNodeProps={{ ref: this.scrollableNodeRef }}>
                     <UserInfoContainer>
                             {this.props.user.profilePicture === ""
                                 ?  
@@ -280,7 +281,7 @@ class WashMap extends Component {
                             washTimeOnClick={washTimeOnClick}
                         />
                     </FormInputContainer>
-                </SimpleBar>
+                </SimpleBarReact>
             </>
         );
     }
