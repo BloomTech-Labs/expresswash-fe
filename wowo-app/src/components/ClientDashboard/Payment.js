@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+// import CardSection from "../PaymentForm/CardSection.js";
+// // import axios from "axios";
+// // import StripeCheckout from "react-stripe-checkout";
+
+// // import { CardForm } from "react-payment";
+
 import {
   MDBCard,
   MDBContainer,
@@ -14,6 +20,16 @@ import {
   MDBModalBody,
   MDBIcon
 } from "mdbreact";
+// import {
+//   CardNumberElement,
+//   CardExpiryElement,
+//   CardCVCElement,
+//   injectStripe,
+//   StripeProvider,
+//   Elements
+// } from "react-stripe-elements";
+
+// const key = "pk_test_mQhojg0R35ocFaipB5FGHUu200nPRkYT5F";
 
 class Payment extends Component {
   constructor() {
@@ -24,9 +40,11 @@ class Payment extends Component {
       expMonth: "",
       expYear: "",
       cvc: "",
-      modal: false
+      modal: false,
+      errorMessage: ""
     };
   }
+
   toggle = () => {
     this.setState({
       modal: !this.state.modal
@@ -46,6 +64,10 @@ class Payment extends Component {
     const { cardNumber, cardName, expMonth, expYear, cvc } = this.state;
     return (
       <MDBContainer>
+        {/* <CardSection /> */}
+        {/* <form>
+          <CardNumberElement />
+        </form> */}
         <MDBCard>
           <MDBCardTitle>
             <Link to="/clientDash/navigation">
@@ -68,10 +90,7 @@ class Payment extends Component {
 
             <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
               <form onSubmit={this.submitHandler}>
-                <MDBModalHeader
-                  style={{ width: "100%" }}
-                  // class="d-flex justify-content-between"
-                >
+                <MDBModalHeader style={{ width: "100%" }}>
                   Add Payment
                   <MDBIcon
                     icon="times"

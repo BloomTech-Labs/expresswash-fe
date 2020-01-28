@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import Axios from "axios";
+import VehicleList from "./VehicleList.js";
 
 import {
   MDBContainer,
@@ -12,6 +15,7 @@ import {
   MDBInput
 } from "mdbreact";
 import { MDBIcon } from "mdbreact";
+import { getClientCars } from "../../../actions/actionTypes.js";
 
 class Vehicles extends Component {
   constructor() {
@@ -20,8 +24,21 @@ class Vehicles extends Component {
       modal: false,
       vehicleMake: "",
       vehicleModel: "",
-      vehicleColor: ""
+      vehicleColor: "",
+      vehicles: [{ Make: "Toyota" }, { Make: "Prius" }, { Make: "Ram" }]
     };
+  }
+  componentDidMount() {
+    const { id } = localStorage;
+    Axios.post("https://pt6-wowo.herokuapp.com/carsPG/mycars", id)
+      .then(res => {
+        this.setState({
+          vehicles: res.data
+        });
+      })
+      .catch(err => {
+        console.log("this is err on get client cars", err);
+      });
   }
   toggle = () => {
     this.setState({
@@ -43,18 +60,19 @@ class Vehicles extends Component {
       <MDBContainer style={{ border: "red" }}>
         <MDBCard>
           <MDBModalHeader>
-            <div class="justify-content-center">
+            <div className="justify-content-center">
               <div>
                 <p>Manage Vehicles</p>
               </div>
             </div>
           </MDBModalHeader>
           <div
-            class="d-flex justify-content-start"
+            className="d-flex justify-content-start"
             style={{ paddingLeft: "3%" }}
           >
             <strong>Vehicles:</strong>
           </div>
+          <VehicleList vehicles={this.state.vehicles} />
 
           <MDBModalFooter color="black-text">
             <MDBContainer>
@@ -106,4 +124,15 @@ class Vehicles extends Component {
   }
 }
 
-export default Vehicles;
+const mapStateToProps = state => {
+  return {
+    vehciles: state.payload
+  };
+};
+
+const mapDispatchToProps = {
+  getClientCars
+};
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Vehicles)
+);

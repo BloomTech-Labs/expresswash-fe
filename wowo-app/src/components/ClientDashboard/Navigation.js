@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { Link, withRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import Axios from "axios";
-import ClientVehicles from "./Vehicles.js";
+import ClientVehicles from "./Vehicles/Vehicles.js";
 
 import {
   getClientInformation,
-  updateClientInformation
+  updateClientInformation,
+  getClientRating
 } from "../../actions/actionTypes.js";
 
 import StarRatings from "react-star-ratings";
@@ -31,7 +32,7 @@ class Navigation extends Component {
       modal: false,
       date: "",
       time: new Date().toLocaleString(),
-      rating: 3.65,
+      rating: 0,
       email: "",
       firstName: "",
       lastName: "",
@@ -54,12 +55,24 @@ class Navigation extends Component {
       .catch(err => {
         console.log("this is err on component did mount", err);
       });
+    this.props
+      .getClientRating({ id })
+      .then(res => {
+        console.log("this is res on CDM", res);
+        console.log("this is id on the component did mount", id);
+        this.setState({
+          rating: res.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
 
     this.getDate();
   }
   toggle = () => {
     const { id } = localStorage;
-    Axios.get(`https://pt6-wowo.herokuapp.com/users/${id}`)
+    Axios.get(`https://pt6-wowo.herokuapp.com/users/`)
       .then(res => {
         this.setState({
           email: res.data.email,
@@ -264,7 +277,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   getClientInformation,
-  updateClientInformation
+  updateClientInformation,
+  getClientRating
 };
 
 export default withRouter(

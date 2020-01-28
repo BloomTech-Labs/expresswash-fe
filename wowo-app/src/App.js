@@ -12,7 +12,7 @@ import ScheduleWash from "./components/ClientDashboard/FindWash/ScheduleWash";
 import ScheduleWash2 from "./components/ClientDashboard/FindWash/ScheduleWash2";
 import ClientNavigation from "./components/ClientDashboard/Navigation.js";
 
-import ClientVehicles from "./components/ClientDashboard/Vehicles";
+import ClientVehicles from "./components/ClientDashboard/Vehicles/Vehicles.js";
 
 import ClientPayment from "./components/ClientDashboard/Payment.js";
 import ClientWashes from "./components/ClientDashboard/Washes.js";
