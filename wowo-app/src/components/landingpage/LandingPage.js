@@ -10,10 +10,10 @@ import auth from '../auth'
 
 
 export default class LandingPage extends React.Component {
-  componentDidMount() {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const type = localStorage.getItem("userType");
+//   componentDidMount() {
+//     const token = localStorage.getItem("token");
+//     if (token) {
+//       const type = localStorage.getItem("userType");
 
 
 	componentDidMount() {
