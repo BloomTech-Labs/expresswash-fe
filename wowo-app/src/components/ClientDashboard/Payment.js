@@ -45,6 +45,7 @@ class Payment extends Component {
     };
   }
 
+
   toggle = () => {
     this.setState({
       modal: !this.state.modal
@@ -159,6 +160,7 @@ class Payment extends Component {
         </MDBCard>
       </MDBContainer>
     );
+
   }
 }
 

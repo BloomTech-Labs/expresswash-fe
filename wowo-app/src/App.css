@@ -1,3 +1,73 @@
 .App {
   text-align: center;
 }
+
+.hidden {
+  display: none;
+  opacity: 0;
+}
+
+.inactive-button {
+  background: transparent;
+  pointer-events: none;
+}
+
+.form-container {
+  position: absolute;
+  height: 540px;
+  width: 350px;
+  background: #ffffff;
+  border: 1px solid grey;
+  bottom: 5%;
+  left: 10%;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+/* // ##Device = Desktops ##Screen = 1800px to higher resolution desktops // */
+
+@media (min-width: 1800px) { 
+  .form-container {
+    height: 600px;
+    bottom: 12%;
+    left: 15%;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    width: 100%;
+    bottom: 0%;
+    left: 0%;
+  }
+}
+
+.active-date-box {
+  width: 90px;
+  height: 90px;
+  background: #00A8C5;
+  border: 2px solid #00A8C5;
+  color: #ffffff;
+}
+
+.active-day-title {
+  color: #ffffff;
+}
+
+.active-date-title {
+  color: #ffffff;
+}
+
+.active-time-box {
+  width: 110px;
+  height: 50px;
+  background: #00A8C5;
+  border: 2px solid #00A8C5;
+  color: #ffffff;
+}
+
+.active-time-title {
+  color: #ffffff;
+}

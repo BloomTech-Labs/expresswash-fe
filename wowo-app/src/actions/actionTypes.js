@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// User Actions
+// User Actions Types
 export const GET_USER = "GET_USER";
 export const GET_USERS = "GET_USERS";
 export const GET_CLIENT_INFO_SUCCESS = "GET_CLIENT_INFO_SUCCESS";
@@ -20,10 +20,24 @@ export const LOGGING_IN = "LOGGING_IN";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILED = "LOGIN_FAILED";
 
-// User signup actions
+// User signup action types
 export const LOADING = "LOADING";
 export const NEW_CLIENT_SUCCESS = "NEW_CLIENT_SUCCESS";
 export const NEW_CLIENT_ERROR = "NEW_CLIENT_ERROR";
+
+// Washer Dashboard action types
+export const WASHER_SET_WORK_STATUS_START = "WASHER_SET_WORK_STATUS_START";
+export const WASHER_SET_WORK_STATUS_SUCCESS = "WASHER_SET_WORK_STATUS_SUCCESS";
+export const WASHER_SET_WORK_STATUS_FAILED = "WASHER_SET_WORK_STATUS_FAILED";
+export const WASHER_GET_WORK_STATUS_START = "WASHER_GET_WORK_STATUS_START";
+export const WASHER_GET_WORK_STATUS_SUCCESS = "WASHER_GET_WORK_STATUS_SUCCESS";
+export const WASHER_GET_WORK_STATUS_FAILED = "WASHER_GET_WORK_STATUS_FAILED";
+export const WASHER_GET_WASH_COUNT_START = "WASHER_GET_WASH_COUNT_START";
+export const WASHER_GET_WASH_COUNT_SUCCESS = "WASHER_GET_WASH_COUNT_SUCCESS";
+export const WASHER_GET_WASH_COUNT_FAILED = "WASHER_GET_WASH_COUNT_FAILED";
+export const WASHER_GET_RATING_START = "WASHER_GET_RATING_START";
+export const WASHER_GET_RATING_SUCCESS = "WASHER_GET_RATING_SUCCESS";
+export const WASHER_GET_RATING_FAILED = "WASHER_GET_RATING_FAILED";
 
 export function loginUser(email, password) {
   return dispatch => {

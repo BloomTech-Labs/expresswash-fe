@@ -113,6 +113,10 @@ const SocialButton = Styled.div`
 const FirstTime = Styled.div`
     margin: 15px auto 0 auto;
     text-align: center;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
 `;
 
 const Signup = Styled.div`
@@ -260,7 +264,7 @@ class Login extends Component {
             </MDBRow>
 
             <FirstTime>
-              Here For the first time?{" "}
+              Here For the first time?
               <Link to="/user-register">
                 <Signup>Sign Up</Signup>
               </Link>
