@@ -1,38 +1,30 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 
 // redux
-import { loginUser } from "../../actions/actionTypes.js";
-
-
+import { loginUser } from '../../actions/actionTypes.js';
 import { oauthFacebook, oauthGithub } from '../../actions/index';
-
-import { compose } from 'redux';
 import * as actions from '../../actions/index';
 
+import { compose } from 'redux';
 
 // styling-related - imgs - design
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
-import Styled from "styled-components";
-import carImg from "../../images/undraw_city_driver_jh2h.svg";
-import LoginLogo from "../../images/wowo-logo-word-full.svg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
-import "@fortawesome/fontawesome-free/css/all.min.css";
-import "bootstrap-css-only/css/bootstrap.min.css";
-import "mdbreact/dist/css/mdb.css";
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
+import Styled from 'styled-components';
+import carImg from '../../images/undraw_city_driver_jh2h.svg';
+import LoginLogo from '../../images/wowo-logo-word-full.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 
-// 
+//
 import FacebookLogin from 'react-facebook-login';
 import GitHubLogin from 'react-github-login';
 
-
-
-
-
-
-import auth from "../auth";
+import auth from '../auth';
 
 const LoginContainer = Styled.div`
     display: flex;
@@ -151,69 +143,63 @@ const SocialLogin = Styled.p`
 `;
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.onSubmit = this.onSubmit.bind(this);
+	constructor(props) {
+		super(props);
+		this.onSubmit = this.onSubmit.bind(this);
 		// this.responseGoogle = this.responseGoogle.bind(this);
 		this.responseFacebook = this.responseFacebook.bind(this);
 		this.responseGithub = this.responseGithub.bind(this);
-    this.state = {
-      email: "",
-      password: "",
-      show: false,
-      user: null,
-    };
-  }
+		this.state = {
+			email: '',
+			password: '',
+			show: false,
+			user: null
+		};
+	}
 
-  inputHandler = event => {
-    event.preventDefault();
+	inputHandler = (event) => {
+		event.preventDefault();
 
-    this.setState({
-      ...this.state,
-      [event.target.name]: event.target.value
-    });
-  };
+		this.setState({
+			...this.state,
+			[event.target.name]: event.target.value
+		});
+	};
 
-  showHandler = event => {
-    event.preventDefault();
-    if (this.state.show === false) {
-      this.setState({ show: true });
-    } else {
-      this.setState({ show: false });
-    }
-  };
+	showHandler = (event) => {
+		event.preventDefault();
+		if (this.state.show === false) {
+			this.setState({ show: true });
+		} else {
+			this.setState({ show: false });
+		}
+	};
 
-  handleSubmit = event => {
-    event.preventDefault();
+	handleSubmit = (event) => {
+		event.preventDefault();
 
-    const { email, password } = this.state;
-    this.props
-      .loginUser(email, password)
-      .then((res) => {
-        const type = localStorage.getItem("userType");
+		const { email, password } = this.state;
+		this.props
+			.loginUser(email, password)
+			.then((res) => {
+				const type = localStorage.getItem('userType');
 
-        auth.login(() => {
-          if( type === "client" )
-          {
-            this.props.history.push("/clientDash")
-          } 
-          else if ( type === "washer" ) 
-          {
-            this.props.history.push("/washerDash")
-          }
-          else 
-          {
-            return null
-          }
-        })
-      })
-      .catch(err => {
-        throw new Error(err);
-      });
-  };
+				auth.login(() => {
+					if (type === 'client') {
+						this.props.history.push('/clientDash');
+					} else if (type === 'washer') {
+						this.props.history.push('/washerDash');
+					} else {
+						return null;
+					}
+				});
+			})
+			.catch((err) => {
+				throw new Error(err);
+			});
+	};
 
-
-  async onSubmit(formData) {
+	async onSubmit(formData) {
 		console.log('onSubmit got called');
 		console.log('formData', formData);
 		// we need to call action creator
@@ -224,146 +210,139 @@ class Login extends Component {
 		}
 	}
 
-  async responseFacebook(res) {
+	async responseFacebook(res) {
 		console.log('responseFacebook=>', res);
 		await this.props.oauthFacebook(res.accessToken);
 		if (!this.props.errorMessage) {
 			this.props.history.push('/dashboard');
 		}
-  }
-  
-  async responseGithub(res) {
-    console.log('responseGITHUB=>', res);
-    await this.props.oauthGithub(res.accessToken);
-    if(!this.props.errorMessage){
-      this.props.history.push('/testdashboard')
-    }
-  }
+	}
 
+	async responseGithub(res) {
+		console.log('responseGITHUB=>', res);
+		await this.props.oauthGithub(res.accessToken);
+		if (!this.props.errorMessage) {
+			this.props.history.push('/testdashboard');
+		}
+	}
 
+	render() {
+		console.log('*Login.js this.props=>', this.props);
 
-  render() {
-    console.log('*Login.js this.props=>',this.props)
+		const { handleSubmit } = this.props;
 
-    const { handleSubmit } = this.props;
+		return (
+			<LoginContainer>
+				<LeftContainer>
+					<ImgContainer>
+						<img src={carImg} style={{ width: 90 + '%' }} alt="login screen" />
+					</ImgContainer>
+				</LeftContainer>
 
-    return (
-      <LoginContainer>
-        <LeftContainer>
-          <ImgContainer>
-            <img src={carImg} style={{ width: 90 + "%" }} alt="login screen" />
-          </ImgContainer>
-        </LeftContainer>
+				<RightContainer>
+					<Form onSubmit={this.handleSubmit}>
+						<Link to="/">
+							<Img src={LoginLogo} style={{ width: 40 + '%' }} alt="logo" />
+						</Link>
 
-        <RightContainer>
-          <Form onSubmit={this.handleSubmit}>
-            <Link to="/">
-              <Img src={LoginLogo} style={{ width: 40 + "%" }} alt="logo" />
-            </Link> 
+						<MDBCol md="12">
+							<MDBInput
+								label="Email"
+								aria-required="true"
+								autoCapitalize="off"
+								autoCorrect="off"
+								maxLength="75"
+								name="email"
+								type="text"
+								value={this.state.email}
+								onChange={this.inputHandler}
+							/>
+						</MDBCol>
 
-            <MDBCol md="12">
-              <MDBInput
-                label="Email"
-                aria-required="true"
-                autoCapitalize="off"
-                autoCorrect="off"
-                maxLength="75"
-                name="email"
-                type="text"
-                value={this.state.email}
-                onChange={this.inputHandler}
-              />
-            </MDBCol>
+						<MDBCol md="12">
+							<MDBInput
+								label="Password"
+								aria-required="true"
+								autoCapitalize="off"
+								autoCorrect="off"
+								name="password"
+								type={this.state.show === false ? 'password' : 'text'}
+								value={this.state.password}
+								onChange={this.inputHandler}
+							/>
 
-            <MDBCol md="12">
-              <MDBInput
-                label="Password"
-                aria-required="true"
-                autoCapitalize="off"
-                autoCorrect="off"
-                name="password"
-                type={this.state.show === false ? "password" : "text"}
-                value={this.state.password}
-                onChange={this.inputHandler}
-              />
+							<ShowButton onClick={this.showHandler}>
+								{this.state.show === false ? 'Show' : 'Hide'}
+							</ShowButton>
+						</MDBCol>
 
-              <ShowButton onClick={this.showHandler}>
-                {this.state.show === false ? "Show" : "Hide"}
-              </ShowButton>
-            </MDBCol>
+						<Link to="/forgotPassword">
+							<Forgot>Forgot Password?</Forgot>
+						</Link>
 
-            <Link to="/forgotPassword">
-              <Forgot>Forgot Password?</Forgot>
-            </Link>
+						<SubmitContainer>
+							<MDBBtn color="info" type="submit">
+								Login
+							</MDBBtn>
+						</SubmitContainer>
+					</Form>
 
-            <SubmitContainer>
-              <MDBBtn color="info" type="submit">
-                Login
-              </MDBBtn>
-            </SubmitContainer>
-          </Form>
+					<MDBContainer>
+						<SocialLogin>or login via:</SocialLogin>
 
-          <MDBContainer>
-            <SocialLogin>or login via:</SocialLogin>
-
-            <MDBRow center>
-              <Link to="/facebookAuth">
-                <FacebookLogin
-                    appId="457734818239475"
-                    autoLoad={false}
-                    textButton="Facebook "
-                    fields="name,email,picture"
-                    callback={this.responseFacebook}
-                    cssClass="btn btn-outline-primary"
-                  />
-                {/* <SocialButton>
+						<MDBRow center>
+							<Link to="/facebookAuth">
+								<FacebookLogin
+									appId="457734818239475"
+									autoLoad={false}
+									textButton="Facebook "
+									fields="name,email,picture"
+									callback={this.responseFacebook}
+									cssClass="btn btn-outline-primary"
+								/>
+								{/* <SocialButton>
                   <FontAwesomeIcon icon={faFacebookF} />
                   
                 </SocialButton> */}
-              </Link>
+							</Link>
 
-              <Link to="/githubAuth">
-                <GitHubLogin
-                  clientId="5ca20a803c37ee00c735"
-                  buttonText="Github"
-                  redirectUri="http://localhost:2626/users/oauth/github"
-                  onSuccess={this.responseGithub}
-                  onFailure={this.responseGithub}
-                  className="btn btn-outline-danger"
-                />
-                {/* <SocialButton>
+							<GitHubLogin
+								clientId="5ca20a803c37ee00c735"
+								buttonText="Github"
+								redirectUri="http://localhost:2626/users/oauth/github"
+								onSuccess={this.responseGithub}
+								onFailure={this.responseGithub}
+								className="btn btn-outline-danger"
+							/>
+							<Link to="/githubAuth">
+								{/* <SocialButton>
                   <FontAwesomeIcon icon={faGoogle} />
                 </SocialButton> */}
-              </Link>
-            </MDBRow>
+							</Link>
+						</MDBRow>
 
-            <FirstTime>
-              Here For the first time?
-              <Link to="/user-register">
-                <Signup>Sign Up</Signup>
-              </Link>
-            </FirstTime>
-          </MDBContainer>
-        </RightContainer>
-      </LoginContainer>
-    );
-  }
+						<FirstTime>
+							Here For the first time?
+							<Link to="/user-register">
+								<Signup>Sign Up</Signup>
+							</Link>
+						</FirstTime>
+					</MDBContainer>
+				</RightContainer>
+			</LoginContainer>
+		);
+	}
 }
 
-const mapStateToProps = state => ({
-  user: state.user,
-  errorMessage: state.auth.errorMessage
+const mapStateToProps = (state) => ({
+	user: state.user,
+	errorMessage: state.auth.errorMessage
 });
 
 const mapDispatchToProps = {
-  loginUser,
-  oauthFacebook,
-  oauthGithub
+	loginUser,
+	oauthFacebook,
+	oauthGithub
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Login)
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
