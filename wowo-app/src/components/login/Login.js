@@ -15,6 +15,16 @@ import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import auth from "../auth";
 
+
+import FacebookLogin from 'react-facebook-login';
+import GitHubLogin from 'react-github-login';
+
+import { oauthFacebook, oauthGithub } from '../../actions/index';
+import * as actions from '../../actions/index';
+
+
+
+
 const LoginContainer = Styled.div`
     display: flex;
     flex-direction: row;
@@ -189,7 +199,44 @@ class Login extends Component {
       });
   };
 
+  async onSubmit(formData) {
+		console.log('onSubmit got called');
+		console.log('formData', formData);
+		// we need to call action creator
+		await this.props.signUp(formData);
+
+		if (!this.props.errorMessage) {
+			this.props.history.push('/dashboard');
+		}
+	}
+
+	async responseFacebook(res) {
+		console.log('responseFacebook=>', res);
+		await this.props.oauthFacebook(res.accessToken);
+		if (!this.props.errorMessage) {
+			this.props.history.push('/dashboard');
+		}
+	}
+
+	async responseGithub(res) {
+		console.log('responseGITHUB=>', res);
+		await this.props.oauthGithub(res.accessToken);
+		if (!this.props.errorMessage) {
+			this.props.history.push('/testdashboard');
+		}
+	}
+
+
+
+
+
   render() {
+
+
+    console.log('*Login.js this.props=>', this.props);
+
+    const { handleSubmit } = this.props;
+    
     return (
       <LoginContainer>
         <LeftContainer>
@@ -250,18 +297,35 @@ class Login extends Component {
             <SocialLogin>or login via:</SocialLogin>
 
             <MDBRow center>
-              <Link to="/facebookAuth">
-                <SocialButton>
+							<Link to="/facebookAuth">
+								<FacebookLogin
+									appId="457734818239475"
+									autoLoad={false}
+									textButton="Facebook "
+									fields="name,email,picture"
+									callback={this.responseFacebook}
+									cssClass="btn btn-outline-primary"
+								/>
+								{/* <SocialButton>
                   <FontAwesomeIcon icon={faFacebookF} />
-                </SocialButton>
-              </Link>
+                  
+                </SocialButton> */}
+							</Link>
 
-              <Link to="/googleAuth">
-                <SocialButton>
+							<GitHubLogin
+								clientId="5ca20a803c37ee00c735"
+								buttonText="Github"
+								redirectUri="http://localhost:2626/users/oauth/github"
+								onSuccess={this.responseGithub}
+								onFailure={this.responseGithub}
+								className="btn btn-outline-danger"
+							/>
+							<Link to="/githubAuth">
+								{/* <SocialButton>
                   <FontAwesomeIcon icon={faGoogle} />
-                </SocialButton>
-              </Link>
-            </MDBRow>
+                </SocialButton> */}
+							</Link>
+						</MDBRow>
 
             <FirstTime>
               Here For the first time?
@@ -277,11 +341,14 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  errorMessage: state.auth.errorMessage
 });
 
 const mapDispatchToProps = {
-  loginUser
+  loginUser,
+  oauthFacebook,
+	oauthGithub
 };
 
 export default withRouter(

@@ -23,6 +23,11 @@ import DateFnsUtils from "@date-io/date-fns";
 import { PrivateRoute } from "./components/PrivateRoute.js";
 import "./App.css";
 
+
+import authGuard from './components/HOCs/authGuard';
+import Dashboard from './components/Dashboard';
+
+
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap')
 
@@ -43,7 +48,9 @@ const Container = styled.div`
   background: white;
 `;
 
-function App() {
+function App(props) {
+
+  console.log('App.js props=>', props);
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Container className="App">
@@ -86,11 +93,10 @@ function App() {
           <Route exact path="/schedule" component={ScheduleWash} />
           <Route path="/schedule-wash" component={ScheduleWash2} />
           <Route exact path="*" component={() => "404 Page Not Found."} />
+
+          <Route exact path="/testdashboard" component={authGuard(Dashboard)} />
         </Switch>
-        {/* <Route
-  					path='/schedule-wash'
-  					render={(props) => <ScheduleWash2 {...props} isAuthed={true} />}
-/> */}
+        
       </Container>
     </MuiPickersUtilsProvider>
   );
