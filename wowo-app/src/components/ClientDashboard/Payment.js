@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-// import CardSection from "../PaymentForm/CardSection.js";
-// // import axios from "axios";
-// // import StripeCheckout from "react-stripe-checkout";
-
-// // import { CardForm } from "react-payment";
-
 import {
   MDBCard,
   MDBContainer,
@@ -20,16 +14,6 @@ import {
   MDBModalBody,
   MDBIcon
 } from "mdbreact";
-// import {
-//   CardNumberElement,
-//   CardExpiryElement,
-//   CardCVCElement,
-//   injectStripe,
-//   StripeProvider,
-//   Elements
-// } from "react-stripe-elements";
-
-// const key = "pk_test_mQhojg0R35ocFaipB5FGHUu200nPRkYT5F";
 
 class Payment extends Component {
   constructor() {
@@ -44,7 +28,6 @@ class Payment extends Component {
       errorMessage: ""
     };
   }
-
 
   toggle = () => {
     this.setState({
@@ -65,10 +48,6 @@ class Payment extends Component {
     const { cardNumber, cardName, expMonth, expYear, cvc } = this.state;
     return (
       <MDBContainer>
-        {/* <CardSection /> */}
-        {/* <form>
-          <CardNumberElement />
-        </form> */}
         <MDBCard>
           <MDBCardTitle>
             <Link to="/clientDash/navigation">
@@ -80,7 +59,7 @@ class Payment extends Component {
                 <MDBIcon icon="arrow-left" />
               </div>
             </Link>
-            <p>Payment Methods:</p>
+            <h2>Payment Methods:</h2>
           </MDBCardTitle>
           <MDBCardText>
             <p class="d-flex align-items-start" style={{ paddingLeft: "1%" }}>
@@ -98,9 +77,6 @@ class Payment extends Component {
                     onClick={this.toggle}
                     class="d-flex justify-content-end"
                   />
-                  {/* <div class="d-flex justify-content-end">
-                    <MDBIcon icon="times" onClick={this.toggle} />
-                  </div> */}
                 </MDBModalHeader>
                 <MDBModalBody>
                   <MDBInput
@@ -160,7 +136,6 @@ class Payment extends Component {
         </MDBCard>
       </MDBContainer>
     );
-
   }
 }
 

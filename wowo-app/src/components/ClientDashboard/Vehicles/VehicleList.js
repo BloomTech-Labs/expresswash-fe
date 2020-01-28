@@ -4,9 +4,11 @@ import EachVehicle from "./EachVehicle.js";
 const VehicleList = props => {
   return (
     <div>
-      {props.vehicles.map(vehicle => (
-        <EachVehicle key={vehicle.id} vehicle={vehicle} />
-      ))}
+      <p>
+        {props.vehicles.map(eachvehicle => (
+          <EachVehicle eachvehicle={eachvehicle} />
+        ))}
+      </p>
     </div>
   );
 };

@@ -24,8 +24,7 @@ import {
   MDBInput
 } from "mdbreact";
 
-import logo from '../../images/wowo-logo-full.JPG';
-
+import logo from "../../images/wowo-logo-full.JPG";
 
 class Navigation extends Component {
   constructor() {
@@ -142,16 +141,16 @@ class Navigation extends Component {
     return (
       // <div class="border border-primary w-100" style={{ height: "100vh" }}>
       <MDBContainer>
-        <div class="w-100" style={{ height: "100vh", paddingTop: "15px" }}>
+        <div className="w-100" style={{ height: "100vh", paddingTop: "15px" }}>
           <div
-            class="d-flex justify-content-end"
+            className="d-flex justify-content-end"
             style={{ paddingBottom: "7%" }}
           >
             <strong>{date}</strong>
           </div>
           <div>
             <MDBCol class="d-flex align-items-start">
-              <h3 class="h3-responsive">
+              <h3 className="h3-responsive">
                 <strong>
                   <p>Welcome back,</p>
                   {this.state.firstName} {this.state.lastName}!

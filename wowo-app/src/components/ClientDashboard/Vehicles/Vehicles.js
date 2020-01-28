@@ -22,18 +22,24 @@ class Vehicles extends Component {
     super();
     this.state = {
       modal: false,
-      vehicleMake: "",
-      vehicleModel: "",
-      vehicleColor: "",
-      vehicles: [{ Make: "Toyota" }, { Make: "Prius" }, { Make: "Ram" }]
+      make: "",
+      model: "",
+      licensePlate: "",
+      vehicles: [
+        { Make: "Toyota", Model: "Corolla" },
+        { Make: "Toyota", Model: "Prius" },
+        { Make: "Ram", Model: "1500" }
+      ]
     };
   }
   componentDidMount() {
     const { id } = localStorage;
-    Axios.post("https://pt6-wowo.herokuapp.com/carsPG/mycars", id)
+
+    Axios.post("https://pt6-wowo.herokuapp.com/carsPG/mycars", { id })
       .then(res => {
+        console.log("this is res on cdm", res);
         this.setState({
-          vehicles: res.data
+          vehicles: [res.data, ...this.state.vehicles]
         });
       })
       .catch(err => {
