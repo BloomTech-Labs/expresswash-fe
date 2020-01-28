@@ -55,11 +55,9 @@ class Navigation extends Component {
       .catch(err => {
         console.log("this is err on component did mount", err);
       });
-    this.props
-      .getClientRating({ id })
+
+    Axios.post("https://pt6-wowo.herokuapp.com/ratings/clientaverage", { id })
       .then(res => {
-        console.log("this is res on CDM", res);
-        console.log("this is id on the component did mount", id);
         this.setState({
           rating: res.data
         });
@@ -67,6 +65,20 @@ class Navigation extends Component {
       .catch(err => {
         console.log(err);
       });
+    // this.props.getClientRating({ id }).then(rating => {
+    //   this.setState({ rating });
+    // });
+    // .then(rating => {
+    //   // console.log("this is res on CDM", res);
+    //   console.log("this is id on the component did mount", id);
+    //   // console.log("this is res from the component did mount", res);
+    //   this.setState({
+    //     rating: rating
+    //   });
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // });
 
     this.getDate();
   }
@@ -271,7 +283,8 @@ class Navigation extends Component {
 
 const mapStateToProps = state => {
   return {
-    clientInformation: state.info
+    clientInformation: state.info,
+    rating: state.userReducer.rating
   };
 };
 

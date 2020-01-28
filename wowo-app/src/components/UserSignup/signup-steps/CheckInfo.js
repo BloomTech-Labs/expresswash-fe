@@ -16,7 +16,7 @@ class CheckInfo extends Component {
       zip,
       sAddress2,
       city,
-      State
+      state
     } = this.props;
     return (
       <div>
@@ -44,7 +44,7 @@ class CheckInfo extends Component {
             <MDBInput label="City" value={city} required />
           </MDBCol>
           <MDBCol md="6">
-            <MDBInput label="State" value={State} required />
+            <MDBInput label="State" value={state} required />
           </MDBCol>
         </MDBRow>
       </div>

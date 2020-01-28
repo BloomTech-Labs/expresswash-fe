@@ -31,7 +31,7 @@ class UserSignup extends Component {
       sAddress2: "",
       zip: "",
       city: "",
-      State: ""
+      state: ""
     };
     this.nextStep = this.nextStep.bind(this);
     this.prevStep = this.prevStep.bind(this);
@@ -153,7 +153,7 @@ class UserSignup extends Component {
       phoneNumber,
       streetAddress,
       city,
-      State,
+      state,
       zip
     } = this.state;
 
@@ -165,12 +165,13 @@ class UserSignup extends Component {
       phoneNumber,
       streetAddress,
       city,
-      State,
+      state,
       zip
     };
     this.props
       .createClient(payload)
       .then(() => {
+        console.log("this is payload on createclient", payload);
         this.props.history.push("/");
       })
       .catch(err => {
@@ -237,7 +238,7 @@ class UserSignup extends Component {
                     zip={this.state.zip}
                     sAddress2={this.state.sAddress2}
                     city={this.state.city}
-                    State={this.state.State}
+                    state={this.state.state}
                   />
                   <CheckInfo
                     currentStep={this.state.currentStep}
@@ -250,7 +251,7 @@ class UserSignup extends Component {
                     zip={this.state.zip}
                     sAddress2={this.state.sAddress2}
                     city={this.state.city}
-                    State={this.state.State}
+                    state={this.state.state}
                   />
                   {this.getNextStep}
                   {/* <MDBBtn type="submit">Submit</MDBBtn> */}

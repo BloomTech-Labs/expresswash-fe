@@ -58,7 +58,7 @@ export function createClient(payload) {
     dispatch({ type: LOADING });
 
     return axios
-      .post("https://pt6-wowo.herokuapp.com/auth/registerClient", payload)
+      .post("https://pt6-wowo.herokuapp.com/authPG/registerClient", payload)
       .then(res => {
         console.log(res);
         dispatch({ type: NEW_CLIENT_SUCCESS, payload: res.data });
@@ -121,6 +121,7 @@ export function getClientRating(id) {
     return axios
       .post("https://pt6-wowo.herokuapp.com/ratings/clientaverage", id)
       .then(res => {
+        console.log("this is res on redux call", res);
         dispatch({ type: GET_CLIENT_RATING_SUCCESS, payload: res.data });
       })
       .catch(err => {

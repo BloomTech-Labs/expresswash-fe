@@ -8,7 +8,9 @@ import {
   NEW_CLIENT_ERROR,
   NEW_CLIENT_SUCCESS,
   GET_CLIENT_INFO_SUCCESS,
-  GET_CLIENT_INFO_ERROR
+  GET_CLIENT_INFO_ERROR,
+  GET_CLIENT_RATING_SUCCESS,
+  GET_CLIENT_RATING_ERROR
 } from "../actions/actionTypes";
 
 export default function userReducer(state = initialState, action) {
@@ -70,6 +72,18 @@ export default function userReducer(state = initialState, action) {
         ...state
         // loading: false
         // error: action.payload
+      };
+    }
+    case GET_CLIENT_RATING_SUCCESS: {
+      const { rating } = action.payload;
+      return {
+        ...state,
+        rating: action.payload
+      };
+    }
+    case GET_CLIENT_RATING_ERROR: {
+      return {
+        ...state
       };
     }
 
