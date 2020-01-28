@@ -50,7 +50,7 @@ function App() {
         <GlobalStyle />
         <Switch>
           <Route exact path="/" component={LandingPage} />
-   				<Route path="/instantQuote" component={QuoteGenerator} />
+   		  <Route path="/instantQuote" component={QuoteGenerator} />
           <Route exact path="/user-register" component={UserSignUp} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/find-wash" component={FindWash} />
