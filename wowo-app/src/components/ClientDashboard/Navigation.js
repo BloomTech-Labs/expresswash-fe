@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { Link, withRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import Axios from "axios";
-import ClientVehicles from "./Vehicles.js";
+import ClientVehicles from "./Vehicles/Vehicles.js";
 
 import {
   getClientInformation,
-  updateClientInformation
+  updateClientInformation,
+  getClientRating
 } from "../../actions/actionTypes.js";
 
 import StarRatings from "react-star-ratings";
@@ -22,7 +23,9 @@ import {
   MDBModalFooter,
   MDBInput
 } from "mdbreact";
+
 import logo from '../../images/wowo-logo-full.JPG';
+
 
 class Navigation extends Component {
   constructor() {
@@ -31,7 +34,7 @@ class Navigation extends Component {
       modal: false,
       date: "",
       time: new Date().toLocaleString(),
-      rating: 3.65,
+      rating: 0,
       email: "",
       firstName: "",
       lastName: "",
@@ -55,11 +58,35 @@ class Navigation extends Component {
         console.log("this is err on component did mount", err);
       });
 
+    Axios.post("https://pt6-wowo.herokuapp.com/ratings/clientaverage", { id })
+      .then(res => {
+        this.setState({
+          rating: res.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    // this.props.getClientRating({ id }).then(rating => {
+    //   this.setState({ rating });
+    // });
+    // .then(rating => {
+    //   // console.log("this is res on CDM", res);
+    //   console.log("this is id on the component did mount", id);
+    //   // console.log("this is res from the component did mount", res);
+    //   this.setState({
+    //     rating: rating
+    //   });
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // });
+
     this.getDate();
   }
   toggle = () => {
     const { id } = localStorage;
-    Axios.get(`https://pt6-wowo.herokuapp.com/users/${id}`)
+    Axios.get(`https://pt6-wowo.herokuapp.com/users/`)
       .then(res => {
         this.setState({
           email: res.data.email,
@@ -95,7 +122,7 @@ class Navigation extends Component {
     this.props
       .updateClientInformation(id, { firstName, lastName, email, phoneNumber })
       .then(() => {
-        this.props.history.push("/client-navigation");
+        this.props.history.push("/clientDash/navigation");
       })
       .catch(err => {
         console.log(err);
@@ -157,7 +184,7 @@ class Navigation extends Component {
               class="d-flex align-content-center"
               style={{ height: "100", paddingTop: "20%" }}
             >
-              <Link to="/Washes">
+              <Link to="/clientDash/Washes">
                 <h5
                   class="text-muted"
                   style={{ paddingTop: "25px", paddingBottom: "15%" }}
@@ -165,12 +192,12 @@ class Navigation extends Component {
                   <strong>Your Washes</strong>
                 </h5>
               </Link>
-              <Link to="/Payment">
+              <Link to="/clientDash/payments">
                 <h5 class="text-muted" style={{ paddingBottom: "15%" }}>
                   <strong>Payment</strong>
                 </h5>
               </Link>
-              <Link to="/client-vehicles">
+              <Link to="/clientDash/vehicles">
                 <h5 class="text-muted" style={{ paddingBottom: "15%" }}>
                   <strong>Manage Vehicles</strong>
                 </h5>
@@ -258,13 +285,15 @@ class Navigation extends Component {
 
 const mapStateToProps = state => {
   return {
-    clientInformation: state.info
+    clientInformation: state.info,
+    rating: state.userReducer.rating
   };
 };
 
 const mapDispatchToProps = {
   getClientInformation,
-  updateClientInformation
+  updateClientInformation,
+  getClientRating
 };
 
 export default withRouter(

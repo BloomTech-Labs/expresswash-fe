@@ -1,13 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
+import React from "react";
+import { Link } from "react-router-dom";
+import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBIcon } from "mdbreact";
+
 
 import './LandingPage.css';
 import logo from '../../images/wowo-logo-full.JPG';
 import { MdRecentActors } from 'react-icons/md';
 import auth from '../auth'
 
+
 export default class LandingPage extends React.Component {
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const type = localStorage.getItem("userType");
+
 
 	componentDidMount() {
 		const token = localStorage.getItem("token");
@@ -109,4 +116,5 @@ export default class LandingPage extends React.Component {
 			</MDBContainer>
 		);
 	}
+
 }
