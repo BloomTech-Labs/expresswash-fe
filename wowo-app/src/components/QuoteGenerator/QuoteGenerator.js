@@ -331,7 +331,7 @@ class QuoteGenerator extends Component {
         axios.post('https://pt6-wowo.herokuapp.com/carsPG/models', {make:`${this.state.selectedMake}`})
         .then(res =>{
             // console.log('res.data', res.data)
-            if(res.data.length==1){
+            if(res.data.length===1){
                 // console.log('res.data.length = 1', res.data[0].model)
                 this.setState({models:res.data})
                 this.setState({selectedModel:res.data[0].model})
