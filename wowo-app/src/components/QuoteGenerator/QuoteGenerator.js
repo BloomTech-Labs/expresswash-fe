@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import axios from 'axios';
 
 
-class AddCar extends Component {
+class QuoteGenerator extends Component {
     constructor(props) {
         super(props);
         this.handleChangeDocs = this.handleChangeDocs.bind(this);
@@ -295,7 +295,7 @@ class AddCar extends Component {
 
     handleChangeClassic = (evt) => {
         evt.preventDefault()
-        console.log('handleChangeClassic'+ evt.target.value)
+        // console.log('handleChangeClassic'+ evt.target.value)
         this.setState({
             [evt.target.name]: evt.target.value,
         })
@@ -331,7 +331,14 @@ class AddCar extends Component {
         axios.post('https://pt6-wowo.herokuapp.com/carsPG/models', {make:`${this.state.selectedMake}`})
         .then(res =>{
             // console.log('res.data', res.data)
-            this.setState({models: res.data})
+            if(res.data.length==1){
+                // console.log('res.data.length = 1', res.data[0].model)
+                this.setState({models:res.data})
+                this.setState({selectedModel:res.data[0].model})
+                this.setState({selectedMake:res.data[0].make})
+            } else {
+                this.setState({models: res.data})
+            }
             // console.log('this.state.models', this.state.models)
         })
         .catch(err => console.log(err))
@@ -342,7 +349,7 @@ class AddCar extends Component {
         // alert(this.state.selectedModel)
         axios.post('https://pt6-wowo.herokuapp.com/carsPG/getCarId', {make:`${this.state.selectedMake}`, model:`${this.state.selectedModel}`})
         .then(res =>{
-            console.log('res.data', res.data)
+            // console.log('res.data', res.data)
             this.setState({pricingInfo: res.data})
             // console.log('this.state.models', this.state.models)
         })
@@ -358,7 +365,7 @@ class AddCar extends Component {
         // const { isLoading, } = this.props
         return (
             <div>
-                <h3>Add a Car</h3>
+                <h3>Get a Quote:</h3>
                 <form onSubmit={this.handleSubmitMake}>
                     <label>
                         Pick the Make of Your Car:
@@ -419,5 +426,5 @@ export default withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps
-    )(AddCar)
+    )(QuoteGenerator)
 );
