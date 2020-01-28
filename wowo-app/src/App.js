@@ -7,6 +7,7 @@ import Login from './components/login/Login.js';
 import UserSignUp from './components/UserSignup/UserSignup';
 import WasherSignUp from './components/WasherSignUp/WasherSignUpForm';
 import ScheduleWash from './components/ClientDashboard/FindWash/ScheduleWash'
+import AddCar from './components/AddCar/AddCar.js'
 import './App.css';
 
 const GlobalStyle = createGlobalStyle`
@@ -40,6 +41,7 @@ function App() {
 				<Route path="/userDash" component={FindWash} />
 				<Route path="/washer-register" component={WasherSignUp} />
 				<Route path="/schedule" component={ScheduleWash} />
+				<Route path="/add-car" component={AddCar} />
 			</Switch>
 		</Container>
 	);

@@ -32,7 +32,7 @@ export function loginUser(email, password) {
         console.log(res.data);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("userType", res.data.userType);
-        localStorage.setItem("id", res.data.user.id);
+        localStorage.setItem("id", res.data.id);
         dispatch({
           type: LOGIN_SUCCESS,
           payload: res.data
@@ -64,19 +64,19 @@ export function createClient(payload) {
   };
 }
 
-export function addACar (id, make, model) {
-  return (dispatch) => {
-    dispatch({type: ADD_CAR_START})
-    return axios.post('https://pt6-wowo.herokuapp.com/cars/addACar', {id, make, model})
-    .then((res) => {
-      const payload = res.data
-      console.log(res.data, 'addACar successful res.data')
-      dispatch({type: ADD_CAR_SUCCESS, PAYLOAD})
-    })
-    .catch((err) => {
-      const payload = err.response ? err.response.data : err
-      dispatch({type: ADD_CAR_FAILED, payload})
-      console.log(err,'addACar failed data')
-    })
-  }
-}
+// export function addACar (id, carId, color, licensePlate) {
+//   return (dispatch) => {
+//     dispatch({type: ADD_CAR_START})
+//     return axios.post('https://pt6-wowo.herokuapp.com/cars/addACar', {id, carId, color, licensePlate})
+//     .then((res) => {
+//       const payload = res.data
+//       console.log(res.data, 'addACar successful res.data')
+//       dispatch({type: ADD_CAR_SUCCESS})
+//     })
+//     .catch((err) => {
+//       // const payload = err.response ? err.response.data : err
+//       dispatch({type: ADD_CAR_FAILED})
+//       console.log(err,'addACar failed data')
+//     })
+//   }
+// }
