@@ -7,6 +7,10 @@ export const GET_CLIENT_INFO_SUCCESS = "GET_CLIENT_INFO_SUCCESS";
 export const GET_CLIENT_INFO_ERROR = "GET_CLIENT_INFO_ERROR";
 export const UPDATE_CLIENT_INFO_SUCCESS = "UPDATE_CLIENT_INFO_SUCCESS";
 export const UPDATE_CLIENT_INFO_ERROR = "UPDATE_CLIENT_INFO_ERROR";
+export const GET_CLIENT_CARS_SUCCESS = "GET_CLIENT_CARS_SUCCESS";
+export const GET_CLIENT_CARS_ERROR = "GET_CLIENT_CARS_ERROR";
+export const GET_CLIENT_RATING_ERROR = "GET_CLIENT_RATING_ERROR";
+export const GET_CLIENT_RATING_SUCCESS = "GET_CLIENT_RATING_SUCCESS";
 
 // Washer Signup action types
 export const CREATE_WASHER_START = "CREATE_WASHER_START";
@@ -131,5 +135,33 @@ export function updateClientInformation(id, changes) {
           dispatch({ type: UPDATE_CLIENT_INFO_ERROR });
         })
     );
+  };
+}
+export function getClientCars(id) {
+  return dispatch => {
+    return axios
+      .post("https://pt6-wowo.herokuapp.com/carsPG/mycars", id)
+      .then(res => {
+        dispatch({ type: GET_CLIENT_CARS_SUCCESS, payload: res.data });
+      })
+      .catch(err => {
+        console.log("this is error on get client cars", err);
+        dispatch({ type: GET_CLIENT_CARS_ERROR });
+      });
+  };
+}
+
+export function getClientRating(id) {
+  return dispatch => {
+    return axios
+      .post("https://pt6-wowo.herokuapp.com/ratings/clientaverage", id)
+      .then(res => {
+        console.log("this is res on redux call", res);
+        dispatch({ type: GET_CLIENT_RATING_SUCCESS, payload: res.data });
+      })
+      .catch(err => {
+        console.log("this is error on get client rating", err);
+        dispatch({ type: GET_CLIENT_RATING_ERROR });
+      });
   };
 }

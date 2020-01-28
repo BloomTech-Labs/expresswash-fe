@@ -78,10 +78,10 @@ class Address extends Component {
           </MDBCol>
           <MDBCol md="6">
             <MDBInput
-              id="State"
-              name="State"
+              id="state"
+              name="state"
               type="text"
-              value={this.props.State}
+              value={this.props.state}
               onChange={this.props.handleChange}
               label="State"
             />
