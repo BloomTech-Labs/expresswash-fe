@@ -25,6 +25,10 @@ export const LOADING = "LOADING";
 export const NEW_CLIENT_SUCCESS = "NEW_CLIENT_SUCCESS";
 export const NEW_CLIENT_ERROR = "NEW_CLIENT_ERROR";
 
+// Add a Car to User signup actions
+export const ADD_CAR_START = 'ADD_CAR_START';
+export const ADD_CAR_SUCCESS = 'ADD_CAR_SUCCESS';
+export const ADD_CAR_FAILED = 'ADD_CAR_FAILED';
 // Washer Dashboard action types
 export const WASHER_SET_WORK_STATUS_START = "WASHER_SET_WORK_STATUS_START";
 export const WASHER_SET_WORK_STATUS_SUCCESS = "WASHER_SET_WORK_STATUS_SUCCESS";
@@ -49,6 +53,7 @@ export function loginUser(email, password) {
         console.log(res.data, "res.data");
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("userType", res.data.userType);
+        localStorage.setItem("id", res.data.id);
         localStorage.setItem("firstName", res.data.firstName);
         localStorage.setItem("lastName", res.data.lastName);
         localStorage.setItem("id", res.data.id);
@@ -84,6 +89,22 @@ export function createClient(payload) {
   };
 }
 
+// export function addACar (id, carId, color, licensePlate) {
+//   return (dispatch) => {
+//     dispatch({type: ADD_CAR_START})
+//     return axios.post('https://pt6-wowo.herokuapp.com/cars/addACar', {id, carId, color, licensePlate})
+//     .then((res) => {
+//       const payload = res.data
+//       console.log(res.data, 'addACar successful res.data')
+//       dispatch({type: ADD_CAR_SUCCESS})
+//     })
+//     .catch((err) => {
+//       // const payload = err.response ? err.response.data : err
+//       dispatch({type: ADD_CAR_FAILED})
+//       console.log(err,'addACar failed data')
+//     })
+//   }
+// }
 export function getClientInformation(id) {
   return dispatch => {
     return (
