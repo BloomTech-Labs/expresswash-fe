@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/Lambda-School-Labs/wowo-fe#readme",
   "dependencies": {
+    "bootstrap": "^4.4.1",
     "mdbreact": "^4.22.0",
+    "react": "^16.12.0",
+    "react-bootstrap": "^1.0.0-beta.16",
     "react-redux": "^7.1.3"
   }
 }
