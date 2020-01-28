@@ -49,12 +49,8 @@ export class WasherSignUpAddress extends Component {
             value={values.phone}
             required
           />
-          {/* <input id="autocomplete"
-            className="input-field"
-            ref="input"
-            type="text"/> */}
           <div className="md-form">
-            <input id="autocomplete" data-test="input" name="searchAddress" type="text" class="form-control" placeholder="Address Search.."/>
+            <input id="autocomplete" data-test="input" name="searchAddress" type="text" className="form-control" placeholder="Address Search.." autoComplete="off" />
           </div>
           <MDBInput
             name="street"

@@ -13,7 +13,7 @@ export function register(payload) {
   return (dispatch) => {
     dispatch({ type: CREATE_WASHER_START })
 
-    return axios.post('https://pt6-wowo.herokuapp.com/auth/registerWasher', payload)
+    return axios.post('https://pt6-wowo.herokuapp.com/authPG/registerWasher', payload)
       .then((res) => {
         console.log(res);
         dispatch({ type: CREATE_WASHER_SUCCESS, payload: res.data })

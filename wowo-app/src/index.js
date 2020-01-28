@@ -9,6 +9,20 @@ import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import App from "./App";
 
+
+import axios from 'axios'
+
+// HOC 
+import authGuard from './components/HOCs/authGuard';
+
+// get token from localstorage
+const jwtToken = localStorage.getItem('JWT_TOKEN');
+
+// request headers to include jwt token on every request
+axios.defaults.headers.common['Authorization'] = jwtToken;
+
+
+
 const store = configureStore();
 
 ReactDOM.render(

@@ -18,7 +18,7 @@ class Address extends Component {
   }
 
   handlePlaceSelect() {
-    let { autoAddress } = this.props;
+    // let { autoAddress } = this.props;
     let addressObject = this.autocomplete.getPlace();
     let address = addressObject.address_components;
     console.log(address);

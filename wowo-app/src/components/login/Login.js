@@ -13,6 +13,7 @@ import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
+import auth from "../auth";
 
 const LoginContainer = Styled.div`
     display: flex;
@@ -109,9 +110,13 @@ const SocialButton = Styled.div`
     cursor: pointer;
 `;
 
-const FirstTime = Styled.p`
+const FirstTime = Styled.div`
     margin: 15px auto 0 auto;
     text-align: center;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
 `;
 
 const Signup = Styled.div`
@@ -132,7 +137,8 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      show: false
+      show: false,
+      user: null,
     };
   }
 
@@ -160,8 +166,23 @@ class Login extends Component {
     const { email, password } = this.state;
     this.props
       .loginUser(email, password)
-      .then(() => {
-        this.props.history.push("/userDash");
+      .then((res) => {
+        const type = localStorage.getItem("userType");
+
+        auth.login(() => {
+          if( type === "client" )
+          {
+            this.props.history.push("/clientDash")
+          } 
+          else if ( type === "washer" ) 
+          {
+            this.props.history.push("/washerDash")
+          }
+          else 
+          {
+            return null
+          }
+        })
       })
       .catch(err => {
         throw new Error(err);
@@ -243,7 +264,7 @@ class Login extends Component {
             </MDBRow>
 
             <FirstTime>
-              Here For the first time?{" "}
+              Here For the first time?
               <Link to="/user-register">
                 <Signup>Sign Up</Signup>
               </Link>
@@ -255,11 +276,9 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  };
-};
+const mapStateToProps = state => ({
+  user: state.user
+});
 
 const mapDispatchToProps = {
   loginUser
