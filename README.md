@@ -1,60 +1,48 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
+# Wo-Wo Wax-on Wax-off
 
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
+You can find the deployed project at [https://wowo-app.netlify.com/](https://wowo-app.netlify.com/).
 
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
+## Contributors
 
-# 1️⃣ Title of project goes here
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
-
-## 4️⃣ Contributors
-
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+|                                       [Matt Thomas](https://github.com/MattGThomas)                                        |                                       [DaQuan Freeman](https://github.com/quan005)                                        |                                       [Ryan Ansberry](https://github.com/RyanAnsberry)                                        |                                       [Melki Alarcon](https://github.com/malarc01)                                        |                                       [Cale Haug](https://github.com/cahaug)                                        |                                       [Sam Malanchuk](https://github.com/sam-malanchuk)                                        |
+| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
+|                      [<img src="https://avatars1.githubusercontent.com/u/48700293?s=460&v=4" width = "200" />](https://github.com/MattGThomas)                       |                      [<img src="https://avatars0.githubusercontent.com/u/26069042?s=460&v=4" width = "200" />](https://github.com/quan005)                       |                      [<img src="https://avatars2.githubusercontent.com/u/48343707?s=460&v=4" width = "200" />](https://github.com/RyanAnsberry)                       |                      [<img src="https://avatars2.githubusercontent.com/u/45378877?s=460&v=4" width = "200" />](https://github.com/malarc01)                       |                      [<img src="https://avatars1.githubusercontent.com/u/48393675?s=460&v=4" width = "200" />](https://github.com/cahaug)                       |                      [<img src="https://avatars1.githubusercontent.com/u/36907446?s=460&v=4" width = "200" />](https://github.com/sam-malanchuk)                       
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/MattGThomas)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/quan005)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/RyanAnsberry)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/malarc01)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/cahaug)             |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/sam-malanchuk)             |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/daquan-freeman-a4b63622/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ryan-ansberry-11a55415a/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/malarc01/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/calehaug/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/sam-malanchuk/) |
 
 <br>
-<br>
-
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
-
-![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+[Trello Board](https://trello.com/b/wB0lpYYQ/wowo)
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+[Product Canvas](https://www.notion.so/d0cb80ea5dc94d749237d89e6a0227be?v=cfb287c66faa43c298ea841f8483e4de)
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+[UX Design files](https://whimsical.com/Sfn8oXwF4ze5C8M6zAttkS)
 
-🚫 Replace lorem ipsum with a description of your project
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+WoWo is a web based app built on a PostgreSQL Database, and a Node Express back-end. The front-end is built on React, Redux and uses Axios to send server requests. The app is designed with a Mobile first development approach and puts user accessibility features as a top priority.
 
 
-### 4️⃣ Key Features
+### Key Features
 
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
+- Login/Register (admin, washer, client)
+- Same day or scheduled car wash a car wash
+    - Allow the user to specify the plate, model, color
+    - Is there a water supply? (deprecated due to water-free carwashing decision)
+    - Price estimate by car class / tier of wash
+    - Closest and highest rating gets the job
+- Job completion notification / Leave a rating for a washer
+- Pay for a wash (automatically with payment method) / leave a tip (choose after wash)
+- Email / in app Receipt of payment for client
+- Map that shows the washer the client's location
+- On-boarding / expectations for washers / washer training
+- Admin panel with statistics
+- Photos upload from washer for pre/post wash
 
-## 1️⃣ Tech Stack
+## Tech Stack
+
+WoWo is a web based app built on a PostgreSQL Database, and a Node Express back-end. The front-end is built on React, Redux and uses Axios to send server requests. The app is designed with a Mobile first development approach and puts user accessibility features as a top priority.
 
 ### Front end built using:
 
@@ -83,37 +71,37 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 # APIs
 
-## 2️⃣ Authentication API here
+## Authentication API here
 
 🚫Replace text below with a description of the API
 
 Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
 
-## 2️⃣ Payment API here
+## Payment API here
 
 🚫Replace text below with a description of the API
 
 This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
 
-## 3️⃣ Misc API here
+## Misc API here
 
 🚫Replace text below with a description of the API
 
 You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
 
-## 3️⃣ Misc API here
+## Misc API here
 
 🚫Replace text below with a description of the API
 
 When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
 
-## 3️⃣ Misc API here
+## Misc API here
 
 🚫Replace text below with a description of the API
 
 Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
 
-# 3️⃣ Environment Variables
+# Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
@@ -130,7 +118,7 @@ In order for the app to function correctly, the user must set up their own envir
     *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
     *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
 
-# 5️⃣ Content Licenses
+# Content Licenses
 
 🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
 
@@ -139,11 +127,11 @@ In order for the app to function correctly, the user must set up their own envir
 | doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
 | rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
 
-# 4️⃣ Testing
+# Testing
 
 🚫Document what you used for testing and why
 
-# 4️⃣ Installation Instructions
+# Installation Instructions
 
 🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
 
