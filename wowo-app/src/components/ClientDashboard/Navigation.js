@@ -137,6 +137,21 @@ class Navigation extends Component {
       phoneNumber
     } = this.state;
     // const email = this.props.clientInformation;
+    let ratings;
+    if (rating === 0) {
+      ratings = <p>There are no ratings available</p>;
+    } else {
+      ratings = (
+        <StarRatings
+          rating={rating}
+          numberOfStars={5}
+          name={"userRating"}
+          starDimension={"25px"}
+          starSpacing={"5px"}
+          starRatedColor={"rgb(0,128,255)"}
+        />
+      );
+    }
 
     return (
       // <div class="border border-primary w-100" style={{ height: "100vh" }}>
@@ -166,14 +181,15 @@ class Navigation extends Component {
                 <p style={{ paddingTop: "7.5%" }}>
                   <strong>My Rating:</strong>
                 </p>
-                <StarRatings
+                {ratings}
+                {/* <StarRatings
                   rating={rating}
                   numberOfStars={5}
                   name={"userRating"}
                   starDimension={"25px"}
                   starSpacing={"5px"}
                   starRatedColor={"rgb(0,128,255)"}
-                />
+                /> */}
               </div>
             </MDBCol>
           </div>
