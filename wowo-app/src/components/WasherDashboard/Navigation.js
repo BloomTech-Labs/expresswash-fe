@@ -158,9 +158,9 @@ class Navigation extends React.Component {
     localStorage.removeItem('firstName');
     localStorage.removeItem('lastName');
     localStorage.removeItem('id');
-    // auth.logout(() => {
-    //   this.props.history.push('/login');
-    // })
+    auth.logout(() => {
+      this.props.history.push('/login');
+    })
   }
 
   accountAge = creationDate => {
