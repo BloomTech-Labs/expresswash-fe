@@ -58,15 +58,15 @@ class Navigation extends Component {
         console.log("this is err on component did mount", err);
       });
 
-    Axios.post("https://pt6-wowo.herokuapp.com/ratings/clientaverage", { id })
-      .then(res => {
-        this.setState({
-          rating: res.data
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+//     Axios.post("https://pt6-wowo.herokuapp.com/ratings/clientaverage", { id })
+//       .then(res => {
+//         this.setState({
+//           rating: res.data
+//         });
+//       })
+//       .catch(err => {
+//         console.log(err);
+//       });
     // this.props.getClientRating({ id }).then(rating => {
     //   this.setState({ rating });
     // });
