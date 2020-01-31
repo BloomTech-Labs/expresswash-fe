@@ -2,7 +2,14 @@ import React, { Component } from "react";
 import { Link, withRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import Axios from "axios";
+import Styled from "styled-components";
 import ClientVehicles from "./Vehicles/Vehicles.js";
+import WowoWordLogo from "../../images/WowoWordLogo.js";
+import NavButton from "../ClientDashboard/HamburgerNavMenu.js/NavButton";
+import SideDrawer from "../ClientDashboard/HamburgerNavMenu.js/SideDrawer.js";
+
+import Backdrop from "../ClientDashboard/HamburgerNavMenu.js/Backdrop.js";
+import auth from "../auth.js";
 
 import {
   getClientInformation,
@@ -26,6 +33,31 @@ import {
 
 import logo from "../../images/wowo-logo-full.JPG";
 
+const NavContainer = Styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 8%;
+    width: 100%;
+    padding: 0 9.5%;
+    background: #00A8C5;
+    z-index: 300;
+`;
+
+const LogoContainer = Styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+
+    @media (min-width: 1800px) { // ##Device = Desktops ##Screen = 1800px to higher resolution desktops //
+        height: 100%;
+        width: 115px;
+        left: 15%;
+    }
+`;
+
 class Navigation extends Component {
   constructor() {
     super();
@@ -37,7 +69,8 @@ class Navigation extends Component {
       email: "",
       firstName: "",
       lastName: "",
-      phone: ""
+      phone: "",
+      sideDrawerOpen: false
     };
   }
 
@@ -127,6 +160,28 @@ class Navigation extends Component {
         console.log(err);
       });
   };
+  backDropClick = () => {
+    this.setState({
+      sideDrawerOpen: false
+    });
+  };
+  navClickHandler = () => {
+    this.setState(prevState => {
+      return { sideDrawerOpen: !prevState.sideDrawerOpen };
+    });
+  };
+
+  logout = evt => {
+    evt.preventDefault();
+    localStorage.removeItem("token");
+    localStorage.removeItem("userType");
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
+    localStorage.removeItem("id");
+    auth.logout(() => {
+      this.props.history.push("/login");
+    });
+  };
   render() {
     const {
       date,
@@ -138,7 +193,7 @@ class Navigation extends Component {
     } = this.state;
     // const email = this.props.clientInformation;
     let ratings;
-    if (rating === 0) {
+    if (rating === 0 || rating === null) {
       ratings = <p>There are no ratings available</p>;
     } else {
       ratings = (
@@ -152,17 +207,27 @@ class Navigation extends Component {
         />
       );
     }
+    let backDrop;
+    if (this.state.sideDrawerOpen) {
+      backDrop = <Backdrop clickHandler={this.backDropClick} />;
+    }
 
     return (
       // <div class="border border-primary w-100" style={{ height: "100vh" }}>
-      <MDBContainer>
+      <MDBContainer class="d-flex">
         <div className="w-100" style={{ height: "100vh", paddingTop: "15px" }}>
-          <div
-            className="d-flex justify-content-end"
-            style={{ paddingBottom: "7%" }}
-          >
-            <strong>{date}</strong>
+          <div style={{ paddingBottom: "7%" }}>
+            <NavContainer className="nav-container" style={{ height: "50px" }}>
+              <LogoContainer className="logo-container">
+                <Link to="/clientDash">
+                  <WowoWordLogo className="wowo-logo" width="100%" />
+                </Link>
+              </LogoContainer>
+              <NavButton clickHandler={this.navClickHandler} />
+            </NavContainer>
           </div>
+          <SideDrawer logout={this.logout} show={this.state.sideDrawerOpen} />
+          {backDrop}
           <div>
             <MDBCol class="d-flex align-items-start">
               <h3 className="h3-responsive">
@@ -182,14 +247,6 @@ class Navigation extends Component {
                   <strong>My Rating:</strong>
                 </p>
                 {ratings}
-                {/* <StarRatings
-                  rating={rating}
-                  numberOfStars={5}
-                  name={"userRating"}
-                  starDimension={"25px"}
-                  starSpacing={"5px"}
-                  starRatedColor={"rgb(0,128,255)"}
-                /> */}
               </div>
             </MDBCol>
           </div>
