@@ -21,7 +21,7 @@ import StarRatings from "react-star-ratings";
 import "./ClientNav.css";
 
 import {
-  MDBContainer,
+  // MDBContainer,
   MDBCol,
   MDBBtn,
   MDBModal,
@@ -56,6 +56,13 @@ const LogoContainer = Styled.div`
         width: 115px;
         left: 15%;
     }
+`;
+
+const MDBContainer = Styled.div`
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  
 `;
 
 class Navigation extends Component {
@@ -99,20 +106,6 @@ class Navigation extends Component {
       .catch(err => {
         console.log(err);
       });
-    // this.props.getClientRating({ id }).then(rating => {
-    //   this.setState({ rating });
-    // });
-    // .then(rating => {
-    //   // console.log("this is res on CDM", res);
-    //   console.log("this is id on the component did mount", id);
-    //   // console.log("this is res from the component did mount", res);
-    //   this.setState({
-    //     rating: rating
-    //   });
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    // });
 
     this.getDate();
   }
@@ -191,7 +184,7 @@ class Navigation extends Component {
       email,
       phoneNumber
     } = this.state;
-    // const email = this.props.clientInformation;
+
     let ratings;
     if (rating === 0 || rating === null) {
       ratings = <p>There are no ratings available</p>;
@@ -213,11 +206,13 @@ class Navigation extends Component {
     }
 
     return (
-      // <div class="border border-primary w-100" style={{ height: "100vh" }}>
       <MDBContainer class="d-flex">
-        <div className="w-100" style={{ height: "100vh", paddingTop: "15px" }}>
+        <div className="w-100">
           <div style={{ paddingBottom: "7%" }}>
-            <NavContainer className="nav-container" style={{ height: "50px" }}>
+            <NavContainer
+              className="nav-container"
+              style={{ height: "50px", width: "100%" }}
+            >
               <LogoContainer className="logo-container">
                 <Link to="/clientDash">
                   <WowoWordLogo className="wowo-logo" width="100%" />
@@ -344,13 +339,11 @@ class Navigation extends Component {
                 <div className="d-flex justify-content-center">
                   <MDBBtn type="submit">Save Changes</MDBBtn>
                 </div>
-                {/* <MDBBtn onClick={this.toggle}>Close</MDBBtn> */}
               </MDBModalFooter>
             </form>
           </MDBModal>
         </div>
       </MDBContainer>
-      // </div>
     );
   }
 }

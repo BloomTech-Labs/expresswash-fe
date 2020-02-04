@@ -6,7 +6,7 @@ const EachWash = props => {
       <p>Address: {props.eachwash.washAddress}</p>
       <p>Paid: {props.eachwash.paid}</p>
       <p>Vehicle: {props.eachwash.clientCarId}</p>
-      <p>Date: {props.eachwash.creationDate.toString()}</p>
+      <p>Date: {props.eachwash.creationDate}</p>
     </div>
   );
 };
