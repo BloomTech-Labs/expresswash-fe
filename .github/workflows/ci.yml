@@ -1,4 +1,4 @@
-name: Back end test
+name: Front end test
 
 on: [push, pull_request]
 
@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: "12"
-      - run: cd wowo-app
+        working-directory: ./wowo-app
       - run: npm install
       - uses: paambaati/codeclimate-action@v2.5.4
         env:
