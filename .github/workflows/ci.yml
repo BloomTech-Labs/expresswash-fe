@@ -5,6 +5,7 @@ on: [push, pull_request]
 jobs:
   coverage:
     name: coverage
+    working-directory: ./wowo-app
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -12,7 +13,7 @@ jobs:
         with:
           node-version: "12"
       - run: npm install
-         working-directory: ./wowo-app
+
       - uses: paambaati/codeclimate-action@v2.5.4
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CodeClimateReporterId }}
