@@ -14,8 +14,6 @@ jobs:
       - name: run in subdirectory
         working-directory: ./wowo-app
         run: npm install
-      - name: post coverage
-        working-directory: ./wowo-app
         uses: paambaati/codeclimate-action@v2.5.4
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CodeClimateReporterId }}
