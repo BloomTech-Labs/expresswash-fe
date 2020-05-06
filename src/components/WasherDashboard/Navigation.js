@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import axios from "axios";
 import {
   MDBCard,
   MDBContainer,
@@ -110,10 +111,15 @@ class Navigation extends React.Component {
   async componentDidMount() {
     // const stateFromToken = await this.tokenData(decoded);
     // console.log("state payload", this.state.user);
-    const { id } = this.state.user;
-    const getWorkStatus = this.props.getWorkStatus(id);
-    const countWash = this.props.getWashCount(id);
-    const washerRating = this.props.getWashRating(id);
+    console.log("STATE:", this.state);
+    const { washerId } = this.state.user.user.washer;
+    const washerInfo = await axios.get(
+      `http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/users/${washerId}`
+    );
+    console.log("Navigation.js, washerInfo", washerInfo);
+    const getWorkStatus = this.state.user.user.washer.workStatus;
+    const countWash = this.props.getWashCount(washerId);
+    const washerRating = this.state.user.user.washer.washerRating;
 
     Promise.all([getWorkStatus, countWash, washerRating])
       .then((res) => {
@@ -137,8 +143,8 @@ class Navigation extends React.Component {
       return { user };
     });
     const payload = {
-      id: this.state.user.id,
-      workStatus: !this.state.user.workStatus,
+      id: this.state.user.user.washer.washerId,
+      workStatus: !this.state.user.user.washer.workStatus,
     };
     // console.log("payload is", payload);
     this.props
@@ -213,6 +219,7 @@ class Navigation extends React.Component {
       washerDashRatingData,
     } = this.props.washerDashboardReducer;
     const { user } = this.state;
+    console.log("user", user);
     // console.log("props is", this.props);
     // console.log("washerDashWash Count Data", washerDashWashCountData.count);
     // labels for the rating stars
@@ -290,7 +297,7 @@ class Navigation extends React.Component {
                       <MDBTypography tag="h3">
                         <small className="text-muted">Welcome back,</small>
                         <br />
-                        <strong>{user.firstName || "firstName"}!</strong>
+                        <strong>{user.user.firstName || "firstName"}!</strong>
                       </MDBTypography>
                       <div className="custom-control custom-switch">
                         <input

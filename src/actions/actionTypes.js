@@ -48,7 +48,10 @@ export function loginUser(email, password) {
     dispatch({ type: LOGGING_IN });
 
     return axios
-      .post("http://localhost:3300/auth/login", { email, password })
+      .post(
+        "http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/auth/login",
+        { email, password }
+      )
       .then((res) => {
         console.log(res.data, "res.data");
         localStorage.setItem("token", res.data.token);
@@ -76,7 +79,10 @@ export function createClient(payload) {
     dispatch({ type: LOADING });
 
     return axios
-      .post("http://localhost:3300/auth/registerClient", payload)
+      .post(
+        "http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/auth/registerClient",
+        payload
+      )
       .then((res) => {
         console.log(res);
         dispatch({ type: NEW_CLIENT_SUCCESS, payload: res.data });
@@ -108,7 +114,9 @@ export function getClientInformation(id) {
   return (dispatch) => {
     return (
       axios
-        .get(`http://localhost:3300/users/${id}`)
+        .get(
+          `http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/users/${id}`
+        )
         // .get(`http://localhost:3300/users/${id}`)
         .then((res) => {
           console.log("this is response on getclient information", res);
@@ -124,7 +132,10 @@ export function updateClientInformation(id, changes) {
   return (dispatch) => {
     return (
       axios
-        .put(`http://localhost:3300/users/${id}`, changes)
+        .put(
+          `http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/users/${id}`,
+          changes
+        )
         // .put(`http://localhost:3300/users/${id}`, changes)
         .then((res) => {
           dispatch({ type: UPDATE_CLIENT_INFO_SUCCESS, payload: res.data });
@@ -140,7 +151,9 @@ export function updateClientInformation(id, changes) {
 export function getClientCars(id) {
   return (dispatch) => {
     return axios
-      .get(`http://localhost:3300/users/${id}`)
+      .get(
+        `http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/users/${id}`
+      )
       .then((res) => {
         dispatch({ type: GET_CLIENT_CARS_SUCCESS, payload: res.data });
       })
@@ -154,7 +167,9 @@ export function getClientCars(id) {
 export function getClientRating(id) {
   return (dispatch) => {
     return axios
-      .get(`http://localhost:3300/users/${id}`)
+      .get(
+        `http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/users/${id}`
+      )
       .then((res) => {
         console.log("this is res on redux call", res);
         dispatch({ type: GET_CLIENT_RATING_SUCCESS, payload: res.data });

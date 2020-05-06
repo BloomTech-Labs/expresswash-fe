@@ -30,23 +30,25 @@ export function register(payload) {
 
     console.log("clientPayload", clientPayload);
     return axios
-      .post("http://localhost:3300/auth/registerClient", clientPayload)
+      .post(
+        "http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/auth/registerClient",
+        clientPayload
+      )
       .then((user) => {
         console.log("WasherSignupActions.js, user", user);
         dispatch({ type: NEW_CLIENT_SUCCESS, payload: user.data });
         dispatch({ type: CREATE_WASHER_START });
         const washerPayload = {
-          userId: user.data.user.id,
           rateMedium: "25",
         };
         console.log("payload", washerPayload);
         axios
           .post(
-            `http://localhost:3300/auth/registerWasher/:${user.data.user.id}`,
+            `http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/auth/registerWasher/${user.data.user.id}`,
             washerPayload
           )
           .then((res) => {
-            console.log(res);
+            console.log("Login Washer Response: ", res);
             dispatch({ type: CREATE_WASHER_SUCCESS, payload: res.data });
           })
           .catch((err) => {
