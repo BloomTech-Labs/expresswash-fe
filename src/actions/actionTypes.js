@@ -49,7 +49,7 @@ export function loginUser(email, password) {
 
     return axios
       .post(
-        "http://wowo-env.eba-35bhjsem.us-east-1.elasticbeanstalk.com/auth/login",
+        "https://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/auth/login",
         { email, password }
       )
       .then((res) => {
@@ -80,7 +80,7 @@ export function createClient(payload) {
 
     return axios
       .post(
-        "http://wowo-env.eba-35bhjsem.us-east-1.elasticbeanstalk.com/auth/registerClient",
+        "https://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/auth/registerClient",
         payload
       )
       .then((res) => {
@@ -115,7 +115,7 @@ export function getClientInformation(id) {
     return (
       axios
         .get(
-          `http://wowo-env.eba-35bhjsem.us-east-1.elasticbeanstalk.com/users/${id}`
+          `https://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/users/${id}`
         )
         // .get(`http://localhost:3300/users/${id}`)
         .then((res) => {
@@ -133,7 +133,7 @@ export function updateClientInformation(id, changes) {
     return (
       axios
         .put(
-          `http://wowo-env.eba-35bhjsem.us-east-1.elasticbeanstalk.com/users/${id}`,
+          `https://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/users/${id}`,
           changes
         )
         // .put(`http://localhost:3300/users/${id}`, changes)
@@ -152,7 +152,7 @@ export function getClientCars(id) {
   return (dispatch) => {
     return axios
       .get(
-        `http://wowo-env.eba-35bhjsem.us-east-1.elasticbeanstalk.com/users/${id}`
+        `https://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/users/${id}`
       )
       .then((res) => {
         dispatch({ type: GET_CLIENT_CARS_SUCCESS, payload: res.data });
@@ -168,7 +168,7 @@ export function getClientRating(id) {
   return (dispatch) => {
     return axios
       .get(
-        `http://wowo-env.eba-35bhjsem.us-east-1.elasticbeanstalk.com/users/${id}`
+        `https://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/users/${id}`
       )
       .then((res) => {
         console.log("this is res on redux call", res);

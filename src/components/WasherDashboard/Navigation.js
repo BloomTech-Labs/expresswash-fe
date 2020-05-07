@@ -120,7 +120,7 @@ class Navigation extends React.Component {
     if (this.state.user.user.washer) {
       const { washerId } = this.state.user.user.washer;
       const washerInfo = await axios.get(
-        `http://wowo-env.eba-35bhjsem.us-east-1.elasticbeanstalk.com/users/${washerId}`
+        `https://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/users/${washerId}`
       );
       console.log("Navigation.js, washerInfo", washerInfo);
       const getWorkStatus = this.state.user.user.washer.workStatus;
@@ -257,7 +257,11 @@ class Navigation extends React.Component {
       ...ratingStars[washRatingRound - 1],
       choosed: true,
     };
-    const accountDate = this.accountAge(this.state.user.user.creationDate);
+    const accountDate =
+      this.state.user.user.creationDate !== undefined
+        ? this.accountAge(this.state.user.user.creationDate)
+        : "";
+    
     return (
       <MDBContainer className="mb-5">
         <MDBRow className="mt-4 mb-4 align-items-end">

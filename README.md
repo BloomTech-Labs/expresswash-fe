@@ -3,21 +3,21 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/042fa057af24ad4d0e30/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/wowo-fe/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/042fa057af24ad4d0e30/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/wowo-fe/test_coverage)
 
-You can find the deployed project at [https://wowo-app.netlify.com/](https://wowo-app.netlify.com/).
+You can find the deployed project at [https://www.expresswash.us/](https://www.expresswash.us/).
 
 ## Contributors
 
-|                                       [Matt Thomas](https://github.com/MattGThomas)                                        |                                       [DaQuan Freeman](https://github.com/quan005)                                        |                                       [Ryan Ansberry](https://github.com/RyanAnsberry)                                        |                                       [Melki Alarcon](https://github.com/malarc01)                                        |                                       [Cale Haug](https://github.com/cahaug)                                        |                                       [Sam Malanchuk](https://github.com/sam-malanchuk)                                        |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://avatars1.githubusercontent.com/u/48700293?s=460&v=4" width = "200" />](https://github.com/MattGThomas)                        |                      [<img src="https://avatars0.githubusercontent.com/u/26069042?s=460&v=4" width = "200" />](https://github.com/quan005)                       |                      [<img src="https://avatars2.githubusercontent.com/u/48343707?s=460&v=4" width = "200" />](https://github.com/RyanAnsberry)                       |                      [<img src="https://avatars2.githubusercontent.com/u/45378877?s=460&v=4" width = "200" />](https://github.com/malarc01)                       |                      [<img src="https://avatars1.githubusercontent.com/u/48393675?s=460&v=4" width = "200" />](https://github.com/cahaug)                       |                      [<img src="https://avatars1.githubusercontent.com/u/36907446?s=460&v=4" width = "200" />](https://github.com/sam-malanchuk)
-|                 [<img src="https://github.com/favicon.ico" width="15">](https://github.com/MattGThomas)                 |            [<img src="https://github.com/favicon.ico" width="15">](https://github.com/quan005)             |           [<img src="https://github.com/favicon.ico" width="15">](https://github.com/RyanAnsberry)            |          [<img src="https://github.com/favicon.ico" width="15">](https://github.com/malarc01)           |            [<img src="https://github.com/favicon.ico" width="15">](https://github.com/cahaug)             |            [<img src="https://github.com/favicon.ico" width="15">](https://github.com/sam-malanchuk)             |
-| [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/daquan-freeman-a4b63622/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/ryan-ansberry-11a55415a/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/malarc01/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/calehaug/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/sam-malanchuk/) |
+|                                       [Matt Thomas](https://github.com/MattGThomas)                                       |                                              [DaQuan Freeman](https://github.com/quan005)                                              |                                            [Ryan Ansberry](https://github.com/RyanAnsberry)                                            |                                      [Melki Alarcon](https://github.com/malarc01)                                       |                                         [Cale Haug](https://github.com/cahaug)                                          |                                      [Sam Malanchuk](https://github.com/sam-malanchuk)                                       |
+| :-----------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: |
+| [<img src="https://avatars1.githubusercontent.com/u/48700293?s=460&v=4" width = "200" />](https://github.com/MattGThomas) |         [<img src="https://avatars0.githubusercontent.com/u/26069042?s=460&v=4" width = "200" />](https://github.com/quan005)          |       [<img src="https://avatars2.githubusercontent.com/u/48343707?s=460&v=4" width = "200" />](https://github.com/RyanAnsberry)       | [<img src="https://avatars2.githubusercontent.com/u/45378877?s=460&v=4" width = "200" />](https://github.com/malarc01)  |  [<img src="https://avatars1.githubusercontent.com/u/48393675?s=460&v=4" width = "200" />](https://github.com/cahaug)   | [<img src="https://avatars1.githubusercontent.com/u/36907446?s=460&v=4" width = "200" />](https://github.com/sam-malanchuk)  |
+|                  [<img src="https://github.com/favicon.ico" width="15">](https://github.com/MattGThomas)                  |                          [<img src="https://github.com/favicon.ico" width="15">](https://github.com/quan005)                           |                        [<img src="https://github.com/favicon.ico" width="15">](https://github.com/RyanAnsberry)                        |                  [<img src="https://github.com/favicon.ico" width="15">](https://github.com/malarc01)                   |                   [<img src="https://github.com/favicon.ico" width="15">](https://github.com/cahaug)                    |                  [<img src="https://github.com/favicon.ico" width="15">](https://github.com/sam-malanchuk)                   |
+|        [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/)        | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/daquan-freeman-a4b63622/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/ryan-ansberry-11a55415a/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/malarc01/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/calehaug/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/sam-malanchuk/) |
 
 <br>
 
 ## Project Overview
 
-[Trello Board](https://trello.com/b/wB0lpYYQ/wowo)
+[Trello Board](https://trello.com/b/LeNRHnQ2/labspt9-wowo)
 
 [Product Canvas](https://www.notion.so/d0cb80ea5dc94d749237d89e6a0227be?v=cfb287c66faa43c298ea841f8483e4de)
 
@@ -140,13 +140,13 @@ When contributing to this repository, please first discuss the change you wish t
 Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
 
 ## Issue/Bug Request
-  
- **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
+
+**If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
 
 - Check first to see if your issue has already been reported.
 - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
 - Create a live example of the problem.
-- Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
+- Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes, where you believe the issue is originating from, and any potential solutions you have considered.
 
 ### Feature Requests
 
@@ -172,4 +172,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](🚫*link to your backend readme here*) for details on the backend of our project.
