@@ -31,7 +31,7 @@ export function register(payload) {
     console.log("clientPayload", clientPayload);
     return axios
       .post(
-        "http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/auth/registerClient",
+        "http://wowo-env.eba-35bhjsem.us-east-1.elasticbeanstalk.com/auth/registerClient",
         clientPayload
       )
       .then((user) => {
@@ -44,7 +44,7 @@ export function register(payload) {
         console.log("payload", washerPayload);
         axios
           .post(
-            `http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/auth/registerWasher/${user.data.user.id}`,
+            `http://wowo-env.eba-35bhjsem.us-east-1.elasticbeanstalk.com/auth/registerWasher/${user.data.user.id}`,
             washerPayload
           )
           .then((res) => {

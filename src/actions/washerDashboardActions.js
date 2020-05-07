@@ -27,8 +27,8 @@ export function setWorkStatus(payload) {
 
     return axios
       .put(
-        `http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/users/washer/${id}`,
-        { workStatus }
+        `http://wowo-env.eba-35bhjsem.us-east-1.elasticbeanstalk.com/users/washer/${id}`,
+        { workStatus: workStatus }
       )
       .then((res) => {
         console.log("RES ------->", res);
