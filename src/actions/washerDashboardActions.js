@@ -23,6 +23,7 @@ export function setWorkStatus(payload) {
   return (dispatch) => {
     dispatch({ type: WASHER_SET_WORK_STATUS_START });
     const { id, workStatus } = payload;
+    console.log("work status ----> ", workStatus);
 
     return axios
       .put(
@@ -30,7 +31,8 @@ export function setWorkStatus(payload) {
         { workStatus }
       )
       .then((res) => {
-        dispatch({ type: WASHER_SET_WORK_STATUS_SUCCESS, payload: res });
+        console.log("RES ------->", res);
+        dispatch({ type: WASHER_SET_WORK_STATUS_SUCCESS, payload: res.data });
       })
       .catch((err) => {
         dispatch({

@@ -13,6 +13,7 @@ import {
 } from "mdbreact";
 import { Line, Doughnut, HorizontalBar } from "react-chartjs-2";
 import Moment from "react-moment";
+import JobsDisplay from "./JobsDisplay.js";
 
 import {
   setWorkStatus,
@@ -108,38 +109,46 @@ class Navigation extends React.Component {
     };
   }
 
+  componentWillMount() {
+    console.log("STATE:", this.state);
+  }
+
   async componentDidMount() {
     // const stateFromToken = await this.tokenData(decoded);
     // console.log("state payload", this.state.user);
     console.log("STATE:", this.state);
-    const { washerId } = this.state.user.user.washer;
-    const washerInfo = await axios.get(
-      `http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/users/${washerId}`
-    );
-    console.log("Navigation.js, washerInfo", washerInfo);
-    const getWorkStatus = this.state.user.user.washer.workStatus;
-    const countWash = this.props.getWashCount(washerId);
-    const washerRating = this.state.user.user.washer.washerRating;
+    if (this.state.user.user.washer) {
+      const { washerId } = this.state.user.user.washer;
+      const washerInfo = await axios.get(
+        `http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/users/${washerId}`
+      );
+      console.log("Navigation.js, washerInfo", washerInfo);
+      const getWorkStatus = this.state.user.user.washer.workStatus;
+      // const countWash = this.props.getWashCount(washerId);
+      const washerRating = this.state.user.user.washer.washerRating;
 
-    Promise.all([getWorkStatus, countWash, washerRating])
-      .then((res) => {
-        // console.log("resolved both the washer rating and wash count");
-        this.setState((prevState) => {
-          let user = { ...prevState.user };
-          user.workStatus = this.props.washerDashboardReducer.washerDashWorkStatusData.workStatus;
-          return { user };
+      Promise.all([getWorkStatus, washerRating])
+        .then((res) => {
+          // console.log("resolved both the washer rating and wash count");
+          this.setState((prevState) => {
+            let user = { ...prevState.user };
+            user.workStatus = this.props.washerDashboardReducer.washerDashWorkStatusData.workStatus;
+            return { user };
+          });
+        })
+        .catch((err) => {
+          throw new Error(err);
         });
-      })
-      .catch((err) => {
-        throw new Error(err);
-      });
+    } else {
+      console.log("NO WASHER in STATE!!! USER ERROR!!!");
+    }
   }
 
   // toggle switch handler without API endpoint connection yet
   handleSwitchChange = () => {
     this.setState((prevState) => {
       let user = { ...prevState.user };
-      user.workStatus = !prevState.user.workStatus;
+      user.workStatus = !this.state.user.user.washer.workStatus;
       return { user };
     });
     const payload = {
@@ -151,6 +160,7 @@ class Navigation extends React.Component {
       .setWorkStatus(payload)
       .then((res) => {
         console.log("updated workStatus");
+        console.log("STATE:", this.state);
       })
       .catch((err) => {
         throw new Error(err);
@@ -218,7 +228,7 @@ class Navigation extends React.Component {
       washerDashRatingLoading,
       washerDashRatingData,
     } = this.props.washerDashboardReducer;
-    const { user } = this.state;
+    const { user } = this.state.user;
     console.log("user", user);
     // console.log("props is", this.props);
     // console.log("washerDashWash Count Data", washerDashWashCountData.count);
@@ -247,7 +257,7 @@ class Navigation extends React.Component {
       ...ratingStars[washRatingRound - 1],
       choosed: true,
     };
-    const accountDate = this.accountAge(user.creationDate);
+    const accountDate = this.accountAge(this.state.user.user.creationDate);
     return (
       <MDBContainer className="mb-5">
         <MDBRow className="mt-4 mb-4 align-items-end">
@@ -297,14 +307,17 @@ class Navigation extends React.Component {
                       <MDBTypography tag="h3">
                         <small className="text-muted">Welcome back,</small>
                         <br />
-                        <strong>{user.user.firstName || "firstName"}!</strong>
+                        <strong>{user.firstName || "firstName"}!</strong>
                       </MDBTypography>
                       <div className="custom-control custom-switch">
                         <input
                           type="checkbox"
                           className="custom-control-input"
                           id="customSwitches"
-                          checked={this.state.user.workStatus}
+                          checked={
+                            this.state.user.user.washer.workStatus ||
+                            user.workStatus
+                          }
                           onChange={this.handleSwitchChange}
                           readOnly
                         />
@@ -354,6 +367,16 @@ class Navigation extends React.Component {
               <MapContainer>
                 <WashMap />
               </MapContainer>
+            </MDBCard>
+            <MDBCard>
+              {this.state.user.user.workStatus === true ? (
+                <JobsDisplay />
+              ) : this.state.user.user.workStatus === undefined &&
+                this.state.user.user.washer.workStatus === true ? (
+                <JobsDisplay />
+              ) : (
+                <p>Turn Work Status On To View Available Jobs</p>
+              )}
             </MDBCard>
           </MDBCol>
           <MDBCol md="4">
