@@ -261,6 +261,7 @@ class Navigation extends React.Component {
       this.state.user.user.creationDate !== undefined
         ? this.accountAge(this.state.user.user.creationDate)
         : "";
+    
     return (
       <MDBContainer className="mb-5">
         <MDBRow className="mt-4 mb-4 align-items-end">
