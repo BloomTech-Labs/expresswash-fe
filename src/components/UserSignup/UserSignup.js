@@ -31,7 +31,7 @@ class UserSignup extends Component {
       sAddress2: "",
       zip: "",
       city: "",
-      state: ""
+      state: "",
     };
     this.nextStep = this.nextStep.bind(this);
     this.prevStep = this.prevStep.bind(this);
@@ -44,7 +44,7 @@ class UserSignup extends Component {
     this.setState({ currentStep: currentStep });
 
     if (this.state.percentage === 100) return;
-    this.setState(prevState => ({ percentage: prevState.percentage + 25.0 }));
+    this.setState((prevState) => ({ percentage: prevState.percentage + 25.0 }));
   }
 
   prevStep() {
@@ -54,7 +54,7 @@ class UserSignup extends Component {
     this.setState({ currentStep: currentStep });
 
     if (this.state.percentage === 0) return;
-    this.setState(prevState => ({ percentage: prevState.percentage - 25.0 }));
+    this.setState((prevState) => ({ percentage: prevState.percentage - 25.0 }));
   }
 
   get getPrevStep() {
@@ -135,14 +135,14 @@ class UserSignup extends Component {
     }
   }
 
-  handleChange = evt => {
+  handleChange = (evt) => {
     evt.preventDefault();
     this.setState({
-      [evt.target.name]: evt.target.value
+      [evt.target.name]: evt.target.value,
     });
   };
 
-  handleSubmit = async evt => {
+  handleSubmit = async (evt) => {
     evt.preventDefault();
 
     const {
@@ -154,19 +154,20 @@ class UserSignup extends Component {
       streetAddress,
       city,
       state,
-      zip
+      zip,
     } = this.state;
 
     const payload = {
+      accountType: "client",
       email,
+      password,
       firstName,
       lastName,
-      password,
       phoneNumber,
       streetAddress,
       city,
       state,
-      zip
+      zip,
     };
     this.props
       .createClient(payload)
@@ -174,7 +175,7 @@ class UserSignup extends Component {
         console.log("this is payload on createclient", payload);
         this.props.history.push("/");
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -191,7 +192,7 @@ class UserSignup extends Component {
                   width: "100%",
                   marginTop: "1rem",
                   marginBottom: "1rem",
-                  height: "374px"
+                  height: "374px",
                 }}
               >
                 <div className="d-flex justify-content-center align-items-center h-100">
@@ -205,7 +206,7 @@ class UserSignup extends Component {
                 style={{
                   width: "100%",
                   marginTop: "1rem",
-                  marginBottom: "1rem"
+                  marginBottom: "1rem",
                 }}
               >
                 <div>{this.getPrevStep}</div>
@@ -265,13 +266,13 @@ class UserSignup extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   loading: state.loading,
-  error: state.error
+  error: state.error,
 });
 
 const mapDispatchToProps = {
-  createClient
+  createClient,
 };
 
 export default withRouter(
