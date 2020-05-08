@@ -28,7 +28,7 @@ export function register(payload) {
       zip: payload.zip,
     };
 
-    const DB_URL = "http://server.expresswash.us";
+    const DB_URL = "server.expresswash.us";
 
     console.log("clientPayload", clientPayload);
     return axios

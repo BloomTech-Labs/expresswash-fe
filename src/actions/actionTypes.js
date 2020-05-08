@@ -43,7 +43,7 @@ export const WASHER_GET_RATING_START = "WASHER_GET_RATING_START";
 export const WASHER_GET_RATING_SUCCESS = "WASHER_GET_RATING_SUCCESS";
 export const WASHER_GET_RATING_FAILED = "WASHER_GET_RATING_FAILED";
 
-const DB_URL = "http://server.expresswash.us";
+const DB_URL = "server.expresswash.us";
 
 export function loginUser(email, password) {
   return (dispatch) => {
