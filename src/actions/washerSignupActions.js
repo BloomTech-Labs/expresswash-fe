@@ -28,11 +28,11 @@ export function register(payload) {
       zip: payload.zip,
     };
 
-    const DB_URL = "server.expresswash.us/";
+    const DB_URL = "server.expresswash.us";
 
     console.log("clientPayload", clientPayload);
     return axios
-      .post(DB_URL, clientPayload)
+      .post(DB_URL + "/auth/registerClient", clientPayload)
       .then((user) => {
         console.log("WasherSignupActions.js, user", user);
         dispatch({ type: NEW_CLIENT_SUCCESS, payload: user.data });
@@ -42,7 +42,10 @@ export function register(payload) {
         };
         console.log("payload", washerPayload);
         axios
-          .post(`${DB_URL}${user.data.user.id}`, washerPayload)
+          .post(
+            `${DB_URL}/auth/registerWasher/${user.data.user.id}`,
+            washerPayload
+          )
           .then((res) => {
             console.log("Login Washer Response: ", res);
             dispatch({ type: CREATE_WASHER_SUCCESS, payload: res.data });
