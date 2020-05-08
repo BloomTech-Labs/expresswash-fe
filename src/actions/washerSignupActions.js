@@ -28,12 +28,12 @@ export function register(payload) {
       zip: payload.zip,
     };
 
+    const DB_URL =
+      "http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/";
+
     console.log("clientPayload", clientPayload);
     return axios
-      .post(
-        "https://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/auth/registerClient",
-        clientPayload
-      )
+      .post(DB_URL, clientPayload)
       .then((user) => {
         console.log("WasherSignupActions.js, user", user);
         dispatch({ type: NEW_CLIENT_SUCCESS, payload: user.data });
@@ -43,10 +43,7 @@ export function register(payload) {
         };
         console.log("payload", washerPayload);
         axios
-          .post(
-            `https://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/auth/registerWasher/${user.data.user.id}`,
-            washerPayload
-          )
+          .post(`${DB_URL}${user.data.user.id}`, washerPayload)
           .then((res) => {
             console.log("Login Washer Response: ", res);
             dispatch({ type: CREATE_WASHER_SUCCESS, payload: res.data });
