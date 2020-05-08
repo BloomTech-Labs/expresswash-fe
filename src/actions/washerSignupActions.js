@@ -28,8 +28,7 @@ export function register(payload) {
       zip: payload.zip,
     };
 
-    const DB_URL =
-      "http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/";
+    const DB_URL = "server.expresswash.us/";
 
     console.log("clientPayload", clientPayload);
     return axios

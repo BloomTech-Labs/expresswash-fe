@@ -43,8 +43,7 @@ export const WASHER_GET_RATING_START = "WASHER_GET_RATING_START";
 export const WASHER_GET_RATING_SUCCESS = "WASHER_GET_RATING_SUCCESS";
 export const WASHER_GET_RATING_FAILED = "WASHER_GET_RATING_FAILED";
 
-const DB_URL =
-  "http://wowotest-env.eba-en3d8xcw.us-east-1.elasticbeanstalk.com/";
+const DB_URL = "server.expresswash.us";
 
 export function loginUser(email, password) {
   return (dispatch) => {
