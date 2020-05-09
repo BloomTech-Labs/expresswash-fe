@@ -118,9 +118,9 @@ class Navigation extends React.Component {
     // console.log("state payload", this.state.user);
     console.log("STATE:", this.state);
     if (this.state.user.user.washer) {
-      const { washerId } = this.state.user.user.washer;
-      const washerInfo = await axios.get(`server.expresswash.us/${washerId}`);  
-      console.log("Navigation.js, washerInfo", washerInfo);
+      // const { washerId } = this.state.user.user.washer;
+      // const washerInfo = await axios.get(`server.expresswash.us/users/${washerId}`);
+      // console.log("Navigation.js, washerInfo", washerInfo);
       const getWorkStatus = this.state.user.user.washer.workStatus;
       // const countWash = this.props.getWashCount(washerId);
       const washerRating = this.state.user.user.washer.washerRating;
