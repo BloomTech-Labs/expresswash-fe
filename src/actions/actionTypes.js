@@ -43,7 +43,7 @@ export const WASHER_GET_RATING_START = "WASHER_GET_RATING_START";
 export const WASHER_GET_RATING_SUCCESS = "WASHER_GET_RATING_SUCCESS";
 export const WASHER_GET_RATING_FAILED = "WASHER_GET_RATING_FAILED";
 
-const DB_URL = "https://server.expresswash.us";
+const DB_URL = "https://serverprod.expresswash.us";
 
 export function loginUser(email, password) {
   return (dispatch) => {
@@ -124,6 +124,10 @@ export function getClientInformation(id) {
 }
 export function updateClientInformation(id, changes) {
   return (dispatch) => {
+    console.log(
+      "ActionTypes.js, updateClientInformation, changes obj",
+      changes
+    );
     return (
       axios
         .put(`${DB_URL}/users/${id}`, changes)
@@ -133,7 +137,7 @@ export function updateClientInformation(id, changes) {
         })
         .catch((err) => {
           console.log("this is error on update", err);
-          dispatch({ type: UPDATE_CLIENT_INFO_ERROR });
+          dispatch({ type: UPDATE_CLIENT_INFO_ERROR, payload: err.message });
         })
     );
   };
