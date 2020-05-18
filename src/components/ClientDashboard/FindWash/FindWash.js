@@ -10,6 +10,7 @@ import NavButton from "../HamburgerNavMenu.js/NavButton.js";
 import SideDrawer from "../HamburgerNavMenu.js/SideDrawer.js";
 import Backdrop from "../HamburgerNavMenu.js/Backdrop.js";
 import auth from "../../auth.js";
+import { getClientInformation } from "../../../actions/actionTypes";
 
 const MainContainer = Styled.div`
     display: flex;
@@ -275,6 +276,8 @@ class FindWash extends Component {
   };
 
   componentWillMount() {
+    // update userReducer with most current user info
+    this.props.getClientInformation(this.props.user.id);
     this.getCurrentWeek();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -372,7 +375,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  getClientInformation,
+};
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(FindWash)

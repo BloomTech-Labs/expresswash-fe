@@ -117,7 +117,7 @@ export function getClientInformation(id) {
           dispatch({ type: GET_CLIENT_INFO_SUCCESS, payload: res.data });
         })
         .catch((err) => {
-          dispatch({ type: GET_CLIENT_INFO_ERROR });
+          dispatch({ type: GET_CLIENT_INFO_ERROR, payload: err.message });
         })
     );
   };

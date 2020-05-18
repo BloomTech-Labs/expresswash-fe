@@ -66,21 +66,22 @@ export default function userReducer(state = initialState, action) {
         ...state,
         loading: false,
         info: action.payload,
-        // error: action.payload
+        user: action.payload,
+        error: false,
       };
     }
     case GET_CLIENT_INFO_ERROR: {
       return {
         ...state,
-        // loading: false
-        // error: action.payload
+        loading: false,
+        error: action.payload,
       };
     }
     case UPDATE_CLIENT_INFO_SUCCESS: {
       return {
         ...state,
         loading: false,
-        user: action.payload.user,
+        user: action.payload,
         error: false,
       };
     }

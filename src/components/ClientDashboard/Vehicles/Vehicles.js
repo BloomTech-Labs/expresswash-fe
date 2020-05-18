@@ -31,20 +31,19 @@ class Vehicles extends Component {
       photo: "",
       category: ["car", "suv", "truck", "van"],
       size: ["small", "medium", "large"],
-      vehicles: [],
     };
   }
   componentDidMount() {
-    const { id } = localStorage;
-    Axios.post(DB_URL + "/cars", id)
-      .then((res) => {
-        this.setState({
-          vehicles: res.data,
-        });
-      })
-      .catch((err) => {
-        console.log("this is err on get client cars", err);
-      });
+    // const { id } = localStorage;
+    // Axios.post(DB_URL + "/cars", id)
+    //   .then((res) => {
+    //     this.setState({
+    //       vehicles: res.data,
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log("this is err on get client cars", err);
+    //   });
   }
   toggle = () => {
     this.setState({
@@ -78,7 +77,7 @@ class Vehicles extends Component {
           >
             <strong>Vehicles:</strong>
           </div>
-          <VehicleList vehicles={this.state.vehicles} />
+          <VehicleList vehicles={this.props.cars} />
 
           <MDBModalFooter color="black-text">
             <MDBContainer>
@@ -132,7 +131,7 @@ class Vehicles extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    vehciles: state.payload,
+    cars: state.userReducer.user.cars,
   };
 };
 

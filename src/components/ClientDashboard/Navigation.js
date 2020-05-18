@@ -42,9 +42,9 @@ class Navigation extends Component {
   }
 
   componentDidMount() {
-    console.log("NAVIGATION.JS PROPS.USER", this.props.user);
     const { id } = localStorage;
-
+    this.props.getClientInformation(id);
+    console.log("NAVIGATION.JS PROPS.USER", this.props.user);
     Axios.get(`https://serverprod.expresswash.us/users/${id}`)
       .then((res) => {
         console.log("RES", res);
