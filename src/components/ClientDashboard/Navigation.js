@@ -149,7 +149,7 @@ class Navigation extends Component {
           >
             <div
               className="d-flex justify-content-end"
-              style={{ paddingBottom: "7%" }}
+              style={{ padding: "7%" }}
             >
               <strong>{date}</strong>
             </div>
@@ -189,27 +189,24 @@ class Navigation extends Component {
                 style={{ height: "100", paddingTop: "20%" }}
               >
                 <Link to="/clientDash/Washes">
-                  <h5
-                    className="text-muted"
-                    style={{ paddingTop: "25px", paddingBottom: "15%" }}
-                  >
+                  <h5 className="text-muted" style={{ padding: "15%" }}>
                     <strong>Your Washes</strong>
                   </h5>
                 </Link>
                 <Link to="/clientDash/payments">
-                  <h5 className="text-muted" style={{ paddingBottom: "15%" }}>
+                  <h5 className="text-muted" style={{ padding: "15%" }}>
                     <strong>Payment</strong>
                   </h5>
                 </Link>
                 <Link to="/clientDash/vehicles">
-                  <h5 className="text-muted" style={{ paddingBottom: "15%" }}>
+                  <h5 className="text-muted" style={{ padding: "15%" }}>
                     <strong>Manage Vehicles</strong>
                   </h5>
                 </Link>
                 <h5
                   className="text-muted"
                   onClick={this.toggle}
-                  style={{ paddingBottom: "15%" }}
+                  style={{ padding: "15%" }}
                 >
                   <strong>Edit Account</strong>
                 </h5>

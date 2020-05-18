@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Axios from "axios";
 import VehicleList from "./VehicleList.js";
+import { DB_URL } from "../../../actions/actionTypes.js";
 
 import {
   MDBContainer,
@@ -12,50 +13,55 @@ import {
   MDBBtn,
   MDBModal,
   MDBModalBody,
-  MDBInput
+  MDBInput,
 } from "mdbreact";
 import { MDBIcon } from "mdbreact";
 import { getClientCars } from "../../../actions/actionTypes.js";
 
 class Vehicles extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       modal: false,
-      vehicleMake: "",
-      vehicleModel: "",
-      vehicleColor: "",
-      vehicles: [{ Make: "Toyota" }, { Make: "Prius" }, { Make: "Ram" }]
+      clientId: "",
+      make: "",
+      model: "",
+      color: "",
+      licensePlate: "",
+      photo: "",
+      category: ["car", "suv", "truck", "van"],
+      size: ["small", "medium", "large"],
+      vehicles: [],
     };
   }
   componentDidMount() {
     const { id } = localStorage;
-    Axios.post("https://pt6-wowo.herokuapp.com/carsPG/mycars", id)
-      .then(res => {
+    Axios.post(DB_URL + "/cars", id)
+      .then((res) => {
         this.setState({
-          vehicles: res.data
+          vehicles: res.data,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("this is err on get client cars", err);
       });
   }
   toggle = () => {
     this.setState({
-      modal: !this.state.modal
+      modal: !this.state.modal,
     });
   };
-  changeHandler = evt => {
+  changeHandler = (evt) => {
     evt.preventDefault();
     this.setState({
-      [evt.target.name]: evt.target.value
+      [evt.target.name]: evt.target.value,
     });
   };
-  submitHandler = evt => {
+  submitHandler = (evt) => {
     evt.preventDefault();
   };
   render() {
-    const { vehicleColor, vehicleMake, vehicleModel } = this.state;
+    const { color, make, model } = this.state;
     return (
       <MDBContainer style={{ border: "red" }}>
         <MDBCard>
@@ -85,24 +91,24 @@ class Vehicles extends Component {
                   </MDBModalHeader>
                   <MDBModalBody>
                     <MDBInput
-                      name="vehicleMake"
+                      name="make"
                       label="Make"
                       type="text"
-                      value={vehicleMake}
+                      value={make}
                       onChange={this.changeHandler}
                     />
                     <MDBInput
-                      name="vehicleModel"
+                      name="model"
                       label="Model"
                       type="text"
-                      value={vehicleModel}
+                      value={model}
                       onChange={this.changeHandler}
                     />
                     <MDBInput
-                      name="vehicleColor"
+                      name="color"
                       label="Color"
                       type="text"
-                      value={vehicleColor}
+                      value={color}
                       onChange={this.changeHandler}
                     />
                   </MDBModalBody>
@@ -124,14 +130,14 @@ class Vehicles extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    vehciles: state.payload
+    vehciles: state.payload,
   };
 };
 
 const mapDispatchToProps = {
-  getClientCars
+  getClientCars,
 };
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(Vehicles)
