@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
-import FillerPage from "./FillerPage";
+import FillerPage from "../components/UserSignup/FillerPage";
 
 test("fillerpage renders", () => {
   const { getByText } = render(

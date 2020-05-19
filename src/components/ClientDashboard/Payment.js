@@ -18,7 +18,7 @@ import {
   MDBModalHeader,
   MDBModalFooter,
   MDBModalBody,
-  MDBIcon
+  MDBIcon,
 } from "mdbreact";
 // import {
 //   CardNumberElement,
@@ -41,23 +41,22 @@ class Payment extends Component {
       expYear: "",
       cvc: "",
       modal: false,
-      errorMessage: ""
+      errorMessage: "",
     };
   }
 
-
   toggle = () => {
     this.setState({
-      modal: !this.state.modal
+      modal: !this.state.modal,
     });
   };
-  changeHandler = evt => {
+  changeHandler = (evt) => {
     evt.preventDefault();
     this.setState({
-      [evt.target.name]: evt.target.value
+      [evt.target.name]: evt.target.value,
     });
   };
-  submitHandler = evt => {
+  submitHandler = (evt) => {
     evt.preventDefault();
   };
 
@@ -144,6 +143,7 @@ class Payment extends Component {
                     onChange={this.changeHandler}
                   />
                   <MDBInput
+                    data-testid="zip"
                     name="zipCode"
                     label="zipcode"
                     type="number"
@@ -160,7 +160,6 @@ class Payment extends Component {
         </MDBCard>
       </MDBContainer>
     );
-
   }
 }
 

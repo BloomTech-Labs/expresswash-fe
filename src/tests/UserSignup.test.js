@@ -3,12 +3,12 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter as Router } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
-import UserSignup from "./UserSignup";
+import UserSignup from "../components/UserSignup/UserSignup";
 //imports for mocking redux
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import initialState from "../../reducers/initialState";
-import userReducer from "../../reducers/userReducer";
+import initialState from "../reducers/initialState";
+import userReducer from "../reducers/userReducer";
 // import Address from "./signup-steps/Address";
 // jest.mock("./signup-steps/Address");
 
