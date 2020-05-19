@@ -80,6 +80,7 @@ class UserSignup extends Component {
           <MDBCol>
             <div className="d-flex justify-content-center">
               <MDBBtn
+                data-testid="registerbtn"
                 type="button"
                 onClick={this.nextStep}
                 color="primary"
