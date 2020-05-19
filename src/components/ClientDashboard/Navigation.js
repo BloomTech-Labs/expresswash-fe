@@ -7,7 +7,7 @@ import ClientVehicles from "./Vehicles/Vehicles.js";
 import {
   getClientInformation,
   updateClientInformation,
-  getClientRating
+  getClientRating,
 } from "../../actions/actionTypes.js";
 
 import StarRatings from "react-star-ratings";
@@ -21,11 +21,10 @@ import {
   MDBModalHeader,
   MDBModalBody,
   MDBModalFooter,
-  MDBInput
+  MDBInput,
 } from "mdbreact";
 
-import logo from '../../images/wowo-logo-full.JPG';
-
+import logo from "../../images/wowo-logo-full.JPG";
 
 class Navigation extends Component {
   constructor() {
@@ -38,7 +37,7 @@ class Navigation extends Component {
       email: "",
       firstName: "",
       lastName: "",
-      phone: ""
+      phone: "",
     };
   }
 
@@ -46,27 +45,27 @@ class Navigation extends Component {
     const { id } = localStorage;
 
     Axios.get(`https://pt6-wowo.herokuapp.com/users/${id}`)
-      .then(res => {
+      .then((res) => {
         this.setState({
           email: res.data.email,
           firstName: res.data.firstName,
           lastName: res.data.lastName,
-          phoneNumber: res.data.phoneNumber
+          phoneNumber: res.data.phoneNumber,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("this is err on component did mount", err);
       });
 
-//     Axios.post("https://pt6-wowo.herokuapp.com/ratings/clientaverage", { id })
-//       .then(res => {
-//         this.setState({
-//           rating: res.data
-//         });
-//       })
-//       .catch(err => {
-//         console.log(err);
-//       });
+    //     Axios.post("https://pt6-wowo.herokuapp.com/ratings/clientaverage", { id })
+    //       .then(res => {
+    //         this.setState({
+    //           rating: res.data
+    //         });
+    //       })
+    //       .catch(err => {
+    //         console.log(err);
+    //       });
     // this.props.getClientRating({ id }).then(rating => {
     //   this.setState({ rating });
     // });
@@ -87,19 +86,19 @@ class Navigation extends Component {
   toggle = () => {
     const { id } = localStorage;
     Axios.get(`https://pt6-wowo.herokuapp.com/users/`)
-      .then(res => {
+      .then((res) => {
         this.setState({
           email: res.data.email,
           firstName: res.data.firstName,
           lastName: res.data.lastName,
-          phoneNumber: res.data.phoneNumber
+          phoneNumber: res.data.phoneNumber,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("this is err on the toggle", err);
       });
     this.setState({
-      modal: !this.state.modal
+      modal: !this.state.modal,
     });
   };
 
@@ -108,13 +107,13 @@ class Navigation extends Component {
     this.setState({ date });
   };
 
-  changeHandler = evt => {
+  changeHandler = (evt) => {
     evt.preventDefault();
     this.setState({
-      [evt.target.name]: evt.target.value
+      [evt.target.name]: evt.target.value,
     });
   };
-  submitHandler = evt => {
+  submitHandler = (evt) => {
     evt.preventDefault();
     const { id } = localStorage;
     const { firstName, lastName, phoneNumber, email } = this.state;
@@ -124,7 +123,7 @@ class Navigation extends Component {
       .then(() => {
         this.props.history.push("/clientDash/navigation");
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -135,7 +134,7 @@ class Navigation extends Component {
       firstName,
       lastName,
       email,
-      phoneNumber
+      phoneNumber,
     } = this.state;
     // const email = this.props.clientInformation;
 
@@ -283,17 +282,17 @@ class Navigation extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     clientInformation: state.info,
-    rating: state.userReducer.rating
+    rating: state.userReducer.rating,
   };
 };
 
 const mapDispatchToProps = {
   getClientInformation,
   updateClientInformation,
-  getClientRating
+  getClientRating,
 };
 
 export default withRouter(
