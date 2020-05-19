@@ -2,12 +2,12 @@ import React from "react";
 import { render, getByText } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
-import Navigation from "./Navigation";
+import Dashboard from "../components/Dashboard";
 //redux for mocking
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import initialState from "../../reducers/initialState";
-import rootReducer from "../../reducers/rootReducer";
+import initialState from "../reducers/initialState";
+import rootReducer from "../reducers/rootReducer";
 
 function renderWithRedux(
   ui,
@@ -18,12 +18,11 @@ function renderWithRedux(
   };
 }
 
-test("renders user navigation", () => {
-  const { getByText, debug } = renderWithRedux(
+test("render dashboard component", () => {
+  const { getByText } = renderWithRedux(
     <Router>
-      <Navigation />
+      <Dashboard />
     </Router>
   );
-  expect(getByText(/payment/i)).toBeInTheDocument();
-  debug();
+  expect(getByText(/dashboard/i)).toBeInTheDocument();
 });
