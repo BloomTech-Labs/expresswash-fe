@@ -1,4 +1,4 @@
-import QuoteGenerator from './components/QuoteGenerator/QuoteGenerator'
+import QuoteGenerator from "./components/QuoteGenerator/QuoteGenerator";
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { Route, Switch } from "react-router-dom";
@@ -23,13 +23,11 @@ import DateFnsUtils from "@date-io/date-fns";
 import { PrivateRoute } from "./components/PrivateRoute.js";
 import "./App.css";
 
-
-import authGuard from './components/HOCs/authGuard';
-import Dashboard from './components/Dashboard';
-
+import authGuard from "./components/HOCs/authGuard";
+import Dashboard from "./components/Dashboard";
 
 const GlobalStyle = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap')
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap');
 
     html, body {
         font-family: 'Open Sans', sans-serif !important;
@@ -49,15 +47,14 @@ const Container = styled.div`
 `;
 
 function App(props) {
-
-  console.log('App.js props=>', props);
+  console.log("App.js props=>", props);
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Container className="App">
         <GlobalStyle />
         <Switch>
           <Route exact path="/" component={LandingPage} />
-   		  <Route path="/instantQuote" component={QuoteGenerator} />
+          <Route path="/instantQuote" component={QuoteGenerator} />
           <Route exact path="/user-register" component={UserSignUp} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/find-wash" component={FindWash} />
@@ -96,7 +93,6 @@ function App(props) {
 
           <Route exact path="/testdashboard" component={authGuard(Dashboard)} />
         </Switch>
-        
       </Container>
     </MuiPickersUtilsProvider>
   );
