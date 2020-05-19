@@ -11,4 +11,5 @@ test("auth component true", () => {
   const res = Auth;
   Auth.authenticated = true;
   expect(res.authenticated).toBe(true);
+  spy.mockRestore();
 });
