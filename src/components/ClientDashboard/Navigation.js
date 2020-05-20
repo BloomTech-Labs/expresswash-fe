@@ -43,11 +43,17 @@ class Navigation extends Component {
 
   componentDidMount() {
     const { id } = localStorage;
+<<<<<<< HEAD
     this.props.getClientInformation(id);
     console.log("NAVIGATION.JS PROPS.USER", this.props.user);
     Axios.get(`https://serverprod.expresswash.us/users/${id}`)
       .then((res) => {
         console.log("RES", res);
+=======
+
+    Axios.get(`https://pt6-wowo.herokuapp.com/users/${id}`)
+      .then((res) => {
+>>>>>>> 7c9ea4ea6f42c5b855785e03e2e874a5fee3fe93
         this.setState({
           email: res.data.email,
           firstName: res.data.firstName,
@@ -87,7 +93,11 @@ class Navigation extends Component {
   }
   toggle = () => {
     const { id } = localStorage;
+<<<<<<< HEAD
     Axios.get(`https://serverprod.expresswash.us/users/`)
+=======
+    Axios.get(`https://pt6-wowo.herokuapp.com/users/`)
+>>>>>>> 7c9ea4ea6f42c5b855785e03e2e874a5fee3fe93
       .then((res) => {
         this.setState({
           email: res.data.email,
@@ -290,7 +300,10 @@ const mapStateToProps = (state) => {
   return {
     clientInformation: state.info,
     rating: state.userReducer.rating,
+<<<<<<< HEAD
     user: state.userReducer.user,
+=======
+>>>>>>> 7c9ea4ea6f42c5b855785e03e2e874a5fee3fe93
   };
 };
 
