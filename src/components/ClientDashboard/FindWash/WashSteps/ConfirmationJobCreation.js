@@ -434,7 +434,9 @@ class ConfirmationJobCreation extends Component {
           <strong>License Plate:</strong> 7CR13298 <br />
           <strong>Cost before Tip:</strong>$54.00
           <br />
-          <PrevButton onClick={() => this.props.prev()}>Back</PrevButton>
+          <PrevButton data-testid="prev" onClick={() => this.props.prev()}>
+            Back
+          </PrevButton>
           <NextButton onClick={() => this.handleSchedule()}>
             Schedule
           </NextButton>
