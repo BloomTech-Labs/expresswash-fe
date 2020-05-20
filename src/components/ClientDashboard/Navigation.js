@@ -7,7 +7,7 @@ import ClientVehicles from "./Vehicles/Vehicles.js";
 import {
   getClientInformation,
   updateClientInformation,
-  getClientRating
+  getClientRating,
 } from "../../actions/actionTypes.js";
 
 import StarRatings from "react-star-ratings";
@@ -21,11 +21,10 @@ import {
   MDBModalHeader,
   MDBModalBody,
   MDBModalFooter,
-  MDBInput
+  MDBInput,
 } from "mdbreact";
 
-import logo from '../../images/wowo-logo-full.JPG';
-
+import logo from "../../images/wowo-logo-full.JPG";
 
 class Navigation extends Component {
   constructor() {
@@ -38,35 +37,37 @@ class Navigation extends Component {
       email: "",
       firstName: "",
       lastName: "",
-      phone: ""
+      phone: "",
     };
   }
 
   componentDidMount() {
     const { id } = localStorage;
-
-    Axios.get(`https://pt6-wowo.herokuapp.com/users/${id}`)
-      .then(res => {
+    this.props.getClientInformation(id);
+    console.log("NAVIGATION.JS PROPS.USER", this.props.user);
+    Axios.get(`https://serverprod.expresswash.us/users/${id}`)
+      .then((res) => {
+        console.log("RES", res);
         this.setState({
           email: res.data.email,
           firstName: res.data.firstName,
           lastName: res.data.lastName,
-          phoneNumber: res.data.phoneNumber
+          phoneNumber: res.data.phoneNumber,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("this is err on component did mount", err);
       });
 
-//     Axios.post("https://pt6-wowo.herokuapp.com/ratings/clientaverage", { id })
-//       .then(res => {
-//         this.setState({
-//           rating: res.data
-//         });
-//       })
-//       .catch(err => {
-//         console.log(err);
-//       });
+    //     Axios.post("https://pt6-wowo.herokuapp.com/ratings/clientaverage", { id })
+    //       .then(res => {
+    //         this.setState({
+    //           rating: res.data
+    //         });
+    //       })
+    //       .catch(err => {
+    //         console.log(err);
+    //       });
     // this.props.getClientRating({ id }).then(rating => {
     //   this.setState({ rating });
     // });
@@ -86,20 +87,20 @@ class Navigation extends Component {
   }
   toggle = () => {
     const { id } = localStorage;
-    Axios.get(`https://pt6-wowo.herokuapp.com/users/`)
-      .then(res => {
+    Axios.get(`https://serverprod.expresswash.us/users/`)
+      .then((res) => {
         this.setState({
           email: res.data.email,
           firstName: res.data.firstName,
           lastName: res.data.lastName,
-          phoneNumber: res.data.phoneNumber
+          phoneNumber: res.data.phoneNumber,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("this is err on the toggle", err);
       });
     this.setState({
-      modal: !this.state.modal
+      modal: !this.state.modal,
     });
   };
 
@@ -108,13 +109,13 @@ class Navigation extends Component {
     this.setState({ date });
   };
 
-  changeHandler = evt => {
+  changeHandler = (evt) => {
     evt.preventDefault();
     this.setState({
-      [evt.target.name]: evt.target.value
+      [evt.target.name]: evt.target.value,
     });
   };
-  submitHandler = evt => {
+  submitHandler = (evt) => {
     evt.preventDefault();
     const { id } = localStorage;
     const { firstName, lastName, phoneNumber, email } = this.state;
@@ -124,7 +125,7 @@ class Navigation extends Component {
       .then(() => {
         this.props.history.push("/clientDash/navigation");
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -135,165 +136,168 @@ class Navigation extends Component {
       firstName,
       lastName,
       email,
-      phoneNumber
+      phoneNumber,
     } = this.state;
     // const email = this.props.clientInformation;
 
     return (
-      // <div class="border border-primary w-100" style={{ height: "100vh" }}>
-      <MDBContainer>
-        <div class="w-100" style={{ height: "100vh", paddingTop: "15px" }}>
+      <div className="border border-primary w-100" style={{ height: "100vh" }}>
+        <MDBContainer>
           <div
-            class="d-flex justify-content-end"
-            style={{ paddingBottom: "7%" }}
+            className="w-100"
+            style={{ height: "100vh", paddingTop: "15px" }}
           >
-            <strong>{date}</strong>
-          </div>
-          <div>
-            <MDBCol class="d-flex align-items-start">
-              <h3 class="h3-responsive">
-                <strong>
-                  <p>Welcome back,</p>
-                  {this.state.firstName} {this.state.lastName}!
-                </strong>
-              </h3>
-              <img
-                src={logo}
-                alt="website logo"
-                style={{ height: "100px" }}
-                class="border border-dark rounded-circle"
-              />
-              <div>
-                <p style={{ paddingTop: "7.5%" }}>
-                  <strong>My Rating:</strong>
-                </p>
-                <StarRatings
-                  rating={rating}
-                  numberOfStars={5}
-                  name={"userRating"}
-                  starDimension={"25px"}
-                  starSpacing={"5px"}
-                  starRatedColor={"rgb(0,128,255)"}
-                />
-              </div>
-            </MDBCol>
-          </div>
-
-          <div>
-            <MDBCol
-              class="d-flex align-content-center"
-              style={{ height: "100", paddingTop: "20%" }}
+            <div
+              className="d-flex justify-content-end"
+              style={{ padding: "7%" }}
             >
-              <Link to="/clientDash/Washes">
-                <h5
-                  class="text-muted"
-                  style={{ paddingTop: "25px", paddingBottom: "15%" }}
-                >
-                  <strong>Your Washes</strong>
-                </h5>
-              </Link>
-              <Link to="/clientDash/payments">
-                <h5 class="text-muted" style={{ paddingBottom: "15%" }}>
-                  <strong>Payment</strong>
-                </h5>
-              </Link>
-              <Link to="/clientDash/vehicles">
-                <h5 class="text-muted" style={{ paddingBottom: "15%" }}>
-                  <strong>Manage Vehicles</strong>
-                </h5>
-              </Link>
-              <h5
-                class="text-muted"
-                onClick={this.toggle}
-                style={{ paddingBottom: "15%" }}
-              >
-                <strong>Edit Account</strong>
-              </h5>
-              <Link to="/washer-register">
-                <h5 class="text-muted">
-                  <strong>Earn Money Washing</strong>
-                </h5>
-              </Link>
-            </MDBCol>
-          </div>
-          <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
-            <form onSubmit={this.submitHandler}>
-              <MDBModalHeader toggle={this.toggle}>Edit Account</MDBModalHeader>
-              <MDBModalBody>
-                <p class="d-flex justify-content-start">
-                  <strong>Personal Information</strong>
-                </p>
+              <strong>{date}</strong>
+            </div>
+            <div>
+              <MDBCol className="d-flex align-items-start">
+                <h3 className="h3-responsive">
+                  <strong>
+                    <p>Welcome back,</p>
+                    {this.props.user.firstName} {this.props.user.lastName}!
+                  </strong>
+                </h3>
+                <img
+                  src={logo}
+                  alt="website logo"
+                  style={{ height: "100px" }}
+                  className="border border-dark rounded-circle"
+                />
                 <div>
-                  <MDBInput
-                    id="name"
-                    name="firstName"
-                    type="text"
-                    label="First Name"
-                    value={firstName}
-                    onChange={this.changeHandler}
-                  />
-                  <MDBInput
-                    id="lastName"
-                    name="lastName"
-                    type="text"
-                    label="Last Name"
-                    value={lastName}
-                    onChange={this.changeHandler}
-                  />
-                  <MDBInput
-                    id="email"
-                    name="email"
-                    type="text"
-                    label="Email"
-                    value={email}
-                    onChange={this.changeHandler}
-                  />
-                  <MDBInput
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    type="tel"
-                    label="Phone Number"
-                    value={phoneNumber}
-                    onChange={this.changeHandler}
-                  />
-                  <MDBInput
-                    id="password"
-                    name="password"
-                    type="password"
-                    label="Password"
-                    value="thisisafakepass"
+                  <p style={{ paddingTop: "7.5%" }}>
+                    <strong>My Rating:</strong>
+                  </p>
+                  <StarRatings
+                    rating={rating}
+                    numberOfStars={5}
+                    name={"userRating"}
+                    starDimension={"25px"}
+                    starSpacing={"5px"}
+                    starRatedColor={"rgb(0,128,255)"}
                   />
                 </div>
-                <p class="d-flex justify-content-start">
-                  <strong>Favorites</strong>
-                </p>
-              </MDBModalBody>
-              <MDBModalFooter>
-                <div className="d-flex justify-content-center">
-                  <MDBBtn type="submit">Save Changes</MDBBtn>
-                </div>
-                {/* <MDBBtn onClick={this.toggle}>Close</MDBBtn> */}
-              </MDBModalFooter>
-            </form>
-          </MDBModal>
-        </div>
-      </MDBContainer>
-      // </div>
+              </MDBCol>
+            </div>
+
+            <div>
+              <MDBCol
+                className="d-flex align-content-center"
+                style={{ height: "100", paddingTop: "20%" }}
+              >
+                <Link to="/clientDash/Washes">
+                  <h5 className="text-muted" style={{ padding: "15%" }}>
+                    <strong>Your Washes</strong>
+                  </h5>
+                </Link>
+                <Link to="/clientDash/payments">
+                  <h5 className="text-muted" style={{ padding: "15%" }}>
+                    <strong>Payment</strong>
+                  </h5>
+                </Link>
+                <Link to="/clientDash/vehicles">
+                  <h5 className="text-muted" style={{ padding: "15%" }}>
+                    <strong>Manage Vehicles</strong>
+                  </h5>
+                </Link>
+                <h5
+                  className="text-muted"
+                  onClick={this.toggle}
+                  style={{ padding: "15%" }}
+                >
+                  <strong>Edit Account</strong>
+                </h5>
+                <Link to="/washer-register">
+                  <h5 className="text-muted">
+                    <strong>Earn Money Washing</strong>
+                  </h5>
+                </Link>
+              </MDBCol>
+            </div>
+            <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
+              <form onSubmit={this.submitHandler}>
+                <MDBModalHeader toggle={this.toggle}>
+                  Edit Account
+                </MDBModalHeader>
+                <MDBModalBody>
+                  <p className="d-flex justify-content-start">
+                    <strong>Personal Information</strong>
+                  </p>
+                  <div>
+                    <MDBInput
+                      id="name"
+                      name="firstName"
+                      type="text"
+                      label="First Name"
+                      value={firstName}
+                      onChange={this.changeHandler}
+                    />
+                    <MDBInput
+                      id="lastName"
+                      name="lastName"
+                      type="text"
+                      label="Last Name"
+                      value={lastName}
+                      onChange={this.changeHandler}
+                    />
+                    <MDBInput
+                      id="email"
+                      name="email"
+                      type="text"
+                      label="Email"
+                      value={email}
+                      onChange={this.changeHandler}
+                    />
+                    <MDBInput
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      type="tel"
+                      label="Phone Number"
+                      value={phoneNumber}
+                      onChange={this.changeHandler}
+                    />
+                    <MDBInput
+                      id="password"
+                      name="password"
+                      type="password"
+                      label="Password"
+                      value="thisisafakepass"
+                    />
+                  </div>
+                  <p className="d-flex justify-content-start">
+                    <strong>Favorites</strong>
+                  </p>
+                </MDBModalBody>
+                <MDBModalFooter>
+                  <div className="d-flex justify-content-center">
+                    <MDBBtn type="submit">Save Changes</MDBBtn>
+                  </div>
+                  {/* <MDBBtn onClick={this.toggle}>Close</MDBBtn> */}
+                </MDBModalFooter>
+              </form>
+            </MDBModal>
+          </div>
+        </MDBContainer>
+      </div>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     clientInformation: state.info,
-    rating: state.userReducer.rating
+    rating: state.userReducer.rating,
+    user: state.userReducer.user,
   };
 };
 
 const mapDispatchToProps = {
   getClientInformation,
   updateClientInformation,
-  getClientRating
+  getClientRating,
 };
 
 export default withRouter(

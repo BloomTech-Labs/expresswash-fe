@@ -10,6 +10,7 @@ import SelectTime from "./SelectTime.js";
 // import SelectService from "./WashSteps/SelectService.js";
 // import ConfirmWash from "./WashSteps/ConfirmWash.js";
 import ConfirmationJobCreation from "./ConfirmationJobCreation.js";
+import userReducer from "../../../../reducers/userReducer.js";
 
 class WashForm extends React.Component {
   constructor(props) {
@@ -45,7 +46,9 @@ class WashForm extends React.Component {
     });
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log("WashForm.js, this.props.user", this.props.user);
+  }
 
   render() {
     const {
@@ -123,7 +126,7 @@ class WashForm extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.userReducer.user,
     loginSuccessful: state.loginSuccessful,
   };
 };

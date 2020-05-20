@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-// import { addACar } from '../../actions/actionTypes.js';
+import { addACar, DB_URL } from "../../../../actions/actionTypes.js";
+
 import axios from "axios";
 import Styled from "styled-components";
 
@@ -391,7 +392,7 @@ class ConfirmationJobCreation extends Component {
   handleSchedule = () => {
     // alert(this.state.selectedModel)
     axios
-      .post("https://pt6-wowo.herokuapp.com/jobs/new", {
+      .post(DB_URL + "/jobs/new", {
         washAddress: `4224 East Hubbell Street, Phoenix, Arizona 85008, United States`,
         washerId: null,
         scheduled: true,

@@ -1,7 +1,11 @@
 import React from "react";
 
-const EachVehicle = props => {
-  return <p>{props.vehicle.vehicle}</p>;
+const EachVehicle = ({ vehicle }) => {
+  return (
+    <p>
+      {vehicle.year} - {vehicle.color} {vehicle.make} {vehicle.model}
+    </p>
+  );
 };
 
 export default EachVehicle;
