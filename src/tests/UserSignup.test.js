@@ -5,16 +5,20 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 import UserSignup from "../components/UserSignup/UserSignup";
 //imports for mocking redux
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import initialState from "../reducers/initialState";
 import userReducer from "../reducers/userReducer";
+import thunk from "redux-thunk";
 // import Address from "./signup-steps/Address";
 // jest.mock("./signup-steps/Address");
 
 function renderWithRedux(
   ui,
-  { initialState, store = createStore(userReducer, initialState) } = {}
+  {
+    initialState,
+    store = createStore(userReducer, initialState, applyMiddleware(thunk)),
+  } = {}
 ) {
   return {
     ...render(<Provider store={store}>{ui}</Provider>),
@@ -95,4 +99,5 @@ test("adds input and renders all signup screens", async () => {
   expect(getByText(/zipcode/i)).toBeInTheDocument();
   const submit = getByText(/submit/i);
   expect(submit).toBeInTheDocument();
+  await userEvent.click(submit);
 });
