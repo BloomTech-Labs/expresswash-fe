@@ -42,7 +42,7 @@ export const WASHER_GET_WASH_COUNT_FAILED = "WASHER_GET_WASH_COUNT_FAILED";
 export const WASHER_GET_RATING_START = "WASHER_GET_RATING_START";
 export const WASHER_GET_RATING_SUCCESS = "WASHER_GET_RATING_SUCCESS";
 export const WASHER_GET_RATING_FAILED = "WASHER_GET_RATING_FAILED";
-
+// Global backend URL variable
 export const DB_URL = "https://serverprod.expresswash.us";
 
 export function loginUser(email, password) {

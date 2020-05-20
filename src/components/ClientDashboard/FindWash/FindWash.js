@@ -191,6 +191,7 @@ class FindWash extends Component {
 
   // gets the clicked address location
   addressOnClick = async (address, token) => {
+    console.log("FindWash.js addressOnClick address:", address);
     let country = "us";
     try {
       const getLocation = await fetch(

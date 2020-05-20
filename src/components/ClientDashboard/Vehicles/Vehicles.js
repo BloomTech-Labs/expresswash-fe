@@ -60,7 +60,16 @@ class Vehicles extends Component {
     evt.preventDefault();
   };
   render() {
-    const { color, make, model } = this.state;
+    const {
+      make,
+      model,
+      year,
+      color,
+      licensePlate,
+      photo,
+      category,
+      size,
+    } = this.state;
     return (
       <MDBContainer style={{ border: "red" }}>
         <MDBCard>
@@ -104,12 +113,27 @@ class Vehicles extends Component {
                       onChange={this.changeHandler}
                     />
                     <MDBInput
+                      name="yeah"
+                      label="year"
+                      type="number"
+                      value={year}
+                      onChange={this.changeHandler}
+                    />
+                    <MDBInput
                       name="color"
                       label="Color"
                       type="text"
                       value={color}
                       onChange={this.changeHandler}
                     />
+                    <select class="mdb-select md-form">
+                      <option value="" disabled selected>
+                        Choose your option
+                      </option>
+                      <option value="1">Option 1</option>
+                      <option value="2">Option 2</option>
+                      <option value="3">Option 3</option>
+                    </select>
                   </MDBModalBody>
                   <MDBModalFooter>
                     <MDBBtn type="submit">Save Changes</MDBBtn>
