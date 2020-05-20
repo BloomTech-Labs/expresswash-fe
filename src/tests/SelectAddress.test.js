@@ -39,5 +39,4 @@ test("Select Address component", async () => {
   await userEvent.type(input, "1234 way");
   const resultli = getByTestId(/resultli/i);
   await userEvent.click(resultli);
-  debug();
 });

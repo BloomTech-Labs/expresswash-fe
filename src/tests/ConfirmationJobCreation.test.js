@@ -33,5 +33,4 @@ test("confimation job", async () => {
   const schedule = getByText(/schedule/i);
   axios.post.mockResolvedValue({ data: { rowCount: 1 } });
   await userEvent.click(schedule);
-  debug();
 });
