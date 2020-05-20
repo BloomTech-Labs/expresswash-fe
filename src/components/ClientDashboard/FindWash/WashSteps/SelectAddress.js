@@ -153,10 +153,6 @@ class SelectAddress extends Component {
       ...this.state,
       [event.target.name]: event.target.value,
     });
-<<<<<<< HEAD
-    console.log("SelectAddress.js, this.state.address", this.state.address);
-=======
->>>>>>> finished select address component
     this.props.geoCoding(this.state.address, token);
   };
 
@@ -168,10 +164,7 @@ class SelectAddress extends Component {
         <Form>
           <SearchContainer>
             <MDBInput
-<<<<<<< HEAD
-=======
               data-testid="choose"
->>>>>>> finished select address component
               label="Enter or choose your car location"
               autoCapitalize="off"
               autoCorrect="off"
@@ -188,10 +181,7 @@ class SelectAddress extends Component {
                 <Results>
                   {searchResults.map((result, i) => (
                     <ResultLi
-<<<<<<< HEAD
-=======
                       data-testid="resultli"
->>>>>>> finished select address component
                       key={i}
                       onClick={() =>
                         this.resultClick(

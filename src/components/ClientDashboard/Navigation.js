@@ -43,17 +43,11 @@ class Navigation extends Component {
 
   componentDidMount() {
     const { id } = localStorage;
-<<<<<<< HEAD
     this.props.getClientInformation(id);
     console.log("NAVIGATION.JS PROPS.USER", this.props.user);
     Axios.get(`https://serverprod.expresswash.us/users/${id}`)
       .then((res) => {
         console.log("RES", res);
-=======
-
-    Axios.get(`https://pt6-wowo.herokuapp.com/users/${id}`)
-      .then((res) => {
->>>>>>> added navigation compontent test
         this.setState({
           email: res.data.email,
           firstName: res.data.firstName,
@@ -93,11 +87,7 @@ class Navigation extends Component {
   }
   toggle = () => {
     const { id } = localStorage;
-<<<<<<< HEAD
     Axios.get(`https://serverprod.expresswash.us/users/`)
-=======
-    Axios.get(`https://pt6-wowo.herokuapp.com/users/`)
->>>>>>> added navigation compontent test
       .then((res) => {
         this.setState({
           email: res.data.email,
@@ -300,10 +290,7 @@ const mapStateToProps = (state) => {
   return {
     clientInformation: state.info,
     rating: state.userReducer.rating,
-<<<<<<< HEAD
     user: state.userReducer.user,
-=======
->>>>>>> added navigation compontent test
   };
 };
 
