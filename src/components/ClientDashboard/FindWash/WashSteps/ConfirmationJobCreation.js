@@ -439,6 +439,7 @@ class ConfirmationJobCreation extends Component {
           <br />
           <Payment />
           <PrevButton onClick={() => this.props.prev()}>Back</PrevButton>
+          <Payment />
           <NextButton onClick={() => this.handleSchedule()}>
             Schedule
           </NextButton>
