@@ -428,15 +428,17 @@ class ConfirmationJobCreation extends Component {
           <strong>Date:</strong> February 9, 2020
           <br />
           <strong>Time:</strong> 5-6PM <br />
+          <strong>Location:</strong> Add washAddress here
+          <br />
           <strong>Category:</strong> Supreme Wash
           <br />
           <strong>For Car:</strong> Audi RS7 <br />
           <strong>Color:</strong> Grey <br />
           <strong>License Plate:</strong> 7CR13298 <br />
-          <strong>Cost before Tip:</strong>$54.00
+          <strong>Cost:</strong>$40.00
           <br />
-          <PrevButton onClick={() => this.props.prev()}>Back</PrevButton>
           <Payment />
+          <PrevButton onClick={() => this.props.prev()}>Back</PrevButton>
           <NextButton onClick={() => this.handleSchedule()}>
             Schedule
           </NextButton>

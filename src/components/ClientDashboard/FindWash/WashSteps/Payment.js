@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import StripeCheckout from "react-stripe-checkout";
+import axios from "axios";
 
 function Payment() {
   const [product, setProduct] = useState({
     name: "Car Wash",
     price: 40,
-    productBy: "Washer Name",
   });
 
-  const makePayment = (token) => {
+  function makePayment(token) {
     const body = {
       token,
       product,
@@ -16,16 +16,13 @@ function Payment() {
     const headers = {
       "Content-Type": "application/json",
     };
-    return fetch(`http://localhost:3300/users/payment`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(body),
-    })
+    return axios
+      .post(`http://localhost:3300/users/payment`, body)
       .then((res) => {
         console.log("res", res);
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => console.log(err.message));
+  }
 
   return (
     <div className="payment">
