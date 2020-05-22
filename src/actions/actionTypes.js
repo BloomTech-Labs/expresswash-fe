@@ -90,22 +90,23 @@ export function createClient(payload) {
   };
 }
 
-// export function addACar (id, carId, color, licensePlate) {
-//   return (dispatch) => {
-//     dispatch({type: ADD_CAR_START})
-//     return axios.post('https://pt6-wowo.herokuapp.com/cars/addACar', {id, carId, color, licensePlate})
-//     .then((res) => {
-//       const payload = res.data
-//       console.log(res.data, 'addACar successful res.data')
-//       dispatch({type: ADD_CAR_SUCCESS})
-//     })
-//     .catch((err) => {
-//       // const payload = err.response ? err.response.data : err
-//       dispatch({type: ADD_CAR_FAILED})
-//       console.log(err,'addACar failed data')
-//     })
-//   }
-// }
+export function addACar(payload) {
+  return (dispatch) => {
+    dispatch({ type: ADD_CAR_START });
+    return axios
+      .post(DB_URL + "/cars", payload)
+      .then((res) => {
+        console.log("addACAR ACTION RES", res);
+        dispatch({ type: ADD_CAR_SUCCESS, payload: res.data });
+      })
+      .catch((err) => {
+        // const payload = err.response ? err.response.data : err
+        dispatch({ type: ADD_CAR_FAILED, payload: err.message });
+        console.log(err, "addACar failed data");
+      });
+  };
+}
+
 export function getClientInformation(id) {
   return (dispatch) => {
     return (

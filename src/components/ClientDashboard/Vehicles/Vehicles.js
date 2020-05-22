@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import Axios from "axios";
 import VehicleList from "./VehicleList.js";
-import { DB_URL } from "../../../actions/actionTypes.js";
+import { addACar, getClientCars } from "../../../actions/actionTypes.js";
 
 import {
   MDBContainer,
@@ -16,35 +15,27 @@ import {
   MDBInput,
 } from "mdbreact";
 import { MDBIcon } from "mdbreact";
-import { getClientCars } from "../../../actions/actionTypes.js";
 
 class Vehicles extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modal: false,
-      clientId: "",
-      make: "",
-      model: "",
-      color: "",
-      licensePlate: "",
-      photo: "",
-      category: ["car", "suv", "truck", "van"],
-      size: ["small", "medium", "large"],
+      car: {
+        clientId: this.props.clientId,
+        make: "",
+        model: "",
+        year: "",
+        color: "",
+        licensePlate: "",
+        photo: "",
+        category: "",
+        size: "",
+      },
     };
   }
-  componentDidMount() {
-    // const { id } = localStorage;
-    // Axios.post(DB_URL + "/cars", id)
-    //   .then((res) => {
-    //     this.setState({
-    //       vehicles: res.data,
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.log("this is err on get client cars", err);
-    //   });
-  }
+  componentDidMount() {}
+
   toggle = () => {
     this.setState({
       modal: !this.state.modal,
@@ -52,12 +43,22 @@ class Vehicles extends Component {
   };
   changeHandler = (evt) => {
     evt.preventDefault();
+    evt.persist();
     this.setState({
-      [evt.target.name]: evt.target.value,
+      ...this.state,
+      car: {
+        ...this.state.car,
+        [evt.target.name]: evt.target.value,
+      },
     });
   };
+
   submitHandler = (evt) => {
     evt.preventDefault();
+    console.log("Vehicles.js STATE.CAR", this.state.car);
+    this.props.addACar(this.state.car);
+    // this.props.getClientInformation(this.props.clientId)
+    this.toggle();
   };
   render() {
     const {
@@ -69,7 +70,7 @@ class Vehicles extends Component {
       photo,
       category,
       size,
-    } = this.state;
+    } = this.state.car;
     return (
       <MDBContainer style={{ border: "red" }}>
         <MDBCard>
@@ -113,7 +114,7 @@ class Vehicles extends Component {
                       onChange={this.changeHandler}
                     />
                     <MDBInput
-                      name="yeah"
+                      name="year"
                       label="year"
                       type="number"
                       value={year}
@@ -126,13 +127,60 @@ class Vehicles extends Component {
                       value={color}
                       onChange={this.changeHandler}
                     />
-                    <select class="mdb-select md-form">
-                      <option value="" disabled selected>
-                        Choose your option
+                    <MDBInput
+                      name="licensePlate"
+                      label="License Plate #"
+                      type="text"
+                      value={licensePlate}
+                      onChange={this.changeHandler}
+                    />
+                    <MDBInput
+                      name="photo"
+                      label="Photo"
+                      type="photo"
+                      value={photo}
+                      onChange={this.changeHandler}
+                    />
+                    <select
+                      className="mdb-select md-form"
+                      onChange={this.changeHandler}
+                      value={category}
+                      name="category"
+                    >
+                      <option value="None" name="None">
+                        Vehicle Category
                       </option>
-                      <option value="1">Option 1</option>
-                      <option value="2">Option 2</option>
-                      <option value="3">Option 3</option>
+                      <option name="car" value="car">
+                        Car
+                      </option>
+                      <option name="truck" value="truck">
+                        Truck
+                      </option>
+                      <option name="suv" value="suv">
+                        SUV
+                      </option>
+                      <option name="van" value="van">
+                        Van
+                      </option>
+                    </select>
+                    <select
+                      className="mdb-select md-form"
+                      onChange={this.changeHandler}
+                      value={size}
+                      name="size"
+                    >
+                      <option value="None" name="None">
+                        Vehicle Size
+                      </option>
+                      <option name="small" value="small">
+                        Small
+                      </option>
+                      <option name="medium" value="medium">
+                        Medium
+                      </option>
+                      <option name="large" value="large">
+                        Large
+                      </option>
                     </select>
                   </MDBModalBody>
                   <MDBModalFooter>
@@ -156,11 +204,13 @@ class Vehicles extends Component {
 const mapStateToProps = (state) => {
   return {
     cars: state.userReducer.user.cars,
+    clientId: state.userReducer.user.id,
   };
 };
 
 const mapDispatchToProps = {
   getClientCars,
+  addACar,
 };
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(Vehicles)
