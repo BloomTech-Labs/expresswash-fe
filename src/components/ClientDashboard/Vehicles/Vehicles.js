@@ -59,6 +59,20 @@ class Vehicles extends Component {
     this.props.addACar(this.state.car);
     // this.props.getClientInformation(this.props.clientId)
     this.toggle();
+    this.setState({
+      modal: false,
+      car: {
+        clientId: this.props.clientId,
+        make: "",
+        model: "",
+        year: "",
+        color: "",
+        licensePlate: "",
+        photo: "",
+        category: "",
+        size: "",
+      },
+    });
   };
   render() {
     const {
@@ -95,7 +109,7 @@ class Vehicles extends Component {
               <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
                 <form onSubmit={this.submitHandler}>
                   <MDBModalHeader>
-                    Vehicle Information{" "}
+                    Add a new vehicle{" "}
                     <MDBIcon icon="times" onClick={this.toggle} />
                   </MDBModalHeader>
                   <MDBModalBody>
@@ -105,6 +119,7 @@ class Vehicles extends Component {
                       type="text"
                       value={make}
                       onChange={this.changeHandler}
+                      required
                     />
                     <MDBInput
                       name="model"
@@ -112,6 +127,7 @@ class Vehicles extends Component {
                       type="text"
                       value={model}
                       onChange={this.changeHandler}
+                      required
                     />
                     <MDBInput
                       name="year"
@@ -119,6 +135,7 @@ class Vehicles extends Component {
                       type="number"
                       value={year}
                       onChange={this.changeHandler}
+                      required
                     />
                     <MDBInput
                       name="color"
@@ -126,6 +143,7 @@ class Vehicles extends Component {
                       type="text"
                       value={color}
                       onChange={this.changeHandler}
+                      required
                     />
                     <MDBInput
                       name="licensePlate"
@@ -133,6 +151,7 @@ class Vehicles extends Component {
                       type="text"
                       value={licensePlate}
                       onChange={this.changeHandler}
+                      required
                     />
                     <MDBInput
                       name="photo"
@@ -142,13 +161,16 @@ class Vehicles extends Component {
                       onChange={this.changeHandler}
                     />
                     <select
+                      label="Category"
                       className="mdb-select md-form"
                       onChange={this.changeHandler}
                       value={category}
                       name="category"
+                      style={{ margin: "3%", padding: "1.5%" }}
+                      required
                     >
                       <option value="None" name="None">
-                        Vehicle Category
+                        -- Category --
                       </option>
                       <option name="car" value="car">
                         Car
@@ -168,9 +190,11 @@ class Vehicles extends Component {
                       onChange={this.changeHandler}
                       value={size}
                       name="size"
+                      style={{ margin: "3%", padding: "1.5%" }}
+                      required
                     >
                       <option value="None" name="None">
-                        Vehicle Size
+                        -- Size --
                       </option>
                       <option name="small" value="small">
                         Small
