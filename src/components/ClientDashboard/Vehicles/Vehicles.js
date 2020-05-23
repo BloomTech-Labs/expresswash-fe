@@ -208,11 +208,9 @@ class Vehicles extends Component {
                   </MDBModalFooter>
                 </form>
               </MDBModal>
-              <Link to="/clientDash/navigation">
+              <Link to="/clientDash">
                 <MDBBtn>Back</MDBBtn>
-                {/* <MDBIcon icon="times"></MDBIcon> */}
               </Link>
-              {/* <p>Add a vehicle</p> */}
             </MDBContainer>
           </MDBModalFooter>
         </MDBCard>

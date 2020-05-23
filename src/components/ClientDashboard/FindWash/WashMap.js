@@ -314,6 +314,7 @@ class WashMap extends Component {
                             )
                         } */}
             <WashForm
+              washState={this.props.washState}
               next={this.props.next}
               prev={this.props.prev}
               step={step}
