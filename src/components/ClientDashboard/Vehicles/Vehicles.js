@@ -155,8 +155,8 @@ class Vehicles extends Component {
                     />
                     <MDBInput
                       name="photo"
-                      label="Photo"
-                      type="photo"
+                      // label="Photo"
+                      type="file"
                       value={photo}
                       onChange={this.changeHandler}
                     />
@@ -169,9 +169,7 @@ class Vehicles extends Component {
                       style={{ margin: "3%", padding: "1.5%" }}
                       required
                     >
-                      <option value="None" name="None">
-                        -- Category --
-                      </option>
+                      <option value="">-- Category --</option>
                       <option name="car" value="car">
                         Car
                       </option>
@@ -193,9 +191,7 @@ class Vehicles extends Component {
                       style={{ margin: "3%", padding: "1.5%" }}
                       required
                     >
-                      <option value="None" name="None">
-                        -- Size --
-                      </option>
+                      <option value="">-- Size --</option>
                       <option name="small" value="small">
                         Small
                       </option>
