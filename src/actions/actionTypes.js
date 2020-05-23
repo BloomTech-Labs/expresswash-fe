@@ -29,6 +29,11 @@ export const NEW_CLIENT_ERROR = "NEW_CLIENT_ERROR";
 export const ADD_CAR_START = "ADD_CAR_START";
 export const ADD_CAR_SUCCESS = "ADD_CAR_SUCCESS";
 export const ADD_CAR_FAILED = "ADD_CAR_FAILED";
+// Remove a Car
+export const DELETE_CAR_START = "DELETE_CAR_START";
+export const DELETE_CAR_SUCCESS = "DELETE_CAR_SUCCESS";
+export const DELETE_CAR_FAILED = "DELETE_CAR_FAILED";
+
 // Washer Dashboard action types
 export const WASHER_SET_WORK_STATUS_START = "WASHER_SET_WORK_STATUS_START";
 export const WASHER_SET_WORK_STATUS_SUCCESS = "WASHER_SET_WORK_STATUS_SUCCESS";
@@ -102,6 +107,23 @@ export function addACar(payload) {
       .catch((err) => {
         // const payload = err.response ? err.response.data : err
         dispatch({ type: ADD_CAR_FAILED, payload: err.message });
+        console.log(err, "addACar failed data");
+      });
+  };
+}
+
+export function deleteACar(id) {
+  return (dispatch) => {
+    dispatch({ type: DELETE_CAR_START });
+    return axios
+      .delete(`${DB_URL}/cars/${id}`)
+      .then((res) => {
+        console.log("addACAR ACTION RES", res);
+        dispatch({ type: DELETE_CAR_SUCCESS, payload: res.data });
+      })
+      .catch((err) => {
+        // const payload = err.response ? err.response.data : err
+        dispatch({ type: DELETE_CAR_FAILED, payload: err.message });
         console.log(err, "addACar failed data");
       });
   };

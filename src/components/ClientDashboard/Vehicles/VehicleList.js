@@ -6,7 +6,11 @@ const VehicleList = (props) => {
     <div>
       {!props.vehicles && <div>Please add a vehicle</div>}
       {props.vehicles.map((vehicle) => (
-        <EachVehicle key={vehicle.carId} vehicle={vehicle} />
+        <EachVehicle
+          key={vehicle.carId}
+          vehicle={vehicle}
+          deleteToggle={props.deleteToggle}
+        />
       ))}
     </div>
   );

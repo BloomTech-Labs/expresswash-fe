@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import VehicleList from "./VehicleList.js";
-import { addACar, getClientCars } from "../../../actions/actionTypes.js";
+import {
+  addACar,
+  deleteACar,
+  getClientCars,
+  getClientInformation,
+} from "../../../actions/actionTypes.js";
 
 import {
   MDBContainer,
@@ -21,6 +26,8 @@ class Vehicles extends Component {
     super(props);
     this.state = {
       modal: false,
+      deleteModal: false,
+      deleteCarId: 0,
       car: {
         clientId: this.props.clientId,
         make: "",
@@ -38,8 +45,25 @@ class Vehicles extends Component {
 
   toggle = () => {
     this.setState({
+      ...this.state,
       modal: !this.state.modal,
     });
+  };
+  deleteToggle = (id) => {
+    this.setState({
+      ...this.state,
+      deleteModal: !this.state.deleteModal,
+      deleteCarId: id,
+    });
+  };
+  deleteHandler = (evt) => {
+    evt.preventDefault();
+    this.setState({
+      ...this.state,
+      deleteModal: !this.state.deleteModal,
+    });
+    this.props.deleteACar(this.state.deleteCarId);
+    this.props.getClientInformation(this.props.clientId);
   };
   changeHandler = (evt) => {
     evt.preventDefault();
@@ -61,6 +85,8 @@ class Vehicles extends Component {
     this.toggle();
     this.setState({
       modal: false,
+      deleteModal: false,
+      deleteCarId: 0,
       car: {
         clientId: this.props.clientId,
         make: "",
@@ -101,7 +127,10 @@ class Vehicles extends Component {
           >
             <strong>Vehicles:</strong>
           </div>
-          <VehicleList vehicles={this.props.cars} />
+          <VehicleList
+            vehicles={this.props.cars}
+            deleteToggle={this.deleteToggle}
+          />
 
           <MDBModalFooter color="black-text">
             <MDBContainer>
@@ -204,13 +233,26 @@ class Vehicles extends Component {
                     </select>
                   </MDBModalBody>
                   <MDBModalFooter>
-                    <MDBBtn type="submit">Save Changes</MDBBtn>
+                    <MDBBtn type="submit">Add Vehicle</MDBBtn>
                   </MDBModalFooter>
                 </form>
               </MDBModal>
               <Link to="/clientDash">
                 <MDBBtn>Back</MDBBtn>
               </Link>
+              <MDBModal
+                isOpen={this.state.deleteModal}
+                toggle={this.deleteToggle}
+              >
+                <MDBModalHeader>
+                  Are you sure you want to remove this vehicle?
+                </MDBModalHeader>
+                <MDBModalBody></MDBModalBody>
+                <MDBModalFooter>
+                  <MDBBtn onClick={this.deleteHandler}>Delete</MDBBtn>
+                  <MDBBtn onClick={this.deleteToggle}>Cancel</MDBBtn>
+                </MDBModalFooter>
+              </MDBModal>
             </MDBContainer>
           </MDBModalFooter>
         </MDBCard>
@@ -229,6 +271,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   getClientCars,
   addACar,
+  deleteACar,
+  getClientInformation,
 };
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(Vehicles)
