@@ -32,6 +32,7 @@ const P = Styled.p`
 
 const FormInputContainer = Styled.div`
 `;
+<<<<<<< HEAD
 
 class WashMap extends Component {
   constructor(props) {
@@ -103,6 +104,28 @@ class WashMap extends Component {
         longitude: event.lngLat[0],
         latitude: event.lngLat[1],
 =======
+=======
+
+class WashMap extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      draggable: true,
+      viewport: {
+        latitude: 37.785164,
+        longitude: -100,
+        zoom: 15,
+        bearing: 0,
+        pitch: 0,
+      },
+      marker: {
+        latitude: 37.785164,
+        longitude: -100,
+      },
+      events: {},
+    };
+  }
+>>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
 
   _updateViewport = (viewport) => {
     this.setState(
@@ -165,11 +188,15 @@ class WashMap extends Component {
       marker: {
         longitude: longitude,
         latitude: latitude,
+<<<<<<< HEAD
+>>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
+=======
 >>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
       },
     });
   };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   _goToViewport = (latitude, longitude) => {
     this.setState({
@@ -185,6 +212,8 @@ class WashMap extends Component {
         longitude: longitude,
         latitude: latitude,
 =======
+=======
+>>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
   addLines = () => {
     const map = this.refs.map.getMap();
     map.addLayer({
@@ -211,11 +240,15 @@ class WashMap extends Component {
       paint: {
         "line-color": "#888",
         "line-width": 8,
+<<<<<<< HEAD
+>>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
+=======
 >>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
       },
     });
   };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   addLines = () => {
     const map = this.refs.map.getMap();
@@ -262,6 +295,23 @@ class WashMap extends Component {
     this.props.getCurrentAddress(this.props.lat, this.props.long, TOKEN);
   }
 
+=======
+  componentWillMount() {
+    this.setState({
+      viewport: {
+        ...this.state.viewport,
+        latitude: this.props.lat,
+        longitude: this.props.long,
+      },
+      marker: {
+        latitude: this.props.lat,
+        longitude: this.props.long,
+      },
+    });
+    this.props.getCurrentAddress(this.props.lat, this.props.long, TOKEN);
+  }
+
+>>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.lat !== this.props.lat) {
       this._goToViewport(this.props.lat, this.props.long);
@@ -285,6 +335,7 @@ class WashMap extends Component {
       washDateOnClick,
       washTimeOnClick,
     } = this.props;
+<<<<<<< HEAD
 
     return (
       <>
@@ -351,6 +402,35 @@ class WashMap extends Component {
       washDateOnClick,
       washTimeOnClick,
     } = this.props;
+
+    return (
+      <>
+        <MapGL
+          {...viewport}
+          ref={"map"}
+          width="100%"
+          height="100%"
+          mapStyle="mapbox://styles/mapbox/dark-v9"
+          onViewportChange={this._updateViewport}
+          // onLoad={this.addLines}
+          mapboxApiAccessToken={TOKEN}
+        >
+          <Marker
+            longitude={marker.longitude}
+            latitude={marker.latitude}
+            offsetTop={-20}
+            offsetLeft={-10}
+            draggable={this.state.draggable}
+            onDragStart={this._onMarkerDragStart}
+            onDrag={this._onMarkerDrag}
+            onDragEnd={this._onMarkerDragEnd}
+          >
+            {this.state.draggable ? <Pin size={30} /> : <UserCircle />}
+          </Marker>
+        </MapGL>
+
+>>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
+=======
 
     return (
       <>
