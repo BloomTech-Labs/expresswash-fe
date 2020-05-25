@@ -4,6 +4,8 @@ import userEvent from "@testing-library/user-event";
 import { BrowserRouter as Router } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 import ConfirmationJobCreation from "../components/ClientDashboard/FindWash/WashSteps/ConfirmationJobCreation";
+import "react-stripe-checkout";
+jest.mock("react-stripe-checkout");
 import axios from "axios";
 //imports for mocking redux
 import { createStore } from "redux";
@@ -28,6 +30,7 @@ test("confimation job", async () => {
       <ConfirmationJobCreation prev={jest.fn()} />
     </Router>
   );
+  debug();
   expect(getByText(/license plate/i)).toBeInTheDocument();
   await userEvent.click(getByTestId(/prev/i));
   const schedule = getByText(/schedule/i);
