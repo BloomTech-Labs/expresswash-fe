@@ -32,79 +32,6 @@ const P = Styled.p`
 
 const FormInputContainer = Styled.div`
 `;
-<<<<<<< HEAD
-
-class WashMap extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-<<<<<<< HEAD
-      draggable: false,
-=======
-      draggable: true,
->>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
-      viewport: {
-        latitude: 37.785164,
-        longitude: -100,
-        zoom: 15,
-        bearing: 0,
-        pitch: 0,
-      },
-      marker: {
-        latitude: 37.785164,
-        longitude: -100,
-      },
-      events: {},
-    };
-  }
-<<<<<<< HEAD
-
-  _updateViewport = (viewport) => {
-    this.setState(
-      {
-        viewport: { ...this.state.viewport, ...viewport },
-      },
-      console.log(viewport)
-    );
-
-    if (this.props.lat !== this.state.viewport.latitude) {
-      this.setState(
-        {
-          viewport: {
-            ...this.state.viewport,
-            longitude: this.props.long,
-            latitude: this.props.lat,
-            zoom: 16.5,
-            transitionInterpolator: new FlyToInterpolator({
-              speed: 35,
-              curve: 1,
-            }),
-            transitionDuration: "auto",
-          },
-        },
-        () => {
-          console.log(this.state.viewport);
-        }
-      );
-    }
-  };
-
-  _logDragEvent(name, event) {
-    this.setState({
-      events: {
-        ...this.state.events,
-        [name]: event.lngLat,
-      },
-    });
-  }
-
-  _onMarkerDragEnd = (event) => {
-    this.setState({
-      marker: {
-        longitude: event.lngLat[0],
-        latitude: event.lngLat[1],
-=======
-=======
 
 class WashMap extends Component {
   constructor(props) {
@@ -125,7 +52,6 @@ class WashMap extends Component {
       events: {},
     };
   }
->>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
 
   _updateViewport = (viewport) => {
     this.setState(
@@ -188,68 +114,10 @@ class WashMap extends Component {
       marker: {
         longitude: longitude,
         latitude: latitude,
-<<<<<<< HEAD
->>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
-=======
->>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
       },
     });
   };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  _goToViewport = (latitude, longitude) => {
-    this.setState({
-      viewport: {
-        ...this.state.viewport,
-        longitude: longitude,
-        latitude: latitude,
-        zoom: 10,
-        transitionInterpolator: new FlyToInterpolator({ speed: 3 }),
-        transitionDuration: "auto",
-      },
-      marker: {
-        longitude: longitude,
-        latitude: latitude,
-=======
-=======
->>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
-  addLines = () => {
-    const map = this.refs.map.getMap();
-    map.addLayer({
-      id: "route",
-      type: "line",
-      source: {
-        type: "geojson",
-        data: {
-          type: "Feature",
-          properties: {},
-          geometry: {
-            type: "LineString",
-            coordinates: [
-              [-122.48369693756104, 37.83381888486939],
-              [116.48348236083984, 37.83317489144141],
-            ],
-          },
-        },
-      },
-      layout: {
-        "line-join": "round",
-        "line-cap": "round",
-      },
-      paint: {
-        "line-color": "#888",
-        "line-width": 8,
-<<<<<<< HEAD
->>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
-=======
->>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
-      },
-    });
-  };
-
-<<<<<<< HEAD
-<<<<<<< HEAD
   addLines = () => {
     const map = this.refs.map.getMap();
     map.addLayer({
@@ -280,90 +148,6 @@ class WashMap extends Component {
     });
   };
 
-  componentWillMount() {
-    this.setState({
-      viewport: {
-        ...this.state.viewport,
-        latitude: this.props.lat,
-        longitude: this.props.long,
-      },
-      marker: {
-        latitude: this.props.lat,
-        longitude: this.props.long,
-      },
-    });
-    this.props.getCurrentAddress(this.props.lat, this.props.long, TOKEN);
-  }
-
-=======
-  componentWillMount() {
-    this.setState({
-      viewport: {
-        ...this.state.viewport,
-        latitude: this.props.lat,
-        longitude: this.props.long,
-      },
-      marker: {
-        latitude: this.props.lat,
-        longitude: this.props.long,
-      },
-    });
-    this.props.getCurrentAddress(this.props.lat, this.props.long, TOKEN);
-  }
-
->>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.lat !== this.props.lat) {
-      this._goToViewport(this.props.lat, this.props.long);
-      console.log("prevProps", prevProps.lat);
-      console.log("new lat", this.props.lat);
-      console.log("new long", this.props.long);
-    }
-  }
-
-  render() {
-    const { viewport, marker } = this.state;
-    const {
-      currentWeek,
-      step,
-      values,
-      searchResults,
-      geoCoding,
-      getUserLocation,
-      addressOnClick,
-      vehicleOnClick,
-      washDateOnClick,
-      washTimeOnClick,
-    } = this.props;
-<<<<<<< HEAD
-
-    return (
-      <>
-        <MapGL
-          {...viewport}
-          ref={"map"}
-          width="100%"
-          height="100%"
-          mapStyle="mapbox://styles/mapbox/dark-v9"
-          onViewportChange={this._updateViewport}
-          // onLoad={this.addLines}
-          mapboxApiAccessToken={TOKEN}
-        >
-          <Marker
-            longitude={marker.longitude}
-            latitude={marker.latitude}
-            offsetTop={-20}
-            offsetLeft={-10}
-            draggable={this.state.draggable}
-            onDragStart={this._onMarkerDragStart}
-            onDrag={this._onMarkerDrag}
-            onDragEnd={this._onMarkerDragEnd}
-          >
-            {this.state.draggable ? <Pin size={30} /> : <UserCircle />}
-          </Marker>
-        </MapGL>
-
-=======
   componentWillMount() {
     this.setState({
       viewport: {
@@ -429,36 +213,6 @@ class WashMap extends Component {
           </Marker>
         </MapGL>
 
->>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
-=======
-
-    return (
-      <>
-        <MapGL
-          {...viewport}
-          ref={"map"}
-          width="100%"
-          height="100%"
-          mapStyle="mapbox://styles/mapbox/dark-v9"
-          onViewportChange={this._updateViewport}
-          // onLoad={this.addLines}
-          mapboxApiAccessToken={TOKEN}
-        >
-          <Marker
-            longitude={marker.longitude}
-            latitude={marker.latitude}
-            offsetTop={-20}
-            offsetLeft={-10}
-            draggable={this.state.draggable}
-            onDragStart={this._onMarkerDragStart}
-            onDrag={this._onMarkerDrag}
-            onDragEnd={this._onMarkerDragEnd}
-          >
-            {this.state.draggable ? <Pin size={30} /> : <UserCircle />}
-          </Marker>
-        </MapGL>
-
->>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
         <SimpleBar
           className={
             step === 3 || step === 4
