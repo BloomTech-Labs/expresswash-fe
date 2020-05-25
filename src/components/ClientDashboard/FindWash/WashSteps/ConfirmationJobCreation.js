@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Payment from "./Payment";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addACar, DB_URL } from "../../../../actions/actionTypes.js";
@@ -427,16 +428,23 @@ class ConfirmationJobCreation extends Component {
           <strong>Date:</strong> February 9, 2020
           <br />
           <strong>Time:</strong> 5-6PM <br />
+          <strong>Location:</strong> Add washAddress here
+          <br />
           <strong>Category:</strong> Supreme Wash
           <br />
           <strong>For Car:</strong> Audi RS7 <br />
           <strong>Color:</strong> Grey <br />
           <strong>License Plate:</strong> 7CR13298 <br />
-          <strong>Cost before Tip:</strong>$54.00
+          <strong>Cost:</strong>$40.00
           <br />
+<<<<<<< HEAD
           <PrevButton data-testid="prev" onClick={() => this.props.prev()}>
             Back
           </PrevButton>
+=======
+          <Payment />
+          <PrevButton onClick={() => this.props.prev()}>Back</PrevButton>
+>>>>>>> 4a72ba2085e8b2d1a55521b9b0a43bedf55beced
           <NextButton onClick={() => this.handleSchedule()}>
             Schedule
           </NextButton>
@@ -453,7 +461,7 @@ class ConfirmationJobCreation extends Component {
                     </label>
                     <button onClick={this.handleSubmitMake}>Get Models for make</button>
                 </form>
-                {(this.state.models.length !== 0) ? 
+                {(this.state.models.length !== 0) ?
                     <form onSubmit={this.handleSubmitModel}>
                         <label>
                             Pick the Model of Your Car:
@@ -467,7 +475,7 @@ class ConfirmationJobCreation extends Component {
                     </form>
                 : <p>Select a Make</p>
                 }
-                {(this.state.pricingInfo !=='') ? 
+                {(this.state.pricingInfo !=='') ?
                     <div>
                         <h3><strong>{this.state.pricingInfo.make} <br /> {this.state.pricingInfo.model}</strong></h3>
                         <p><strong>Vehicle Type:</strong> {this.categoryMuxer(this.state.pricingInfo.category)} <br /> <strong>Size Category:</strong> {this.letterTranslator(this.state.pricingInfo.size)}</p>

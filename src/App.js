@@ -12,10 +12,7 @@ import WasherSignUp from "./components/WasherSignUp/WasherSignUpForm";
 import ScheduleWash from "./components/ClientDashboard/FindWash/ScheduleWash";
 import ScheduleWash2 from "./components/ClientDashboard/FindWash/ScheduleWash2";
 import ClientNavigation from "./components/ClientDashboard/Navigation.js";
-
 import ClientVehicles from "./components/ClientDashboard/Vehicles/Vehicles.js";
-
-import ClientPayment from "./components/ClientDashboard/Payment.js";
 import ClientWashes from "./components/ClientDashboard/Washes.js";
 
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -65,11 +62,7 @@ function App(props) {
             path="/clientDash/navigation"
             component={ClientNavigation}
           />
-          <PrivateRoute
-            exact
-            path="/clientDash/payments"
-            component={ClientPayment}
-          />
+
           <PrivateRoute
             exact
             path="/clientDash/washes"
