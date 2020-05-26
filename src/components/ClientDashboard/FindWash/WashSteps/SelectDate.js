@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import Styled from "styled-components";
-import moment from 'moment';
+import moment from "moment";
 
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
@@ -23,7 +23,7 @@ const DatesContainer = Styled.div`
     align-items: center;
     align-content: space-evenly;
     width: 100%;
-`
+`;
 
 const TitleContainer = Styled.div`
     display: flex;
@@ -31,13 +31,13 @@ const TitleContainer = Styled.div`
     justify-content: center;
     align-items: center;
     margin: 20px 0 20px 0;
-`
+`;
 
 const WeekTitle = Styled.h3`
     font-size: 1rem;
     font-weight: 500;
     color: #363636;
-`
+`;
 
 const BoxContainer = Styled.div`
     width: 90px;
@@ -57,19 +57,19 @@ const BoxContainer = Styled.div`
         border: 2px solid #a6e1eb;
         color: #ffffff;
     }
-`
+`;
 
 const DayTitle = Styled.h4`
     font-size: 1rem;
     font-weight: 400;
     color: #363636;
-`
+`;
 
 const DateTitle = Styled.h2`
     font-size: 2rem;
     font-weight: 400;
     color: #363636;
-`
+`;
 
 const ButtonContainer = Styled.div`
     position: absolute;
@@ -85,7 +85,7 @@ const ButtonContainer = Styled.div`
 }
 
 
-`
+`;
 
 const PrevButton = Styled.div`
     background: #a6e1eb;
@@ -105,7 +105,7 @@ const PrevButton = Styled.div`
         border: 2px solid #00A8C5;
         color: #ffffff;
     }
-`
+`;
 
 const NextButton = Styled.div`
     background: #00A8C5;
@@ -117,180 +117,220 @@ const NextButton = Styled.div`
     font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;
-`
-
-
+`;
 
 class SelectDate extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedDate: null,
-            washDate: {
-                0: false,
-                1: false,
-                2: false,
-                3: false,
-                4: false,
-                5: false,
-                6: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedDate: null,
+      washDate: {
+        0: false,
+        1: false,
+        2: false,
+        3: false,
+        4: false,
+        5: false,
+        6: false,
+      },
+    };
+  }
+
+  startDate = moment(`${this.props.currentWeek[0]}`, "YYYY-MM-DD").format(
+    "MMMM Do"
+  );
+  endDate = moment(`${this.props.currentWeek[6]}`, "YYYY-MM-DD").format(
+    "MMMM Do"
+  );
+
+  dateClick = (date) => (event) => {
+    event.preventDefault();
+    console.log(event.target.id);
+    this.props.washDateOnClick(date);
+    this.setState({
+      ...this.state,
+      selectedDate: date,
+    });
+
+    if (
+      event.target.id === "0" ||
+      event.target.id === "day0" ||
+      event.target.id === "date0"
+    ) {
+      this.setState({
+        washDate: {
+          0: true,
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+          6: false,
+        },
+      });
+    } else if (
+      event.target.id === "1" ||
+      event.target.id === "day1" ||
+      event.target.id === "date1"
+    ) {
+      this.setState({
+        washDate: {
+          0: false,
+          1: true,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+          6: false,
+        },
+      });
+    } else if (
+      event.target.id === "2" ||
+      event.target.id === "day2" ||
+      event.target.id === "date2"
+    ) {
+      this.setState({
+        washDate: {
+          0: false,
+          1: false,
+          2: true,
+          3: false,
+          4: false,
+          5: false,
+          6: false,
+        },
+      });
+    } else if (
+      event.target.id === "3" ||
+      event.target.id === "day3" ||
+      event.target.id === "date3"
+    ) {
+      this.setState({
+        washDate: {
+          0: false,
+          1: false,
+          2: false,
+          3: true,
+          4: false,
+          5: false,
+          6: false,
+        },
+      });
+    } else if (
+      event.target.id === "4" ||
+      event.target.id === "day4" ||
+      event.target.id === "date4"
+    ) {
+      this.setState({
+        washDate: {
+          0: false,
+          1: false,
+          2: false,
+          3: false,
+          4: true,
+          5: false,
+          6: false,
+        },
+      });
+    } else if (
+      event.target.id === "5" ||
+      event.target.id === "day5" ||
+      event.target.id === "date5"
+    ) {
+      this.setState({
+        washDate: {
+          0: false,
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: true,
+          6: false,
+        },
+      });
+    } else if (
+      event.target.id === "6" ||
+      event.target.id === "day6" ||
+      event.target.id === "date6"
+    ) {
+      this.setState({
+        washDate: {
+          0: false,
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+          6: true,
+        },
+      });
+    }
+  };
+
+  render() {
+    const { selectedDate, washDate } = this.state;
+    const { currentWeek } = this.props;
+
+    return (
+      <Container>
+        <TitleContainer>
+          <WeekTitle>
+            {this.startDate} - {this.endDate}
+          </WeekTitle>
+        </TitleContainer>
+        <DatesContainer>
+          {currentWeek.map((day, i) => (
+            <BoxContainer
+              id={i}
+              key={i}
+              className={washDate[i] ? "active-date-box" : ""}
+              onClick={this.dateClick(day)}
+            >
+              <DayTitle
+                data-testid="day"
+                id={`day${i}`}
+                className={washDate[i] ? "active-day-title" : ""}
+                onClick={this.dateClick(day)}
+              >
+                {moment(day, "YYYY-MM-DD").format("ddd").toUpperCase()}
+              </DayTitle>
+              <DateTitle
+                id={`date${i}`}
+                className={washDate[i] ? "active-date-title" : ""}
+                onClick={this.dateClick(day)}
+              >
+                {moment(day, "YYYY-MM-DD").format("DD")}
+              </DateTitle>
+            </BoxContainer>
+          ))}
+        </DatesContainer>
+
+        <ButtonContainer
+          className={this.state.selectedDate !== null ? "" : "hidden"}
+        >
+          <PrevButton onClick={() => this.props.prev()}>Back</PrevButton>
+          <NextButton
+            className={
+              this.state.selectedDate !== null ? null : "inactive-button"
             }
-        };
-    }
-
-    startDate = moment(`${this.props.currentWeek[0]}`, 'YYYY-MM-DD').format('MMMM Do');
-    endDate = moment(`${this.props.currentWeek[6]}`, 'YYYY-MM-DD').format('MMMM Do');
-
-    dateClick = date => event => {
-        event.preventDefault();
-        console.log(event.target.id);
-        this.props.washDateOnClick(date);
-        this.setState({
-            ...this.state,
-            selectedDate: date
-        })
-
-        if(event.target.id === '0' || event.target.id === 'day0' || event.target.id === 'date0') {
-            this.setState({
-                washDate: {
-                    0: true,
-                    1: false,
-                    2: false,
-                    3: false,
-                    4: false,
-                    5: false,
-                    6: false
-                }
-            })
-        } else if(event.target.id === '1' || event.target.id === 'day1' || event.target.id === 'date1') {
-            this.setState({
-                washDate: {
-                    0: false,
-                    1: true,
-                    2: false,
-                    3: false,
-                    4: false,
-                    5: false,
-                    6: false
-                }
-            })
-        } else if(event.target.id === '2' || event.target.id === 'day2' || event.target.id === 'date2') {
-            this.setState({
-                washDate: {
-                    0: false,
-                    1: false,
-                    2: true,
-                    3: false,
-                    4: false,
-                    5: false,
-                    6: false
-                }
-            })
-        } else if(event.target.id === '3' || event.target.id === 'day3' || event.target.id === 'date3') {
-            this.setState({
-                washDate: {
-                    0: false,
-                    1: false,
-                    2: false,
-                    3: true,
-                    4: false,
-                    5: false,
-                    6: false
-                }
-            })
-        } else if(event.target.id === '4' || event.target.id === 'day4' || event.target.id === 'date4') {
-            this.setState({
-                washDate: {
-                    0: false,
-                    1: false,
-                    2: false,
-                    3: false,
-                    4: true,
-                    5: false,
-                    6: false
-                }
-            })
-        } else if(event.target.id === '5' || event.target.id === 'day5' || event.target.id === 'date5') {
-            this.setState({
-                washDate: {
-                    0: false,
-                    1: false,
-                    2: false,
-                    3: false,
-                    4: false,
-                    5: true,
-                    6: false
-                }
-            })
-        } else if(event.target.id === '6' || event.target.id === 'day6' || event.target.id === 'date6') {
-            this.setState({
-                washDate: {
-                    0: false,
-                    1: false,
-                    2: false,
-                    3: false,
-                    4: false,
-                    5: false,
-                    6: true
-                }
-            })
-        }
-    }
-
-
-
-
-    render() {
-        const {selectedDate, washDate} = this.state;
-        const {currentWeek} =this.props;
-
-        return (
-            <Container >
-                <TitleContainer>
-                    <WeekTitle>{this.startDate} - {this.endDate}</WeekTitle>
-                </TitleContainer>
-                <DatesContainer>
-                    {currentWeek.map((day, i) => (
-                        <BoxContainer id={i} key={i} className={washDate[i] ? 'active-date-box' : ''} onClick={this.dateClick(day)}>
-                            <DayTitle 
-                                id={`day${i}`}
-                                className={washDate[i] ? 'active-day-title' : ''}
-                                onClick={this.dateClick(day)}
-                            >
-                                {moment(day, 'YYYY-MM-DD').format('ddd').toUpperCase()}
-                            </DayTitle>
-                            <DateTitle 
-                                id={`date${i}`}
-                                className={washDate[i] ? 'active-date-title' : ''}
-                                onClick={this.dateClick(day)}
-                            >
-                                 {moment(day, 'YYYY-MM-DD').format('DD')}
-                            </DateTitle>
-                        </BoxContainer>
-                    ))}
-                </DatesContainer>
-
-                <ButtonContainer className={this.state.selectedDate !== null ? "" : "hidden"}>
-                    <PrevButton onClick={() => this.props.prev()}>Back</PrevButton>
-                    <NextButton className={this.state.selectedDate !== null ? null : 'inactive-button'} onClick={() => this.props.next()}>Next</NextButton>
-                </ButtonContainer>
-            </Container>
-        );
-    }
+            onClick={() => this.props.next()}
+          >
+            Next
+          </NextButton>
+        </ButtonContainer>
+      </Container>
+    );
+  }
 }
 
-const mapStateToProps = state => {
-    return {
-        user: state.user
-    };
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
 };
 
-const mapDispatchToProps = {
-};
+const mapDispatchToProps = {};
 
 export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(SelectDate)
+  connect(mapStateToProps, mapDispatchToProps)(SelectDate)
 );
