@@ -420,21 +420,24 @@ class ConfirmationJobCreation extends Component {
   // }
 
   render() {
+    const { date, selectedAddress, vehicle, time } = this.props.washState;
+    console.log("CONFIRMATION_JOB_CREATION --> PROPS", this.props.washState);
     // const { makes, models } = this.state
     // const { isLoading, } = this.props
     return (
       <div>
         <h4>
-          <strong>Date:</strong> February 9, 2020
+          <strong>Date:</strong> {date}
           <br />
-          <strong>Time:</strong> 5-6PM <br />
-          <strong>Location:</strong> Add washAddress here
+          <strong>Time:</strong> {time} <br />
+          <strong>Location:</strong> {selectedAddress}
           <br />
-          <strong>Category:</strong> Supreme Wash
+          <strong>Category:</strong> {vehicle.category} - {vehicle.size}
           <br />
-          <strong>For Car:</strong> Audi RS7 <br />
-          <strong>Color:</strong> Grey <br />
-          <strong>License Plate:</strong> 7CR13298 <br />
+          <strong>For Car:</strong> {vehicle.year} {vehicle.make}{" "}
+          {vehicle.model} <br />
+          <strong>Color:</strong> {vehicle.color} <br />
+          <strong>License Plate:</strong> {vehicle.licensePlate} <br />
           <strong>Cost:</strong>$40.00
           <br />
           <Payment />

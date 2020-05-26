@@ -46,9 +46,7 @@ class WashForm extends React.Component {
     });
   };
 
-  componentDidMount() {
-    console.log("WashForm.js, this.props.user", this.props.user);
-  }
+  componentDidMount() {}
 
   render() {
     const {
@@ -116,6 +114,7 @@ class WashForm extends React.Component {
             next={next}
             prev={prev}
             washTimeOnClick={washTimeOnClick}
+            washState={this.props.washState}
           />
         );
       default:

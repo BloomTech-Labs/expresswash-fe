@@ -92,6 +92,15 @@ class WashMap extends Component {
     });
   }
 
+  _onMarkerDrag = (marker) => {
+    this.setState(
+      {
+        marker: { latitude: marker.lngLat[1], longitude: marker.lngLat[0] },
+      },
+      console.log("MARKER", marker, this.state.marker)
+    );
+  };
+
   _onMarkerDragEnd = (event) => {
     this.setState({
       marker: {
@@ -99,6 +108,11 @@ class WashMap extends Component {
         latitude: event.lngLat[1],
       },
     });
+    this.props.getCurrentAddress(
+      this.state.marker.latitude,
+      this.state.marker.longitude,
+      TOKEN
+    );
   };
 
   _goToViewport = (latitude, longitude) => {
@@ -300,6 +314,7 @@ class WashMap extends Component {
                             )
                         } */}
             <WashForm
+              washState={this.props.washState}
               next={this.props.next}
               prev={this.props.prev}
               step={step}

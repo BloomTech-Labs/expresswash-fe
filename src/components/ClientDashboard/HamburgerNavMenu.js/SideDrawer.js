@@ -1,9 +1,8 @@
-import React from 'react';
+import React from "react";
 import Styled from "styled-components";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import './SideDrawer.css';
-
+import "./SideDrawer.css";
 
 const SideDrawerNav = Styled.nav`
     height: 92%;
@@ -39,27 +38,33 @@ const ListItem = Styled.li`
     }
 `;
 
-const sideDrawer = props => {
-    let drawerClasses = 'side-drawer';
-    if(props.show) {
-        drawerClasses = 'side-drawer open'
-    }
-    return(
-        <SideDrawerNav className={drawerClasses}>
-            <NavList>
-                <Link to="/clientDash/navigation">
-                    <ListItem>Account Details</ListItem>
-                </Link>
-                <Link to="/clientDash/payments">
-                    <ListItem>Payment Options</ListItem>
-                </Link>
-                <Link to="/clientDash/washes">
-                    <ListItem>Your Washes</ListItem>
-                </Link>
-                <ListItem onClick={props.logout}>Sign Out</ListItem>
-            </NavList>
-        </SideDrawerNav>
-    );
+const sideDrawer = (props) => {
+  let drawerClasses = "side-drawer";
+  if (props.show) {
+    drawerClasses = "side-drawer open";
+  }
+  return (
+    <SideDrawerNav className={drawerClasses}>
+      <NavList>
+        <Link to="/clientDash/navigation">
+          <ListItem>Account Details</ListItem>
+        </Link>
+        <Link to="/clientDash/payments">
+          <ListItem>Payment Options</ListItem>
+        </Link>
+        <Link to="/clientDash/washes">
+          <ListItem>Your Washes</ListItem>
+        </Link>
+        <Link to="/clientDash/vehicles">
+          <ListItem>Manage Vehicles</ListItem>
+        </Link>
+        <Link to="/clientDash/washer-register">
+          <ListItem>Earn Money Washing</ListItem>
+        </Link>
+        <ListItem onClick={props.logout}>Sign Out</ListItem>
+      </NavList>
+    </SideDrawerNav>
+  );
 };
 
 export default sideDrawer;

@@ -157,7 +157,13 @@ class SelectAddress extends Component {
   };
 
   render() {
-    const { values, viewport, searchResults, mapBoxApiToken } = this.props;
+    const {
+      values,
+      viewport,
+      searchResults,
+      mapBoxApiToken,
+      user,
+    } = this.props;
 
     return (
       <Container>
@@ -227,23 +233,13 @@ class SelectAddress extends Component {
             </LI>
             <LI>
               <IconContainer>
-                <WorkIcon width="30px" fill2="#ffffff" />
-              </IconContainer>
-              <InfoContainer>
-                <AddressName>Work</AddressName>
-                <AddressInfo onClick={this.click}>
-                  Phoenix Municipal Court
-                </AddressInfo>
-              </InfoContainer>
-            </LI>
-            <LI>
-              <IconContainer>
                 <HomeIcon width="30px" fill2="#ffffff" />
               </IconContainer>
               <InfoContainer>
                 <AddressName>Home</AddressName>
                 <AddressInfo onClick={this.click}>
-                  15619 W. Roma ave, Goodyear, Arizona
+                  {user.streetAddress} {user.streetAddress2}, {user.city},{" "}
+                  {user.state} {user.zip}
                 </AddressInfo>
               </InfoContainer>
             </LI>
@@ -256,7 +252,7 @@ class SelectAddress extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.userReducer.user,
   };
 };
 

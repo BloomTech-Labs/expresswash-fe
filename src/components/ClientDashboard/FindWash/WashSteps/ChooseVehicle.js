@@ -33,7 +33,7 @@ const LI = Styled.li`
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    padding: 15px 15px;
+    padding: 3%;
     cursor: pointer;
 
     &:hover {
@@ -113,95 +113,48 @@ class ChooseVehicle extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      address: "",
+      selectedCar: {},
       selected: false,
-      vehicle1: false,
-      vehicle2: false,
-      vehicle3: false,
     };
   }
 
   // vehicle click handler
-  click = (id) => (event) => {
-    event.preventDefault();
-    let make = document.getElementById(id).children[0].innerText;
-    let model = document.getElementById(id).children[1].innerText;
-
-    this.props.vehicleOnClick(make, model);
-    if (id === "vehicle-1") {
-      this.setState({
-        ...this.state,
-        selected: true,
-        vehicle1: true,
-        vehicle2: false,
-        vehicle3: false,
-      });
-    } else if (id === "vehicle-2") {
-      this.setState({
-        ...this.state,
-        selected: true,
-        vehicle1: false,
-        vehicle2: true,
-        vehicle3: false,
-      });
-    } else if (id === "vehicle-3") {
-      this.setState({
-        ...this.state,
-        selected: true,
-        vehicle1: false,
-        vehicle2: false,
-        vehicle3: true,
-      });
-    }
+  click = (car) => {
+    this.setState({ selectedCar: car, selected: !this.state.selected });
+    this.props.vehicleOnClick(car);
   };
 
   render() {
-    const { selected, vehicle1, vehicle2 } = this.state;
-
     return (
       <Container>
         <VehicleContainer>
-          {/* {this.props.addresses > 0 ?
-                        this.props.addresses.map(address => {  
-                        })
-                    :
-                        <h4>Click here to add a address to your profile</h4>
-                    } */}
-
-          <UL>
-            <LI>
-              <IconContainer>
-                <Bmw width="30px" />
-              </IconContainer>
-              <InfoContainer id="vehicle-1" onClick={this.click("vehicle-1")}>
-                <VehicleMake>BMW</VehicleMake>
-                <VehicleModel>2019 Yellow M8 Gran Coupe</VehicleModel>
-              </InfoContainer>
-              <Selected>{vehicle1 ? <Check /> : null}</Selected>
-            </LI>
-            <LI>
-              <IconContainer>
-                <Audi width="30px" />
-              </IconContainer>
-              <InfoContainer
-                data-testid="car2"
-                id="vehicle-2"
-                onClick={this.click("vehicle-2")}
-              >
-                <VehicleMake>Audi</VehicleMake>
-                <VehicleModel>2017 Gray RS7 Sportback</VehicleModel>
-              </InfoContainer>
-              <Selected>{vehicle2 ? <Check /> : null}</Selected>
-            </LI>
-          </UL>
+          {this.props.cars &&
+            this.props.cars.map((car) => (
+              <UL key={car.carId}>
+                <LI key={car.carId} onClick={() => this.click(car)}>
+                  <InfoContainer key={car.carId}>
+                    <VehicleMake>{car.make}</VehicleMake>
+                    <VehicleModel>
+                      {car.year} {car.color} {car.model}
+                    </VehicleModel>
+                  </InfoContainer>
+                  <Selected>
+                    {this.state.selected &&
+                    this.state.selectedCar.carId === car.carId ? (
+                      <Check />
+                    ) : null}
+                  </Selected>
+                </LI>
+              </UL>
+            ))}
+          <Link to="/clientDash/vehicles">
+            <button>Add a vehicle</button>
+          </Link>
         </VehicleContainer>
 
         <ButtonContainer>
-          <PrevButton data-testid="back" onClick={() => this.props.prev()}>
-            Back
-          </PrevButton>
+          <PrevButton onClick={() => this.props.prev()}>Back</PrevButton>
           <NextButton
-            data-testid="nextbtn"
             className={this.state.selected ? "" : "inactive-button"}
             onClick={() => this.props.next()}
           >
@@ -216,6 +169,7 @@ class ChooseVehicle extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    cars: state.userReducer.user.cars,
   };
 };
 

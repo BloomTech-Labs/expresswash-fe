@@ -5,14 +5,11 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 import ConfirmationJobCreation from "../components/ClientDashboard/FindWash/WashSteps/ConfirmationJobCreation";
 import "react-stripe-checkout";
-jest.mock("react-stripe-checkout");
 import axios from "axios";
-//imports for mocking redux
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import initialState from "../reducers/initialState";
 import rootReducer from "../reducers/rootReducer";
-// import Address from "./signup-steps/Address";
+jest.mock("react-stripe-checkout");
 jest.mock("axios");
 
 function renderWithRedux(

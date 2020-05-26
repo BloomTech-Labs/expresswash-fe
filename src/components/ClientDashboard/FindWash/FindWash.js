@@ -63,8 +63,14 @@ class FindWash extends Component {
       lat: null,
       long: null,
       vehicle: {
+        carId: null,
         make: null,
         model: null,
+        color: null,
+        year: null,
+        licensePlate: null,
+        category: null,
+        size: null,
       },
       date: null,
       time: null,
@@ -216,19 +222,20 @@ class FindWash extends Component {
   };
 
   // gets the chosen vehicle
-  vehicleOnClick = (make, model) => {
-    this.setState(
-      {
-        ...this.state,
-        vehicle: {
-          make: make,
-          model: model,
-        },
+  vehicleOnClick = (car) => {
+    this.setState({
+      ...this.state,
+      vehicle: {
+        carId: car.carId,
+        make: car.make,
+        model: car.model,
+        color: car.color,
+        year: car.year,
+        licensePlate: car.licensePlate,
+        category: car.category,
+        size: car.size,
       },
-      () => {
-        console.log(this.state.vehicle);
-      }
-    );
+    });
   };
 
   // Sets the clients wash date
@@ -344,6 +351,7 @@ class FindWash extends Component {
             <SideDrawer logout={this.logout} show={this.state.sideDrawerOpen} />
             {backDrop}
             <WashMap
+              washState={this.state}
               getUserLocation={this.getUserLocation}
               long={this.state.long}
               lat={this.state.lat}
