@@ -62,12 +62,6 @@ function App(props) {
             path="/clientDash/navigation"
             component={ClientNavigation}
           />
-
-          <PrivateRoute
-            exact
-            path="/clientDash/washes"
-            component={ClientWashes}
-          />
           <PrivateRoute
             exact
             path="/clientDash/vehicles"

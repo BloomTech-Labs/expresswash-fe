@@ -87,7 +87,7 @@ class Navigation extends Component {
   }
   toggle = () => {
     const { id } = localStorage;
-    Axios.get(`https://serverprod.expresswash.us/users/`)
+    Axios.get(`https://serverprod.expresswash.us/users/${id}`)
       .then((res) => {
         this.setState({
           email: res.data.email,

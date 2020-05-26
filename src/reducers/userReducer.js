@@ -13,6 +13,12 @@ import {
   UPDATE_CLIENT_INFO_ERROR,
   GET_CLIENT_RATING_SUCCESS,
   GET_CLIENT_RATING_ERROR,
+  ADD_CAR_START,
+  ADD_CAR_SUCCESS,
+  ADD_CAR_FAILED,
+  DELETE_CAR_START,
+  DELETE_CAR_SUCCESS,
+  DELETE_CAR_FAILED,
 } from "../actions/actionTypes";
 
 export default function userReducer(state = initialState, action) {
@@ -102,6 +108,56 @@ export default function userReducer(state = initialState, action) {
     case GET_CLIENT_RATING_ERROR: {
       return {
         ...state,
+      };
+    }
+    case ADD_CAR_START: {
+      return {
+        ...state,
+        load: true,
+        error: "",
+      };
+    }
+    case ADD_CAR_SUCCESS: {
+      return {
+        ...state,
+        load: false,
+        user: {
+          ...state.user,
+          cars: [...state.user.cars, action.payload],
+        },
+        error: "",
+      };
+    }
+    case ADD_CAR_FAILED: {
+      return {
+        ...state,
+        load: false,
+        error: action.payload,
+      };
+    }
+    case DELETE_CAR_START: {
+      return {
+        ...state,
+        load: true,
+        error: "",
+      };
+    }
+    case DELETE_CAR_SUCCESS: {
+      return {
+        ...state,
+        load: false,
+        // user: {
+        //   ...state.user,
+        //   cars: [...state.user.cars, action.payload],
+        // },
+        error: "",
+      };
+    }
+    case DELETE_CAR_FAILED: {
+      return {
+        ...state,
+        load: false,
+        error: action.payload,
       };
     }
 

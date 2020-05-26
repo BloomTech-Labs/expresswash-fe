@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import Axios from "axios";
 import VehicleList from "./VehicleList.js";
-import { DB_URL } from "../../../actions/actionTypes.js";
+import {
+  addACar,
+  deleteACar,
+  getClientCars,
+  getClientInformation,
+} from "../../../actions/actionTypes.js";
 
 import {
   MDBContainer,
@@ -16,48 +20,85 @@ import {
   MDBInput,
 } from "mdbreact";
 import { MDBIcon } from "mdbreact";
-import { getClientCars } from "../../../actions/actionTypes.js";
 
 class Vehicles extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modal: false,
-      clientId: "",
-      make: "",
-      model: "",
-      color: "",
-      licensePlate: "",
-      photo: "",
-      category: ["car", "suv", "truck", "van"],
-      size: ["small", "medium", "large"],
+      deleteModal: false,
+      deleteCarId: 0,
+      car: {
+        clientId: this.props.clientId,
+        make: "",
+        model: "",
+        year: "",
+        color: "",
+        licensePlate: "",
+        photo: "",
+        category: "",
+        size: "",
+      },
     };
   }
-  componentDidMount() {
-    // const { id } = localStorage;
-    // Axios.post(DB_URL + "/cars", id)
-    //   .then((res) => {
-    //     this.setState({
-    //       vehicles: res.data,
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.log("this is err on get client cars", err);
-    //   });
-  }
+  componentDidMount() {}
+
   toggle = () => {
     this.setState({
+      ...this.state,
       modal: !this.state.modal,
     });
   };
-  changeHandler = (evt) => {
-    evt.preventDefault();
+  deleteToggle = (id) => {
     this.setState({
-      [evt.target.name]: evt.target.value,
+      ...this.state,
+      deleteModal: !this.state.deleteModal,
+      deleteCarId: id,
     });
   };
+  deleteHandler = (evt) => {
+    evt.preventDefault();
+    this.setState({
+      ...this.state,
+      deleteModal: !this.state.deleteModal,
+    });
+    this.props.deleteACar(this.state.deleteCarId);
+    this.props.getClientInformation(this.props.clientId);
+  };
+  changeHandler = (evt) => {
+    evt.preventDefault();
+    evt.persist();
+    this.setState({
+      ...this.state,
+      car: {
+        ...this.state.car,
+        [evt.target.name]: evt.target.value,
+      },
+    });
+  };
+
   submitHandler = (evt) => {
     evt.preventDefault();
+    console.log("Vehicles.js STATE.CAR", this.state.car);
+    this.props.addACar(this.state.car);
+    // this.props.getClientInformation(this.props.clientId)
+    this.toggle();
+    this.setState({
+      modal: false,
+      deleteModal: false,
+      deleteCarId: 0,
+      car: {
+        clientId: this.props.clientId,
+        make: "",
+        model: "",
+        year: "",
+        color: "",
+        licensePlate: "",
+        photo: "",
+        category: "",
+        size: "",
+      },
+    });
   };
   render() {
     const {
@@ -69,7 +110,7 @@ class Vehicles extends Component {
       photo,
       category,
       size,
-    } = this.state;
+    } = this.state.car;
     return (
       <MDBContainer style={{ border: "red" }}>
         <MDBCard>
@@ -86,7 +127,10 @@ class Vehicles extends Component {
           >
             <strong>Vehicles:</strong>
           </div>
-          <VehicleList vehicles={this.props.cars} />
+          <VehicleList
+            vehicles={this.props.cars}
+            deleteToggle={this.deleteToggle}
+          />
 
           <MDBModalFooter color="black-text">
             <MDBContainer>
@@ -94,7 +138,7 @@ class Vehicles extends Component {
               <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
                 <form onSubmit={this.submitHandler}>
                   <MDBModalHeader>
-                    Vehicle Information{" "}
+                    Add a new vehicle{" "}
                     <MDBIcon icon="times" onClick={this.toggle} />
                   </MDBModalHeader>
                   <MDBModalBody>
@@ -104,6 +148,7 @@ class Vehicles extends Component {
                       type="text"
                       value={make}
                       onChange={this.changeHandler}
+                      required
                     />
                     <MDBInput
                       name="model"
@@ -111,13 +156,15 @@ class Vehicles extends Component {
                       type="text"
                       value={model}
                       onChange={this.changeHandler}
+                      required
                     />
                     <MDBInput
-                      name="yeah"
+                      name="year"
                       label="year"
                       type="number"
                       value={year}
                       onChange={this.changeHandler}
+                      required
                     />
                     <MDBInput
                       name="color"
@@ -125,26 +172,87 @@ class Vehicles extends Component {
                       type="text"
                       value={color}
                       onChange={this.changeHandler}
+                      required
                     />
-                    <select class="mdb-select md-form">
-                      <option value="" disabled selected>
-                        Choose your option
+                    <MDBInput
+                      name="licensePlate"
+                      label="License Plate #"
+                      type="text"
+                      value={licensePlate}
+                      onChange={this.changeHandler}
+                      required
+                    />
+                    <MDBInput
+                      name="photo"
+                      // label="Photo"
+                      type="file"
+                      value={photo}
+                      onChange={this.changeHandler}
+                    />
+                    <select
+                      label="Category"
+                      className="mdb-select md-form"
+                      onChange={this.changeHandler}
+                      value={category}
+                      name="category"
+                      style={{ margin: "3%", padding: "1.5%" }}
+                      required
+                    >
+                      <option value="">-- Category --</option>
+                      <option name="car" value="car">
+                        Car
                       </option>
-                      <option value="1">Option 1</option>
-                      <option value="2">Option 2</option>
-                      <option value="3">Option 3</option>
+                      <option name="truck" value="truck">
+                        Truck
+                      </option>
+                      <option name="suv" value="suv">
+                        SUV
+                      </option>
+                      <option name="van" value="van">
+                        Van
+                      </option>
+                    </select>
+                    <select
+                      className="mdb-select md-form"
+                      onChange={this.changeHandler}
+                      value={size}
+                      name="size"
+                      style={{ margin: "3%", padding: "1.5%" }}
+                      required
+                    >
+                      <option value="">-- Size --</option>
+                      <option name="small" value="small">
+                        Small
+                      </option>
+                      <option name="medium" value="medium">
+                        Medium
+                      </option>
+                      <option name="large" value="large">
+                        Large
+                      </option>
                     </select>
                   </MDBModalBody>
                   <MDBModalFooter>
-                    <MDBBtn type="submit">Save Changes</MDBBtn>
+                    <MDBBtn type="submit">Add Vehicle</MDBBtn>
                   </MDBModalFooter>
                 </form>
               </MDBModal>
-              <Link to="/clientDash/navigation">
+              <Link to="/clientDash">
                 <MDBBtn>Back</MDBBtn>
-                {/* <MDBIcon icon="times"></MDBIcon> */}
               </Link>
-              {/* <p>Add a vehicle</p> */}
+              <MDBModal
+                isOpen={this.state.deleteModal}
+                toggle={this.deleteToggle}
+              >
+                <MDBModalHeader>
+                  Are you sure you want to remove this vehicle?
+                </MDBModalHeader>
+                <MDBModalBody></MDBModalBody>
+                <MDBModalFooter>
+                  <MDBBtn onClick={this.deleteHandler}>Delete</MDBBtn>
+                  <MDBBtn onClick={this.deleteToggle}>Cancel</MDBBtn>
+                </MDBModalFooter>
+              </MDBModal>
             </MDBContainer>
           </MDBModalFooter>
         </MDBCard>
@@ -156,11 +264,15 @@ class Vehicles extends Component {
 const mapStateToProps = (state) => {
   return {
     cars: state.userReducer.user.cars,
+    clientId: state.userReducer.user.id,
   };
 };
 
 const mapDispatchToProps = {
   getClientCars,
+  addACar,
+  deleteACar,
+  getClientInformation,
 };
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(Vehicles)
