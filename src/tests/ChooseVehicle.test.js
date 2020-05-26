@@ -27,7 +27,7 @@ test("choose next and prev vehicles", async () => {
       <ChooseVehicle prev={jest.fn()} next={jest.fn()} />
     </Router>
   );
-  expect(getByText(/bmw/i)).toBeInTheDocument();
+
   const back = getByTestId(/back/i);
   await userEvent.click(back);
   const next = getByTestId(/nextbtn/i);
@@ -35,14 +35,11 @@ test("choose next and prev vehicles", async () => {
 });
 
 test("select vehicle model ", async () => {
-  const { getByText, getByTestId, debug } = renderWithRedux(
+  const { getByText, debug } = renderWithRedux(
     <Router>
       <ChooseVehicle vehicleOnClick={jest.fn()} />
     </Router>
   );
-  const car1 = getByText(/bmw/i);
-  await userEvent.click(car1);
-  const car2 = getByTestId(/car2/i);
-  await userEvent.click(car2);
-  expect(car2).toBeInTheDocument();
+  const addbtn = getByText(/add a vehicle/i);
+  await userEvent.click(addbtn);
 });

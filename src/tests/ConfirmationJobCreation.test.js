@@ -21,10 +21,17 @@ function renderWithRedux(
   };
 }
 
+const washState = {
+  date: "now",
+  vehicle: {
+    category: "small",
+  },
+};
+
 test("confimation job", async () => {
   const { getByText, getByTestId, debug } = renderWithRedux(
     <Router>
-      <ConfirmationJobCreation prev={jest.fn()} />
+      <ConfirmationJobCreation prev={jest.fn()} washState={washState} />
     </Router>
   );
   debug();

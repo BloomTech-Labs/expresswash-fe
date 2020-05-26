@@ -21,14 +21,19 @@ function renderWithRedux(
     ...render(<Provider store={store}>{ui}</Provider>),
   };
 }
-
+const washState = {
+  date: "now",
+  vehicle: {
+    category: "small",
+  },
+};
 test("Wash Form from wash steps 1", () => {
   const { getByText, debug } = renderWithRedux(
     <Router>
       <WashForm step={1} values={{ currentAddress: "1234 way" }} />
     </Router>
   );
-  expect(getByText(/work/i)).toBeInTheDocument();
+  expect(getByText(/enter or choose your car location/i)).toBeInTheDocument();
 });
 test("Wash Form from wash steps 2", () => {
   const { getByText, debug } = renderWithRedux(
@@ -54,7 +59,7 @@ test("Wash Form from wash steps 4", () => {
 test("Wash Form from wash steps 5", () => {
   const { getByText, debug } = renderWithRedux(
     <Router>
-      <WashForm step={5} currentWeek={[1, 2, 3, 4, 5, 6, 7]} />
+      <WashForm step={5} washState={washState} />
     </Router>
   );
 });

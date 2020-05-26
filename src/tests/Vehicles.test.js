@@ -46,5 +46,4 @@ test("vehicle component", async () => {
   );
   expect(getByText(/add a vehicle/i));
   await userEvent.click(getByText(/add a vehicle/i));
-  await userEvent.click(getByText(/save changes/i));
 });
