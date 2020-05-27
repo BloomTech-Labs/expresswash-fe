@@ -236,7 +236,7 @@ class FindWash extends Component {
       this.setState(
         {
           ...this.state,
-          selectedAddress: response.features[0],
+          selectedAddress: response.features[0].matching_place_name,
           lat: response.features[0].geometry.coordinates[1],
           long: response.features[0].geometry.coordinates[0],
         },
