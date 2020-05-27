@@ -98,11 +98,23 @@ export function createClient(payload) {
 export function addACar(payload) {
   return (dispatch) => {
     dispatch({ type: ADD_CAR_START });
+    const formData = new FormData();
+    formData.append("photo", payload.photo);
     return axios
-      .post(DB_URL + "/cars", payload)
+      .post(DB_URL + "/cars", { ...payload, photo: "" })
       .then((res) => {
-        console.log("addACAR ACTION RES", res);
-        dispatch({ type: ADD_CAR_SUCCESS, payload: res.data });
+        axios({
+          url: `${DB_URL}/images/car/${res.data.carId}`,
+          method: "POST",
+          data: formData,
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `${localStorage.getItem("token")}`,
+          },
+        }).then((res) => {
+          console.log("addACAR ACTION RES", res);
+          dispatch({ type: ADD_CAR_SUCCESS, payload: res.data });
+        });
       })
       .catch((err) => {
         // const payload = err.response ? err.response.data : err
