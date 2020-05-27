@@ -73,7 +73,6 @@ function App(props) {
             component={ClientWashes}
           />
           <PrivateRoute exact path="/washerDash" component={WasherNavigation} />
-          <PrivateRoute exact path="/washerDash" component={WasherNavigation} />
           <Route exact path="/schedule" component={ScheduleWash} />
           <Route path="/schedule-wash" component={ScheduleWash2} />
           <Route exact path="*" component={() => "404 Page Not Found."} />

@@ -420,14 +420,19 @@ class ConfirmationJobCreation extends Component {
   // }
 
   render() {
-    const { date, selectedAddress, vehicle, time } = this.props.washState;
+    const {
+      // date,
+      selectedAddress,
+      vehicle,
+      time,
+    } = this.props.washState;
     console.log("CONFIRMATION_JOB_CREATION --> PROPS", this.props.washState);
     // const { makes, models } = this.state
     // const { isLoading, } = this.props
     return (
       <div>
         <h4>
-          <strong>Date:</strong> {date}
+          {/* <strong>Date:</strong> {selectedDate} */}
           <br />
           <strong>Time:</strong> {time} <br />
           <strong>Location:</strong> {selectedAddress}

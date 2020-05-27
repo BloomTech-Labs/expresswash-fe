@@ -60,6 +60,13 @@ class FindWash extends Component {
       currentWeek: null,
       selectedAddress: [],
       searchResults: [],
+      jobLocation: {
+        address: "",
+        address2: "",
+        city: "",
+        state: "",
+        zip: "",
+      },
       lat: null,
       long: null,
       vehicle: {
@@ -72,6 +79,7 @@ class FindWash extends Component {
         category: null,
         size: null,
       },
+      jobType: "basic",
       date: null,
       time: null,
       service: null,
@@ -132,8 +140,27 @@ class FindWash extends Component {
     }
   };
 
+  // format address string to save each part seperately
+  formatAddress = (address) => {
+    const split = address.split(",");
+    let add = split[0].trim();
+    let city = split[1].trim();
+    let zip = split[2].trim().slice(-5);
+    let state = split[2].trim().replace(zip, "");
+    this.setState({
+      ...this.state,
+      jobLocation: {
+        address: add,
+        city: city,
+        state: state,
+        zip: zip,
+      },
+    });
+  };
+
   // original user location
   getUserLocation = (address, long, lat) => {
+    this.formatAddress(address);
     this.setState(
       {
         ...this.state,
@@ -197,6 +224,7 @@ class FindWash extends Component {
 
   // gets the clicked address location
   addressOnClick = async (address, token) => {
+    this.formatAddress(address);
     console.log("FindWash.js addressOnClick address:", address);
     let country = "us";
     try {
@@ -204,7 +232,7 @@ class FindWash extends Component {
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?country=${country}&limit=1&autocomplete=true&access_token=${token}`
       );
       const response = await getLocation.json();
-      console.log(response.features[0]);
+      console.log("ADDRESS ON CLICK", response.features[0]);
       this.setState(
         {
           ...this.state,
@@ -285,7 +313,9 @@ class FindWash extends Component {
 
   componentWillMount() {
     // update userReducer with most current user info
-    this.props.getClientInformation(this.props.user.id);
+    this.props.getClientInformation(
+      this.props.user.id || localStorage.getItem("id")
+    );
     this.getCurrentWeek();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -351,7 +381,6 @@ class FindWash extends Component {
             <SideDrawer logout={this.logout} show={this.state.sideDrawerOpen} />
             {backDrop}
             <WashMap
-              washState={this.state}
               getUserLocation={this.getUserLocation}
               long={this.state.long}
               lat={this.state.lat}
@@ -370,6 +399,7 @@ class FindWash extends Component {
               currentWeek={currentWeek}
               washDateOnClick={this.washDateOnClick}
               washTimeOnClick={this.washTimeOnClick}
+              washState={this.state}
             />
           </MapContainer>
         </MainContainer>
