@@ -153,7 +153,6 @@ class SelectAddress extends Component {
       ...this.state,
       [event.target.name]: event.target.value,
     });
-    console.log("SelectAddress.js, this.state.address", this.state.address);
     this.props.geoCoding(this.state.address, token);
   };
 
@@ -171,6 +170,7 @@ class SelectAddress extends Component {
         <Form>
           <SearchContainer>
             <MDBInput
+              data-testid="choose"
               label="Enter or choose your car location"
               autoCapitalize="off"
               autoCorrect="off"
@@ -187,6 +187,7 @@ class SelectAddress extends Component {
                 <Results>
                   {searchResults.map((result, i) => (
                     <ResultLi
+                      data-testid="resultli"
                       key={i}
                       onClick={() =>
                         this.resultClick(

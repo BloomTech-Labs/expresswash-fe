@@ -281,7 +281,7 @@ class Navigation extends React.Component {
                 </MDBTypography>
               </MDBCol>
               <MDBCol md="1">
-                <span onClick={this.logout}>
+                <span data-testid="logout" onClick={this.logout}>
                   <MDBIcon icon="sign-out-alt" />
                 </span>
               </MDBCol>
