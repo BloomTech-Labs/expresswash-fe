@@ -76,6 +76,16 @@ class Vehicles extends Component {
       },
     });
   };
+  changePhoto = (e) => {
+    console.log(e.target.files[0]);
+    this.setState({
+      ...this.state,
+      car: {
+        ...this.state.car,
+        [e.target.name]: e.target.files[0],
+      },
+    });
+  };
 
   submitHandler = (evt) => {
     evt.preventDefault();
@@ -101,6 +111,7 @@ class Vehicles extends Component {
     });
   };
   render() {
+    console.log(this.state.car.photo.name);
     const {
       make,
       model,
@@ -184,10 +195,9 @@ class Vehicles extends Component {
                     />
                     <MDBInput
                       name="photo"
-                      // label="Photo"
                       type="file"
-                      value={photo}
-                      onChange={this.changeHandler}
+                      title={photo.name}
+                      onChange={this.changePhoto}
                     />
                     <select
                       label="Category"

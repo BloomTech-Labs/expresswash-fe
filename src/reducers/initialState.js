@@ -3,5 +3,5 @@ export default {
   user: [],
   loggingIn: false,
   info: null,
-  rating: 0
+  rating: 0,
 };
