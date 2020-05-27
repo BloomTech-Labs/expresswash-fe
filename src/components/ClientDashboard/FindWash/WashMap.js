@@ -96,8 +96,7 @@ class WashMap extends Component {
     this.setState(
       {
         marker: { latitude: marker.lngLat[1], longitude: marker.lngLat[0] },
-      },
-      console.log("MARKER", marker, this.state.marker)
+      }
     );
   };
 
