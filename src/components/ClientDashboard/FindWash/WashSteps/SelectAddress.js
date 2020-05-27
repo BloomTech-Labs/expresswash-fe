@@ -192,7 +192,8 @@ class SelectAddress extends Component {
                       onClick={() =>
                         this.resultClick(
                           result.geometry.coordinates[0],
-                          result.geometry.coordinates[1]
+                          result.geometry.coordinates[1],
+                          result.place_name
                         )
                       }
                     >
@@ -238,8 +239,7 @@ class SelectAddress extends Component {
               <InfoContainer>
                 <AddressName>Home</AddressName>
                 <AddressInfo onClick={this.click}>
-                  {user.streetAddress} {user.streetAddress2}, {user.city},{" "}
-                  {user.state} {user.zip}
+                  {user.streetAddress}, {user.city}, {user.state} {user.zip}
                 </AddressInfo>
               </InfoContainer>
             </LI>

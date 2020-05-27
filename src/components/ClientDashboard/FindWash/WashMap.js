@@ -54,12 +54,9 @@ class WashMap extends Component {
   }
 
   _updateViewport = (viewport) => {
-    this.setState(
-      {
-        viewport: { ...this.state.viewport, ...viewport },
-      },
-      console.log(viewport, this.state.marker)
-    );
+    this.setState({
+      viewport: { ...this.state.viewport, ...viewport },
+    });
 
     // if (this.props.lat !== this.state.viewport.latitude) {
     //   this.setState(
@@ -93,11 +90,9 @@ class WashMap extends Component {
   }
 
   _onMarkerDrag = (marker) => {
-    this.setState(
-      {
-        marker: { latitude: marker.lngLat[1], longitude: marker.lngLat[0] },
-      }
-    );
+    this.setState({
+      marker: { latitude: marker.lngLat[1], longitude: marker.lngLat[0] },
+    });
   };
 
   _onMarkerDragEnd = (event) => {

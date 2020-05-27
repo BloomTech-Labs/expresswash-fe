@@ -1,6 +1,6 @@
 class Auth {
   constructor() {
-    this.authenticated = localStorage.getItem("token") ? false : false; // change back to "true : false" to get working again. disabling now for testing purposes.
+    this.authenticated = localStorage.getItem("token") ? true : false;
   }
 
   login(cb) {
