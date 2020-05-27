@@ -153,8 +153,11 @@ class ChooseVehicle extends Component {
         </VehicleContainer>
 
         <ButtonContainer>
-          <PrevButton onClick={() => this.props.prev()}>Back</PrevButton>
+          <PrevButton data-testid="back" onClick={() => this.props.prev()}>
+            Back
+          </PrevButton>
           <NextButton
+            data-testid="nextbtn"
             className={this.state.selected ? "" : "inactive-button"}
             onClick={() => this.props.next()}
           >
