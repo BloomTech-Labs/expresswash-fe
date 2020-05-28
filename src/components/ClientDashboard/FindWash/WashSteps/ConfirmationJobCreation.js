@@ -369,7 +369,6 @@ class ConfirmationJobCreation extends Component {
       "CONFIRMATION_JOB_CREATION --> washSTATE",
       this.props.washState
     );
-    console.log("CONFIRMATION_JOB_CREATION --> STATE", this.state);
     console.log("CONFIRMATION_JOB_CREATION --> USER", this.props.user);
     // const { makes, models } = this.state
     // const { isLoading, } = this.props

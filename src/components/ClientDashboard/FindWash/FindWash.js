@@ -140,8 +140,27 @@ class FindWash extends Component {
     }
   };
 
+  // format address string to save each part seperately
+  formatAddress = (address) => {
+    const split = address.split(",");
+    let add = split[0].trim();
+    let city = split[1].trim();
+    let zip = split[2].trim().slice(-5);
+    let state = split[2].trim().replace(zip, "");
+    this.setState({
+      ...this.state,
+      jobLocation: {
+        address: add,
+        city: city,
+        state: state,
+        zip: zip,
+      },
+    });
+  };
+
   // original user location
   getUserLocation = (address, long, lat) => {
+    this.formatAddress(address);
     this.setState(
       {
         ...this.state,
@@ -205,6 +224,7 @@ class FindWash extends Component {
 
   // gets the clicked address location
   addressOnClick = async (address, token) => {
+    this.formatAddress(address);
     console.log("FindWash.js addressOnClick address:", address);
     let country = "us";
     try {
