@@ -29,10 +29,16 @@ export const NEW_CLIENT_ERROR = "NEW_CLIENT_ERROR";
 export const ADD_CAR_START = "ADD_CAR_START";
 export const ADD_CAR_SUCCESS = "ADD_CAR_SUCCESS";
 export const ADD_CAR_FAILED = "ADD_CAR_FAILED";
+
 // Remove a Car
 export const DELETE_CAR_START = "DELETE_CAR_START";
 export const DELETE_CAR_SUCCESS = "DELETE_CAR_SUCCESS";
 export const DELETE_CAR_FAILED = "DELETE_CAR_FAILED";
+
+// Schedule Wash
+export const CREATE_JOB_START = "CREATE_JOB_START";
+export const CREATE_JOB_SUCCESS = "CREATE_JOB_SUCCESS";
+export const CREATE_JOB_FAILED = "CREATE_JOB_FAILED";
 
 // Washer Dashboard action types
 export const WASHER_SET_WORK_STATUS_START = "WASHER_SET_WORK_STATUS_START";
@@ -203,6 +209,21 @@ export function getClientRating(id) {
       .catch((err) => {
         console.log("this is error on get client rating", err);
         dispatch({ type: GET_CLIENT_RATING_ERROR });
+      });
+  };
+}
+
+export function scheduleJob(jobInfo) {
+  return (dispatch) => {
+    dispatch({ type: CREATE_JOB_START });
+    return axios
+      .post(DB_URL + "/jobs/new", jobInfo)
+      .then((res) => {
+        console.log("CREATE JOB RES --->", res);
+        dispatch({ type: CREATE_JOB_SUCCESS, payload: res.data[0] });
+      })
+      .catch((err) => {
+        dispatch({ type: CREATE_JOB_FAILED, payload: err.message });
       });
   };
 }

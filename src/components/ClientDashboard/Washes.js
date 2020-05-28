@@ -14,7 +14,7 @@ class Washes extends Component {
           <div>
             <h3>Your Washes</h3>
             <div>
-              <Link to="/clientDash/navigation">
+              <Link to="/clientDash">
                 <MDBIcon icon="times" />
               </Link>
             </div>
