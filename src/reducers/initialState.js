@@ -1,7 +1,7 @@
 export default {
   users: [],
   user: [],
-  loggingIn: false,
+  loading: false,
   info: null,
   rating: 0,
 };

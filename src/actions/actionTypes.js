@@ -143,6 +143,7 @@ export function deleteACar(id) {
 
 export function getClientInformation(id) {
   return (dispatch) => {
+    dispatch({ type: LOGGING_IN });
     return (
       axios
         .get(`${DB_URL}/users/${id}`)

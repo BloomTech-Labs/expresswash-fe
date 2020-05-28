@@ -159,7 +159,7 @@ class WashMap extends Component {
     });
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.setState({
       viewport: {
         ...this.state.viewport,

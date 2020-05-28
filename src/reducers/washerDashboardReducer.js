@@ -16,13 +16,11 @@ import {
 
 // initial State values
 const initialState = {
-  washerDashWorkStatusLoading: false,
+  loading: false,
   washerDashWorkStatusError: null,
   washerDashWorkStatusData: [],
-  washerDashWashCountLoading: false,
   washerDashWashCountError: null,
   washerDashWashCountData: [],
-  washerDashRatingLoading: false,
   washerDashRatingError: null,
   washerDashRatingData: [],
 };
@@ -33,20 +31,20 @@ export default function (state = initialState, action) {
     case WASHER_SET_WORK_STATUS_START: {
       return {
         ...state,
-        washerDashWorkStatusLoading: true,
+        loading: true,
       };
     }
     case WASHER_SET_WORK_STATUS_SUCCESS: {
       return {
         ...state,
-        washerDashWorkStatusLoading: false,
+        loading: false,
         washerDashWorkStatusData: action.payload,
       };
     }
     case WASHER_SET_WORK_STATUS_FAILED: {
       return {
         ...state,
-        washerDashWorkStatusLoading: false,
+        loading: false,
         washerDashWorkStatusError: action,
       };
     }
@@ -54,20 +52,20 @@ export default function (state = initialState, action) {
     case WASHER_GET_WORK_STATUS_START: {
       return {
         ...state,
-        washerDashWorkStatusLoading: true,
+        loading: true,
       };
     }
     case WASHER_GET_WORK_STATUS_SUCCESS: {
       return {
         ...state,
-        washerDashWorkStatusLoading: false,
+        loading: false,
         washerDashWorkStatusData: action.payload.data[0],
       };
     }
     case WASHER_GET_WORK_STATUS_FAILED: {
       return {
         ...state,
-        washerDashWorkStatusLoading: false,
+        loading: false,
         washerDashWorkStatusError: action,
       };
     }
@@ -75,20 +73,20 @@ export default function (state = initialState, action) {
     case WASHER_GET_WASH_COUNT_START: {
       return {
         ...state,
-        washerDashWashCountLoading: true,
+        loading: true,
       };
     }
     case WASHER_GET_WASH_COUNT_SUCCESS: {
       return {
         ...state,
-        washerDashWashCountLoading: false,
+        loading: false,
         washerDashWashCountData: action.payload.data,
       };
     }
     case WASHER_GET_WASH_COUNT_FAILED: {
       return {
         ...state,
-        washerDashWashCountLoading: false,
+        loading: false,
         washerDashWashCountError: action,
       };
     }
@@ -96,20 +94,20 @@ export default function (state = initialState, action) {
     case WASHER_GET_RATING_START: {
       return {
         ...state,
-        washerDashRatingLoading: true,
+        loading: true,
       };
     }
     case WASHER_GET_RATING_SUCCESS: {
       return {
         ...state,
-        washerDashRatingLoading: false,
+        loading: false,
         washerDashRatingData: action.payload.data,
       };
     }
     case WASHER_GET_RATING_FAILED: {
       return {
         ...state,
-        washerDashRatingLoading: false,
+        loading: false,
         washerDashRatingError: action,
       };
     }

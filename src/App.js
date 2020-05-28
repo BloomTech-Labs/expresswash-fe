@@ -14,6 +14,7 @@ import ScheduleWash2 from "./components/ClientDashboard/FindWash/ScheduleWash2";
 import ClientNavigation from "./components/ClientDashboard/Navigation.js";
 import ClientVehicles from "./components/ClientDashboard/Vehicles/Vehicles.js";
 import ClientWashes from "./components/ClientDashboard/Washes.js";
+import Loading from "./loading-error/Loading";
 
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
@@ -80,6 +81,7 @@ function App(props) {
 
           <Route exact path="/testdashboard" component={authGuard(Dashboard)} />
         </Switch>
+        <Loading />
       </Container>
     </MuiPickersUtilsProvider>
   );
