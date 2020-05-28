@@ -35,10 +35,13 @@ export const DELETE_CAR_START = "DELETE_CAR_START";
 export const DELETE_CAR_SUCCESS = "DELETE_CAR_SUCCESS";
 export const DELETE_CAR_FAILED = "DELETE_CAR_FAILED";
 
-// Schedule Wash
+// Job action types
 export const CREATE_JOB_START = "CREATE_JOB_START";
 export const CREATE_JOB_SUCCESS = "CREATE_JOB_SUCCESS";
 export const CREATE_JOB_FAILED = "CREATE_JOB_FAILED";
+export const GET_USER_JOBS_START = "GET_USER_JOBS_START";
+export const GET_USER_JOBS_SUCCESS = "GET_USER_JOBS_SUCCESS";
+export const GET_USER_JOBS_FAILED = "GET_USER_JOBS_FAILED";
 
 // Washer Dashboard action types
 export const WASHER_SET_WORK_STATUS_START = "WASHER_SET_WORK_STATUS_START";
@@ -216,6 +219,7 @@ export function getClientRating(id) {
 export function scheduleJob(jobInfo) {
   return (dispatch) => {
     dispatch({ type: CREATE_JOB_START });
+    console.log("JOB-INFO", jobInfo);
     return axios
       .post(DB_URL + "/jobs/new", jobInfo)
       .then((res) => {
@@ -224,6 +228,21 @@ export function scheduleJob(jobInfo) {
       })
       .catch((err) => {
         dispatch({ type: CREATE_JOB_FAILED, payload: err.message });
+      });
+  };
+}
+
+export function getUserJobs(userId) {
+  return (dispatch) => {
+    dispatch({ type: GET_USER_JOBS_START });
+    return axios
+      .get(`${DB_URL}/jobs/user/${userId}`)
+      .then((res) => {
+        console.log("GET USER JOBS RES --->", res);
+        dispatch({ type: GET_USER_JOBS_SUCCESS, payload: res.data });
+      })
+      .catch((err) => {
+        dispatch({ type: GET_USER_JOBS_FAILED, payload: err.message });
       });
   };
 }

@@ -57,8 +57,8 @@ class WashMap extends Component {
     this.setState(
       {
         viewport: { ...this.state.viewport, ...viewport },
-      }
-      // console.log(viewport, this.state.marker)
+      },
+      console.log(viewport, this.state.marker)
     );
 
     // if (this.props.lat !== this.state.viewport.latitude) {
