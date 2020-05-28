@@ -32,14 +32,14 @@ export default function userReducer(state = initialState, action) {
     case LOGGING_IN: {
       return {
         ...state,
-        loggingIn: true,
+        loading: true,
       };
     }
 
     case LOGIN_SUCCESS: {
       return {
         ...state,
-        loggingIn: false,
+        loading: false,
         user: action.payload.user,
         error: null,
       };
@@ -48,7 +48,7 @@ export default function userReducer(state = initialState, action) {
     case LOGIN_FAILED: {
       return {
         ...state,
-        loggingIn: false,
+        loading: false,
         error: action.payload,
       };
     }
@@ -113,14 +113,14 @@ export default function userReducer(state = initialState, action) {
     case ADD_CAR_START: {
       return {
         ...state,
-        load: true,
+        loading: true,
         error: "",
       };
     }
     case ADD_CAR_SUCCESS: {
       return {
         ...state,
-        load: false,
+        loading: false,
         user: {
           ...state.user,
           cars: [...state.user.cars, action.payload],
@@ -131,21 +131,21 @@ export default function userReducer(state = initialState, action) {
     case ADD_CAR_FAILED: {
       return {
         ...state,
-        load: false,
+        loading: false,
         error: action.payload,
       };
     }
     case DELETE_CAR_START: {
       return {
         ...state,
-        load: true,
+        loading: true,
         error: "",
       };
     }
     case DELETE_CAR_SUCCESS: {
       return {
         ...state,
-        load: false,
+        loading: false,
         // user: {
         //   ...state.user,
         //   cars: [...state.user.cars, action.payload],
@@ -156,7 +156,7 @@ export default function userReducer(state = initialState, action) {
     case DELETE_CAR_FAILED: {
       return {
         ...state,
-        load: false,
+        loading: false,
         error: action.payload,
       };
     }

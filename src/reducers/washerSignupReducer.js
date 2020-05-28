@@ -7,7 +7,7 @@ import {
 
 // initial State values
 const initialState = {
-  washerSignupLoading: false,
+  loading: false,
   washerSignupError: null,
   washerSignupData: [],
 };
@@ -17,20 +17,20 @@ export default function (state = initialState, action) {
     case CREATE_WASHER_START: {
       return {
         ...state,
-        washerSignupLoading: true,
+        loading: true,
       };
     }
     case CREATE_WASHER_SUCCESS: {
       return {
         ...state,
-        washerSignupLoading: false,
+        loading: false,
         washerSignupData: action.payload,
       };
     }
     case CREATE_WASHER_FAILED: {
       return {
         ...state,
-        washerSignupLoading: false,
+        loading: false,
         washerSignupError: action,
       };
     }
