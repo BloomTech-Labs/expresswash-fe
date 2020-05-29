@@ -15,10 +15,13 @@ function Payment() {
       product,
     };
     const headers = {
-      "Content-Type": "application/json",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + process.env.REACT_APP_STRIPE_KEY,
+      },
     };
     return axios
-      .post(`${DB_URL}/users/payment`, body)
+      .post(`${DB_URL}/users/payment`, body, headers)
       .then((res) => {
         console.log("res", res);
       })

@@ -18,6 +18,7 @@ const PrevButton = Styled.div`
     font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;
+    margin: 1.2% auto;
 
     &:hover {
         background: #00A8C5;
@@ -36,6 +37,7 @@ const NextButton = Styled.div`
     font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;
+    margin: 1.2% auto;
 `;
 
 class ConfirmationJobCreation extends Component {
@@ -387,12 +389,12 @@ class ConfirmationJobCreation extends Component {
           <strong>License Plate:</strong> {vehicle.licensePlate} <br />
           <strong>Cost:</strong>$40.00
           <br />
-          <PrevButton data-testid="prev" onClick={() => this.props.prev()}>
-            Back
-          </PrevButton>
           <NextButton onClick={() => this.handleSchedule()}>
             Schedule
           </NextButton>
+          <PrevButton data-testid="prev" onClick={() => this.props.prev()}>
+            Back
+          </PrevButton>
         </h4>
         {/* <h3>Get a Quote:</h3>
                 <form onSubmit={this.handleSubmitMake}>

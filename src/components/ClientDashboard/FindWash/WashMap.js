@@ -264,8 +264,6 @@ class WashMap extends Component {
                 ? `Select a Date`
                 : step === 4
                 ? ` Select a Time`
-                : step === 5
-                ? `Which service would you like?`
                 : `Confirm your wash`}
             </P>
           </UserInfoContainer>

@@ -65,7 +65,7 @@ class Washes extends Component {
         </Link>
         <div>
           {jobs ? (
-            jobs.map((job) => {
+            jobs.reverse().map((job) => {
               return (
                 <Container key={job.jobId}>
                   <InfoContainer>
@@ -77,6 +77,9 @@ class Washes extends Component {
                     </InfoText>
                     <InfoText>
                       <InfoSpan>Wash Type: </InfoSpan> {job.jobType}{" "}
+                    </InfoText>
+                    <InfoText>
+                      <InfoSpan>Price: </InfoSpan> $40{" "}
                     </InfoText>
                     <Payment />
                   </InfoContainer>
