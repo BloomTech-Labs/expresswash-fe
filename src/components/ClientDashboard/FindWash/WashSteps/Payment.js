@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
+import { DB_URL } from "../../../../actions/actionTypes";
 
 function Payment() {
   const [product, setProduct] = useState({
@@ -17,7 +18,7 @@ function Payment() {
       "Content-Type": "application/json",
     };
     return axios
-      .post(`http://localhost:3300/users/payment`, body)
+      .post(`${DB_URL}/users/payment`, body)
       .then((res) => {
         console.log("res", res);
       })

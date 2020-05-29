@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Payment from "./Payment";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addACar, scheduleJob } from "../../../../actions/actionTypes.js";
@@ -353,7 +352,7 @@ class ConfirmationJobCreation extends Component {
       zip: jobLocation.zip,
       notes: "",
       jobType: "basic",
-      timeRequested: washState.time,
+      timeRequested: `${washState.time}, ${washState.date}`,
     };
     this.props.scheduleJob(jobInfo);
     this.props.history.push("/clientDash/washes");
@@ -388,7 +387,6 @@ class ConfirmationJobCreation extends Component {
           <strong>License Plate:</strong> {vehicle.licensePlate} <br />
           <strong>Cost:</strong>$40.00
           <br />
-          <Payment />
           <PrevButton data-testid="prev" onClick={() => this.props.prev()}>
             Back
           </PrevButton>

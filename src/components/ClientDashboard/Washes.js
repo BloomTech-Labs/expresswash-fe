@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { MDBContainer, MDBCard, MDBIcon } from "mdbreact";
+import { MDBBtn, MDBIcon } from "mdbreact";
 import { getUserJobs } from "../../actions/actionTypes";
 import styled from "styled-components";
+import Payment from "./FindWash/WashSteps/Payment";
 
 const Container = styled.div`
   width: 70%;
@@ -60,7 +61,7 @@ class Washes extends Component {
       <div>
         <h3>Your Washes</h3>
         <Link to="/clientDash">
-          <MDBIcon icon="times" />
+          <MDBBtn>Back</MDBBtn>
         </Link>
         <div>
           {jobs ? (
@@ -77,6 +78,7 @@ class Washes extends Component {
                     <InfoText>
                       <InfoSpan>Wash Type: </InfoSpan> {job.jobType}{" "}
                     </InfoText>
+                    <Payment />
                   </InfoContainer>
                 </Container>
               );
