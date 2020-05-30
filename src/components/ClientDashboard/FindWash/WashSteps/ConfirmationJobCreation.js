@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { addACar, scheduleJob } from "../../../../actions/actionTypes.js";
-
-import axios from "axios";
+import { scheduleJob } from "../../../../actions/actionTypes.js";
 import Styled from "styled-components";
 
 const PrevButton = Styled.div`
@@ -43,11 +41,6 @@ const NextButton = Styled.div`
 class ConfirmationJobCreation extends Component {
   constructor(props) {
     super(props);
-    // this.handleChangeDocs = this.handleChangeDocs.bind(this);
-    // this.handleChangeDocs2 = this.handleChangeDocs2.bind(this);
-    // this.handleSubmitMake = this.handleSubmitMake.bind(this);
-    // this.letterTranslator = this.letterTranslator.bind(this);
-    // this.categoryMuxer = this.categoryMuxer.bind(this);
     this.state = {
       jobLocation: {
         address: "",
@@ -371,8 +364,6 @@ class ConfirmationJobCreation extends Component {
       this.props.washState
     );
     console.log("CONFIRMATION_JOB_CREATION --> USER", this.props.user);
-    // const { makes, models } = this.state
-    // const { isLoading, } = this.props
     return (
       <div>
         <h4>
