@@ -153,18 +153,15 @@ export function deleteACar(id) {
 export function getClientInformation(id) {
   return (dispatch) => {
     dispatch({ type: LOGGING_IN });
-    return (
-      axios
-        .get(`${DB_URL}/users/${id}`)
-        // .get(`http://localhost:3300/users/${id}`)
-        .then((res) => {
-          console.log("this is response on getclient information", res);
-          dispatch({ type: GET_CLIENT_INFO_SUCCESS, payload: res.data });
-        })
-        .catch((err) => {
-          dispatch({ type: GET_CLIENT_INFO_ERROR, payload: err.message });
-        })
-    );
+    return axios
+      .get(`${DB_URL}/users/${id}`)
+      .then((res) => {
+        console.log("this is response on getclient information", res);
+        dispatch({ type: GET_CLIENT_INFO_SUCCESS, payload: res.data });
+      })
+      .catch((err) => {
+        dispatch({ type: GET_CLIENT_INFO_ERROR, payload: err.message });
+      });
   };
 }
 export function updateClientInformation(id, changes) {

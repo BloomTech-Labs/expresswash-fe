@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-// import { addACar } from '../../actions/actionTypes.js';
+import { DB_URL, getClientInformation } from "../../actions/actionTypes.js";
 import axios from "axios";
 
 class JobsDisplay extends Component {
@@ -31,7 +31,7 @@ class JobsDisplay extends Component {
 
   getAvailableJobs = () => {
     axios
-      .get("https://pt6-wowo.herokuapp.com/jobs/available")
+      .get(`${DB_URL}/jobs/available/${this.props.user.id}`)
       .then((res) => {
         // console.log(res.data)
         this.setState({ jobs: res.data, isGettingJobs: false });
@@ -39,11 +39,19 @@ class JobsDisplay extends Component {
       .catch((err) => console.log(err));
   };
 
+  componentWillMount() {
+    getClientInformation(this.props.user.id || localStorage.getItem("id"));
+  }
+
   componentDidMount() {
-    this.getAvailableJobs();
+    if (this.props.user) {
+      this.getAvailableJobs();
+    }
   }
 
   render() {
+    console.log("JOBS USER PROPS", this.props.user);
+    console.log("JOBS STATE", this.state);
     return (
       <div>
         {this.isGettingJobs === "true" ? (
@@ -63,7 +71,7 @@ class JobsDisplay extends Component {
                     {job.licensePlate}
                   </p>
                   <h4>Payment Before Tip:</h4>
-                  <p>$20.00</p>
+                  <p>$40.00</p>
                   <button
                     onClick={() => {
                       this.handleSubmitJob(job.jobId);
@@ -86,11 +94,13 @@ class JobsDisplay extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.userReducer.user,
   };
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  getClientInformation,
+};
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(JobsDisplay)
