@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import Payment from "./Payment";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { addACar, DB_URL } from "../../../../actions/actionTypes.js";
-
-import axios from "axios";
+import { scheduleJob } from "../../../../actions/actionTypes.js";
 import Styled from "styled-components";
 
 const PrevButton = Styled.div`
@@ -19,6 +16,7 @@ const PrevButton = Styled.div`
     font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;
+    margin: 1.2% auto;
 
     &:hover {
         background: #00A8C5;
@@ -37,95 +35,38 @@ const NextButton = Styled.div`
     font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;
+    margin: 1.2% auto;
 `;
 
 class ConfirmationJobCreation extends Component {
   constructor(props) {
     super(props);
-    // this.handleChangeDocs = this.handleChangeDocs.bind(this);
-    // this.handleChangeDocs2 = this.handleChangeDocs2.bind(this);
-    // this.handleSubmitMake = this.handleSubmitMake.bind(this);
-    // this.letterTranslator = this.letterTranslator.bind(this);
-    // this.categoryMuxer = this.categoryMuxer.bind(this);
     this.state = {
-      makes: [
-        { make: "Acura" },
-        { make: "Alfa Romeo" },
-        { make: "Aston Martin" },
-        { make: "Audi" },
-        { make: "Bentley" },
-        { make: "BMW" },
-        { make: "Bugatti" },
-        { make: "Buick" },
-        { make: "Cadillac" },
-        { make: "Chevrolet" },
-        { make: "Chrysler" },
-        { make: "Daewoo" },
-        { make: "Dodge" },
-        { make: "Factory Five" },
-        { make: "Ferrari" },
-        { make: "Fiat" },
-        { make: "Fisker" },
-        { make: "Ford" },
-        { make: "Genesis" },
-        { make: "Geo" },
-        { make: "GMC" },
-        { make: "Honda" },
-        { make: "Hummer" },
-        { make: "Hyundai" },
-        { make: "Infiniti" },
-        { make: "Isuzu" },
-        { make: "Jaguar" },
-        { make: "Jeep" },
-        { make: "Kia" },
-        { make: "Koenigsegg" },
-        { make: "Lamborghini" },
-        { make: "Land Rover" },
-        { make: "Lexus" },
-        { make: "Lincoln" },
-        { make: "Lotus" },
-        { make: "Maserati" },
-        { make: "Maybach" },
-        { make: "Mazda" },
-        { make: "McLaren" },
-        { make: "Mercedes-Benz" },
-        { make: "Mercury" },
-        { make: "MINI" },
-        { make: "Mitsubishi" },
-        { make: "Morgan" },
-        { make: "Mosler" },
-        { make: "Nissan" },
-        { make: "Noble" },
-        { make: "Oldsmobile" },
-        { make: "Plymouth" },
-        { make: "Pontiac" },
-        { make: "Porsche" },
-        { make: "Rolls-Royce" },
-        { make: "Rossion" },
-        { make: "Ruf" },
-        { make: "Saab" },
-        { make: "Saleen" },
-        { make: "Saturn" },
-        { make: "Scion" },
-        { make: "Shelby" },
-        { make: "Smart" },
-        { make: "Spyker" },
-        { make: "Subaru" },
-        { make: "Suzuki" },
-        { make: "Tesla" },
-        { make: "Toyota" },
-        { make: "TVR" },
-        { make: "Vector" },
-        { make: "Volkswagen" },
-        { make: "Volvo" },
-      ],
-      models: [],
-      isGettingMakes: "",
-      selectedMake: "Acura",
-      selectedModel: "",
-      pricingInfo: "",
+      jobLocation: {
+        address: "",
+        city: "",
+        state: "",
+        zip: "",
+      },
     };
   }
+
+  // format address string to save each part seperately
+  formatAddress = (address) => {
+    const split = address.split(",");
+    let add = split[0].trim();
+    let city = split[1].trim();
+    let zip = split[2].trim().slice(-5);
+    let state = split[2].trim().replace(zip, "");
+    this.setState({
+      jobLocation: {
+        address: add,
+        city: city,
+        state: state,
+        zip: zip,
+      },
+    });
+  };
 
   // letterTranslator = (letter) => {
   //     if(letter==='S'){
@@ -391,39 +332,38 @@ class ConfirmationJobCreation extends Component {
   // }
 
   handleSchedule = () => {
-    // alert(this.state.selectedModel)
-    axios
-      .post(DB_URL + "/jobs/new", {
-        washAddress: `4224 East Hubbell Street, Phoenix, Arizona 85008, United States`,
-        washerId: null,
-        scheduled: true,
-        completed: false,
-        paid: false,
-        clientId: 3,
-        clientCarId: 10,
-      })
-      .then((res) => {
-        console.log("res.data", res.data);
-        if (res.data.rowCount === 1) {
-          return alert("Job Scheduled Successfully");
-        } else {
-          console.log("err with scheduling");
-          return alert("Issue with Job Scheduling");
-        }
-        // console.log('this.state.models', this.state.models)
-      })
-      .catch((err) => console.log(err));
+    const { washState, user } = this.props;
+    const { jobLocation } = this.state;
+    const jobInfo = {
+      washAddress: washState.selectedAddress,
+      scheduled: true,
+      completed: false,
+      paid: false,
+      clientId: user.id,
+      carId: washState.vehicle.carId,
+      address: jobLocation.address,
+      city: jobLocation.city,
+      state: jobLocation.state,
+      zip: jobLocation.zip,
+      notes: "",
+      jobType: "basic",
+      timeRequested: `${washState.time}, ${washState.date}`,
+    };
+    this.props.scheduleJob(jobInfo);
+    this.props.history.push("/clientDash/washes");
   };
 
-  // componentDidMount(){
-
-  // }
+  componentDidMount() {
+    this.formatAddress(this.props.washState.selectedAddress);
+  }
 
   render() {
     const { date, selectedAddress, vehicle, time } = this.props.washState;
-    console.log("CONFIRMATION_JOB_CREATION --> PROPS", this.props.washState);
-    // const { makes, models } = this.state
-    // const { isLoading, } = this.props
+    console.log(
+      "CONFIRMATION_JOB_CREATION --> washSTATE",
+      this.props.washState
+    );
+    console.log("CONFIRMATION_JOB_CREATION --> USER", this.props.user);
     return (
       <div>
         <h4>
@@ -440,13 +380,12 @@ class ConfirmationJobCreation extends Component {
           <strong>License Plate:</strong> {vehicle.licensePlate} <br />
           <strong>Cost:</strong>$40.00
           <br />
-          <Payment />
-          <PrevButton data-testid="prev" onClick={() => this.props.prev()}>
-            Back
-          </PrevButton>
           <NextButton onClick={() => this.handleSchedule()}>
             Schedule
           </NextButton>
+          <PrevButton data-testid="prev" onClick={() => this.props.prev()}>
+            Back
+          </PrevButton>
         </h4>
         {/* <h3>Get a Quote:</h3>
                 <form onSubmit={this.handleSubmitMake}>
@@ -496,11 +435,13 @@ class ConfirmationJobCreation extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.userReducer.user,
   };
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  scheduleJob,
+};
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(ConfirmationJobCreation)

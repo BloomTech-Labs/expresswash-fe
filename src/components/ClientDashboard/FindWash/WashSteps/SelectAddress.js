@@ -122,10 +122,9 @@ class SelectAddress extends Component {
   }
 
   // Address click handler
-  click = (event) => {
+  click = (address) => (event) => {
     event.preventDefault();
     let token = this.props.mapBoxApiToken;
-    let address = event.target.innerText;
     this.props.addressOnClick(address, token);
     this.props.next();
   };
@@ -192,7 +191,8 @@ class SelectAddress extends Component {
                       onClick={() =>
                         this.resultClick(
                           result.geometry.coordinates[0],
-                          result.geometry.coordinates[1]
+                          result.geometry.coordinates[1],
+                          result.place_name
                         )
                       }
                     >
@@ -237,9 +237,12 @@ class SelectAddress extends Component {
               </IconContainer>
               <InfoContainer>
                 <AddressName>Home</AddressName>
-                <AddressInfo onClick={this.click}>
-                  {user.streetAddress} {user.streetAddress2}, {user.city},{" "}
-                  {user.state} {user.zip}
+                <AddressInfo
+                  onClick={this.click(
+                    `${user.streetAddress}, ${user.city}, ${user.state} ${user.zip}`
+                  )}
+                >
+                  {user.streetAddress}, {user.city}, {user.state} {user.zip}
                 </AddressInfo>
               </InfoContainer>
             </LI>

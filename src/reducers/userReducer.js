@@ -19,6 +19,9 @@ import {
   DELETE_CAR_START,
   DELETE_CAR_SUCCESS,
   DELETE_CAR_FAILED,
+  CREATE_JOB_START,
+  CREATE_JOB_SUCCESS,
+  CREATE_JOB_FAILED,
 } from "../actions/actionTypes";
 
 export default function userReducer(state = initialState, action) {
@@ -157,6 +160,27 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
+        error: action.payload,
+      };
+    }
+    case CREATE_JOB_START: {
+      return {
+        ...state,
+        load: true,
+        error: "",
+      };
+    }
+    case CREATE_JOB_SUCCESS: {
+      return {
+        ...state,
+        load: false,
+        error: "",
+      };
+    }
+    case CREATE_JOB_FAILED: {
+      return {
+        ...state,
+        load: false,
         error: action.payload,
       };
     }

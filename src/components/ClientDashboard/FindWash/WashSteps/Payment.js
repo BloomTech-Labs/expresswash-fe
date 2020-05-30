@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
+import { DB_URL } from "../../../../actions/actionTypes";
 
 function Payment() {
   const [product, setProduct] = useState({
@@ -14,10 +15,13 @@ function Payment() {
       product,
     };
     const headers = {
-      "Content-Type": "application/json",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + process.env.REACT_APP_STRIPE_KEY,
+      },
     };
     return axios
-      .post(`http://localhost:3300/users/payment`, body)
+      .post(`${DB_URL}/users/payment`, body, headers)
       .then((res) => {
         console.log("res", res);
       })

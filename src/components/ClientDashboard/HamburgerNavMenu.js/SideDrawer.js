@@ -46,12 +46,6 @@ const sideDrawer = (props) => {
   return (
     <SideDrawerNav className={drawerClasses}>
       <NavList>
-        <Link to="/clientDash/navigation">
-          <ListItem>Account Details</ListItem>
-        </Link>
-        <Link to="/clientDash/payments">
-          <ListItem>Payment Options</ListItem>
-        </Link>
         <Link to="/clientDash/washes">
           <ListItem>Your Washes</ListItem>
         </Link>

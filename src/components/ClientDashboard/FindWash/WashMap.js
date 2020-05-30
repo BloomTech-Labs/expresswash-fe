@@ -57,8 +57,8 @@ class WashMap extends Component {
     this.setState(
       {
         viewport: { ...this.state.viewport, ...viewport },
-      }
-      // console.log(viewport, this.state.marker)
+      },
+      console.log(viewport, this.state.marker)
     );
 
     // if (this.props.lat !== this.state.viewport.latitude) {
@@ -264,8 +264,6 @@ class WashMap extends Component {
                 ? `Select a Date`
                 : step === 4
                 ? ` Select a Time`
-                : step === 5
-                ? `Which service would you like?`
                 : `Confirm your wash`}
             </P>
           </UserInfoContainer>
