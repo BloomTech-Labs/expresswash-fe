@@ -11,7 +11,6 @@ class JobsDisplay extends Component {
 
     this.state = {
       jobs: [],
-      isGettingJobs: true,
     };
   }
 
@@ -31,7 +30,11 @@ class JobsDisplay extends Component {
 
   getAvailableJobs = () => {
     axios
-      .get(`${DB_URL}/jobs/available/${this.props.user.id}`)
+      .get(
+        `${DB_URL}/jobs/available/${
+          this.props.user.id || localStorage.getItem("id")
+        }`
+      )
       .then((res) => {
         // console.log(res.data)
         this.setState({ jobs: res.data, isGettingJobs: false });
@@ -40,13 +43,13 @@ class JobsDisplay extends Component {
   };
 
   componentWillMount() {
-    getClientInformation(this.props.user.id || localStorage.getItem("id"));
+    this.props.getClientInformation(
+      this.props.user.id || localStorage.getItem("id")
+    );
   }
 
   componentDidMount() {
-    if (this.props.user) {
-      this.getAvailableJobs();
-    }
+    this.getAvailableJobs();
   }
 
   render() {
@@ -65,11 +68,6 @@ class JobsDisplay extends Component {
                   <p>{job.washAddress}</p>
                   <h4>Job Date and Time:</h4>
                   <p>{job.creationDate}</p>
-                  <h4>Job Vehicle:</h4>
-                  <p>
-                    {job.color} {job.make} {job.model} with License Plate:{" "}
-                    {job.licensePlate}
-                  </p>
                   <h4>Payment Before Tip:</h4>
                   <p>$40.00</p>
                   <button
@@ -86,7 +84,13 @@ class JobsDisplay extends Component {
           </div>
         )}
         <br />
-        <button onClick={this.getAvailableJobs()}>Refresh Job Listings</button>
+        <button
+          onClick={() => {
+            this.getAvailableJobs();
+          }}
+        >
+          Refresh Job Listings
+        </button>
       </div>
     );
   }
