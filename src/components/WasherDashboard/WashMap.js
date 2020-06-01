@@ -25,7 +25,7 @@ class WashMap extends Component {
       viewport: {
         latitude: 37.785164,
         longitude: -100,
-        zoom: 15,
+        zoom: 11.5,
         bearing: 0,
         pitch: 0,
       },
@@ -35,6 +35,8 @@ class WashMap extends Component {
       },
       events: {},
       jobs: [],
+      selectedJob: null,
+      price: "$40",
     };
   }
 
@@ -46,6 +48,11 @@ class WashMap extends Component {
         this.setState({ jobs: res.data });
       })
       .catch((err) => console.log(err));
+  };
+
+  handlePinClick = (job) => {
+    this.setState({ selectedJob: { job } });
+    console.log("STATE", this.state);
   };
 
   _updateViewport = (viewport) => {
@@ -122,8 +129,8 @@ class WashMap extends Component {
   }
 
   render() {
-    const { viewport, marker } = this.state;
-    console.log(this.state.jobs);
+    const { viewport, marker, selectedJob } = this.state;
+    console.log("STATE", this.state);
 
     return (
       <MapGL
@@ -131,10 +138,11 @@ class WashMap extends Component {
         ref={"map"}
         width="100%"
         height="100%"
-        zoom={13}
+        zoom={11.5}
         mapStyle="mapbox://styles/mapbox/basic-v8"
         onViewportChange={this._updateViewport}
         mapboxApiAccessToken={TOKEN}
+        scrollZoom={false}
       >
         <Marker
           longitude={marker.longitude}
@@ -155,9 +163,28 @@ class WashMap extends Component {
               latitude={Number(job.jobLocationLat)}
               longitude={Number(job.jobLocationLon)}
             >
-              <Pin size={25} />
+              <div onClick={() => this.handlePinClick(job)}>
+                <Pin size={25} />
+              </div>
             </Marker>
           ))}
+        {selectedJob !== null && (
+          <Popup
+            onClose={() => this.setState({ selectedJob: null })}
+            latitude={Number(selectedJob.job.jobLocationLat)}
+            longitude={Number(selectedJob.job.jobLocationLon)}
+            style={{ maxwidth: "20%" }}
+          >
+            <div>
+              <br />
+              <h6>
+                {selectedJob.job.address}, {selectedJob.job.city}
+              </h6>
+              <p>{selectedJob.job.timeRequested}</p>
+              <p>{this.state.price}</p>
+            </div>
+          </Popup>
+        )}
       </MapGL>
     );
   }
