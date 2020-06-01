@@ -132,7 +132,6 @@ class WashMap extends Component {
         width="100%"
         height="100%"
         zoom={13}
-        setView={true}
         mapStyle="mapbox://styles/mapbox/basic-v8"
         onViewportChange={this._updateViewport}
         mapboxApiAccessToken={TOKEN}

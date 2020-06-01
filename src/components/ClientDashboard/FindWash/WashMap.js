@@ -207,7 +207,6 @@ class WashMap extends Component {
           height="100%"
           mapStyle="mapbox://styles/mapbox/dark-v9"
           onViewportChange={this._updateViewport}
-          // onLoad={this.addLines}
           mapboxApiAccessToken={TOKEN}
         >
           <Marker
