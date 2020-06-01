@@ -49,7 +49,7 @@ class WashMap extends Component {
   };
 
   _updateViewport = (viewport) => {
-    this.setState({ viewport });
+    this.setState({ viewport: { ...this.state.viewport, ...viewport } });
   };
 
   _logDragEvent(name, event) {
@@ -131,7 +131,8 @@ class WashMap extends Component {
         ref={"map"}
         width="100%"
         height="100%"
-        zoom={12}
+        zoom={13}
+        setView={true}
         mapStyle="mapbox://styles/mapbox/basic-v8"
         onViewportChange={this._updateViewport}
         mapboxApiAccessToken={TOKEN}
@@ -155,9 +156,7 @@ class WashMap extends Component {
               latitude={Number(job.jobLocationLat)}
               longitude={Number(job.jobLocationLon)}
             >
-              <button>
-                <Pin size={25} />
-              </button>
+              <Pin size={25} />
             </Marker>
           ))}
       </MapGL>

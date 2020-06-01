@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 
 class UserCircle extends PureComponent {
   render() {
-    const { size = "50px", fill = "#00A8C5", stroke = "#00A8C5" } = this.props;
+    const { size = "50px", fill = "#ff6384", stroke = "#ff6384" } = this.props;
 
     return (
       <svg

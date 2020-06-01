@@ -34,9 +34,9 @@ const Img = Styled.img`
 
 // map class
 const MapContainer = Styled.div`
-    height: 500px;
+    height: 40em;
     width: 100%;
-    position: relative;
+    position: sticky;
 `;
 
 // data for the line graph
