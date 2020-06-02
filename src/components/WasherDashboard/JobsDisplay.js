@@ -68,7 +68,13 @@ class JobsDisplay extends Component {
         <div>
           <br />
           <h2 style={{ "font-weight": "bold" }}>Accepted Jobs</h2>
-
+          <button
+            onClick={() => {
+              this.getAvailableJobs();
+            }}
+          >
+            Refresh Accepted Jobs
+          </button>
           <hr />
         </div>
         {this.isGettingJobs === "true" ? (
@@ -113,14 +119,6 @@ class JobsDisplay extends Component {
             })}
           </div>
         )}
-
-        <button
-          onClick={() => {
-            this.getAvailableJobs();
-          }}
-        >
-          Refresh Accepted Jobs
-        </button>
         <br />
         <hr />
         <div>

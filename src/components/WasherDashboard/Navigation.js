@@ -105,6 +105,7 @@ class Navigation extends React.Component {
     super(props);
     this.state = {
       user: this.props.user,
+      workStatus: true,
     };
   }
 
@@ -149,14 +150,12 @@ class Navigation extends React.Component {
 
   // toggle switch handler without API endpoint connection yet
   handleSwitchChange = () => {
-    this.setState((prevState) => {
-      let user = { ...prevState.user };
-      user.workStatus = !this.state.user.washer.workStatus;
-      return { user };
+    this.setState({
+      workStatus: !this.state.workStatus,
     });
     const payload = {
-      id: this.state.user.washer.washerId,
-      workStatus: !this.state.user.washer.workStatus,
+      id: localStorage.getItem("washerId") || this.state.user.washer.washerId,
+      workStatus: this.state.workStatus,
     };
     // console.log("payload is", payload);
     this.props
@@ -197,6 +196,7 @@ class Navigation extends React.Component {
     localStorage.removeItem("firstName");
     localStorage.removeItem("lastName");
     localStorage.removeItem("id");
+    localStorage.removeItem("washerId");
     auth.logout(() => {
       this.props.history.push("/login");
     });
@@ -322,7 +322,7 @@ class Navigation extends React.Component {
                           type="checkbox"
                           className="custom-control-input"
                           id="customSwitches"
-                          checked={true}
+                          checked={this.state.workStatus}
                           onChange={this.handleSwitchChange}
                           readOnly
                         />
