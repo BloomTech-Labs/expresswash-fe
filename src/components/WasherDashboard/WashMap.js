@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { DB_URL, getClientInformation } from "../../actions/actionTypes.js";
 import MapGL, {
   Marker,
@@ -48,6 +49,20 @@ class WashMap extends Component {
         this.setState({ jobs: res.data });
       })
       .catch((err) => console.log(err));
+  };
+
+  handleSubmitJob = (jobId) => {
+    const id = this.props.user.washer.washerId;
+    axios
+      .put(`${DB_URL}/jobs/selectjob/${jobId}`, {
+        washerId: id,
+      })
+      .then((res) => {
+        console.log("ACCEPT JOB RES", res.data);
+        alert("Job Successfully Accepted.  See you there!");
+      })
+      .catch((err) => console.log(err));
+    this.getAvailableJobs();
   };
 
   handlePinClick = (job) => {
@@ -170,18 +185,34 @@ class WashMap extends Component {
           ))}
         {selectedJob !== null && (
           <Popup
-            onClose={() => this.setState({ selectedJob: null })}
+            closeOnClick={false}
+            closeButton={false}
+            onClose={() => {
+              this.setState({ selectedJob: null });
+            }}
+            // closeOnclick={true}
             latitude={Number(selectedJob.job.jobLocationLat)}
             longitude={Number(selectedJob.job.jobLocationLon)}
             style={{ maxwidth: "20%" }}
           >
-            <div>
+            <div
+              onClick={() => {
+                this.setState({ selectedJob: null });
+              }}
+            >
               <br />
               <h6>
                 {selectedJob.job.address}, {selectedJob.job.city}
               </h6>
               <p>{selectedJob.job.timeRequested}</p>
               <p>{this.state.price}</p>
+              <button
+                onClick={() => {
+                  this.handleSubmitJob(selectedJob.job.jobId);
+                }}
+              >
+                Agree to Work Job
+              </button>
             </div>
           </Popup>
         )}
@@ -190,4 +221,16 @@ class WashMap extends Component {
   }
 }
 
-export default WashMap;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userReducer.user,
+  };
+};
+
+const mapDispatchToProps = {
+  getClientInformation,
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(WashMap)
+);

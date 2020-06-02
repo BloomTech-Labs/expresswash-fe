@@ -34,7 +34,7 @@ const Img = Styled.img`
 
 // map class
 const MapContainer = Styled.div`
-    height: 40em;
+    height: 512px;
     width: 100%;
     position: sticky;
 `;
