@@ -78,6 +78,8 @@ export function loginUser(email, password) {
         localStorage.setItem("id", res.data.user.id);
         localStorage.setItem("firstName", res.data.user.firstName);
         localStorage.setItem("lastName", res.data.user.lastName);
+        localStorage.setItem("washerId", res.data.user.washer.washerId);
+
         console.log(localStorage);
         dispatch({
           type: LOGIN_SUCCESS,

@@ -11,33 +11,41 @@ class JobsDisplay extends Component {
 
     this.state = {
       jobs: [],
+      completedJobs: [],
     };
   }
 
   handleSubmitJob = (jobId) => {
-    const id = localStorage.getItem("id");
     axios
-      .put("https://pt6-wowo.herokuapp.com/jobs/selectjob", {
-        jobId: jobId,
-        id: id,
+      .put(`${DB_URL}/jobs/job/${jobId}`, {
+        completed: true,
       })
       .then((res) => {
-        // console.log(res.data)
-        alert("Job Successfully Accepted.  See you there!");
+        console.log("COMPLETED JOB RES", res.data);
+        alert(
+          "Job Successfully Completed! Your payment will show up in your account soon."
+        );
       })
       .catch((err) => console.log(err));
+    this.getAvailableJobs();
   };
 
   getAvailableJobs = () => {
     axios
-      .get(
-        `${DB_URL}/jobs/available/${
-          this.props.user.id || localStorage.getItem("id")
-        }`
-      )
+      .get(`${DB_URL}/jobs/`)
       .then((res) => {
-        // console.log(res.data)
-        this.setState({ jobs: res.data, isGettingJobs: false });
+        console.log("JOBS!!!", res.data);
+        this.setState({
+          jobs: res.data.filter(
+            (job) => job.washerId == localStorage.getItem("washerId")
+          ),
+          completedJobs: res.data.filter(
+            (job) =>
+              job.washerId == localStorage.getItem("washerId") &&
+              job.completed == true
+          ),
+          isGettingJobs: false,
+        });
       })
       .catch((err) => console.log(err));
   };
@@ -57,6 +65,12 @@ class JobsDisplay extends Component {
     console.log("JOBS STATE", this.state);
     return (
       <div>
+        <div>
+          <br />
+          <h2 style={{ "font-weight": "bold" }}>Accepted Jobs</h2>
+
+          <hr />
+        </div>
         {this.isGettingJobs === "true" ? (
           <h3>Loading Jobs...</h3>
         ) : (
@@ -67,15 +81,31 @@ class JobsDisplay extends Component {
                   <h4>Job Address:</h4>
                   <p>{job.washAddress}</p>
                   <h4>Job Date and Time:</h4>
-                  <p>{job.creationDate}</p>
+                  <p>{job.timeRequested}</p>
                   <h4>Payment Before Tip:</h4>
                   <p>$40.00</p>
+
+                  <button
+                    onClick={() => {
+                      alert("Still need to add this feature!");
+                    }}
+                  >
+                    Upload Before Photo
+                  </button>
+                  <button
+                    onClick={() => {
+                      alert("Still need to add this feature!");
+                    }}
+                  >
+                    Upload After Photo
+                  </button>
+                  <br />
                   <button
                     onClick={() => {
                       this.handleSubmitJob(job.jobId);
                     }}
                   >
-                    Agree to Work Job
+                    Mark Job Completed
                   </button>
                   <hr />
                 </div>
@@ -83,14 +113,34 @@ class JobsDisplay extends Component {
             })}
           </div>
         )}
-        <br />
+
         <button
           onClick={() => {
             this.getAvailableJobs();
           }}
         >
-          Refresh Job Listings
+          Refresh Accepted Jobs
         </button>
+        <br />
+        <hr />
+        <div>
+          <h2 style={{ "font-weight": "bold" }}>Completed Jobs</h2>
+
+          <hr />
+        </div>
+        {this.state.jobs.reverse().map((job) => {
+          return (
+            <div key={job.jobId}>
+              <h4>Job Address:</h4>
+              <p>{job.washAddress}</p>
+              <h4>Job Date and Time:</h4>
+              <p>{job.timeRequested}</p>
+              <h4>Payment Before Tip:</h4>
+              <p>$40.00</p>
+              <hr />
+            </div>
+          );
+        })}
       </div>
     );
   }

@@ -338,6 +338,15 @@ class Navigation extends React.Component {
                 </MDBCol>
                 <MDBCol>
                   <MDBRow className="align-items-center">
+                    <MDBCol>
+                      <MDBTypography tag="h3">
+                        <strong>Home City</strong>
+                        <br />
+                        <small className="text-muted">
+                          {this.props.user.city}
+                        </small>
+                      </MDBTypography>
+                    </MDBCol>
                     {/* <MDBCol>
                       <MDBTypography tag="h3">
                         <strong>{accountDate.value || "#"}</strong>
