@@ -52,7 +52,7 @@ const sideDrawer = (props) => {
         <Link to="/clientDash/vehicles">
           <ListItem>Manage Vehicles</ListItem>
         </Link>
-        <Link to="/clientDash/washer-register">
+        <Link to="/washer-register">
           <ListItem>Earn Money Washing</ListItem>
         </Link>
         <ListItem onClick={props.logout}>Sign Out</ListItem>

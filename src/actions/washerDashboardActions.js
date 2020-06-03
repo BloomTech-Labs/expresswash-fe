@@ -15,6 +15,13 @@ import {
   WASHER_GET_RATING_START,
   WASHER_GET_RATING_SUCCESS,
   WASHER_GET_RATING_FAILED,
+  ACCEPT_JOB_START,
+  ACCEPT_JOB_SUCCESS,
+  ACCEPT_JOB_FAILED,
+  GET_AVAILABLE_JOBS_START,
+  GET_AVAILABLE_JOBS_SUCCESS,
+  GET_AVAILABLE_JOBS_FAILED,
+  DB_URL,
 } from "../actions/actionTypes.js";
 
 // action creators
@@ -26,10 +33,7 @@ export function setWorkStatus(payload) {
     console.log("work status ----> ", workStatus);
 
     return axios
-      .put(
-        `http://wowo-env.eba-35bhjsem.us-east-1.elasticbeanstalk.com/users/washer/${id}`,
-        { workStatus: workStatus }
-      )
+      .put(`${DB_URL}/users/washer/${id}`, { workStatus: workStatus })
       .then((res) => {
         console.log("RES ------->", res);
         dispatch({ type: WASHER_SET_WORK_STATUS_SUCCESS, payload: res.data });
@@ -49,7 +53,7 @@ export function getWorkStatus(payload) {
     dispatch({ type: WASHER_GET_WORK_STATUS_START });
 
     return axios
-      .post("https://pt6-wowo.herokuapp.com/jobs/getWorkStatus", {
+      .post(DB_URL + "/jobs/getWorkStatus", {
         id: payload,
       })
       .then((res) => {
@@ -70,7 +74,7 @@ export function getWashCount(payload) {
     dispatch({ type: WASHER_GET_WASH_COUNT_START });
 
     return axios
-      .post("https://pt6-wowo.herokuapp.com/jobs/howManyCompleted", {
+      .post(DB_URL, {
         id: payload,
       })
       .then((res) => {
@@ -91,7 +95,7 @@ export function getWashRating(payload) {
     dispatch({ type: WASHER_GET_RATING_START });
 
     return axios
-      .post("https://pt6-wowo.herokuapp.com/ratings/washerAverage", {
+      .post(DB_URL, {
         id: payload,
       })
       .then((res) => {

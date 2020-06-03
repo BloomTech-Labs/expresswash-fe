@@ -118,7 +118,7 @@ class WashMap extends Component {
         ...this.state.viewport,
         longitude: longitude,
         latitude: latitude,
-        zoom: 30,
+        zoom: 13,
         transitionInterpolator: new FlyToInterpolator({ speed: 3 }),
         transitionDuration: "auto",
       },
@@ -207,7 +207,6 @@ class WashMap extends Component {
           height="100%"
           mapStyle="mapbox://styles/mapbox/dark-v9"
           onViewportChange={this._updateViewport}
-          // onLoad={this.addLines}
           mapboxApiAccessToken={TOKEN}
         >
           <Marker

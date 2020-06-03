@@ -327,7 +327,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.user,
+  user: state.userReducer.user,
   errorMessage: state.auth.errorMessage,
 });
 

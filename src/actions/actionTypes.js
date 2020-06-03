@@ -42,6 +42,12 @@ export const CREATE_JOB_FAILED = "CREATE_JOB_FAILED";
 export const GET_USER_JOBS_START = "GET_USER_JOBS_START";
 export const GET_USER_JOBS_SUCCESS = "GET_USER_JOBS_SUCCESS";
 export const GET_USER_JOBS_FAILED = "GET_USER_JOBS_FAILED";
+export const GET_AVAILABLE_JOBS_START = "GET_AVAILABLE_JOBS_START";
+export const GET_AVAILABLE_JOBS_SUCCESS = "GET_AVAILABLE_JOBS_SUCCESS";
+export const GET_AVAILABLE_JOBS_FAILED = "GET_AVAILABLE_JOBS_FAILED";
+export const ACCEPT_JOB_START = "ACCEPT_JOB_START";
+export const ACCEPT_JOB_SUCCESS = "ACCEPT_JOB_SUCCESS";
+export const ACCEPT_JOB_FAILED = "ACCEPT_JOB_FAILED";
 
 // Washer Dashboard action types
 export const WASHER_SET_WORK_STATUS_START = "WASHER_SET_WORK_STATUS_START";
@@ -72,6 +78,8 @@ export function loginUser(email, password) {
         localStorage.setItem("id", res.data.user.id);
         localStorage.setItem("firstName", res.data.user.firstName);
         localStorage.setItem("lastName", res.data.user.lastName);
+        localStorage.setItem("washerId", res.data.user.washer.washerId);
+
         console.log(localStorage);
         dispatch({
           type: LOGIN_SUCCESS,
@@ -153,18 +161,15 @@ export function deleteACar(id) {
 export function getClientInformation(id) {
   return (dispatch) => {
     dispatch({ type: LOGGING_IN });
-    return (
-      axios
-        .get(`${DB_URL}/users/${id}`)
-        // .get(`http://localhost:3300/users/${id}`)
-        .then((res) => {
-          console.log("this is response on getclient information", res);
-          dispatch({ type: GET_CLIENT_INFO_SUCCESS, payload: res.data });
-        })
-        .catch((err) => {
-          dispatch({ type: GET_CLIENT_INFO_ERROR, payload: err.message });
-        })
-    );
+    return axios
+      .get(`${DB_URL}/users/${id}`)
+      .then((res) => {
+        console.log("this is response on getclient information", res);
+        dispatch({ type: GET_CLIENT_INFO_SUCCESS, payload: res.data });
+      })
+      .catch((err) => {
+        dispatch({ type: GET_CLIENT_INFO_ERROR, payload: err.message });
+      });
   };
 }
 export function updateClientInformation(id, changes) {

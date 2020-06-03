@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-// import { addACar } from '../../actions/actionTypes.js';
+import { DB_URL, getClientInformation } from "../../actions/actionTypes.js";
 import axios from "axios";
 
 class JobsDisplay extends Component {
@@ -11,41 +11,72 @@ class JobsDisplay extends Component {
 
     this.state = {
       jobs: [],
-      isGettingJobs: true,
+      completedJobs: [],
     };
   }
 
   handleSubmitJob = (jobId) => {
-    const id = localStorage.getItem("id");
     axios
-      .put("https://pt6-wowo.herokuapp.com/jobs/selectjob", {
-        jobId: jobId,
-        id: id,
+      .put(`${DB_URL}/jobs/job/${jobId}`, {
+        completed: true,
       })
       .then((res) => {
-        // console.log(res.data)
-        alert("Job Successfully Accepted.  See you there!");
+        console.log("COMPLETED JOB RES", res.data);
+        alert(
+          "Job Successfully Completed! Your payment will show up in your account soon."
+        );
       })
       .catch((err) => console.log(err));
+    this.getAvailableJobs();
   };
 
   getAvailableJobs = () => {
     axios
-      .get("https://pt6-wowo.herokuapp.com/jobs/available")
+      .get(`${DB_URL}/jobs/`)
       .then((res) => {
-        // console.log(res.data)
-        this.setState({ jobs: res.data, isGettingJobs: false });
+        console.log("JOBS!!!", res.data);
+        this.setState({
+          jobs: res.data.filter(
+            (job) => job.washerId == localStorage.getItem("washerId")
+          ),
+          completedJobs: res.data.filter(
+            (job) =>
+              job.washerId == localStorage.getItem("washerId") &&
+              job.completed == true
+          ),
+          isGettingJobs: false,
+        });
       })
       .catch((err) => console.log(err));
   };
+
+  componentWillMount() {
+    this.props.getClientInformation(
+      this.props.user.id || localStorage.getItem("id")
+    );
+  }
 
   componentDidMount() {
     this.getAvailableJobs();
   }
 
   render() {
+    console.log("JOBS USER PROPS", this.props.user);
+    console.log("JOBS STATE", this.state);
     return (
       <div>
+        <div>
+          <br />
+          <h2 style={{ "font-weight": "bold" }}>Accepted Jobs</h2>
+          <button
+            onClick={() => {
+              this.getAvailableJobs();
+            }}
+          >
+            Refresh Accepted Jobs
+          </button>
+          <hr />
+        </div>
         {this.isGettingJobs === "true" ? (
           <h3>Loading Jobs...</h3>
         ) : (
@@ -56,20 +87,31 @@ class JobsDisplay extends Component {
                   <h4>Job Address:</h4>
                   <p>{job.washAddress}</p>
                   <h4>Job Date and Time:</h4>
-                  <p>{job.creationDate}</p>
-                  <h4>Job Vehicle:</h4>
-                  <p>
-                    {job.color} {job.make} {job.model} with License Plate:{" "}
-                    {job.licensePlate}
-                  </p>
+                  <p>{job.timeRequested}</p>
                   <h4>Payment Before Tip:</h4>
-                  <p>$20.00</p>
+                  <p>$40.00</p>
+
+                  <button
+                    onClick={() => {
+                      alert("Still need to add this feature!");
+                    }}
+                  >
+                    Upload Before Photo
+                  </button>
+                  <button
+                    onClick={() => {
+                      alert("Still need to add this feature!");
+                    }}
+                  >
+                    Upload After Photo
+                  </button>
+                  <br />
                   <button
                     onClick={() => {
                       this.handleSubmitJob(job.jobId);
                     }}
                   >
-                    Agree to Work Job
+                    Mark Job Completed
                   </button>
                   <hr />
                 </div>
@@ -78,7 +120,25 @@ class JobsDisplay extends Component {
           </div>
         )}
         <br />
-        <button onClick={this.getAvailableJobs()}>Refresh Job Listings</button>
+        <hr />
+        <div>
+          <h2 style={{ "font-weight": "bold" }}>Completed Jobs</h2>
+
+          <hr />
+        </div>
+        {this.state.jobs.reverse().map((job) => {
+          return (
+            <div key={job.jobId}>
+              <h4>Job Address:</h4>
+              <p>{job.washAddress}</p>
+              <h4>Job Date and Time:</h4>
+              <p>{job.timeRequested}</p>
+              <h4>Payment Before Tip:</h4>
+              <p>$40.00</p>
+              <hr />
+            </div>
+          );
+        })}
       </div>
     );
   }
@@ -86,11 +146,13 @@ class JobsDisplay extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.userReducer.user,
   };
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  getClientInformation,
+};
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(JobsDisplay)
