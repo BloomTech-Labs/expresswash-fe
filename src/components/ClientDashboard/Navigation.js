@@ -11,7 +11,7 @@ import {
 } from "../../actions/actionTypes.js";
 
 import StarRatings from "react-star-ratings";
-import "./ClientNav.css";
+
 
 import {
   MDBContainer,

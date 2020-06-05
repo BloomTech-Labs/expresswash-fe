@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import Styled from "styled-components";
-import MapGL, {
-  Marker,
-  FlyToInterpolator,
-  Source,
-  Layer,
-  NavigationControl,
-} from "react-map-gl";
+import MapGL, { Marker, FlyToInterpolator } from "react-map-gl";
 import SimpleBar from "simplebar-react";
 
 import Pin from "./Pin.js";
@@ -60,27 +54,6 @@ class WashMap extends Component {
       },
       console.log(viewport, this.state.marker)
     );
-
-    // if (this.props.lat !== this.state.viewport.latitude) {
-    //   this.setState(
-    //     {
-    //       viewport: {
-    //         ...this.state.viewport,
-    //         longitude: this.props.long,
-    //         latitude: this.props.lat,
-    //         zoom: 16.5,
-    //         transitionInterpolator: new FlyToInterpolator({
-    //           speed: 35,
-    //           curve: 1,
-    //         }),
-    //         transitionDuration: "auto",
-    //       },
-    //     },
-    //     () => {
-    //       console.log(this.state.viewport);
-    //     }
-    //   );
-    // }
   };
 
   _logDragEvent(name, event) {
@@ -267,46 +240,6 @@ class WashMap extends Component {
             </P>
           </UserInfoContainer>
           <FormInputContainer>
-            {/* {step === 1 ?
-                            <SelectAddress
-                                next={this.nextStep}
-                                prev={this.prevStep}
-                                onClick={this.addressOnClick}
-                                inputHandler={this.inputHandler}
-                                values={values}
-                            />
-                        :
-                            (step === 2 ?
-                                <ChooseVehicle
-                                    next={this.nextStep}
-                                    prev={this.prevStep}
-                                    onClick={this.vehicleOnClick}
-                                    inputHandler={this.inputHandler}
-                                    values={values} 
-                                />
-                            :
-                                (step === 3 ?
-                                    <ScheduleWash 
-                                        next={this.nextStep}
-                                        prev={this.prevStep}
-                                        inputHandler={this.inputHandler}
-                                        values={values}
-                                    />
-                                :
-                                    (step === 4 ?
-                                        <SelectService
-                                            next={this.nextStep}
-                                            prev={this.prevStep}
-                                            onClick={this.serviceOnClick}
-                                            inputHandler={this.inputHandler}
-                                            values={values}
-                                        />
-                                    :
-                                        <ConfirmWash />
-                                    )
-                                )
-                            )
-                        } */}
             <WashForm
               washState={this.props.washState}
               next={this.props.next}

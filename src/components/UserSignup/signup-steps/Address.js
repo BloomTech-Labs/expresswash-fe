@@ -18,16 +18,12 @@ class Address extends Component {
   }
 
   handlePlaceSelect() {
-    // let { autoAddress } = this.props;
     let addressObject = this.autocomplete.getPlace();
     let address = addressObject.address_components;
     console.log(address);
   }
 
   render() {
-    // const { sAddress, sAddress2, zipcode, city, state } = this.state;
-    // const values = { sAddress, sAddress2, zipcode, city, state };
-
     if (this.props.currentStep !== 3) {
       return null;
     }

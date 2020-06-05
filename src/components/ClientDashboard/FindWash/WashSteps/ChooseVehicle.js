@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 
 import Styled from "styled-components";
-import Audi from "./../../../../images/Audi.js";
-import Bmw from "./../../../../images/Bmw.js";
+
 import Check from "./../../../../images/CheckMark.js";
 
 import "bootstrap-css-only/css/bootstrap.min.css";
