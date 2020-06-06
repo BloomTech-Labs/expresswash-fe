@@ -16,7 +16,7 @@ import {
 
 test("returns initial state", () => {
   const res = washerDashboardReducer(undefined, {});
-  expect(res).toHaveProperty("washerDashWorkStatusLoading");
+  expect(res).toHaveProperty("loading");
 });
 
 test("returns set work status start", () => {
@@ -24,7 +24,7 @@ test("returns set work status start", () => {
     {},
     { type: WASHER_SET_WORK_STATUS_START }
   );
-  expect(res.washerDashWorkStatusLoading).toEqual(true);
+  expect(res.loading).toEqual(true);
 });
 
 test("returns set work status success", () => {
@@ -32,7 +32,7 @@ test("returns set work status success", () => {
     {},
     { type: WASHER_SET_WORK_STATUS_SUCCESS, payload: "success" }
   );
-  expect(res.washerDashWorkStatusLoading).toEqual(false);
+  expect(res.loading).toEqual(false);
   expect(res).toMatchObject({ washerDashWorkStatusData: "success" });
 });
 
@@ -41,12 +41,12 @@ test("returns set work status failure", () => {
     {},
     { type: WASHER_SET_WORK_STATUS_FAILED, payload: "fail" }
   );
-  expect(res.washerDashWorkStatusLoading).toEqual(false);
+  expect(res.loading).toEqual(false);
 });
 
 test("returns get wash count start", () => {
   const res = washerDashboardReducer({}, { type: WASHER_GET_WASH_COUNT_START });
-  expect(res.washerDashWashCountLoading).toEqual(true);
+  expect(res.loading).toEqual(true);
 });
 
 test("returns get wash count success", () => {
@@ -54,7 +54,7 @@ test("returns get wash count success", () => {
     {},
     { type: WASHER_GET_WASH_COUNT_SUCCESS, payload: { data: "success" } }
   );
-  expect(res.washerDashWashCountLoading).toEqual(false);
+  expect(res.loading).toEqual(false);
   expect(res).toMatchObject({ washerDashWashCountData: "success" });
 });
 
@@ -63,12 +63,12 @@ test("returns get wash count failure", () => {
     {},
     { type: WASHER_GET_WASH_COUNT_FAILED, payload: { data: "fail" } }
   );
-  expect(res.washerDashWashCountLoading).toEqual(false);
+  expect(res.loading).toEqual(false);
 });
 
 test("returns get washer rating start", () => {
   const res = washerDashboardReducer({}, { type: WASHER_GET_RATING_START });
-  expect(res.washerDashRatingLoading).toEqual(true);
+  expect(res.loading).toEqual(true);
 });
 
 test("returns get washer rating success", () => {
@@ -76,13 +76,13 @@ test("returns get washer rating success", () => {
     {},
     { type: WASHER_GET_RATING_SUCCESS, payload: { data: "success" } }
   );
-  expect(res.washerDashRatingLoading).toEqual(false);
+  expect(res.loading).toEqual(false);
   expect(res.washerDashRatingData).toEqual("success");
 });
 
 test("returns get washer rating failure", () => {
   const res = washerDashboardReducer({}, { type: WASHER_GET_RATING_FAILED });
-  expect(res.washerDashRatingLoading).toEqual(false);
+  expect(res.loading).toEqual(false);
 });
 
 test("returns get work status start", () => {
@@ -90,7 +90,7 @@ test("returns get work status start", () => {
     {},
     { type: WASHER_GET_WORK_STATUS_START }
   );
-  expect(res.washerDashWorkStatusLoading).toEqual(true);
+  expect(res.loading).toEqual(true);
 });
 
 test("returns get work status success", () => {
@@ -101,7 +101,7 @@ test("returns get work status success", () => {
       payload: { data: [{ hey: "hey" }] },
     }
   );
-  expect(res.washerDashWorkStatusLoading).toEqual(false);
+  expect(res.loading).toEqual(false);
   expect(res.washerDashWorkStatusData).toMatchObject({ hey: "hey" });
 });
 
@@ -113,5 +113,5 @@ test("returns get work status failed", () => {
       payload: { data: [{ hey: "hey" }] },
     }
   );
-  expect(res.washerDashWorkStatusLoading).toEqual(false);
+  expect(res.loading).toEqual(false);
 });
