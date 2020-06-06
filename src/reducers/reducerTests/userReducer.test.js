@@ -32,7 +32,7 @@ test("returns undefined for unused action", () => {
 
 test("returns logging in user", () => {
   const res = userReducer({}, { type: LOGGING_IN });
-  expect(res.loggingIn).toEqual(true);
+  expect(res.loading).toEqual(true);
 });
 
 test("returns log in success user", () => {
@@ -40,13 +40,13 @@ test("returns log in success user", () => {
     {},
     { type: LOGIN_SUCCESS, payload: { user: "user" } }
   );
-  expect(res.loggingIn).toEqual(false);
+  expect(res.loading).toEqual(false);
   expect(res).toHaveProperty("user");
 });
 
 test("returns log in failure user", () => {
   const res = userReducer({}, { type: LOGIN_FAILED, payload: "error" });
-  expect(res.loggingIn).toEqual(false);
+  expect(res.loading).toEqual(false);
   expect(res).toMatchObject({ error: "error" });
 });
 

@@ -26,6 +26,7 @@ const washState = {
   vehicle: {
     category: "small",
   },
+  selectedAddress: "123 baker st. tampa, fl, 34232",
 };
 test("Wash Form from wash steps 1", () => {
   const { getByText, debug } = renderWithRedux(

@@ -10,24 +10,24 @@ test("washer signup returns initial state", () => {
   expect(res.washerSignupData).toEqual([]);
 });
 
-test("washer signup create waher start", () => {
+test("washer signup create washer start", () => {
   const res = washerSignupReducer({}, { type: CREATE_WASHER_START });
-  expect(res.washerSignupLoading).toEqual(true);
+  expect(res.loading).toEqual(true);
 });
 
-test("washer signup create waher success", () => {
+test("washer signup create washer success", () => {
   const res = washerSignupReducer(
     {},
     { type: CREATE_WASHER_SUCCESS, payload: { hey: "hey" } }
   );
-  expect(res.washerSignupLoading).toEqual(false);
+  expect(res.loading).toEqual(false);
   expect(res.washerSignupData).toMatchObject({ hey: "hey" });
 });
 
-test("washer signup create waher failure", () => {
+test("washer signup create washer failure", () => {
   const res = washerSignupReducer(
     {},
     { type: CREATE_WASHER_FAILED, payload: { hey: "hey" } }
   );
-  expect(res.washerSignupLoading).toEqual(false);
+  expect(res.loading).toEqual(false);
 });
