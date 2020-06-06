@@ -8,14 +8,14 @@ import JobsDisplay from "../components/WasherDashboard/JobsDisplay";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import initialState from "../reducers/initialState";
-import userReducer from "../reducers/userReducer";
+import rootReducer from "../reducers/rootReducer";
 import thunk from "redux-thunk";
 
 function renderWithRedux(
   ui,
   {
     initialState,
-    store = createStore(userReducer, initialState, applyMiddleware(thunk)),
+    store = createStore(rootReducer, initialState, applyMiddleware(thunk)),
   } = {}
 ) {
   return {
@@ -29,6 +29,6 @@ test("Jobs Display component", async () => {
       <JobsDisplay />
     </Router>
   );
-  expect(getByText(/refresh job listings/i)).toBeInTheDocument();
-  await userEvent.click(getByText(/refresh job listings/i));
+  expect(getByText(/refresh accepted jobs/i)).toBeInTheDocument();
+  await userEvent.click(getByText(/refresh accepted jobs/i));
 });
