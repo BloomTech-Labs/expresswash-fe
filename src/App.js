@@ -1,4 +1,4 @@
-import QuoteGenerator from "./components/QuoteGenerator/QuoteGenerator";
+
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { Route, Switch } from "react-router-dom";
@@ -52,7 +52,6 @@ function App(props) {
         <GlobalStyle />
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <Route path="/instantQuote" component={QuoteGenerator} />
           <Route exact path="/user-register" component={UserSignUp} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/find-wash" component={FindWash} />

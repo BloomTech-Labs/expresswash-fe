@@ -16,7 +16,7 @@ class CheckInfo extends Component {
       zip,
       sAddress2,
       city,
-      state
+      state,
     } = this.props;
     return (
       <div>
