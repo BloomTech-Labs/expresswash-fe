@@ -73,7 +73,7 @@ class JobsDisplay extends Component {
               this.getAvailableJobs();
             }}
           >
-            Refresh Accepted Jobs
+            Refresh
           </button>
           <hr />
         </div>
@@ -119,8 +119,6 @@ class JobsDisplay extends Component {
             })}
           </div>
         )}
-        <br />
-        <hr />
         <div>
           <h2 style={{ "font-weight": "bold" }}>Completed Jobs</h2>
 
