@@ -29,95 +29,50 @@ You can find the deployed project at [https://www.expresswash.us/](https://www.e
 
 [Product Canvas](https://www.notion.so/d0cb80ea5dc94d749237d89e6a0227be?v=cfb287c66faa43c298ea841f8483e4de)
 
-[UX Design files](https://whimsical.com/Sfn8oXwF4ze5C8M6zAttkS)
-
-WoWo is a web based app built on a PostgreSQL Database, and a Node Express back-end. The front-end is built on React, Redux and uses Axios to send server requests. The app is designed with a Mobile first development approach and puts user accessibility features as a top priority.
-
 ### Key Features
 
-- Login/Register (admin, washer, client)
-- Same day or scheduled car wash a car wash
-- Allow the user to specify the plate, model, color
-- Is there a water supply? (deprecated due to water-free carwashing decision)
-- Price estimate by car class / tier of wash
-- Closest and highest rating gets the job
+- Login/Register (client, washer)
+- Same day or schedule a car wash up to one week in advance
+- Allow the user to specify the vehicle make, model, color, year, license plate, size, type, and upload a photo.
+- Users can easily select their current location, home address, or pick a new address for their car wash.
+- Washers can set their own rates and choose from nearby jobs
 - Job completion notification / Leave a rating for a washer
-- Pay for a wash (automatically with payment method) / leave a tip (choose after wash)
+- Pay for a wash (with stripe checkout)
 - Email / in app Receipt of payment for client
-- Map that shows the washer the client's location
-- On-boarding / expectations for washers / washer training
-- Admin panel with statistics
+- Map that shows the washer's location and nearby available jobs
 - Photos upload from washer for pre/post wash
 
 ## Tech Stack
 
-WoWo is a web based app built on a PostgreSQL Database, and a Node Express back-end. The front-end is built on React, Redux and uses Axios to send server requests. The app is designed with a Mobile first development approach and puts user accessibility features as a top priority.
+WoWo is a web based app built on a PostgreSQL Database, and a Node Express back-end. The front-end is built on React and uses Redux for state managment. The app is designed with a Mobile first development approach and puts user accessibility features as a top priority.
 
 ### Front end built using
 
-#### _Front end framework goes here_
+React, Redux, Mapbox, Stripe-Checkout, JWTs, Bootstrap, Styled-Components
 
-🚫 Why did you choose this framework?
+#### Front end deployed to [Expresswash.us](https://expresswash.us)
 
-- point one
-- point two
-- point three
-- point four
+#### [Back end](https://github.com/Lambda-School-Labs/wowo-be) built using
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
-
-#### Front end deployed to `🚫insert service here`
-
-#### [Back end](🚫link to back end repo here) built using
-
-#### 🚫 back end framework goes here
-
-- point one
-- point two
-- point three
-
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+Node.js, Express, Postgres, Knex, BCrypt, JWT, Multer S3.
 
 ## APIs
 
-### Authentication API here
+### Payment API
 
-🚫Replace text below with a description of the API
+Stripe Checkout
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+### Misc API
 
-### Payment API here
+Mapbox-GL, Google Maps
 
-🚫Replace text below with a description of the API
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
-
-### Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-## Environment Variables
+## Environment Variables - Front End
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-🚫These are just examples, replace them with the specifics for your app
-
-    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-    *  REACT_APP_databaseURL - in the Firebase dashboard
-    *  REACT_APP_projectID - in the Firebase dashboard
-    *  REACT_APP_storageBucket - in the Firebase dashboard
-    *  REACT_APP_messagingSenderId - in the Firebase dashboard
-    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-    *  REACT_APP_backendURL - optional for your local development server
-    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
+    *  REACT_APP_STRIPE_KEY - this is your public Stripe API key, generated in the Stripe dashboard
 
 ## Content Licenses
-
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
 
 | Image Filename | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
@@ -126,20 +81,22 @@ In order for the app to function correctly, the user must set up their own envir
 
 ## Testing
 
-🚫Document what you used for testing and why
+React-testing-library (RTL) - built in tool for testing React
 
 ## Installation Instructions
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+    * clone the repo to your local machine
+    * cd into your newly created directory
+    * run `npm install`
+    * run `npm start`
 
 ## Other Scripts
 
-🚫replace these examples with your own
-
-    * typecheck - runs the TypeScript compiler
     * build - creates a build of the application
-    * start - starts the production server after a build is created
+    * start - starts the production server after a build is created. Open (http://localhost:3000) to view it in the browser.
     * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+    * eject - command will remove the single build dependency from your project.
+    * coverage - runs test coverage percentages
 
 ## Contributing
 
@@ -180,4 +137,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫*link to your backend readme here*) for details on the backend of our project.
+See [Backend Documentation](https://github.com/Lambda-School-Labs/wowo-be) for details on the backend of our project.

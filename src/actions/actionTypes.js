@@ -178,18 +178,15 @@ export function updateClientInformation(id, changes) {
       "ActionTypes.js, updateClientInformation, changes obj",
       changes
     );
-    return (
-      axios
-        .put(`${DB_URL}/users/${id}`, changes)
-        // .put(`http://localhost:3300/users/${id}`, changes)
-        .then((res) => {
-          dispatch({ type: UPDATE_CLIENT_INFO_SUCCESS, payload: res.data });
-        })
-        .catch((err) => {
-          console.log("this is error on update", err);
-          dispatch({ type: UPDATE_CLIENT_INFO_ERROR, payload: err.message });
-        })
-    );
+    return axios
+      .put(`${DB_URL}/users/${id}`, changes)
+      .then((res) => {
+        dispatch({ type: UPDATE_CLIENT_INFO_SUCCESS, payload: res.data });
+      })
+      .catch((err) => {
+        console.log("this is error on update", err);
+        dispatch({ type: UPDATE_CLIENT_INFO_ERROR, payload: err.message });
+      });
   };
 }
 // update to get user by id
