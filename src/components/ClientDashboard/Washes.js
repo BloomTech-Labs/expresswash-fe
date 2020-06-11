@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { MDBBtn, MDBIcon } from "mdbreact";
+import { MDBBtn } from "mdbreact";
 import { getUserJobs } from "../../actions/actionTypes";
 import styled from "styled-components";
 import Payment from "./FindWash/WashSteps/Payment";
@@ -53,9 +53,6 @@ class Washes extends Component {
   }
 
   render() {
-    console.log("WASHES.JS JOBS", this.props.jobs);
-    console.log("WASHES.JS USERJOBS", this.state.userJobs);
-
     const { jobs } = this.props;
     return (
       <div>

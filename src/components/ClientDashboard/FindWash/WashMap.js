@@ -11,10 +11,6 @@ import "simplebar/dist/simplebar.min.css";
 const TOKEN =
   "pk.eyJ1IjoicXVhbjAwNSIsImEiOiJjazN0a2N3a2YwM3ViM2twdzhkbGphMTZzIn0.OepqB_mymhr1YLSYwNmRSg"; // Set your mapbox token here
 
-const FormContainer = Styled.div`
-    
-`;
-
 const UserInfoContainer = Styled.div`
     margin-bottom: 10px;
 `;
@@ -48,12 +44,9 @@ class WashMap extends Component {
   }
 
   _updateViewport = (viewport) => {
-    this.setState(
-      {
-        viewport: { ...this.state.viewport, ...viewport },
-      },
-      console.log(viewport, this.state.marker)
-    );
+    this.setState({
+      viewport: { ...this.state.viewport, ...viewport },
+    });
   };
 
   _logDragEvent(name, event) {
@@ -150,9 +143,6 @@ class WashMap extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.lat !== this.props.lat) {
       this._goToViewport(this.props.lat, this.props.long);
-      console.log("prevProps", prevProps.lat);
-      console.log("new lat", this.props.lat);
-      console.log("new long", this.props.long);
     }
   }
 

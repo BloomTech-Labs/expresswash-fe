@@ -3,13 +3,9 @@ import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { loginUser } from "../../actions/actionTypes.js";
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
-
 import Styled from "styled-components";
 import carImg from "../../images/undraw_city_driver_jh2h.svg";
 import LoginLogo from "../../images/wowo-logo-word-full.svg";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
@@ -17,9 +13,7 @@ import auth from "../auth";
 
 import FacebookLogin from "react-facebook-login";
 import GitHubLogin from "react-github-login";
-
 import { oauthFacebook, oauthGithub } from "../../actions/index";
-import * as actions from "../../actions/index";
 
 const LoginContainer = Styled.div`
     display: flex;
@@ -191,18 +185,13 @@ class Login extends Component {
   };
 
   async onSubmit(formData) {
-    console.log("onSubmit got called");
-    console.log("formData", formData);
-    // we need to call action creator
     await this.props.signUp(formData);
-
     if (!this.props.errorMessage) {
       this.props.history.push("/dashboard");
     }
   }
 
   async responseFacebook(res) {
-    console.log("responseFacebook=>", res);
     await this.props.oauthFacebook(res.accessToken);
     if (!this.props.errorMessage) {
       this.props.history.push("/dashboard");
@@ -210,7 +199,6 @@ class Login extends Component {
   }
 
   async responseGithub(res) {
-    console.log("responseGITHUB=>", res);
     await this.props.oauthGithub(res.accessToken);
     if (!this.props.errorMessage) {
       this.props.history.push("/testdashboard");
@@ -218,10 +206,6 @@ class Login extends Component {
   }
 
   render() {
-    console.log("*Login.js this.props=>", this.props);
-
-    const { handleSubmit } = this.props;
-
     return (
       <LoginContainer>
         <LeftContainer>
@@ -292,12 +276,7 @@ class Login extends Component {
                   callback={this.responseFacebook}
                   cssClass="btn btn-outline-primary"
                 />
-                {/* <SocialButton>
-                  <FontAwesomeIcon icon={faFacebookF} />
-                  
-                </SocialButton> */}
               </Link>
-
               <GitHubLogin
                 clientId="5ca20a803c37ee00c735"
                 buttonText="Github"
@@ -306,11 +285,7 @@ class Login extends Component {
                 onFailure={this.responseGithub}
                 className="btn btn-outline-danger"
               />
-              <Link to="/githubAuth">
-                {/* <SocialButton>
-                  <FontAwesomeIcon icon={faGoogle} />
-                </SocialButton> */}
-              </Link>
+              <Link to="/githubAuth"></Link>
             </MDBRow>
 
             <FirstTime>

@@ -25,7 +25,6 @@ export default function Loading() {
   const loading1 = useSelector((state) => state.userReducer.loading);
   const loading2 = useSelector((state) => state.washerDashboardReducer.loading);
   const loading3 = useSelector((state) => state.washerSignupReducer.loading);
-  console.log(loading3);
   return (
     <>
       {loading1 || loading2 || loading3 ? (

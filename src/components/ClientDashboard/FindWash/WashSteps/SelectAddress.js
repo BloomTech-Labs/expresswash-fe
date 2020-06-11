@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { MDBInput } from "mdbreact";
-
 import Styled from "styled-components";
 import HomeIcon from "./../../../../images/HomeIcon.js";
-import WorkIcon from "./../../../../images/WorkIcon.js";
 import CurrentIcon from "./../../../../images/CurrentIcon.js";
-
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 
@@ -156,13 +153,7 @@ class SelectAddress extends Component {
   };
 
   render() {
-    const {
-      values,
-      viewport,
-      searchResults,
-      mapBoxApiToken,
-      user,
-    } = this.props;
+    const { values, searchResults, user } = this.props;
 
     return (
       <Container>
@@ -206,13 +197,6 @@ class SelectAddress extends Component {
         </Form>
 
         <AddressContainer>
-          {/* {this.props.addresses > 0 ?
-                        this.props.addresses.map(address => {  
-                        })
-                    :
-                        <h4>Click here to add a address to your profile</h4>
-                    } */}
-
           <UL>
             <LI>
               <IconContainer>

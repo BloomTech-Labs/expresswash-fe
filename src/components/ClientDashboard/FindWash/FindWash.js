@@ -110,30 +110,20 @@ class FindWash extends Component {
     let week = [];
     let today = moment().format("YYYY-MM-DD");
     let time = moment().format("H");
-    console.log(today);
-    console.log(time);
 
     if (time > 1 && time < 18) {
-      console.log("today");
       for (let i = 0; i <= 6; i++) {
         let first = moment(today).add(i, "d").format("YYYY-MM-DD");
         week.push(first);
       }
-
-      console.log(week);
-
       this.setState({
         currentWeek: week,
       });
     } else {
-      console.log("next day");
       for (let i = 1; i <= 7; i++) {
         let first = moment(today).add(i, "d").format("YYYY-MM-DD");
         week.push(first);
       }
-
-      console.log(week);
-
       this.setState({
         currentWeek: week,
       });
@@ -161,17 +151,12 @@ class FindWash extends Component {
   // original user location
   getUserLocation = (address, long, lat) => {
     this.formatAddress(address);
-    this.setState(
-      {
-        ...this.state,
-        selectedAddress: address,
-        lat: lat,
-        long: long,
-      },
-      () => {
-        console.log(this.state.lat, this.state.long);
-      }
-    );
+    this.setState({
+      ...this.state,
+      selectedAddress: address,
+      lat: lat,
+      long: long,
+    });
   };
 
   // get current address
@@ -199,23 +184,13 @@ class FindWash extends Component {
       );
       const response = await FetchData.json();
       if (address !== "") {
-        this.setState(
-          {
-            searchResults: response.features,
-          },
-          () => {
-            console.log(this.state.searchResults);
-          }
-        );
+        this.setState({
+          searchResults: response.features,
+        });
       } else {
-        this.setState(
-          {
-            searchResults: [],
-          },
-          () => {
-            console.log(this.state.searchResults);
-          }
-        );
+        this.setState({
+          searchResults: [],
+        });
       }
     } catch (err) {
       throw new Error(err);
@@ -225,25 +200,19 @@ class FindWash extends Component {
   // gets the clicked address location
   addressOnClick = async (address, token) => {
     this.formatAddress(address);
-    console.log("FindWash.js addressOnClick address:", address);
     let country = "us";
     try {
       const getLocation = await fetch(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?country=${country}&limit=1&autocomplete=true&access_token=${token}`
       );
       const response = await getLocation.json();
-      console.log("ADDRESS ON CLICK", response.features[0]);
-      this.setState(
-        {
-          ...this.state,
-          selectedAddress: response.features[0].matching_place_name,
-          lat: response.features[0].geometry.coordinates[1],
-          long: response.features[0].geometry.coordinates[0],
-        },
-        () => {
-          console.log(this.state.selectedAddress);
-        }
-      );
+
+      this.setState({
+        ...this.state,
+        selectedAddress: response.features[0].matching_place_name,
+        lat: response.features[0].geometry.coordinates[1],
+        long: response.features[0].geometry.coordinates[0],
+      });
     } catch (err) {
       throw new Error(err);
     }
@@ -353,8 +322,6 @@ class FindWash extends Component {
         date,
         time,
         service,
-        washDateOnClick,
-        washTimeOnClick,
       } = this.state;
 
       const values = {

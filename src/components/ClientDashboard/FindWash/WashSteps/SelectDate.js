@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Styled from "styled-components";
 import moment from "moment";
 
@@ -145,7 +145,6 @@ class SelectDate extends React.Component {
 
   dateClick = (date) => (event) => {
     event.preventDefault();
-    console.log(event.target.id);
     this.props.washDateOnClick(date);
     this.setState({
       ...this.state,

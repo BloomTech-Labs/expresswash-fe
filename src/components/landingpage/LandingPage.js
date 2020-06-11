@@ -1,18 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBIcon } from "mdbreact";
-
 import "./LandingPage.css";
 import logo from "../../images/wowo-logo-full.png";
-import { MdRecentActors } from "react-icons/md";
 import auth from "../auth";
-
 export default class LandingPage extends React.Component {
-  //   componentDidMount() {
-  //     const token = localStorage.getItem("token");
-  //     if (token) {
-  //       const type = localStorage.getItem("userType");
-
   componentDidMount() {
     const token = localStorage.getItem("token");
     if (token) {
@@ -67,12 +59,8 @@ export default class LandingPage extends React.Component {
               will come to you to perform a quality car wash. Get an instant
               quote here:
             </p>
-
-            {/* <MDBBtn className="quote-btn" color="primary">Instant Quote</MDBBtn> */}
           </MDBContainer>
-
           <MDBIcon className="info-dot" icon="circle" />
-
           <MDBContainer className="landing-info-card">
             <h3 className="landing-info-header eco">
               <MDBIcon icon="leaf" /> Eco-Friendly
@@ -84,14 +72,11 @@ export default class LandingPage extends React.Component {
               protecting the enviroment.
             </p>
           </MDBContainer>
-
           <MDBIcon className="info-dot" icon="circle" />
-
           <MDBContainer className="landing-info-card washers">
             <h3 className="landing-info-header">
               <MDBIcon icon="hand-holding-usd" /> Earn Extra Income
             </h3>
-
             <p className="landing-info-content">
               WoWo welcomes anyone whoe enjoys washing, detailing, or even just
               looking to make some extra income. All prospective washers must go
@@ -102,7 +87,6 @@ export default class LandingPage extends React.Component {
               as tips.
             </p>
           </MDBContainer>
-
           <Link to="washer-register">
             <MDBBtn className="washer-sign-up-btn" color="primary">
               {" "}

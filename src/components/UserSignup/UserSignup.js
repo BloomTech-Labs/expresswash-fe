@@ -7,9 +7,7 @@ import Address from "./signup-steps/Address.js";
 import CheckInfo from "./signup-steps/CheckInfo.js";
 import ProgressBar from "./progress-bar/ProgressBar.js";
 import FillerPage from "./FillerPage.js";
-
 import { createClient } from "../../actions/actionTypes.js";
-
 import { MDBContainer, MDBCol, MDBBtn, MDBCard, MDBRow } from "mdbreact";
 import { MdChevronLeft } from "react-icons/md";
 import "mdbreact/dist/css/mdb.css";
@@ -170,15 +168,9 @@ class UserSignup extends Component {
       state,
       zip,
     };
-    this.props
-      .createClient(payload)
-      .then(() => {
-        console.log("this is payload on createclient", payload);
-        this.props.history.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.props.createClient(payload).then(() => {
+      this.props.history.push("/");
+    });
   };
 
   render() {
@@ -256,7 +248,6 @@ class UserSignup extends Component {
                     state={this.state.state}
                   />
                   {this.getNextStep}
-                  {/* <MDBBtn type="submit">Submit</MDBBtn> */}
                 </form>
               </MDBCard>
             </MDBCol>

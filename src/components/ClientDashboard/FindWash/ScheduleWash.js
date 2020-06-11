@@ -4,7 +4,6 @@ import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { SingleDatePicker } from "react-dates";
 import TimePicker from "react-time-picker";
-// import TimePicker from 'react-time-picker/dist/entry.nostyle'
 import ReactMapGL from "react-map-gl";
 
 class DayPicker extends Component {
@@ -19,12 +18,12 @@ class DayPicker extends Component {
         height: 400,
         latitude: 37.7577,
         longitude: -122.4376,
-        zoom: 12
-      }
+        zoom: 12,
+      },
     };
   }
 
-  onChange = time => this.setState({ time });
+  onChange = (time) => this.setState({ time });
 
   render() {
     return (
@@ -35,7 +34,7 @@ class DayPicker extends Component {
           reopenPickerOnClearDate
           orientation="vertical"
           date={this.state.date} // momentPropTypes.momentObj or null
-          onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
+          onDateChange={(date) => this.setState({ date })} // PropTypes.func.isRequired
           focused={this.state.focused} // PropTypes.bool
           onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
           id="your_unique_id" // PropTypes.string.isRequired,
@@ -44,7 +43,7 @@ class DayPicker extends Component {
         <ReactMapGL
           {...this.state.viewport}
           mapboxApiAccessToken="pk.eyJ1IjoicXVhbjAwNSIsImEiOiJjazN0a2N3a2YwM3ViM2twdzhkbGphMTZzIn0.OepqB_mymhr1YLSYwNmRSg"
-          onViewportChange={viewport => this.setState({ viewport })}
+          onViewportChange={(viewport) => this.setState({ viewport })}
         />
       </div>
     );

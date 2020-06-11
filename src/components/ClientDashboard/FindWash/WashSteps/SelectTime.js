@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Styled from "styled-components";
-import moment from "moment";
 
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
@@ -63,9 +62,6 @@ const ButtonContainer = Styled.div`
     width: 90%;
     background: transparent;
     background-image: linear-gradient(360deg, #ffffff 50%, #ffffffab 75%, rgba(255, 255, 255, 0));
-}
-
-
 `;
 
 const PrevButton = Styled.div`
@@ -532,7 +528,6 @@ class SelectTime extends React.Component {
 
   render() {
     const { selectedTime, times, washTime } = this.state;
-    const { currentWeek } = this.props;
 
     return (
       <Container>

@@ -12,7 +12,6 @@ const rootReducer = combineReducers({
   washerSignupReducer,
   washerDashboardReducer,
 
-  // form: formReducer,
   auth: authReducer,
   dash: dashboardReducer,
 });
