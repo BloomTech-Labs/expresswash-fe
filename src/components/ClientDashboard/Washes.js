@@ -53,9 +53,6 @@ class Washes extends Component {
   }
 
   render() {
-    console.log("WASHES.JS JOBS", this.props.jobs);
-    console.log("WASHES.JS USERJOBS", this.state.userJobs);
-
     const { jobs } = this.props;
     return (
       <div>

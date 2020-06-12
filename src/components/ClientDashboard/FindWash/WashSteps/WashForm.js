@@ -1,16 +1,11 @@
 import React from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
 import SelectAddress from "./SelectAddress.js";
 import ChooseVehicle from "./ChooseVehicle.js";
 import SelectDate from "./SelectDate.js";
 import SelectTime from "./SelectTime.js";
-// import SelectService from "./WashSteps/SelectService.js";
-// import ConfirmWash from "./WashSteps/ConfirmWash.js";
 import ConfirmationJobCreation from "./ConfirmationJobCreation.js";
-import userReducer from "../../../../reducers/userReducer.js";
 
 class WashForm extends React.Component {
   constructor(props) {

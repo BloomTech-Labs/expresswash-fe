@@ -41,7 +41,6 @@ class Vehicles extends Component {
       },
     };
   }
-  componentDidMount() {}
 
   toggle = () => {
     this.setState({
@@ -77,7 +76,6 @@ class Vehicles extends Component {
     });
   };
   changePhoto = (e) => {
-    console.log(e.target.files[0]);
     this.setState({
       ...this.state,
       car: {
@@ -89,9 +87,7 @@ class Vehicles extends Component {
 
   submitHandler = (evt) => {
     evt.preventDefault();
-    console.log("Vehicles.js STATE.CAR", this.state.car);
     this.props.addACar(this.state.car);
-    // this.props.getClientInformation(this.props.clientId)
     this.toggle();
     this.setState({
       modal: false,
@@ -111,7 +107,6 @@ class Vehicles extends Component {
     });
   };
   render() {
-    console.log(this.state.car.photo.name);
     const {
       make,
       model,

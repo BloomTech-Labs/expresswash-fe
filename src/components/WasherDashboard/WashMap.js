@@ -1,15 +1,8 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { DB_URL, getClientInformation } from "../../actions/actionTypes.js";
-import MapGL, {
-  Marker,
-  Popup,
-  Source,
-  Layer,
-  NavigationControl,
-} from "react-map-gl";
+import MapGL, { Marker, Popup } from "react-map-gl";
 import axios from "axios";
 
 import Pin from "../ClientDashboard/FindWash/Pin.js";
@@ -45,7 +38,6 @@ class WashMap extends Component {
     axios
       .get(`${DB_URL}/jobs/available/${localStorage.getItem("id")}`)
       .then((res) => {
-        // console.log(res.data)
         this.setState({ jobs: res.data });
       })
       .catch((err) => console.log(err));
@@ -58,7 +50,6 @@ class WashMap extends Component {
         washerId: id,
       })
       .then((res) => {
-        console.log("ACCEPT JOB RES", res.data);
         alert("Job Successfully Accepted.  See you there!");
       })
       .catch((err) => console.log(err));
@@ -67,7 +58,6 @@ class WashMap extends Component {
 
   handlePinClick = (job) => {
     this.setState({ selectedJob: { job } });
-    console.log("STATE", this.state);
   };
 
   _updateViewport = (viewport) => {
@@ -145,7 +135,6 @@ class WashMap extends Component {
 
   render() {
     const { viewport, marker, selectedJob } = this.state;
-    console.log("STATE", this.state);
 
     return (
       <MapGL
@@ -190,7 +179,6 @@ class WashMap extends Component {
             onClose={() => {
               this.setState({ selectedJob: null });
             }}
-            // closeOnclick={true}
             latitude={Number(selectedJob.job.jobLocationLat)}
             longitude={Number(selectedJob.job.jobLocationLon)}
             style={{ maxwidth: "20%" }}

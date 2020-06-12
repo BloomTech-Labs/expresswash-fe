@@ -1,4 +1,3 @@
-
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { Route, Switch } from "react-router-dom";
@@ -10,8 +9,6 @@ import WasherNavigation from "./components/WasherDashboard/Navigation.js";
 import ClientDashboard from "./components/ClientDashboard/FindWash/FindWash.js";
 import WasherSignUp from "./components/WasherSignUp/WasherSignUpForm";
 import ScheduleWash from "./components/ClientDashboard/FindWash/ScheduleWash";
-import ScheduleWash2 from "./components/ClientDashboard/FindWash/ScheduleWash2";
-import ClientNavigation from "./components/ClientDashboard/Navigation.js";
 import ClientVehicles from "./components/ClientDashboard/Vehicles/Vehicles.js";
 import ClientWashes from "./components/ClientDashboard/Washes.js";
 import Loading from "./loading-error/Loading";
@@ -20,9 +17,6 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { PrivateRoute } from "./components/PrivateRoute.js";
 import "./App.css";
-
-import authGuard from "./components/HOCs/authGuard";
-import Dashboard from "./components/Dashboard";
 
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap');
@@ -59,11 +53,6 @@ function App(props) {
           <PrivateRoute exact path="/clientDash" component={ClientDashboard} />
           <PrivateRoute
             exact
-            path="/clientDash/navigation"
-            component={ClientNavigation}
-          />
-          <PrivateRoute
-            exact
             path="/clientDash/vehicles"
             component={ClientVehicles}
           />
@@ -74,10 +63,7 @@ function App(props) {
           />
           <PrivateRoute exact path="/washerDash" component={WasherNavigation} />
           <Route exact path="/schedule" component={ScheduleWash} />
-          <Route path="/schedule-wash" component={ScheduleWash2} />
           <Route exact path="*" component={() => "404 Page Not Found."} />
-
-          <Route exact path="/testdashboard" component={authGuard(Dashboard)} />
         </Switch>
         <Loading />
       </Container>

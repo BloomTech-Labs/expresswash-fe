@@ -1,7 +1,5 @@
 import initialState from "./initialState";
 import {
-  GET_USER,
-  GET_USERS,
   LOGGING_IN,
   LOGIN_SUCCESS,
   LOGIN_FAILED,
@@ -26,12 +24,6 @@ import {
 
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_USER:
-      // Get user action
-      break;
-    case GET_USERS:
-      break;
-    //Get users action
     case LOGGING_IN: {
       return {
         ...state,
@@ -149,10 +141,6 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        // user: {
-        //   ...state.user,
-        //   cars: [...state.user.cars, action.payload],
-        // },
         error: "",
       };
     }

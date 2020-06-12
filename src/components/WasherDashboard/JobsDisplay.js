@@ -21,7 +21,6 @@ class JobsDisplay extends Component {
         completed: true,
       })
       .then((res) => {
-        console.log("COMPLETED JOB RES", res.data);
         alert(
           "Job Successfully Completed! Your payment will show up in your account soon."
         );
@@ -34,7 +33,6 @@ class JobsDisplay extends Component {
     axios
       .get(`${DB_URL}/jobs/`)
       .then((res) => {
-        console.log("JOBS!!!", res.data);
         this.setState({
           jobs: res.data.filter(
             (job) => job.washerId == localStorage.getItem("washerId")
@@ -61,8 +59,6 @@ class JobsDisplay extends Component {
   }
 
   render() {
-    console.log("JOBS USER PROPS", this.props.user);
-    console.log("JOBS STATE", this.state);
     return (
       <div>
         <div>

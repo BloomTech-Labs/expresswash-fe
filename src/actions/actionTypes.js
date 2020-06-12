@@ -1,8 +1,6 @@
 import axios from "axios";
 
 // User Actions Types
-export const GET_USER = "GET_USER";
-export const GET_USERS = "GET_USERS";
 export const GET_CLIENT_INFO_SUCCESS = "GET_CLIENT_INFO_SUCCESS";
 export const GET_CLIENT_INFO_ERROR = "GET_CLIENT_INFO_ERROR";
 export const UPDATE_CLIENT_INFO_SUCCESS = "UPDATE_CLIENT_INFO_SUCCESS";
@@ -134,7 +132,6 @@ export function addACar(payload) {
         });
       })
       .catch((err) => {
-        // const payload = err.response ? err.response.data : err
         dispatch({ type: ADD_CAR_FAILED, payload: err.message });
         console.log(err, "addACar failed data");
       });
@@ -151,7 +148,6 @@ export function deleteACar(id) {
         dispatch({ type: DELETE_CAR_SUCCESS, payload: res.data });
       })
       .catch((err) => {
-        // const payload = err.response ? err.response.data : err
         dispatch({ type: DELETE_CAR_FAILED, payload: err.message });
         console.log(err, "addACar failed data");
       });

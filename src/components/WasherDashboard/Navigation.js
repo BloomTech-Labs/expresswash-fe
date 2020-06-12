@@ -120,20 +120,13 @@ class Navigation extends React.Component {
       ...this.state,
       user: this.props.user,
     });
-    // const stateFromToken = await this.tokenData(decoded);
-    // console.log("state payload", this.state.user);
-    console.log("STATE:", this.state);
+
     if (this.state.user.washer) {
-      // const { washerId } = this.state.user.washer;
-      // const washerInfo = await axios.get(`server.expresswash.us/users/${washerId}`);
-      // console.log("Navigation.js, washerInfo", washerInfo);
       const getWorkStatus = this.state.user.washer.workStatus;
-      // const countWash = this.props.getWashCount(washerId);
       const washerRating = this.state.user.washer.washerRating;
 
       Promise.all([getWorkStatus, washerRating])
         .then((res) => {
-          // console.log("resolved both the washer rating and wash count");
           this.setState((prevState) => {
             let user = { ...prevState.user };
             user.workStatus = this.props.washerDashboardReducer.washerDashWorkStatusData.workStatus;
@@ -157,13 +150,9 @@ class Navigation extends React.Component {
       id: localStorage.getItem("washerId") || this.state.user.washer.washerId,
       workStatus: this.state.workStatus,
     };
-    // console.log("payload is", payload);
     this.props
       .setWorkStatus(payload)
-      .then((res) => {
-        console.log("updated workStatus");
-        console.log("STATE:", this.state);
-      })
+      .then((res) => {})
       .catch((err) => {
         throw new Error(err);
       });
@@ -171,11 +160,9 @@ class Navigation extends React.Component {
 
   tokenData = (decoded) => {
     // set state from token information
-    // console.log("decoded.payload before adding to state", decoded.payload);
     const { sub } = decoded.payload;
     const { creationDate, firstName } = this.props.user;
     this.setState((prevState) => {
-      // let user = { ...prevState.user };
       let user = {
         ...prevState.user,
         id: sub,
@@ -184,7 +171,6 @@ class Navigation extends React.Component {
       };
       return { user };
     });
-    // console.log("user from tokenData", user);
   };
 
   // logout function removes user data from localStorage and redirects to login
@@ -224,7 +210,6 @@ class Navigation extends React.Component {
   };
 
   render() {
-    // console.log("user from state", this.state.user);
     const {
       washerDashWashCountLoading,
       washerDashWashCountData,
@@ -232,10 +217,6 @@ class Navigation extends React.Component {
       washerDashRatingData,
     } = this.props.washerDashboardReducer;
     const { user } = this.state.user;
-    console.log("user", user);
-    // console.log("props is", this.props);
-    // console.log("washerDashWash Count Data", washerDashWashCountData.count);
-    // labels for the rating stars
     let washRating = washerDashRatingData || 5;
     let ratingStars = [
       {
@@ -347,28 +328,6 @@ class Navigation extends React.Component {
                         </small>
                       </MDBTypography>
                     </MDBCol>
-                    {/* <MDBCol>
-                      <MDBTypography tag="h3">
-                        <strong>{accountDate.value || "#"}</strong>
-                        <br />
-                        <small className="text-muted">
-                          {accountDate.pronoun || "time"}
-                        </small>
-                      </MDBTypography>
-                    </MDBCol> */}
-                    {/* <MDBCol>
-                      {washerDashWashCountLoading ? (
-                        <span>
-                          <i className="fas fa-spinner fa-pulse fa-3x"></i>
-                        </span>
-                      ) : (
-                        <MDBTypography tag="h3">
-                          <strong>{washerDashWashCountData.count}</strong>
-                          <br />
-                          <small className="text-muted">Washes</small>
-                        </MDBTypography>
-                      )}
-                    </MDBCol> */}
                   </MDBRow>
                 </MDBCol>
               </MDBRow>
