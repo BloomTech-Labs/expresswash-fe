@@ -28,6 +28,7 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         loading: true,
+        error: null,
       };
     }
 

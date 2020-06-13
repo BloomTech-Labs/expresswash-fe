@@ -39,7 +39,6 @@ const Container = styled.div`
 `;
 
 function App(props) {
-  console.log("App.js props=>", props);
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Container className="App">
