@@ -77,13 +77,13 @@ const ShowButton = Styled.div`
     top: 38px;
     right: 17px;
     cursor: pointer;
-    color: #33B5E5;
+    color: #FE5F55;
     font-weight: 500;
 `;
 
 const Forgot = Styled.div`
     cursor: pointer;
-    color: #33B5E5;
+    color: #FE5F55;
     font-weight: 400;
     margin: 0 0 20px 0;
 `;
@@ -129,7 +129,7 @@ const FirstTime = Styled.div`
 
 const Signup = Styled.div`
     cursor: pointer;
-    color: #33B5E5;
+    color: #FE5F55;
     font-weight: 500;
     display: inline;
 `;
@@ -188,7 +188,7 @@ class Login extends Component {
         });
       })
       .catch((err) => {
-        // throw new Error(err);
+        throw new Error(err);
       });
   };
 
@@ -261,45 +261,25 @@ class Login extends Component {
                 {this.state.show === false ? "Show" : "Hide"}
               </ShowButton>
             </MDBCol>
-            <Link to="/forgotPassword">
+            <Link to="/login">
               <Forgot>Forgot Password?</Forgot>
             </Link>
             <SubmitContainer>
-              <MDBBtn color="info" type="submit" data-testid="login">
-                Login
+              <MDBBtn
+                class="btn btn-light-blue btn-lg btn-rounded"
+                type="submit"
+                data-testid="login"
+              >
+                <strong>Login</strong>
               </MDBBtn>
             </SubmitContainer>
           </Form>
 
           <MDBContainer>
-            <SocialLogin>or login via:</SocialLogin>
-
-            <MDBRow center>
-              <Link to="/facebookAuth">
-                <FacebookLogin
-                  appId="457734818239475"
-                  autoLoad={false}
-                  textButton="Facebook "
-                  fields="name,email,picture"
-                  callback={this.responseFacebook}
-                  cssClass="btn btn-outline-primary"
-                />
-              </Link>
-              <GitHubLogin
-                clientId="5ca20a803c37ee00c735"
-                buttonText="Github"
-                redirectUri="http://localhost:2626/users/oauth/github"
-                onSuccess={this.responseGithub}
-                onFailure={this.responseGithub}
-                className="btn btn-outline-danger"
-              />
-              <Link to="/githubAuth"></Link>
-            </MDBRow>
-
             <FirstTime>
               Here For the first time?
               <Link to="/user-register">
-                <Signup>Sign Up</Signup>
+                <Signup> Sign Up</Signup>
               </Link>
             </FirstTime>
           </MDBContainer>
