@@ -77,8 +77,6 @@ export function loginUser(email, password) {
         localStorage.setItem("firstName", res.data.user.firstName);
         localStorage.setItem("lastName", res.data.user.lastName);
         localStorage.setItem("washerId", res.data.user.washer.washerId);
-
-        console.log(localStorage);
         dispatch({
           type: LOGIN_SUCCESS,
           payload: res.data,
@@ -87,7 +85,7 @@ export function loginUser(email, password) {
       .catch((err) => {
         dispatch({
           type: LOGIN_FAILED,
-          payload: err,
+          payload: err.response,
         });
       });
   };
@@ -100,11 +98,9 @@ export function createClient(payload) {
     return axios
       .post(DB_URL + "/auth/registerClient", payload)
       .then((res) => {
-        console.log(res);
         dispatch({ type: NEW_CLIENT_SUCCESS, payload: res.data });
       })
       .catch((err) => {
-        console.log(err.response.data);
         dispatch({ type: NEW_CLIENT_ERROR, payload: err.response.data });
       });
   };
@@ -127,13 +123,11 @@ export function addACar(payload) {
             Authorization: `${localStorage.getItem("token")}`,
           },
         }).then((res) => {
-          console.log("addACAR ACTION RES", res);
           dispatch({ type: ADD_CAR_SUCCESS, payload: res.data });
         });
       })
       .catch((err) => {
         dispatch({ type: ADD_CAR_FAILED, payload: err.message });
-        console.log(err, "addACar failed data");
       });
   };
 }
@@ -144,12 +138,10 @@ export function deleteACar(id) {
     return axios
       .delete(`${DB_URL}/cars/${id}`)
       .then((res) => {
-        console.log("addACAR ACTION RES", res);
         dispatch({ type: DELETE_CAR_SUCCESS, payload: res.data });
       })
       .catch((err) => {
         dispatch({ type: DELETE_CAR_FAILED, payload: err.message });
-        console.log(err, "addACar failed data");
       });
   };
 }
@@ -160,7 +152,6 @@ export function getClientInformation(id) {
     return axios
       .get(`${DB_URL}/users/${id}`)
       .then((res) => {
-        console.log("this is response on getclient information", res);
         dispatch({ type: GET_CLIENT_INFO_SUCCESS, payload: res.data });
       })
       .catch((err) => {
@@ -170,17 +161,12 @@ export function getClientInformation(id) {
 }
 export function updateClientInformation(id, changes) {
   return (dispatch) => {
-    console.log(
-      "ActionTypes.js, updateClientInformation, changes obj",
-      changes
-    );
     return axios
       .put(`${DB_URL}/users/${id}`, changes)
       .then((res) => {
         dispatch({ type: UPDATE_CLIENT_INFO_SUCCESS, payload: res.data });
       })
       .catch((err) => {
-        console.log("this is error on update", err);
         dispatch({ type: UPDATE_CLIENT_INFO_ERROR, payload: err.message });
       });
   };
@@ -194,7 +180,6 @@ export function getClientCars(id) {
         dispatch({ type: GET_CLIENT_CARS_SUCCESS, payload: res.data });
       })
       .catch((err) => {
-        console.log("this is error on get client cars", err);
         dispatch({ type: GET_CLIENT_CARS_ERROR });
       });
   };
@@ -205,11 +190,9 @@ export function getClientRating(id) {
     return axios
       .get(`${DB_URL}/users/${id}`)
       .then((res) => {
-        console.log("this is res on redux call", res);
         dispatch({ type: GET_CLIENT_RATING_SUCCESS, payload: res.data });
       })
       .catch((err) => {
-        console.log("this is error on get client rating", err);
         dispatch({ type: GET_CLIENT_RATING_ERROR });
       });
   };
@@ -218,11 +201,9 @@ export function getClientRating(id) {
 export function scheduleJob(jobInfo) {
   return (dispatch) => {
     dispatch({ type: CREATE_JOB_START });
-    console.log("JOB-INFO", jobInfo);
     return axios
       .post(DB_URL + "/jobs/new", jobInfo)
       .then((res) => {
-        console.log("CREATE JOB RES --->", res);
         dispatch({ type: CREATE_JOB_SUCCESS, payload: res.data[0] });
       })
       .catch((err) => {
@@ -237,7 +218,6 @@ export function getUserJobs(userId) {
     return axios
       .get(`${DB_URL}/jobs/user/${userId}`)
       .then((res) => {
-        console.log("GET USER JOBS RES --->", res);
         dispatch({ type: GET_USER_JOBS_SUCCESS, payload: res.data });
       })
       .catch((err) => {

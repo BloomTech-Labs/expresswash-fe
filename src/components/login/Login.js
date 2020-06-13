@@ -91,6 +91,14 @@ const Forgot = Styled.div`
 const SubmitContainer = Styled.div`
 `;
 
+const ErrorMsgContainer = Styled.div`
+    width: 75%
+    border: 2px solid #FE5F55;
+    padding: .5rem;
+    font-weight: bold;
+    color: #FE5F55;
+`;
+
 const SocialButton = Styled.div`
     display: flex;
     justify-content: space-evenly;
@@ -180,7 +188,7 @@ class Login extends Component {
         });
       })
       .catch((err) => {
-        throw new Error(err);
+        // throw new Error(err);
       });
   };
 
@@ -206,6 +214,7 @@ class Login extends Component {
   }
 
   render() {
+    const { errorMessage } = this.props;
     return (
       <LoginContainer>
         <LeftContainer>
@@ -219,7 +228,9 @@ class Login extends Component {
             <Link to="/">
               <Img src={LoginLogo} style={{ width: 40 + "%" }} alt="logo" />
             </Link>
-
+            {errorMessage && (
+              <ErrorMsgContainer>{errorMessage.data.message}</ErrorMsgContainer>
+            )}
             <MDBCol md="12">
               <MDBInput
                 data-testid="email"
@@ -234,7 +245,6 @@ class Login extends Component {
                 onChange={this.inputHandler}
               />
             </MDBCol>
-
             <MDBCol md="12">
               <MDBInput
                 label="Password"
@@ -251,11 +261,9 @@ class Login extends Component {
                 {this.state.show === false ? "Show" : "Hide"}
               </ShowButton>
             </MDBCol>
-
             <Link to="/forgotPassword">
               <Forgot>Forgot Password?</Forgot>
             </Link>
-
             <SubmitContainer>
               <MDBBtn color="info" type="submit" data-testid="login">
                 Login
@@ -302,8 +310,9 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  loading: state.userReducer.loading,
   user: state.userReducer.user,
-  errorMessage: state.auth.errorMessage,
+  errorMessage: state.userReducer.error,
 });
 
 const mapDispatchToProps = {
