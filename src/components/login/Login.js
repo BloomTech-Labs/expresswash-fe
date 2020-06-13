@@ -188,7 +188,7 @@ class Login extends Component {
         });
       })
       .catch((err) => {
-        // throw new Error(err);
+        throw new Error(err);
       });
   };
 
