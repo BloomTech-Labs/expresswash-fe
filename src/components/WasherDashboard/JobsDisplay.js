@@ -15,9 +15,9 @@ class JobsDisplay extends Component {
     };
   }
 
-  handleSubmitJob = (jobId) => {
+  handleSubmitJob = (jobId, jobClientId) => {
     axios
-      .put(`${DB_URL}/jobs/job/${jobId}`, {
+      .put(`http://localhost:3300/jobs/job/${jobId}`, {
         completed: true,
       })
       .then((res) => {
@@ -26,10 +26,16 @@ class JobsDisplay extends Component {
         );
       })
       .catch((err) => console.log(err));
+    axios
+      .post("http://localhost:3300/emails/send-email", {
+        clientId: 1,
+      })
+      .catch((err) => console.log(err));
     this.getAvailableJobs();
   };
 
   getAvailableJobs = () => {
+    console.log(this.state.jobs);
     axios
       .get(`${DB_URL}/jobs/`)
       .then((res) => {
@@ -104,7 +110,7 @@ class JobsDisplay extends Component {
                   <br />
                   <button
                     onClick={() => {
-                      this.handleSubmitJob(job.jobId);
+                      this.handleSubmitJob(job.jobId, job.clientId);
                     }}
                   >
                     Mark Job Completed
