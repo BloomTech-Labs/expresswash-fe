@@ -94,6 +94,7 @@ const ErrorMsgContainer = Styled.div`
     font-weight: bold;
     color: #FE5F55;
     margin: 5px;
+
 `;
 
 const SocialButton = Styled.div`
