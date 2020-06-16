@@ -1,4 +1,4 @@
-# Wo-Wo Wax-on Wax-off
+# ExpressWash.us
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/042fa057af24ad4d0e30/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/wowo-fe/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/042fa057af24ad4d0e30/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/wowo-fe/test_coverage)
@@ -44,7 +44,7 @@ You can find the deployed project at [https://www.expresswash.us/](https://www.e
 
 ## Tech Stack
 
-WoWo is a web based app built on a PostgreSQL Database, and a Node Express back-end. The front-end is built on React and uses Redux for state managment. The app is designed with a Mobile first development approach and puts user accessibility features as a top priority.
+ExpressWash.us is a web based app built on a PostgreSQL Database, and a Node Express back-end. The front-end is built on React and uses Redux for state managment. The app is designed with a Mobile first development approach and puts user accessibility features as a top priority.
 
 ### Front end built using
 

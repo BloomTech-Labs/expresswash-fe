@@ -197,7 +197,7 @@ class WashMap extends Component {
           <UserInfoContainer>
             {this.props.user.profilePicture === "" ? (
               <svg width="100" height="100">
-                <circle cx="50" cy="50" r="30" fill="#00A8C5" />
+                <circle cx="50" cy="50" r="30" fill="#FE5F55" />
                 <text
                   x="50%"
                   y="50%"

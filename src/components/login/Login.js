@@ -4,16 +4,12 @@ import { Link, withRouter } from "react-router-dom";
 import { loginUser } from "../../actions/actionTypes.js";
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 import Styled from "styled-components";
-import carImg from "../../images/undraw_city_driver_jh2h.svg";
-import LoginLogo from "../../images/wowo-logo-word-full.svg";
+import carImg from "../../images/Logo.png";
+import LoginLogo from "../../images/logo_title.png";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import auth from "../auth";
-
-import FacebookLogin from "react-facebook-login";
-import GitHubLogin from "react-github-login";
-import { oauthFacebook, oauthGithub } from "../../actions/index";
 
 const LoginContainer = Styled.div`
     display: flex;
@@ -97,6 +93,7 @@ const ErrorMsgContainer = Styled.div`
     padding: .5rem;
     font-weight: bold;
     color: #FE5F55;
+    margin: 5px;
 `;
 
 const SocialButton = Styled.div`
@@ -199,20 +196,6 @@ class Login extends Component {
     }
   }
 
-  async responseFacebook(res) {
-    await this.props.oauthFacebook(res.accessToken);
-    if (!this.props.errorMessage) {
-      this.props.history.push("/dashboard");
-    }
-  }
-
-  async responseGithub(res) {
-    await this.props.oauthGithub(res.accessToken);
-    if (!this.props.errorMessage) {
-      this.props.history.push("/testdashboard");
-    }
-  }
-
   render() {
     const { errorMessage } = this.props;
     return (
@@ -226,7 +209,7 @@ class Login extends Component {
         <RightContainer>
           <Form onSubmit={this.handleSubmit}>
             <Link to="/">
-              <Img src={LoginLogo} style={{ width: 40 + "%" }} alt="logo" />
+              <Img src={LoginLogo} style={{ width: 55 + "%" }} alt="logo" />
             </Link>
             {errorMessage && (
               <ErrorMsgContainer>{errorMessage.data.message}</ErrorMsgContainer>
@@ -266,7 +249,7 @@ class Login extends Component {
             </Link>
             <SubmitContainer>
               <MDBBtn
-                class="btn btn-light-blue btn-lg btn-rounded"
+                className="btn btn-light-blue btn-lg btn-rounded"
                 type="submit"
                 data-testid="login"
               >
@@ -297,8 +280,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   loginUser,
-  oauthFacebook,
-  oauthGithub,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
