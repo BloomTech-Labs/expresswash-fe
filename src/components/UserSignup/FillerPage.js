@@ -1,6 +1,6 @@
 import React from "react";
 import { MDBBtn } from "mdbreact";
-import logo from "../../images/wowo-logo-full.JPG";
+import logo from "../../images/logo_title.png";
 import { Link } from "react-router-dom";
 
 export default function FillerPage() {
@@ -8,7 +8,7 @@ export default function FillerPage() {
     <div>
       <div className="d-flex justify-content-center">
         <Link to="/">
-          <img src={logo} alt="website logo" style={{ height: "100px" }} />
+          <img src={logo} alt="website logo" style={{ height: "150px" }} />
         </Link>
       </div>
 

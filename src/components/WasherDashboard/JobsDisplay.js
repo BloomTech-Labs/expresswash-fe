@@ -35,12 +35,12 @@ class JobsDisplay extends Component {
       .then((res) => {
         this.setState({
           jobs: res.data.filter(
-            (job) => job.washerId == localStorage.getItem("washerId")
+            (job) => job.washerId === localStorage.getItem("washerId")
           ),
           completedJobs: res.data.filter(
             (job) =>
-              job.washerId == localStorage.getItem("washerId") &&
-              job.completed == true
+              job.washerId === localStorage.getItem("washerId") &&
+              job.completed === true
           ),
           isGettingJobs: false,
         });
@@ -63,7 +63,7 @@ class JobsDisplay extends Component {
       <div>
         <div>
           <br />
-          <h2 style={{ "font-weight": "bold" }}>Accepted Jobs</h2>
+          <h2 style={{ fontWeight: "bold" }}>Accepted Jobs</h2>
           <button
             onClick={() => {
               this.getAvailableJobs();
@@ -116,7 +116,7 @@ class JobsDisplay extends Component {
           </div>
         )}
         <div>
-          <h2 style={{ "font-weight": "bold" }}>Completed Jobs</h2>
+          <h2 style={{ fontWeight: "bold" }}>Completed Jobs</h2>
 
           <hr />
         </div>

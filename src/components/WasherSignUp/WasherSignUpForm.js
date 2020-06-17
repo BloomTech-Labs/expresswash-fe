@@ -220,7 +220,7 @@ export class WasherSignUpForm extends Component {
                     <h4>Thank you {values.firstName}!</h4>
                     <h5>
                       You are now on your way to making some extra cash with
-                      Wo-Wo!
+                      ExpressWash.us!
                     </h5>
                     <p>Check your email for the activation letter!</p>
                     <Link to="/washerDash">

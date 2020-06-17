@@ -34,7 +34,7 @@ const ListItem = Styled.li`
         text-decoration: underline
     }
     :active {
-        color: #00A8C5
+        color: #5E5F55
     }
 `;
 

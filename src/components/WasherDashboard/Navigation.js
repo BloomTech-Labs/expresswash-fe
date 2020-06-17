@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   MDBCard,
@@ -22,7 +22,7 @@ import {
 } from "../../actions/washerDashboardActions.js";
 import WashMap from "./WashMap.js";
 import Styled from "styled-components";
-import Logo from "../../images/wowo-logo-word-full.svg";
+import Logo from "../../images/logo_title.png";
 import auth from "../auth.js";
 
 const jwt = require("jsonwebtoken");
@@ -95,11 +95,6 @@ const horizontalBarData = {
   ],
 };
 
-// decode the user token information
-const token = localStorage.getItem("token");
-var decoded = jwt.decode(token);
-decoded = jwt.decode(token, { complete: true });
-
 class Navigation extends React.Component {
   constructor(props) {
     super(props);
@@ -111,7 +106,6 @@ class Navigation extends React.Component {
 
   componentWillMount() {
     getClientInformation(this.props.user.id || localStorage.getItem("id"));
-    console.log("STATE:", this.state);
   }
 
   async componentDidMount() {
@@ -136,8 +130,6 @@ class Navigation extends React.Component {
         .catch((err) => {
           throw new Error(err);
         });
-    } else {
-      console.log("NO WASHER in STATE!!! USER ERROR!!!");
     }
   }
 
@@ -249,7 +241,9 @@ class Navigation extends React.Component {
       <MDBContainer className="mb-5">
         <MDBRow className="mt-4 mb-4 align-items-end">
           <MDBCol className="text-left">
-            <Img src={Logo} style={{ width: 180 + "px" }} alt="logo" />
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Img src={Logo} style={{ width: 180 + "px" }} alt="logo" />
+            </Link>
           </MDBCol>
           <MDBCol className="text-right">
             <MDBRow end>

@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import Styled from "styled-components";
 import moment from "moment";
 
 import WashMap from "./WashMap";
-import WowoWordLogo from "../../../images/WowoWordLogo.js";
 import NavButton from "../HamburgerNavMenu.js/NavButton.js";
 import SideDrawer from "../HamburgerNavMenu.js/SideDrawer.js";
 import Backdrop from "../HamburgerNavMenu.js/Backdrop.js";
@@ -28,7 +27,7 @@ const NavContainer = Styled.div`
     height: 8%;
     width: 100%;
     padding: 0 9.5%;
-    background: #00A8C5;
+    background: #FE5F55;
     z-index: 300;
 `;
 
@@ -39,11 +38,17 @@ const LogoContainer = Styled.div`
     align-items: center;
     width: 100px;
 
+    
+
     @media (min-width: 1800px) { // ##Device = Desktops ##Screen = 1800px to higher resolution desktops //
         height: 100%;
         width: 115px;
         left: 15%;
     }
+`;
+
+const NavTitle = Styled.h2`
+    color: white;
 `;
 
 const MapContainer = Styled.div`
@@ -340,7 +345,9 @@ class FindWash extends Component {
         <MainContainer>
           <NavContainer className="nav-container">
             <LogoContainer className="logo-container">
-              <WowoWordLogo className="wowo-logo" width="100%" />
+              <Link to="/" style={{ textDecoration: "none" }}>
+                <NavTitle>ExpressWash.us</NavTitle>
+              </Link>
             </LogoContainer>
             <NavButton clickHandler={this.NavToggleClickHandler} />
           </NavContainer>

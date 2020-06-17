@@ -4,16 +4,12 @@ import { Link, withRouter } from "react-router-dom";
 import { loginUser } from "../../actions/actionTypes.js";
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 import Styled from "styled-components";
-import carImg from "../../images/undraw_city_driver_jh2h.svg";
-import LoginLogo from "../../images/wowo-logo-word-full.svg";
+import carImg from "../../images/Logo.png";
+import LoginLogo from "../../images/logo_title.png";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import auth from "../auth";
-
-import FacebookLogin from "react-facebook-login";
-import GitHubLogin from "react-github-login";
-import { oauthFacebook, oauthGithub } from "../../actions/index";
 
 const LoginContainer = Styled.div`
     display: flex;
@@ -77,13 +73,13 @@ const ShowButton = Styled.div`
     top: 38px;
     right: 17px;
     cursor: pointer;
-    color: #33B5E5;
+    color: #FE5F55;
     font-weight: 500;
 `;
 
 const Forgot = Styled.div`
     cursor: pointer;
-    color: #33B5E5;
+    color: #FE5F55;
     font-weight: 400;
     margin: 0 0 20px 0;
 `;
@@ -97,6 +93,8 @@ const ErrorMsgContainer = Styled.div`
     padding: .5rem;
     font-weight: bold;
     color: #FE5F55;
+    margin: 5px;
+
 `;
 
 const SocialButton = Styled.div`
@@ -129,7 +127,7 @@ const FirstTime = Styled.div`
 
 const Signup = Styled.div`
     cursor: pointer;
-    color: #33B5E5;
+    color: #FE5F55;
     font-weight: 500;
     display: inline;
 `;
@@ -199,20 +197,6 @@ class Login extends Component {
     }
   }
 
-  async responseFacebook(res) {
-    await this.props.oauthFacebook(res.accessToken);
-    if (!this.props.errorMessage) {
-      this.props.history.push("/dashboard");
-    }
-  }
-
-  async responseGithub(res) {
-    await this.props.oauthGithub(res.accessToken);
-    if (!this.props.errorMessage) {
-      this.props.history.push("/testdashboard");
-    }
-  }
-
   render() {
     const { errorMessage } = this.props;
     return (
@@ -226,7 +210,7 @@ class Login extends Component {
         <RightContainer>
           <Form onSubmit={this.handleSubmit}>
             <Link to="/">
-              <Img src={LoginLogo} style={{ width: 40 + "%" }} alt="logo" />
+              <Img src={LoginLogo} style={{ width: 55 + "%" }} alt="logo" />
             </Link>
             {errorMessage && (
               <ErrorMsgContainer>{errorMessage.data.message}</ErrorMsgContainer>
@@ -261,45 +245,25 @@ class Login extends Component {
                 {this.state.show === false ? "Show" : "Hide"}
               </ShowButton>
             </MDBCol>
-            <Link to="/forgotPassword">
+            <Link to="/login">
               <Forgot>Forgot Password?</Forgot>
             </Link>
             <SubmitContainer>
-              <MDBBtn color="info" type="submit" data-testid="login">
-                Login
+              <MDBBtn
+                className="btn btn-light-blue btn-lg btn-rounded"
+                type="submit"
+                data-testid="login"
+              >
+                <strong>Login</strong>
               </MDBBtn>
             </SubmitContainer>
           </Form>
 
           <MDBContainer>
-            <SocialLogin>or login via:</SocialLogin>
-
-            <MDBRow center>
-              <Link to="/facebookAuth">
-                <FacebookLogin
-                  appId="457734818239475"
-                  autoLoad={false}
-                  textButton="Facebook "
-                  fields="name,email,picture"
-                  callback={this.responseFacebook}
-                  cssClass="btn btn-outline-primary"
-                />
-              </Link>
-              <GitHubLogin
-                clientId="5ca20a803c37ee00c735"
-                buttonText="Github"
-                redirectUri="http://localhost:2626/users/oauth/github"
-                onSuccess={this.responseGithub}
-                onFailure={this.responseGithub}
-                className="btn btn-outline-danger"
-              />
-              <Link to="/githubAuth"></Link>
-            </MDBRow>
-
             <FirstTime>
               Here For the first time?
               <Link to="/user-register">
-                <Signup>Sign Up</Signup>
+                <Signup> Sign Up</Signup>
               </Link>
             </FirstTime>
           </MDBContainer>
@@ -317,8 +281,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   loginUser,
-  oauthFacebook,
-  oauthGithub,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

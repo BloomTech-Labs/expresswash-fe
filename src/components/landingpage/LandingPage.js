@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBIcon } from "mdbreact";
 import "./LandingPage.css";
-import logo from "../../images/wowo-logo-full.png";
+import logo from "../../images/logo_title.png";
 import auth from "../auth";
 export default class LandingPage extends React.Component {
   componentDidMount() {
@@ -28,7 +28,12 @@ export default class LandingPage extends React.Component {
           <MDBContainer className="landing-header">
             <MDBRow className="mb-4">
               <MDBCol>
-                <img className="wowo-logo" src={logo} alt="logo" />
+                <img
+                  className="logo"
+                  src={logo}
+                  alt="logo"
+                  style={{ width: "50%" }}
+                />
               </MDBCol>
             </MDBRow>
           </MDBContainer>
@@ -53,11 +58,11 @@ export default class LandingPage extends React.Component {
               <MDBIcon icon="car" /> We Bring The Wash To You
             </h3>
             <p className="landing-info-content">
-              WoWo is an all new approach to car washing. Instead of driving to
-              the carwash and waiting in long lines, we bring the car wash to
-              you. Just select your wash, type of car, and time and our washers
-              will come to you to perform a quality car wash. Get an instant
-              quote here:
+              ExpressWash is an all new approach to car washing. Instead of
+              driving to the carwash and waiting in long lines, we bring the car
+              wash to you. Just select your wash, type of car, and time and our
+              washers will come to you to perform a quality car wash. Get an
+              instant quote here:
             </p>
           </MDBContainer>
           <MDBIcon className="info-dot" icon="circle" />
@@ -66,8 +71,8 @@ export default class LandingPage extends React.Component {
               <MDBIcon icon="leaf" /> Eco-Friendly
             </h3>
             <p className="landing-info-content">
-              WoWo is dedicated to delivering an eco-friendly carwash. All of
-              our washers are trained to used eco-friendly cleaners and
+              ExpressWash is dedicated to delivering an eco-friendly carwash.
+              All of our washers are trained to used eco-friendly cleaners and
               practices. That way we can deliver a spectacular car wash while
               protecting the enviroment.
             </p>
@@ -78,11 +83,11 @@ export default class LandingPage extends React.Component {
               <MDBIcon icon="hand-holding-usd" /> Earn Extra Income
             </h3>
             <p className="landing-info-content">
-              WoWo welcomes anyone whoe enjoys washing, detailing, or even just
-              looking to make some extra income. All prospective washers must go
-              through training to learn practices and standards. Once the
-              training is complete, the washer can then use the app to find
-              users in need of a carwash. Once the job is completed and the
+              ExpressWash welcomes anyone whoe enjoys washing, detailing, or
+              even just looking to make some extra income. All prospective
+              washers must go through training to learn practices and standards.
+              Once the training is complete, the washer can then use the app to
+              find users in need of a carwash. Once the job is completed and the
               customer satisfied, the washer receives a cut of the cost as well
               as tips.
             </p>
