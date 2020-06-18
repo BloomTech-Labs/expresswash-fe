@@ -27,13 +27,13 @@ class JobsDisplay extends Component {
       })
       .catch((err) => console.log(err));
     this.getAvailableJobs();
-    this.getEmailData(jobClientId);
+    this.postEmailData(jobClientId);
   };
 
-  getEmailData = (jobClientId) => {
+  postEmailData = (jobClientId) => {
     axios
       .post("http://localhost:3300/emails/send-email", {
-        clientId: 1,
+        clientId: jobClientId,
       })
       .catch((err) => console.log(err));
   };
@@ -64,7 +64,6 @@ class JobsDisplay extends Component {
   }
 
   componentDidMount() {
-    this.getEmailData();
     this.getAvailableJobs();
   }
 
