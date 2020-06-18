@@ -17,7 +17,7 @@ class JobsDisplay extends Component {
 
   handleSubmitJob = (jobId, jobClientId) => {
     axios
-      .put(`http://localhost:3300/jobs/job/${jobId}`, {
+      .put(`${DB_URL}/jobs/job/${jobId}`, {
         completed: true,
       })
       .then((res) => {
@@ -32,7 +32,7 @@ class JobsDisplay extends Component {
 
   postEmailData = (jobClientId) => {
     axios
-      .post("http://localhost:3300/emails/send-email", {
+      .post(`${DB_URL}/emails/send-email`, {
         clientId: jobClientId,
       })
       .catch((err) => console.log(err));
