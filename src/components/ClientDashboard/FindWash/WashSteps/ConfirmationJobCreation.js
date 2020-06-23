@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { scheduleJob } from "../../../../actions/actionTypes.js";
-import Styled from "styled-components";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { scheduleJob } from '../../../../actions/actionTypes.js';
+import Styled from 'styled-components';
 
 const PrevButton = Styled.div`
     background: #a6e1eb;
@@ -43,21 +43,21 @@ class ConfirmationJobCreation extends Component {
     super(props);
     this.state = {
       jobLocation: {
-        address: "",
-        city: "",
-        state: "",
-        zip: "",
+        address: '',
+        city: '',
+        state: '',
+        zip: '',
       },
     };
   }
 
   // format address string to save each part seperately
   formatAddress = (address) => {
-    const split = address.split(",");
+    const split = address.split(',');
     let add = split[0].trim();
     let city = split[1].trim();
     let zip = split[2].trim().slice(-5);
-    let state = split[2].trim().replace(zip, "");
+    let state = split[2].trim().replace(zip, '');
     this.setState({
       jobLocation: {
         address: add,
@@ -82,20 +82,23 @@ class ConfirmationJobCreation extends Component {
       city: jobLocation.city,
       state: jobLocation.state,
       zip: jobLocation.zip,
-      notes: "",
-      jobType: "basic",
+      notes: '',
+      jobType: 'basic',
       timeRequested: `${washState.time}, ${washState.date}`,
     };
     this.props.scheduleJob(jobInfo);
-    this.props.history.push("/clientDash/washes");
+    this.props.history.push('/clientDash/washes');
   };
 
   componentDidMount() {
-    this.formatAddress(this.props.washState.selectedAddress);
+    if (this.props.washState.selectedAddress) {
+      this.formatAddress(this.props.washState.selectedAddress);
+    }
   }
 
   render() {
     const { date, selectedAddress, vehicle, time } = this.props.washState;
+    console.log(selectedAddress);
     return (
       <div>
         <h4>
@@ -106,7 +109,7 @@ class ConfirmationJobCreation extends Component {
           <br />
           <strong>Category:</strong> {vehicle.category} - {vehicle.size}
           <br />
-          <strong>For Car:</strong> {vehicle.year} {vehicle.make}{" "}
+          <strong>For Car:</strong> {vehicle.year} {vehicle.make}{' '}
           {vehicle.model} <br />
           <strong>Color:</strong> {vehicle.color} <br />
           <strong>License Plate:</strong> {vehicle.licensePlate} <br />

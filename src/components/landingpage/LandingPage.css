@@ -1,8 +1,17 @@
 .logo {
-  width: 400px;
-  padding: 40px 0 20px;
+  width: 70%;
+  padding: 30px 0 15px;
+
+  @media (min-width 768px) {
+    width: 49%;
+  }
 }
 
+.header-container {
+  @media (max-width 768px) {
+    flex-direction: row;
+  }
+}
 .header-buttons-container {
   height: 160px;
   margin: 20px 0;
@@ -10,12 +19,16 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  @media (min-width 768px) {
+    flex-direction: row;
+  }
 }
 
 .btn-or {
   margin: 0;
   font-weight: bold;
-  color: #555;
+  color: #577399;
 }
 
 .sign-up-btn,
@@ -29,7 +42,6 @@
 .landing-information {
   max-width: 500px;
   margin: 0 auto;
-  height: 840px;
   padding: 20px 0 40px;
   display: flex;
   flex-direction: column;
@@ -39,6 +51,7 @@
 
 .landing-info-card {
   width: 100%;
+  margin: 5% auto;
 }
 
 .landing-info-header {
@@ -46,10 +59,6 @@
   font-size: 24px;
   font-weight: bold;
   color: #fe5f55;
-}
-
-.eco {
-  color: #8fbe00;
 }
 
 .washer {
