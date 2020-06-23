@@ -15,7 +15,7 @@ class JobsDisplay extends Component {
     };
   }
 
-  handleSubmitJob = (jobId) => {
+  handleSubmitJob = (jobId, jobClientId) => {
     axios
       .put(`${DB_URL}/jobs/job/${jobId}`, {
         completed: true,
@@ -27,9 +27,18 @@ class JobsDisplay extends Component {
       })
       .catch((err) => console.log(err));
     this.getAvailableJobs();
+    this.postEmailData(jobClientId);
   };
 
+  postEmailData = (jobClientId) => {
+    axios
+      .post(`${DB_URL}/emails/send-email`, {
+        clientId: jobClientId,
+      })
+      .catch((err) => console.log(err));
+  };
   getAvailableJobs = () => {
+    console.log(this.state.jobs);
     axios
       .get(`${DB_URL}/jobs/`)
       .then((res) => {
@@ -90,32 +99,33 @@ class JobsDisplay extends Component {
                     <h4>Payment Before Tip:</h4>
                     <p>$40.00</p>
 
-                    <button
-                      onClick={() => {
-                        alert('Still need to add this feature!');
-                      }}
-                    >
-                      Upload Before Photo
-                    </button>
-                    <button
-                      onClick={() => {
-                        alert('Still need to add this feature!');
-                      }}
-                    >
-                      Upload After Photo
-                    </button>
-                    <br />
-                    <button
-                      onClick={() => {
-                        this.handleSubmitJob(job.jobId);
-                      }}
-                    >
-                      Mark Job Completed
-                    </button>
-                    <hr />
-                  </div>
-                );
-              })}
+                  <button
+                    onClick={() => {
+                      alert("Still need to add this feature!");
+                    }}
+                  >
+                    Upload Before Photo
+                  </button>
+                  <button
+                    onClick={() => {
+                      alert("Still need to add this feature!");
+                    }}
+                  >
+                    Upload After Photo
+                  </button>
+                  <br />
+                  <button
+                    onClick={() => {
+                      this.handleSubmitJob(job.jobId, job.clientId);
+                    }}
+                  >
+                    Mark Job Completed
+                  </button>
+                  <hr />
+                </div>
+              );
+            })}
+
           </div>
         )}
         <div>
