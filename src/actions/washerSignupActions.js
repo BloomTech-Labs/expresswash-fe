@@ -1,5 +1,5 @@
 // import axios
-import axios from "axios";
+import axios from 'axios';
 
 // import action types
 import {
@@ -9,14 +9,14 @@ import {
   LOADING,
   NEW_CLIENT_SUCCESS,
   NEW_CLIENT_ERROR,
-} from "./actionTypes.js";
+} from './actionTypes.js';
 
 // action creators
 export function register(payload) {
   return (dispatch) => {
     dispatch({ type: LOADING });
     const clientPayload = {
-      accountType: "washer",
+      accountType: 'washer',
       email: payload.email,
       password: payload.password,
       firstName: payload.firstName,
@@ -28,30 +28,25 @@ export function register(payload) {
       zip: payload.zip,
     };
 
-    const DB_URL = "https://serverprod.expresswash.us";
+    const DB_URL = 'https://serverprod.expresswash.us';
 
-    console.log("clientPayload", clientPayload);
     return axios
-      .post(DB_URL + "/auth/registerClient", clientPayload)
+      .post(DB_URL + '/auth/registerClient', clientPayload)
       .then((user) => {
-        console.log("WasherSignupActions.js, user", user);
         dispatch({ type: NEW_CLIENT_SUCCESS, payload: user.data });
         dispatch({ type: CREATE_WASHER_START });
         const washerPayload = {
-          rateMedium: "25",
+          rateMedium: '25',
         };
-        console.log("payload", washerPayload);
         axios
           .post(
             `${DB_URL}/auth/registerWasher/${user.data.user.id}`,
             washerPayload
           )
           .then((res) => {
-            console.log("Login Washer Response: ", res);
             dispatch({ type: CREATE_WASHER_SUCCESS, payload: res.data });
           })
           .catch((err) => {
-            console.log("error message:", err.response.data);
             dispatch({
               type: CREATE_WASHER_FAILED,
               payload: err.response.data,
@@ -59,7 +54,6 @@ export function register(payload) {
           });
       })
       .catch((err) => {
-        console.log(err.response.data);
         dispatch({ type: NEW_CLIENT_ERROR, payload: err.response.data });
       });
   };
