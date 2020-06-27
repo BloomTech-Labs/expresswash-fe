@@ -1,6 +1,6 @@
-import React from "react";
-import { MDBIcon } from "mdbreact";
-import styled from "styled-components";
+import React from 'react';
+import { MDBIcon } from 'mdbreact';
+import styled from 'styled-components';
 
 const CarImg = styled.img`
   width: 15%;
@@ -33,25 +33,24 @@ const InfoSpan = styled.span`
 `;
 
 const EachVehicle = ({ vehicle, deleteToggle }) => {
-  console.log(vehicle);
   return (
     <Container>
       <CarImg src={vehicle.photo} alt="car" />
       <InfoContainer>
         <InfoText>
-          <InfoSpan>Year: </InfoSpan> {vehicle.year}{" "}
+          <InfoSpan>Year: </InfoSpan> {vehicle.year}{' '}
         </InfoText>
         <InfoText>
-          <InfoSpan>Make: </InfoSpan> {vehicle.make}{" "}
+          <InfoSpan>Make: </InfoSpan> {vehicle.make}{' '}
         </InfoText>
         <InfoText>
-          <InfoSpan>Model: </InfoSpan> {vehicle.model}{" "}
+          <InfoSpan>Model: </InfoSpan> {vehicle.model}{' '}
         </InfoText>
         <InfoText>
-          <InfoSpan>Color: </InfoSpan> {vehicle.color}{" "}
+          <InfoSpan>Color: </InfoSpan> {vehicle.color}{' '}
         </InfoText>
         <InfoText>
-          <InfoSpan>Plate#: </InfoSpan> {vehicle.licensePlate}{" "}
+          <InfoSpan>Plate#: </InfoSpan> {vehicle.licensePlate}{' '}
         </InfoText>
       </InfoContainer>
       <MDBIcon

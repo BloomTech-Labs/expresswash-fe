@@ -1,10 +1,10 @@
-import React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import Styled from "styled-components";
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import Styled from 'styled-components';
 
-import "bootstrap-css-only/css/bootstrap.min.css";
-import "mdbreact/dist/css/mdb.css";
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 
 const Container = Styled.div`
     display: flex;
@@ -102,21 +102,21 @@ class SelectTime extends React.Component {
     this.state = {
       selectedTime: null,
       times: [
-        "5am-6am",
-        "6am-7am",
-        "7am-8am",
-        "8am-9am",
-        "9am-10am",
-        "10am-11am",
-        "11am-12pm",
-        "12pm-1pm",
-        "1pm-2pm",
-        "2pm-3pm",
-        "3pm-4pm",
-        "4pm-5pm",
-        "5pm-6pm",
-        "6pm-7pm",
-        "7pm-8pm",
+        '5am-6am',
+        '6am-7am',
+        '7am-8am',
+        '8am-9am',
+        '9am-10am',
+        '10am-11am',
+        '11am-12pm',
+        '12pm-1pm',
+        '1pm-2pm',
+        '2pm-3pm',
+        '3pm-4pm',
+        '4pm-5pm',
+        '5pm-6pm',
+        '6pm-7pm',
+        '7pm-8pm',
       ],
       washTime: {
         0: false,
@@ -142,7 +142,6 @@ class SelectTime extends React.Component {
 
   timeClick = (time) => (event) => {
     event.preventDefault();
-    console.log(event.target.id);
     this.props.washTimeOnClick(time);
     this.setState({
       ...this.state,
@@ -536,13 +535,13 @@ class SelectTime extends React.Component {
             <BoxContainer
               id={i}
               key={i}
-              className={washTime[i] ? "active-time-box" : ""}
+              className={washTime[i] ? 'active-time-box' : ''}
               onClick={this.timeClick(time)}
             >
               <DayTitle
                 data-testid="time"
                 id={i}
-                className={washTime[i] ? "active-time-title" : ""}
+                className={washTime[i] ? 'active-time-title' : ''}
                 onClick={this.timeClick(time)}
               >
                 {time}
@@ -551,10 +550,10 @@ class SelectTime extends React.Component {
           ))}
         </DatesContainer>
 
-        <ButtonContainer className={selectedTime !== null ? "" : "hidden"}>
+        <ButtonContainer className={selectedTime !== null ? '' : 'hidden'}>
           <PrevButton onClick={() => this.props.prev()}>Back</PrevButton>
           <NextButton
-            className={selectedTime !== null ? null : "inactive-button"}
+            className={selectedTime !== null ? null : 'inactive-button'}
             onClick={() => this.props.next()}
           >
             Next

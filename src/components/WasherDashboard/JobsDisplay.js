@@ -38,11 +38,9 @@ class JobsDisplay extends Component {
       .catch((err) => console.log(err));
   };
   getAvailableJobs = () => {
-    console.log(this.state.jobs);
     axios
       .get(`${DB_URL}/jobs/`)
       .then((res) => {
-        console.log('JOBS!', res);
         this.setState({
           jobs: res.data.filter(
             (job) => job.washerId == localStorage.getItem('washerId')
@@ -69,7 +67,6 @@ class JobsDisplay extends Component {
   }
 
   render() {
-    console.log('STATE', this.state);
     return (
       <div>
         <div>
@@ -99,33 +96,32 @@ class JobsDisplay extends Component {
                     <h4>Payment Before Tip:</h4>
                     <p>$40.00</p>
 
-                  <button
-                    onClick={() => {
-                      alert("Still need to add this feature!");
-                    }}
-                  >
-                    Upload Before Photo
-                  </button>
-                  <button
-                    onClick={() => {
-                      alert("Still need to add this feature!");
-                    }}
-                  >
-                    Upload After Photo
-                  </button>
-                  <br />
-                  <button
-                    onClick={() => {
-                      this.handleSubmitJob(job.jobId, job.clientId);
-                    }}
-                  >
-                    Mark Job Completed
-                  </button>
-                  <hr />
-                </div>
-              );
-            })}
-
+                    <button
+                      onClick={() => {
+                        alert('Still need to add this feature!');
+                      }}
+                    >
+                      Upload Before Photo
+                    </button>
+                    <button
+                      onClick={() => {
+                        alert('Still need to add this feature!');
+                      }}
+                    >
+                      Upload After Photo
+                    </button>
+                    <br />
+                    <button
+                      onClick={() => {
+                        this.handleSubmitJob(job.jobId, job.clientId);
+                      }}
+                    >
+                      Mark Job Completed
+                    </button>
+                    <hr />
+                  </div>
+                );
+              })}
           </div>
         )}
         <div>

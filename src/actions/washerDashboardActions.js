@@ -1,5 +1,5 @@
 // import axios from
-import axios from "axios";
+import axios from 'axios';
 
 // import action types from
 import {
@@ -16,7 +16,7 @@ import {
   WASHER_GET_RATING_SUCCESS,
   WASHER_GET_RATING_FAILED,
   DB_URL,
-} from "../actions/actionTypes.js";
+} from '../actions/actionTypes.js';
 
 // action creators
 // set the Washer Work Status (true/false) using the endpoint
@@ -24,12 +24,10 @@ export function setWorkStatus(payload) {
   return (dispatch) => {
     dispatch({ type: WASHER_SET_WORK_STATUS_START });
     const { id, workStatus } = payload;
-    console.log("work status ----> ", workStatus);
 
     return axios
       .put(`${DB_URL}/users/washer/${id}`, { workStatus: workStatus })
       .then((res) => {
-        console.log("RES ------->", res);
         dispatch({ type: WASHER_SET_WORK_STATUS_SUCCESS, payload: res.data });
       })
       .catch((err) => {
@@ -47,7 +45,7 @@ export function getWorkStatus(payload) {
     dispatch({ type: WASHER_GET_WORK_STATUS_START });
 
     return axios
-      .post(DB_URL + "/jobs/getWorkStatus", {
+      .post(DB_URL + '/jobs/getWorkStatus', {
         id: payload,
       })
       .then((res) => {

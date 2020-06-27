@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { register } from "../../actions/washerSignupActions.js";
-import { loginUser } from "../../actions/actionTypes.js";
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { register } from '../../actions/washerSignupActions.js';
+import { loginUser } from '../../actions/actionTypes.js';
 import {
   MDBBtn,
   MDBCard,
@@ -11,11 +11,11 @@ import {
   MDBContainer,
   MDBRow,
   MDBCol,
-} from "mdbreact";
-import { MDBProgress } from "mdbreact";
-import WasherSignUpPersonal from "./WasherSignUpPersonal.js";
-import WasherSignUpAddress from "./WasherSignUpAddress.js";
-import WasherSignUpReview from "./WasherSignUpReview.js";
+} from 'mdbreact';
+import { MDBProgress } from 'mdbreact';
+import WasherSignUpPersonal from './WasherSignUpPersonal.js';
+import WasherSignUpAddress from './WasherSignUpAddress.js';
+import WasherSignUpReview from './WasherSignUpReview.js';
 
 export class WasherSignUpForm extends Component {
   constructor(props) {
@@ -25,16 +25,16 @@ export class WasherSignUpForm extends Component {
       washerSignupReducer: {},
       loadingBar: 25,
       step: 1,
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      phone: "",
-      street: "",
-      apt: "",
-      zipCode: "",
-      city: "",
-      usState: "",
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      phone: '',
+      street: '',
+      apt: '',
+      zipCode: '',
+      city: '',
+      usState: '',
     };
   }
 
@@ -101,7 +101,7 @@ export class WasherSignUpForm extends Component {
     } = this.state;
     // set up the payload to sent to back-end
     const payload = {
-      accountType: "washer",
+      accountType: 'washer',
       email,
       firstName,
       lastName,
@@ -128,9 +128,7 @@ export class WasherSignUpForm extends Component {
   loginUser = (email, password) => {
     this.props
       .loginUser(email, password)
-      .then((res) => {
-        console.log("logged in success");
-      })
+      .then((res) => {})
       .catch((err) => {
         throw new Error(err);
       });
@@ -174,7 +172,7 @@ export class WasherSignUpForm extends Component {
           <MDBCol md="6">
             <MDBCard
               className="card-body"
-              style={{ width: "100%", marginTop: "1rem" }}
+              style={{ width: '100%', marginTop: '1rem' }}
             >
               <div className="form-group">
                 <MDBCardTitle>Washer Sign up</MDBCardTitle>
